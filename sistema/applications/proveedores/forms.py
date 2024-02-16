@@ -24,7 +24,7 @@ class ProveedorCreateForm(forms.ModelForm):
 
     def clean_prov_telefono(self):
         cantidad = self.cleaned_data['prov_telefono']
-        if cantidad < 10:
+        if len(cantidad) < 10:
             raise forms.ValidationError("El teléfono debe tener al menos 10 digitos.")
         return cantidad
     
@@ -43,7 +43,7 @@ class ProveedoresUpdateForm(forms.ModelForm):
     
     def clean_prov_telefono(self):
         cantidad = self.cleaned_data['prov_telefono']
-        if cantidad < 10:
+        if len(cantidad) < 10:
             raise forms.ValidationError("El teléfono debe tener al menos 10 digitos.")
         return cantidad
     
