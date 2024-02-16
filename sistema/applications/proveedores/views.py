@@ -38,4 +38,4 @@ class ProveedorUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "proveedores/edit_proveedor.html"
     login_url=reverse_lazy('users_app:login')
     form_class=ProveedoresUpdateForm
-    success_url= reverse_lazy('proveedores_app:update_proveedor')
+    success_url= reverse_lazy('proveedores_app:list_proveedores')
