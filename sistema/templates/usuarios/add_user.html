@@ -1,0 +1,73 @@
+{%extends "base.html"%}
+{%block title%} Añadir Usuario {%endblock%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Agregar Usuario</h1>
+        </div> 
+    </div>
+
+    <div class="mt-4 row justify-content-center">
+        <div class="col-md-4">
+            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+                {%csrf_token%}
+
+                {% if form.errors %}
+                    <div class="alert alert-info">
+                        {{form.errors.name.0}}
+                        {{form.errors.last_name.0}}
+                        {{form.errors.username.0}}
+                        {{form.errors.password.0}}
+                        {{form.errors.password2.0}}
+                    </div>
+                {% endif %}
+
+                <div class="mx-4 my-2 row">
+                    
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_nombre" class="form-label">Nombres: </label>
+                        {{form.name}}   
+                    </div>
+              
+               
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechallegada" class="form-label">Apellidos:</label>
+                        {{form.last_name}}   
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechavencimiento" class="form-label">Roles:</label>
+                        {{form.rol}}  
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Username: </label>
+                        {{form.username}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Contraseña: </label>
+                        {{form.password}}
+                    </div>
+        
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Repetir Contraseña: </label>
+                        {{form.password2}}
+                    </div>
+
+                    
+                
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Guardar</button>
+                        |
+                        <a href="{% url 'users_app:list_user' %}" type="button" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>    
+{%endblock%}

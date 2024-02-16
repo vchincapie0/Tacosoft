@@ -1,0 +1,60 @@
+{%extends "base.html"%}
+{%block title%} Añadir Materia Prima {%endblock%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Agregar Materia Prima</h1>
+        </div> 
+    </div>
+
+    <div class="mt-4 row">
+        <div class="col">
+            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+                {%csrf_token%}
+            
+                <div class="row">
+                    <div class="mb-3 col-md-6 col-12">
+                        <label for="id_imp_lote" class="form-label">Lote:</label>
+                        {{form.mp_lote}}
+                    </div>
+                    <div class="mb-3 col-md-6 col-12">
+                        <label for="id_mp_nombre" class="form-label">Materia Prima:</label>
+                        {{form.mp_nombre}}   
+                    </div>
+                    <div class="mb-3 col-md-6 col-12">
+                        <label for="id_mp_nombre" class="form-label">Tipo:</label>
+                        {{form.mp_tipo}}   
+                    </div>
+                    <div class="mb-3 col-md-6 col-12">
+                        <label for="id_mp_nombre" class="form-label">Cantidad:</label>
+                        {{form.mp_cantidad}} g   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6 col-12">
+                        <label for="id_mp_fechallegada" class="form-label">Fecha de Llegada:</label>
+                        {{form.mp_fechallegada}}   
+                    </div>
+
+                    <div class="mb-3 col-md-6 col-12">
+                        <label for="id_mp_fechavencimiento" class="form-label">Fecha de Vencimiento</label>
+                        {{form.mp_fechavencimiento}}  
+                    </div>
+                </div>
+
+                
+            
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Agregar</button>
+                        <a href="{% url 'mp_app:lista_mp' %}" type="button" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>    
+{%endblock%}

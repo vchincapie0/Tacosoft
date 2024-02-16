@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+{%block title%} Caracteristicas Materia Prima {%endblock%}
+
+{%block content%}
+<form method="post" action="">
+  {%csrf_token%}
+  <div class="card text-center border-warning text-bg-dark" style="--bs-bg-opacity: .5;">
+    <div class="card-header">
+      <h3>Caracteristicas Organolepticas</h3>
+    </div>
+    <div class="card-body">
+    
+      <h5 class="card-title">Lote: {{form.mp_lote}}</h5>
+      <p class="card-text">
+        <div class="form-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Olor: 
+            {{form.olor}}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Textura: 
+            {{form.textura}}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Limpieza: 
+            {{form.limpieza}}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Empaque: 
+            {{form.empaque}}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="flexCheckDefault">
+            Color: 
+            {{form.color}}
+          </label>
+        </div>
+        
+        <div class="">
+          <label for="">
+            Estado:
+            {{form.estado}}
+          </label>
+        </div>
+      </p>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a type="button" class="btn btn-danger" href="{% url 'mp_app:lista_mp' %}">Cancelar</a>
+  </div>
+</div>
+</form>
+
+{%endblock%}

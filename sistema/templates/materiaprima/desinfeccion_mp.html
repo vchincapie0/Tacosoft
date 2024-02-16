@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+{%block title%} Desinfección de Materia Prima {%endblock%}
+
+{%block content%}
+<form method="post" action="">
+  {%csrf_token%}
+  <div class="card text-center border-warning text-bg-dark" style="--bs-bg-opacity: .5;">
+    <div class="card-header">
+        <h3>Desinfección</h3>
+    </div>
+    <div class="card-body">
+    
+      <h5 class="card-title">Lote: {{form.mp_lote}}</h5>
+      <p class="card-text">
+        <div class="form">
+          <label class="form-label">
+            Agente Desinfectante: 
+            {{form.des_nombre}}
+          </label>
+        </div>
+        <div class="form">
+          <label class="form-label">
+            Concentración: 
+            {{form.concentracion}}
+          </label>
+        </div>
+        <div class="form">
+          <label class="form-label">
+            Responsable: 
+            {{form.responsable}}
+          </label>
+        </div>
+        <div class="form">
+          <label class="form-label">
+            Tiempo de inicio: 
+            {{form.tiempo_inicio}}
+          </label>
+        </div>
+        <div class="form">
+          <label class="form-label">
+            Tiempo fin de desinfección: 
+            {{form.tiempo_fin}}
+          </label>
+        </div>
+        
+        <div class="form">
+          <label for="form-label">
+            Observaciones:
+            {{form.obsevacion}}
+          </label>
+        </div>
+      </p>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a type="button" class="btn btn-danger" href="{% url 'mp_app:detail_mp' %}">Cancelar</a>
+  </div>
+</div>
+</form>
+
+{%endblock%}
