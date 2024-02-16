@@ -11,6 +11,8 @@ urlpatterns = [
     path('', include('applications.users.urls')),
     path('', include('applications.home.urls')),
     path('', include('applications.insumos.urls')),
+    path('', include('applications.proveedores.urls')),
+
 
 
 
