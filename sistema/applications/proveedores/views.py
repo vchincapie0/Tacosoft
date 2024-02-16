@@ -9,7 +9,7 @@ from .forms import ProveedorCreateForm, ProveedoresUpdateForm
 class ProveedoresListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
     model = Proveedores
-    template_name = "proveedores/list_proveedores.html"
+    template_name = "proveedores/list_proveedor.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'proveedor'
