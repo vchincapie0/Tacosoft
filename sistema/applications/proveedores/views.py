@@ -39,3 +39,10 @@ class ProveedorUpdateView(LoginRequiredMixin, UpdateView):
     login_url=reverse_lazy('users_app:login')
     form_class=ProveedoresUpdateForm
     success_url= reverse_lazy('proveedores_app:list_proveedores')
+
+class ProveedoresDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Proveedores'''
+    model = Proveedores
+    template_name = "proveedores/delete_proveedor.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('proveedores_app:list_proveedores')

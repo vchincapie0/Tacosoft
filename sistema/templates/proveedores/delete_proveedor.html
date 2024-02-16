@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+{%block title%} Eliminar Proveedor {%endblock%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Eliminar Proveedor</h1>
+        </div> 
+    </div>
+
+    <div class="mt-4 row justify-content-center">
+        <div class="col-md-4">
+            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+                {%csrf_token%}
+
+                <div class="row">
+                    <div class="col">
+                        <h5>Proveedor: {{object.prov_nombre}} de NIT: {{object.nit}}</h5>
+                      <p>¿Seguro que desea borrar este proveedor?</p>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'proveedores_app:list_proveedores' %}" type="button" class="btn btn-primary">Cancelar</a>
+                    </div> 
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>    
+{%endblock%}
