@@ -31,3 +31,11 @@ class ProveedoresCreateView(LoginRequiredMixin,CreateView):
     form_class = ProveedorCreateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('proveedores_app:list_proveedores') 
+
+class ProveedorUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de proveedores'''
+    model = Proveedores
+    template_name = "proveedores/edit_proveedor.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=ProveedoresUpdateForm
+    success_url= reverse_lazy('proveedores_app:update_proveedor')
