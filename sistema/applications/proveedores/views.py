@@ -21,3 +21,13 @@ class ProveedoresListView(LoginRequiredMixin, ListView):
             prov_nombre__icontains = palabra_clave
         )
         return lista
+    
+class ProveedoresCreateView(LoginRequiredMixin,CreateView):
+    '''Clase para crear nuevos proveedores'''
+    model = Proveedores
+    template_name = "proveedores/add_proveedor.html"
+    login_url=reverse_lazy('home_app:home')
+    #Campos que se van a mostrar en el formulario
+    form_class = ProveedorCreateForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('proveedores_app:list_proveedores') 
