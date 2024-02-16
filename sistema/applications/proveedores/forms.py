@@ -39,7 +39,7 @@ class ProveedoresUpdateForm(forms.ModelForm):
     class Meta:
 
         model = Proveedores
-        fields = ['prov_nombre','prov_telefono']
+        fields = ['nit','prov_nombre','prov_telefono']
     
     def clean_prov_telefono(self):
         cantidad = self.cleaned_data['prov_telefono']
