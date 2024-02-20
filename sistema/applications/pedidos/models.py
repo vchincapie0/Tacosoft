@@ -1,8 +1,8 @@
 from django.db import models
-from users.models import User
-from materiaprima.models import MateriaPrima
-from insumos.models import ImplementosTrabajo
-from proveedores.models import Proveedores
+from applications.users.models import User
+from applications.materiaprima.models import MateriaPrima
+from applications.insumos.models import ImplementosTrabajo
+from applications.proveedores.models import Proveedores
 
 # Create your models here.
 
