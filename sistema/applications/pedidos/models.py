@@ -22,8 +22,8 @@ class Pedidos(models.Model):
     pedi_estado=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
     pedi_comprobatePago=models.CharField('Comprobante Pago',max_length=45)
     pedi_proveedor=models.ManyToManyField(Proveedores)
-    pedi_materiaprima=models.ManyToManyField(MateriaPrima)
-    pedi_insumos=models.ManyToManyField(ImplementosTrabajo)
+    pedi_materiaprima=models.ManyToManyField(MateriaPrima, blank=True)
+    pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
 
     def __str__(self):
         return f"{self.ref_pedido}-{self.pedi_estado}"
