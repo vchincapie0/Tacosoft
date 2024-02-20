@@ -34,7 +34,7 @@
                             <th scope="col">NIT</th>
                             <th scope="col">Razón Social</th>
                             <th scope="col">Teléfono</th>
-                            <th scope="col">Detalles</th>
+                            <th scope="col" class="text-center">Detalles</th>
                             
 
                         </tr>
@@ -49,6 +49,8 @@
                                 <a class="btn btn-warning" href="{% url 'proveedores_app:update_proveedores' p.prov_id %}" type="button"><i class="fa-regular fa-pen-to-square"></i></a>
                                 |
                                 <a class="btn btn-danger" href="{% url 'proveedores_app:delete_proveedores' p.prov_id %}" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                                |
+                                <a class="btn btn-primary" href="#" type="button"><i class="fa-solid fa-file-export"></i> Facturas</a>
                             </td>
                             
                         </tr>
