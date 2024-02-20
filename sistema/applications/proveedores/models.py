@@ -10,3 +10,6 @@ class Proveedores(models.Model):
 
     def __str__(self):
         return f"{self.nit}-{self.prov_nombre}"
+
+#class Facturas(models.Model):
+    
