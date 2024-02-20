@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'applications.users',
     'applications.insumos',
     'applications.proveedores',
+    'applications.pedidos'
 
 
 ]
