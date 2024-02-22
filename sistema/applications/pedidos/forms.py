@@ -11,8 +11,10 @@ class PedidosCreateForm(forms.ModelForm):
     tipo_pedido=forms.CharField(
         label='Tipo de Pedido',
         required=True,
-        choices=PEDIDO_CHOICES,
         max_length=1,
+        widget=forms.Select(
+            choices=PEDIDO_CHOICES
+        ),
     )
 
     class Meta:
@@ -49,8 +51,10 @@ class PedidosUpdateForm(forms.ModelForm):
     tipo_pedido=forms.CharField(
         label='Tipo de Pedido',
         required=True,
-        choices=PEDIDO_CHOICES,
         max_length=1,
+        widget=forms.Select(
+            choices=PEDIDO_CHOICES
+        ),
     )
 
     class Meta:
