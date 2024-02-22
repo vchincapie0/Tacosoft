@@ -32,4 +32,4 @@ class PedidosCreateView(LoginRequiredMixin, CreateView):
     #Campos que se van a mostrar en el formulario
     form_class = PedidosCreateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-    success_url= reverse_lazy('pedidos_app:add_insumos') 
+    success_url= reverse_lazy('pedidos_app:add_pedidos') 
