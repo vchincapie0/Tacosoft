@@ -38,9 +38,8 @@
                             <th scope="col">Comprobante de Pago</th>
                             <th scope="col">Proveedor</th>
                             <th scope="col">Materia Prima</th>
-                            <th scope="col">Insumos</th>
-                            <th scope="col">Detalles</th>
-                            
+                            <th scope="col">Implementos de Trabajo</th>
+                            <th scope="col">Detalles</th>               
 
                         </tr>
                     </thead>
@@ -52,16 +51,16 @@
                             <td>{{p.pedi_fecha}}</td>
                             <td>{{p.get_pedi_estado_display}}</td>
                             <td>{{p.pedi_comprobatePago}}</td>
-                            <td>{{p.pedi_proveedor}}</td>
+                            <td>{{p.pedi_proveedor.prov_nombre}}</td>
                             <td>
                                 {% if p.pedi_materiaprima.all %}
                                     <ul>
                                         {% for materia_prima in p.pedi_materiaprima.all %}
-                                            <li>{{ materia_prima }}</li> <br>
+                                            <li>{{ materia_prima.mp_nombre }}</li> <br>
                                         {% endfor %}   
                                     </ul>
                                 {% else %}
-                                    No hay materia prima en este pedido
+                                    -
                                 {% endif %}
 
                             </td>
@@ -69,11 +68,11 @@
                                 {% if p.pedi_insumos.all %}
                                     <ul>
                                         {% for insumos in p.pedi_insumos.all %}
-                                            <li>{{ insumos }}</li> <br>
+                                            <li>{{ insumos.it_nombre }}</li> <br>
                                         {% endfor %}   
                                     </ul>
                                 {% else %}
-                                    No hay insumos en este pedido
+                                    -
                                 {% endif %}
                             </td>
 
