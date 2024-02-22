@@ -3,6 +3,18 @@ from .models import Pedidos
 
 class PedidosCreateForm(forms.ModelForm):
 
+    PEDIDO_CHOICES=(
+        ('0','materia prima'),
+        ('1','insumos'),
+    )
+
+    tipo_pedido=forms.CharField(
+        label='Tipo de Pedido',
+        required=True,
+        choices=PEDIDO_CHOICES,
+        max_length=1,
+    )
+
     class Meta:
 
         model=Pedidos
@@ -20,7 +32,7 @@ class PedidosCreateForm(forms.ModelForm):
         widgets={
             'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido'}),
             'pedi_fecha':forms.DateInput(),
-            'pedi_comprobantePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago'}),
+            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago'}),
             'pedi_proveedor':forms.Select(),
             'pedi_materiaprima':forms.SelectMultiple(),
             'pedi_insumos':forms.SelectMultiple(),
