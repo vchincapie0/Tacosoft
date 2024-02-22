@@ -45,7 +45,14 @@
                     </thead>
                     <tbody>
                         {%for p in pedidos%}
-                        <tr>
+
+                        {% if p.pedi_estado == '0' %}
+                            <tr class="table-success"> 
+                        {% elif p.pedi_estado == '1' %} 
+                            <tr class="table-warning">
+                        {% else %}
+                            <tr class="table-danger">
+                        {% endif %}
                             <td>{{p.ref_pedido}}</td>
                             <td>{{p.pedi_user}}</td>
                             <td>{{p.pedi_fecha}}</td>
@@ -83,6 +90,7 @@
                             </td>
                             
                         </tr>
+                        
                         {%endfor%}
                     </tbody>
                 </table>
