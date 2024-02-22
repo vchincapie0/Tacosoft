@@ -45,18 +45,20 @@
                     </thead>
                     <tbody>
                         {%for p in pedidos%}
-
-                        {% if p.pedi_estado == '0' %}
-                            <tr class="table-success"> 
-                        {% elif p.pedi_estado == '1' %} 
-                            <tr class="table-warning">
-                        {% else %}
-                            <tr class="table-danger">
-                        {% endif %}
+                        <tr>
                             <td>{{p.ref_pedido}}</td>
                             <td>{{p.pedi_user}}</td>
                             <td>{{p.pedi_fecha}}</td>
-                            <td>{{p.get_pedi_estado_display}}</td>
+                            
+                            {% if p.pedi_estado == '0' %}
+                                <td class="table-success">{{p.get_pedi_estado_display}}</td>
+                            {% elif p.pedi_estado == '1' %}
+                                <td class="table-warning">{{p.get_pedi_estado_display}}</td> 
+                            {% else %}
+                                <td class="table-danger">{{p.get_pedi_estado_display}}</td>
+                            {% endif %}
+                                
+                            
                             <td>{{p.pedi_comprobatePago}}</td>
                             <td>{{p.pedi_proveedor.prov_nombre}}</td>
                             <td>
