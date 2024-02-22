@@ -1,0 +1,78 @@
+{%extends "base.html"%}
+{%block title%} Añadir Pedidos Recibidos {%endblock%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Agregar Pedidos</h1>
+        </div> 
+    </div>
+
+    <div class="mt-4 row justify-content-center">
+        <div class="col-md-4">
+            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+                {%csrf_token%}
+
+                {% if form.errors %}
+                    <div class="alert alert-info">
+                        
+                    </div>
+                {% endif %}
+
+                <div class="mx-4 my-2 row">
+                    
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_nombre" class="form-label">Referencia del pedido: </label>
+                        {{form.ref_pedido}}   
+                    </div>
+              
+               
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechallegada" class="form-label">Usuario Responsable:</label>
+                        {{form.pedi_user}}   
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechavencimiento" class="form-label">Fecha de Recibido:</label>
+                        <br>
+                        {{form.pedi_fecha}}  
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Estado: </label>
+                        {{form.pedi_estado}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">N° Comprobante: </label>
+                        {{form.pedi_comprobatePago}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Proveedor: </label>
+                        {{form.pedi_proveedor}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Materia Prima: </label>
+                        {{form.pedi_materiaprima}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Insumos: </label>
+                        {{form.pedi_insumos}}
+                    </div>
+
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Guardar</button>
+                        |
+                        <a href="{% url 'pedidos_app:list_pedidos' %}" type="button" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>    
+{%endblock%}
