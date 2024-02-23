@@ -72,6 +72,7 @@ class PedidosAddInsumosCreateView(LoginRequiredMixin,CreateView):
     success_url= reverse_lazy('pedidos_app:add_pedidos')
 
 class PedidosAddProveedoresCreateView(LoginRequiredMixin,CreateView):
+
     '''Clase para crear un proveedor nuevo dentro del formulario de agregar pedidos'''
     model = Proveedores
     template_name = "pedidos/add_prov_pedidos.html"
@@ -80,3 +81,11 @@ class PedidosAddProveedoresCreateView(LoginRequiredMixin,CreateView):
     form_class = PedidosAddProveedorCreateFrom
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('pedidos_app:add_pedidos') 
+
+class PedidosUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de proveedores'''
+    model = Pedidos
+    template_name = "pedidos/edit_pedidos.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=PedidosUpdateForm
+    success_url= reverse_lazy('pedidos_app:list_pedidos')
