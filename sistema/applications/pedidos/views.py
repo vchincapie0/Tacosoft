@@ -10,6 +10,10 @@ from django.urls import reverse_lazy
 
 #Importacion de modelos y formularios
 from .models import Pedidos
+from applications.materiaprima.models import MateriaPrima
+from applications.insumos.models import ImplementosTrabajo
+from applications.proveedores.models import Proveedores
+
 from .forms import (
     PedidosCreateForm, 
     PedidosUpdateForm, 
@@ -17,10 +21,6 @@ from .forms import (
     PedidosAddInsumosCreateFrom,
     PedidosAddProveedorCreateFrom,
 )
-
-from applications.materiaprima.models import MateriaPrima
-from applications.insumos.models import ImplementosTrabajo
-from applications.proveedores.models import Proveedores
 
 # Create your views here.
 
