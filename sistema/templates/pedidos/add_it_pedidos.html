@@ -5,38 +5,40 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{% url 'pedidos_app:add__mp_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+          <form action="{% url 'pedidos_app:add__it_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
               {%csrf_token%}
           
-              <div class="row">
-                  <div class="mb-3 col">
-                      <label for="id_imp_lote" class="form-label">Lote:</label>
-                      {{form.mp_lote}}
-                  </div>
-                  <div class="mb-3 col">
-                      <label for="id_mp_nombre" class="form-label">Materia Prima:</label>
-                      {{form.mp_nombre}}   
-                  </div>
-                  <div class="mb-3 col">
-                      <label for="id_mp_nombre" class="form-label">Tipo:</label>
-                      {{form.mp_tipo}}   
-                  </div>
-                  <div class="mb-3 col">
-                      <label for="id_mp_nombre" class="form-label">Cantidad:</label>
-                      {{form.mp_cantidad}} g   
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="mb-3 col">
-                      <label for="id_mp_fechallegada" class="form-label">Fecha de Llegada:</label>
-                      {{form.mp_fechallegada}}   
-                  </div>
+              {% if form.errors %}
+                    <div class="alert alert-info">
+                        {{form.errors.it_nombre.0}}
+                        {{form.errors.it_cantidad.0}}
+                    </div>
+                {% endif %}
 
-                  <div class="mb-3 col">
-                      <label for="id_mp_fechavencimiento" class="form-label">Fecha de Vencimiento</label>
-                      {{form.mp_fechavencimiento}}  
-                  </div>
-              </div>
+                <div class="mx-4 my-2 row">
+                    
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_nombre" class="form-label">Implemento: </label>
+                        {{form.it_nombre}}   
+                    </div>
+              
+               
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechallegada" class="form-label">Cantidad:</label>
+                        {{form.it_cantidad}}   
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechavencimiento" class="form-label">Fecha de Entrega:</label>
+                        <br>
+                        {{form.it_fechaEntrega}}  
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Estado: </label>
+                        {{form.it_estado}}
+                    </div>
+
       
                 <div class="row">
                     <div class="col text-center d-flex justify-content-center">
