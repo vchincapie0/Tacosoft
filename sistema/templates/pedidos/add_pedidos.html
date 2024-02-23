@@ -64,7 +64,8 @@
                         <label for="id_imp_lote" class="form-label">Materia Prima: </label>
                         {{form.pedi_materiaprima}}
 
-                        <a href="{% url 'pedidos_app:add__mp_pedidos' %}" type="button" style="color: greenyellow;" class="m-3"><i class="fa-solid fa-plus fa-xl"></i></a>
+                        <!--Ignorar este error-->
+                        <a onclick="abrir_modal_add_mp('{% url 'pedidos_app:add__mp_pedidos' %}')" type="button" style="color: greenyellow;" class="m-3"><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
                     <div class="mb-3 col-12">
@@ -83,15 +84,16 @@
 
                     
                 </div>
-                
             </form>
         </div>
     </div>
 </div> 
 
 <div class="modal fade" id="add_mp_pedidos" role="dialog"></div>
+{%endblock%}
 
-<script>
+{% block extrajs %}
+<script type="text/javascript">
     function toggleInsumosField(value) {
     const insumosField = document.getElementById('id_pedi_insumos');
     insumosField.disabled = value === '0';
@@ -102,5 +104,15 @@
 
     // Trigger the initial state when the page loads
     toggleInsumosField(document.getElementById('id_tipo_pedido').value);
-</script>
-{%endblock%}
+
+    function abrir_modal_add_mp(url){
+        var $ = jQuery.noConflict();
+        $('#add_mp_pedidos').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+</script>           
+{% endblock extrajs %}
+
+
