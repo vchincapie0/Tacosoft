@@ -57,7 +57,7 @@
                     <div class="m-3 col-12">
                         <label for="id_imp_lote" class="form-label">Proveedor: </label>
                         {{form.pedi_proveedor}}
-                        <a href="#" type="button" style="color: greenyellow;" class=""><i class="fa-solid fa-plus fa-xl"></i></a>
+                        <a onclick="abrir_modal_add_mp('{% url 'pedidos_app:add__prov_pedidos' %}')" type="button" style="color: greenyellow;" class=""><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
                     <div class="mb-3 col-12">
@@ -93,6 +93,8 @@
 
 <div class="modal fade" id="add_mp_pedidos" role="dialog"></div>
 <div class="modal fade" id="add_it_pedidos" role="dialog"></div>
+<div class="modal fade" id="add_prov_pedidos" role="dialog"></div>
+
 {%endblock%}
 
 {% block extrajs %}
@@ -118,6 +120,13 @@
     function abrir_modal_add_it(url){
         var $ = jQuery.noConflict();
         $('#add_it_pedidos').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function abrir_modal_add_it(url){
+        var $ = jQuery.noConflict();
+        $('#add_prov_pedidos').load(url,function(){
             $(this).modal('show');
         }); 
     }
