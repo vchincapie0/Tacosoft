@@ -10,12 +10,20 @@
           
                 <div class="row">
                     <div class="col">
-                        <h3>Pedido: {{object.ref_pedido}} del Proveedor: {{object.pedi_proveedor.prov_nombre}}</h3>
+                        <h3>Pedido: {{object.ref_pedido}}</h3>
+                        <h3>Proveedor: {{object.pedi_proveedor.prov_nombre}}</h3>
                         <p>Este pedido cuenta con:
 
                             {% for materia_prima in object.pedi_materiaprima.all %}
                             <ul>
                                 <li>{{ materia_prima.mp_nombre }}</li>
+                            </ul>
+                                
+                            {% endfor %}
+
+                            {% for insumos in object.pedi_insumos.all %}
+                            <ul>
+                                <li>{{ insumos.it_nombre }}</li>
                             </ul>
                                 
                             {% endfor %}
