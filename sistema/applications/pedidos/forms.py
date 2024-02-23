@@ -33,7 +33,7 @@ class PedidosCreateForm(forms.ModelForm):
 
         widgets={
             'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido'}),
-            'pedi_fecha':forms.DateInput(),
+            'pedi_fecha':forms.SelectDateWidget(),
             'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago'}),
             'pedi_proveedor':forms.Select(),
             'pedi_materiaprima':forms.SelectMultiple(),
