@@ -1,6 +1,8 @@
+import re
 from django import forms
 from .models import Pedidos
 from applications.materiaprima.models import MateriaPrima
+from applications.insumos.models import ImplementosTrabajo
 
 class PedidosCreateForm(forms.ModelForm):
 
@@ -125,3 +127,36 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
+
+class PedidosAddInsumosCreateFrom(forms.ModelForm):
+    """Form definition Implementos de Trabajo en pedidos."""
+
+    class Meta:
+        """Meta definition for implementosTrabajoform."""
+
+        model = ImplementosTrabajo
+        fields = (
+            'it_codigo',
+            'it_nombre',
+            'it_cantidad',
+            'it_fechaEntrega',
+            'it_estado',
+            )
+        
+        widgets={
+            'it_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
+            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada'}),
+            'it_fechaEntrega':forms.SelectDateWidget(),
+        }
+
+    def clean_it_cantidad(self):
+        cantidad = self.cleaned_data['it_cantidad']
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+        return cantidad
+    
+    def clean_it_nombre(self):
+        nombre = self.cleaned_data['it_nombre']
+        if not re.match("^[a-zA-Z ]+$", nombre):
+            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
+        return nombre
