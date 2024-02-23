@@ -12,7 +12,7 @@ class PedidosCreateForm(forms.ModelForm):
         label='Tipo de Pedido',
         required=True,
         max_length=1,
-        widget=forms.Select(
+        widget=forms.RadioSelect(
             choices=PEDIDO_CHOICES
         ),
     )

@@ -21,34 +21,39 @@
                 {% endif %}
 
                 <div class="mx-4 my-2 row">
+
+                    <div class="mb-3 col-md-6  col-12">
+                        <label for="id_mp_nombre" class="form-label">Tipo de pedido: </label>
+                        {{form.tipo_pedido}}        
+                    </div>
                     
-                    <div class="mb-3 col-12">
+                    <div class="mb-3 col-md-6  col-12">
                         <label for="id_mp_nombre" class="form-label">Referencia del pedido: </label>
                         {{form.ref_pedido}}   
                     </div>
               
                
-                    <div class="mb-3 col-12">
+                    <div class="mb-3 col-md-6  col-12">
                         <label for="id_mp_fechallegada" class="form-label">Usuario Responsable:</label>
                         {{form.pedi_user}}   
                     </div>
 
-                    <div class="mb-3 col-12">
+                    <div class="mb-3 col-md-6  col-12">
                         <label for="id_mp_fechavencimiento" class="form-label">Fecha de Recibido:</label>
                         {{form.pedi_fecha}}  
                     </div>
 
-                    <div class="mb-3 col-12">
+                    <div class="mb-3 mt-3 col-md-6  col-12">
                         <label for="id_imp_lote" class="form-label">Estado: </label>
                         {{form.pedi_estado}}
                     </div>
 
-                    <div class="mb-3 col-12">
+                    <div class="mb-3 col-md-6  col-12">
                         <label for="id_imp_lote" class="form-label">N° Comprobante: </label>
                         {{form.pedi_comprobatePago}}
                     </div>
 
-                    <div class="mb-3 col-12">
+                    <div class="m-3 col-12">
                         <label for="id_imp_lote" class="form-label">Proveedor: </label>
                         {{form.pedi_proveedor}}
                         <a href="#" type="button" style="color: greenyellow;" class=""><i class="fa-solid fa-plus fa-xl"></i></a>
