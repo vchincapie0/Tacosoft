@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+{% load static %}
 {%block title%} Añadir Pedidos Recibidos {%endblock%}
 
 {%block content%}
@@ -86,5 +87,20 @@
             </form>
         </div>
     </div>
-</div>    
+</div> 
+
+<div class="modal fade" id="add_mp_pedidos" role="dialog"></div>
+
+<script>
+    function toggleInsumosField(value) {
+    const insumosField = document.getElementById('id_pedi_insumos');
+    insumosField.disabled = value === '0';
+
+    const materiapField = document.getElementById('id_pedi_materiaprima');
+    materiapField.disabled = value === '1';
+    }
+
+    // Trigger the initial state when the page loads
+    toggleInsumosField(document.getElementById('id_tipo_pedido').value);
+</script>
 {%endblock%}

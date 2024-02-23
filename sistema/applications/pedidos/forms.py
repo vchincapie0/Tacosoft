@@ -41,6 +41,22 @@ class PedidosCreateForm(forms.ModelForm):
 
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Disable Insumos field initially
+        #self.fields['pedi_insumos'].disabled = True
+
+        # Add JavaScript event handler to toggle the disabled state
+        self.fields['tipo_pedido'].widget.attrs['onchange'] = (
+            'toggleInsumosField(this.value);'
+        )
+
+    class Media:
+        js = (
+            'https://code.jquery.com/jquery-3.7.1.min.js',
+        )
+
 class PedidosUpdateForm(forms.ModelForm):
 
     PEDIDO_CHOICES=(
