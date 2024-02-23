@@ -9,6 +9,8 @@ urlpatterns = [
     path('add_mp_pedidos/',views.PedidosAddMpCreateView.as_view(),name='add__mp_pedidos'),
     path('add_it_pedidos/',views.PedidosAddInsumosCreateView.as_view(),name='add__it_pedidos'),
     path('add_prov_pedidos/',views.PedidosAddProveedoresCreateView.as_view(),name='add__prov_pedidos'),
+    path('update_pedidos/',views.PedidosUpdateView.as_view(),name='update_pedidos'),
+
 
 
 
