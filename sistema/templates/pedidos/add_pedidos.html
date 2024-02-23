@@ -10,7 +10,7 @@
     </div>
 
     <div class="mt-4 row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
                 {%csrf_token%}
 
@@ -35,7 +35,6 @@
 
                     <div class="mb-3 col-12">
                         <label for="id_mp_fechavencimiento" class="form-label">Fecha de Recibido:</label>
-                        <br>
                         {{form.pedi_fecha}}  
                     </div>
 
@@ -52,23 +51,31 @@
                     <div class="mb-3 col-12">
                         <label for="id_imp_lote" class="form-label">Proveedor: </label>
                         {{form.pedi_proveedor}}
+                        <a href="#" type="button" style="color: greenyellow;" class=""><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
                     <div class="mb-3 col-12">
                         <label for="id_imp_lote" class="form-label">Materia Prima: </label>
                         {{form.pedi_materiaprima}}
+
+                        <a href="#" type="button" style="color: greenyellow;" class="m-3"><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
                     <div class="mb-3 col-12">
                         <label for="id_imp_lote" class="form-label">Insumos: </label>
                         {{form.pedi_insumos}}
+                        <a href="#" type="button" style="color: greenyellow;" class="m-3"><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
-                    <div class="col">
-                        <button class="btn btn-success" type="submit">Guardar</button>
-                        |
-                        <a href="{% url 'pedidos_app:list_pedidos' %}" type="button" class="btn btn-danger">Cancelar</a>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <button class="btn btn-success" type="submit">Guardar</button>
+                            |
+                            <a href="{% url 'pedidos_app:list_pedidos' %}" type="button" class="btn btn-danger">Cancelar</a>
+                        </div>
                     </div>
+
+                    
                 </div>
                 
             </form>
