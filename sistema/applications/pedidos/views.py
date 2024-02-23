@@ -83,9 +83,17 @@ class PedidosAddProveedoresCreateView(LoginRequiredMixin,CreateView):
     success_url= reverse_lazy('pedidos_app:add_pedidos') 
 
 class PedidosUpdateView(LoginRequiredMixin, UpdateView):
+
     '''Vista para actualizar los datos de proveedores'''
     model = Pedidos
     template_name = "pedidos/edit_pedidos.html"
     login_url=reverse_lazy('users_app:login')
     form_class=PedidosUpdateForm
+    success_url= reverse_lazy('pedidos_app:list_pedidos')
+
+class PedidosDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Pedidos'''
+    model = Pedidos
+    template_name = "pedidos/delete_pedidos.html"
+    login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('pedidos_app:list_pedidos')
