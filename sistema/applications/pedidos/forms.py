@@ -3,6 +3,7 @@ from django import forms
 from .models import Pedidos
 from applications.materiaprima.models import MateriaPrima
 from applications.insumos.models import ImplementosTrabajo
+from applications.proveedores.models import Proveedores
 
 class PedidosCreateForm(forms.ModelForm):
 
@@ -157,6 +158,34 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
     
     def clean_it_nombre(self):
         nombre = self.cleaned_data['it_nombre']
+        if not re.match("^[a-zA-Z ]+$", nombre):
+            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
+        return nombre
+
+class  PedidosAddProveedorCreateFrom(forms.ModelForm):
+    """Form definition Proveedores."""
+    class Meta:
+
+        model=Proveedores
+        fields=(
+            'nit',
+            'prov_nombre',
+            'prov_telefono',
+        )
+
+        widgets={
+            'prov_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
+            'prov_telefono':forms.TextInput(attrs={'placeholder': 'Teléfono', 'type':'number'}),
+        }
+
+    def clean_prov_telefono(self):
+        cantidad = self.cleaned_data['prov_telefono']
+        if len(cantidad) < 10:
+            raise forms.ValidationError("El teléfono debe tener al menos 10 digitos.")
+        return cantidad
+    
+    def clean_prov_nombre(self):
+        nombre = self.cleaned_data['prov_nombre']
         if not re.match("^[a-zA-Z ]+$", nombre):
             raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
         return nombre
