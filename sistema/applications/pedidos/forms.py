@@ -1,5 +1,6 @@
 from django import forms
 from .models import Pedidos
+from applications.materiaprima.models import MateriaPrima
 
 class PedidosCreateForm(forms.ModelForm):
 
@@ -96,3 +97,31 @@ class PedidosUpdateForm(forms.ModelForm):
             'pedi_insumos':forms.SelectMultiple(),
 
         }
+
+class PedidosAddMpCreateFrom(forms.ModelForm):
+    """Form definition para crear materia prima en el formulario de pedidos."""
+
+    class Meta:
+        """Meta definition for MateriaPrimaform."""
+
+        model = MateriaPrima
+        fields = (
+            'mp_lote',
+            'mp_nombre',
+            'mp_tipo',
+            'mp_cantidad',
+            'mp_fechallegada',
+            'mp_fechavencimiento',
+            )
+        
+        widgets={
+            'mp_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Materia Prima'}),
+            'mp_fechallegada':forms.SelectDateWidget(),
+            'mp_fechavencimiento':forms.SelectDateWidget(),
+        }
+    
+    def clean_it_cantidad(self):
+        cantidad = self.cleaned_data['it_cantidad']
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+        return cantidad
