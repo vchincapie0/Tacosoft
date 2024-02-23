@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView, CreateView, UpdateView,
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Pedidos
-from .forms import PedidosCreateForm, PedidosUpdateForm
+from .forms import PedidosCreateForm, PedidosUpdateForm, PedidosAddMpCreateFrom
 from applications.materiaprima.models import MateriaPrima
 
 # Create your views here.
@@ -42,6 +42,6 @@ class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
     template_name = "pedidos/add_mp_pedidos.html"
     login_url=reverse_lazy('home_app:home')
     #Campos que se van a mostrar en el formulario
-    form_class = PedidosCreateForm
+    form_class = PedidosAddMpCreateFrom
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('pedidos_app:add_pedidos') 
