@@ -21,7 +21,7 @@
                     </div>
                 {% endif %}
 
-                <div class="mx-4 my-2 row">
+                <div class="mx-6 my-2 row">
 
                     <div class="mb-3 col-md-6  col-12">
                         <label for="id_mp_nombre" class="form-label">Tipo de pedido: </label>
@@ -71,7 +71,9 @@
                     <div class="mb-3 col-12">
                         <label for="id_imp_lote" class="form-label">Insumos: </label>
                         {{form.pedi_insumos}}
-                        <a href="#" type="button" style="color: greenyellow;" class="m-3"><i class="fa-solid fa-plus fa-xl"></i></a>
+
+                        <!--Ignorar este error, si funciona pero visual cree que hay un error en las comillas-->
+                        <a onclick="abrir_modal_add_it('{% url 'pedidos_app:add__it_pedidos' %}')" type="button" style="color: greenyellow;" class="m-3"><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
                     <div class="row">
@@ -90,6 +92,7 @@
 </div> 
 
 <div class="modal fade" id="add_mp_pedidos" role="dialog"></div>
+<div class="modal fade" id="add_it_pedidos" role="dialog"></div>
 {%endblock%}
 
 {% block extrajs %}
@@ -108,6 +111,13 @@
     function abrir_modal_add_mp(url){
         var $ = jQuery.noConflict();
         $('#add_mp_pedidos').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function abrir_modal_add_it(url){
+        var $ = jQuery.noConflict();
+        $('#add_it_pedidos').load(url,function(){
             $(this).modal('show');
         }); 
     }
