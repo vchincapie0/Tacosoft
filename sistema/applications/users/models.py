@@ -4,6 +4,7 @@ from .managers import UserManager
 # Create your models here.
 
 class User(AbstractUser, PermissionsMixin):
+    '''Clase para crear usuarios en bd'''
 
     ROL_CHOICES = (
         ('1','Administrador'),
