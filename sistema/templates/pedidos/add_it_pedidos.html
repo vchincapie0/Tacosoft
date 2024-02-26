@@ -1,0 +1,55 @@
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Insumos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="{% url 'pedidos_app:add__it_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+              {%csrf_token%}
+          
+              {% if form.errors %}
+                    <div class="alert alert-info">
+                        {{form.errors.it_nombre.0}}
+                        {{form.errors.it_cantidad.0}}
+                    </div>
+                {% endif %}
+
+                <div class="mx-4 my-2 row">
+                    
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_nombre" class="form-label">Implemento: </label>
+                        {{form.it_nombre}}   
+                    </div>
+              
+               
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechallegada" class="form-label">Cantidad:</label>
+                        {{form.it_cantidad}}   
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechavencimiento" class="form-label">Fecha de Entrega:</label>
+                        <br>
+                        {{form.it_fechaEntrega}}  
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Estado: </label>
+                        {{form.it_estado}}
+                    </div>
+
+      
+                <div class="row">
+                    <div class="col text-center d-flex justify-content-center">
+                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="m-2 btn btn-success" type="submit">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+    </div>
+</div>
+
+    

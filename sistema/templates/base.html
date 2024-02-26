@@ -37,7 +37,7 @@
                                 Compras
                             </a> 
                             <ul class="dropdown-menu" style="width: 100%;">
-                                <li class="sidebar-item text-center"><a href="#" class="sidebar-link dropdown-item">Pedidos</a></li>
+                                <li class="sidebar-item text-center"><a href="{% url 'pedidos_app:list_pedidos' %}" class="sidebar-link dropdown-item">Pedidos</a></li>
                                 <li class="sidebar-item text-center"><a href="{% url 'proveedores_app:list_proveedores' %}" class="sidebar-link dropdown-item">Proveedores</a></li>
                             </ul> 
                         </li>
@@ -101,9 +101,15 @@
         </div>
         
 
-        <!-- Bootstrap JavaScript Libraries --> 
+        <!-- JavaScript scripts --> 
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script src="https://kit.fontawesome.com/909a90592e.js" crossorigin="anonymous"></script>
         <script src="{% static 'js/script.js'%}"></script>
+
+        {% block extrajs %}
+            
+        {% endblock extrajs %}
+      
     </body>
 </html>

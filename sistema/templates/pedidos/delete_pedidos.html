@@ -1,0 +1,50 @@
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Borrar Pedido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="{% url 'pedidos_app:delete_pedidos' object.id %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+              {%csrf_token%}
+          
+                <div class="row">
+                    <div class="col">
+                        <h3>Pedido: {{object.ref_pedido}}</h3>
+                        <h3>Proveedor: {{object.pedi_proveedor.prov_nombre}}</h3>
+                        <p>Este pedido cuenta con:
+
+                            {% for materia_prima in object.pedi_materiaprima.all %}
+                            <ul>
+                                <li>{{ materia_prima.mp_nombre }}</li>
+                            </ul>
+                                
+                            {% endfor %}
+
+                            {% for insumos in object.pedi_insumos.all %}
+                            <ul>
+                                <li>{{ insumos.it_nombre }}</li>
+                            </ul>
+                                
+                            {% endfor %}
+                            
+                                
+                            
+                        </p>
+                        <p style="color: red; font-weight: bolder;">¿Seguro que desea borrar este pedido?</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-center d-flex justify-content-center">
+                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="m-2 btn btn-success" type="submit">Eliminar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+    </div>
+</div>
+
+    

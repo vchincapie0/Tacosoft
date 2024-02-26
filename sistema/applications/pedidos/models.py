@@ -21,7 +21,7 @@ class Pedidos(models.Model):
     pedi_fecha=models.DateField('fecha')
     pedi_estado=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
     pedi_comprobatePago=models.CharField('Comprobante Pago',max_length=45)
-    pedi_proveedor=models.ManyToManyField(Proveedores)
+    pedi_proveedor=models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     pedi_materiaprima=models.ManyToManyField(MateriaPrima, blank=True)
     pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
 
