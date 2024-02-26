@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2024 at 03:03 AM
+-- Generation Time: Feb 26, 2024 at 06:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,14 @@ CREATE TABLE `auth_group` (
   `name` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `auth_group`
+--
+
+INSERT INTO `auth_group` (`id`, `name`) VALUES
+(1, 'Administrador'),
+(2, 'Operario');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +51,76 @@ CREATE TABLE `auth_group_permissions` (
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+INSERT INTO `auth_group_permissions` (`id`, `group_id`, `permission_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 1, 9),
+(10, 1, 10),
+(11, 1, 11),
+(12, 1, 12),
+(13, 1, 13),
+(14, 1, 14),
+(15, 1, 15),
+(16, 1, 16),
+(17, 1, 17),
+(18, 1, 18),
+(19, 1, 19),
+(20, 1, 20),
+(21, 1, 21),
+(22, 1, 22),
+(23, 1, 23),
+(24, 1, 24),
+(25, 1, 25),
+(26, 1, 26),
+(27, 1, 27),
+(28, 1, 28),
+(29, 1, 29),
+(30, 1, 30),
+(31, 1, 31),
+(32, 1, 32),
+(33, 1, 33),
+(34, 1, 34),
+(35, 1, 35),
+(36, 1, 36),
+(37, 1, 37),
+(38, 1, 38),
+(39, 1, 39),
+(40, 1, 40),
+(41, 1, 41),
+(42, 1, 42),
+(43, 1, 43),
+(44, 1, 44),
+(45, 1, 45),
+(46, 1, 46),
+(47, 1, 47),
+(48, 1, 48),
+(54, 2, 21),
+(55, 2, 22),
+(56, 2, 23),
+(57, 2, 24),
+(58, 2, 25),
+(59, 2, 26),
+(60, 2, 27),
+(61, 2, 28),
+(62, 2, 29),
+(63, 2, 30),
+(64, 2, 31),
+(49, 2, 32),
+(50, 2, 37),
+(51, 2, 38),
+(52, 2, 39),
+(53, 2, 40);
 
 -- --------------------------------------------------------
 
@@ -133,12 +211,18 @@ CREATE TABLE `django_admin_log` (
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2024-02-20 17:20:20.983420', '2', '123456789-Andres la carne de usted', 1, '[{\"added\": {}}]', 11, 1),
-(2, '2024-02-20 19:11:34.713856', '1247473', '1247473-Queso', 1, '[{\"added\": {}}]', 6, 1),
-(3, '2024-02-20 19:11:57.647380', '1', '1-Guantes-2024-02-20', 1, '[{\"added\": {}}]', 10, 1),
-(4, '2024-02-20 19:11:59.586999', '1', '123456-0', 1, '[{\"added\": {}}]', 12, 1),
-(5, '2024-02-21 01:55:05.963831', '77654', '77654-Pollo', 1, '[{\"added\": {}}]', 6, 1),
-(6, '2024-02-21 01:55:12.698518', '2', '865437-1', 1, '[{\"added\": {}}]', 12, 1);
+(1, '2024-02-22 20:49:45.257530', '1', 'Administrador', 1, '[{\"added\": {}}]', 3, 1),
+(2, '2024-02-22 20:50:02.617562', '1', 'Administrador', 2, '[{\"changed\": {\"fields\": [\"Permissions\"]}}]', 3, 1),
+(3, '2024-02-22 20:51:25.349525', '2', 'Operario', 1, '[{\"added\": {}}]', 3, 1),
+(4, '2024-02-22 21:41:45.952196', '1', '123456789-Andres la carne de usted', 1, '[{\"added\": {}}]', 11, 1),
+(5, '2024-02-22 21:42:12.436247', '1234543', '1234543-Carne de Res', 1, '[{\"added\": {}}]', 6, 1),
+(6, '2024-02-22 21:42:40.600330', '292823', '292823-Pollo', 1, '[{\"added\": {}}]', 6, 1),
+(7, '2024-02-22 21:42:42.857969', '1', '8765489-0', 1, '[{\"added\": {}}]', 12, 1),
+(8, '2024-02-22 22:01:57.505143', '2', '9283322-Insumos de la esquina', 1, '[{\"added\": {}}]', 11, 1),
+(9, '2024-02-22 22:02:26.261017', '1', '1-Guantes-2024-02-22', 1, '[{\"added\": {}}]', 10, 1),
+(10, '2024-02-22 22:02:40.100180', '2', '2-Cofias-2024-02-22', 1, '[{\"added\": {}}]', 10, 1),
+(11, '2024-02-22 22:02:42.259328', '2', '28272-1', 1, '[{\"added\": {}}]', 12, 1),
+(12, '2024-02-22 23:33:59.815902', '3', '9383733-2', 1, '[{\"added\": {}}]', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -188,30 +272,30 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2024-02-16 16:10:50.081426'),
-(2, 'contenttypes', '0002_remove_content_type_name', '2024-02-16 16:10:50.143057'),
-(3, 'auth', '0001_initial', '2024-02-16 16:10:50.386969'),
-(4, 'auth', '0002_alter_permission_name_max_length', '2024-02-16 16:10:50.441775'),
-(5, 'auth', '0003_alter_user_email_max_length', '2024-02-16 16:10:50.446781'),
-(6, 'auth', '0004_alter_user_username_opts', '2024-02-16 16:10:50.457634'),
-(7, 'auth', '0005_alter_user_last_login_null', '2024-02-16 16:10:50.465952'),
-(8, 'auth', '0006_require_contenttypes_0002', '2024-02-16 16:10:50.467024'),
-(9, 'auth', '0007_alter_validators_add_error_messages', '2024-02-16 16:10:50.477166'),
-(10, 'auth', '0008_alter_user_username_max_length', '2024-02-16 16:10:50.492245'),
-(11, 'auth', '0009_alter_user_last_name_max_length', '2024-02-16 16:10:50.500464'),
-(12, 'auth', '0010_alter_group_name_max_length', '2024-02-16 16:10:50.516787'),
-(13, 'auth', '0011_update_proxy_permissions', '2024-02-16 16:10:50.522869'),
-(14, 'auth', '0012_alter_user_first_name_max_length', '2024-02-16 16:10:50.533102'),
-(15, 'users', '0001_initial', '2024-02-16 16:10:50.842681'),
-(16, 'admin', '0001_initial', '2024-02-16 16:10:50.972718'),
-(17, 'admin', '0002_logentry_remove_auto_add', '2024-02-16 16:10:50.981793'),
-(18, 'admin', '0003_logentry_add_action_flag_choices', '2024-02-16 16:10:50.991504'),
-(19, 'insumos', '0001_initial', '2024-02-16 16:10:51.003775'),
-(20, 'materiaprima', '0001_initial', '2024-02-16 16:10:51.139072'),
-(21, 'proveedores', '0001_initial', '2024-02-16 16:10:51.167619'),
-(22, 'sessions', '0001_initial', '2024-02-16 16:10:51.243648'),
-(23, 'pedidos', '0001_initial', '2024-02-20 19:05:17.807959'),
-(24, 'pedidos', '0002_alter_pedidos_pedi_insumos_and_more', '2024-02-20 20:48:17.972391');
+(1, 'contenttypes', '0001_initial', '2024-02-22 20:46:00.052614'),
+(2, 'contenttypes', '0002_remove_content_type_name', '2024-02-22 20:46:00.118397'),
+(3, 'auth', '0001_initial', '2024-02-22 20:46:00.370254'),
+(4, 'auth', '0002_alter_permission_name_max_length', '2024-02-22 20:46:00.420427'),
+(5, 'auth', '0003_alter_user_email_max_length', '2024-02-22 20:46:00.426488'),
+(6, 'auth', '0004_alter_user_username_opts', '2024-02-22 20:46:00.437053'),
+(7, 'auth', '0005_alter_user_last_login_null', '2024-02-22 20:46:00.443144'),
+(8, 'auth', '0006_require_contenttypes_0002', '2024-02-22 20:46:00.446050'),
+(9, 'auth', '0007_alter_validators_add_error_messages', '2024-02-22 20:46:00.453070'),
+(10, 'auth', '0008_alter_user_username_max_length', '2024-02-22 20:46:00.457832'),
+(11, 'auth', '0009_alter_user_last_name_max_length', '2024-02-22 20:46:00.463349'),
+(12, 'auth', '0010_alter_group_name_max_length', '2024-02-22 20:46:00.476504'),
+(13, 'auth', '0011_update_proxy_permissions', '2024-02-22 20:46:00.486390'),
+(14, 'auth', '0012_alter_user_first_name_max_length', '2024-02-22 20:46:00.492927'),
+(15, 'users', '0001_initial', '2024-02-22 20:46:00.819336'),
+(16, 'admin', '0001_initial', '2024-02-22 20:46:00.944396'),
+(17, 'admin', '0002_logentry_remove_auto_add', '2024-02-22 20:46:00.951822'),
+(18, 'admin', '0003_logentry_add_action_flag_choices', '2024-02-22 20:46:00.959094'),
+(19, 'insumos', '0001_initial', '2024-02-22 20:46:00.974868'),
+(20, 'materiaprima', '0001_initial', '2024-02-22 20:46:01.114969'),
+(21, 'proveedores', '0001_initial', '2024-02-22 20:46:01.152296'),
+(22, 'pedidos', '0001_initial', '2024-02-22 20:46:01.547407'),
+(23, 'pedidos', '0002_initial', '2024-02-22 20:46:01.639518'),
+(24, 'sessions', '0001_initial', '2024-02-22 20:46:01.682820');
 
 -- --------------------------------------------------------
 
@@ -230,9 +314,10 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('4uvy54vpgalfsnhmdhalf3kw0foffror', '.eJxVjEsOAiEQBe_C2hCE5qNL956BNE0jowaSYWZlvLtOMgvdvqp6LxFxXWpcB89xyuIsjuLwuyWkB7cN5Du2W5fU2zJPSW6K3OmQ1575edndv4OKo35rTgaUBadQYyaVFQXOnk1w1gEn8haK9akQK20cskEooF3SQetwIi_eH-9JN_s:1rcbgM:DHGYR2FZve74h3WkhwHVj0ng2WUmxRD6PybSDDlgJt8', '2024-03-06 01:45:58.184284'),
-('834msqfqn9pze3yx8zgeegxcdnqff9n6', '.eJxVjEsOAiEQBe_C2hCE5qNL956BNE0jowaSYWZlvLtOMgvdvqp6LxFxXWpcB89xyuIsjuLwuyWkB7cN5Du2W5fU2zJPSW6K3OmQ1575edndv4OKo35rTgaUBadQYyaVFQXOnk1w1gEn8haK9akQK20cskEooF3SQetwIi_eH-9JN_s:1rb0pF:5I9nFPl6kVFhQFIQlwh8C8RzWUD1KknfA-rnlgFfPeo', '2024-03-01 16:12:33.543463'),
-('s462ug9h2rsg4556ktoucsoq3qzf5b1g', '.eJxVjEsOAiEQBe_C2hCE5qNL956BNE0jowaSYWZlvLtOMgvdvqp6LxFxXWpcB89xyuIsjuLwuyWkB7cN5Du2W5fU2zJPSW6K3OmQ1575edndv4OKo35rTgaUBadQYyaVFQXOnk1w1gEn8haK9akQK20cskEooF3SQetwIi_eH-9JN_s:1rcTj7:hjfjkHhPpNYTXF_TsIizNWzNdpJyZO93R3hL3PwmHLQ', '2024-03-05 17:16:17.677418');
+('6hen4lorp2hdfvvw5ru8amjm6b805ej1', '.eJxVjMsOwiAQRf-FtSG8JoBL934DGZhBqoYmpV0Z_12bdKHbe865L5FwW1vaBi9pInEWWpx-t4zlwX0HdMd-m2WZ-7pMWe6KPOiQ15n4eTncv4OGo31rJCDHGiCyMxRjVVZ5D1URh1xrdEErb7UNoDMUh8Z4W7JTUCFjMFG8P9bRN0g:1rddNZ:88ci_cn4yTZIz45kZ32wa1Xb1-pMn62uFcjUYZCeY_8', '2024-03-08 21:46:49.984687'),
+('8ynaoldzv12i5070j0gsp6df5lfxxixe', '.eJxVjMsOwiAQRf-FtSG8JoBL934DGZhBqoYmpV0Z_12bdKHbe865L5FwW1vaBi9pInEWWpx-t4zlwX0HdMd-m2WZ-7pMWe6KPOiQ15n4eTncv4OGo31rJCDHGiCyMxRjVVZ5D1URh1xrdEErb7UNoDMUh8Z4W7JTUCFjMFG8P9bRN0g:1rdsvZ:LB9gYbakfDgx613LACN87bdkL4x-bPh5LLR3uLyKu2Y', '2024-03-09 14:22:57.177782'),
+('o05r9o8ufvf08eb4hs9gzdji7z19ug8r', '.eJxVjMsOwiAQRf-FtSG8JoBL934DGZhBqoYmpV0Z_12bdKHbe865L5FwW1vaBi9pInEWWpx-t4zlwX0HdMd-m2WZ-7pMWe6KPOiQ15n4eTncv4OGo31rJCDHGiCyMxRjVVZ5D1URh1xrdEErb7UNoDMUh8Z4W7JTUCFjMFG8P9bRN0g:1rdJcs:-sy4rXjOn3TVC6uqka1XBpdPO_JTySB71Qjo01h68b0', '2024-03-08 00:41:18.414833'),
+('vq3vrolg5t8o4xgpxvkqe0akhbime3u6', '.eJxVjMsOwiAQRf-FtSG8JoBL934DGZhBqoYmpV0Z_12bdKHbe865L5FwW1vaBi9pInEWWpx-t4zlwX0HdMd-m2WZ-7pMWe6KPOiQ15n4eTncv4OGo31rJCDHGiCyMxRjVVZ5D1URh1xrdEErb7UNoDMUh8Z4W7JTUCFjMFG8P9bRN0g:1reee9:EW6Rf3_dYCKvGx0YYqdlwtA4X2FxAn1IfDgJzgIELbc', '2024-03-11 17:20:09.167242');
 
 -- --------------------------------------------------------
 
@@ -253,7 +338,9 @@ CREATE TABLE `insumos_implementostrabajo` (
 --
 
 INSERT INTO `insumos_implementostrabajo` (`it_codigo`, `it_nombre`, `it_cantidad`, `it_fechaEntrega`, `it_estado`) VALUES
-(1, 'Guantes', 34, '2024-02-20', '0');
+(1, 'Guantes', 1500, '2024-02-22', '0'),
+(2, 'Cofias', 400, '2024-02-22', '0'),
+(3, 'Botas', 3000, '2027-05-14', '0');
 
 -- --------------------------------------------------------
 
@@ -309,8 +396,10 @@ CREATE TABLE `materiaprima_materiaprima` (
 --
 
 INSERT INTO `materiaprima_materiaprima` (`mp_lote`, `mp_nombre`, `mp_tipo`, `mp_cantidad`, `mp_fechallegada`, `mp_fechavencimiento`) VALUES
-(77654, 'Pollo', '0', 1500, '2024-02-20', '2024-02-20'),
-(1247473, 'Queso', '1', 35, '2024-02-20', '2024-02-20');
+(123454, 'cebolla', '2', 10044, '2024-01-27', '2024-02-01'),
+(263893, 'Tomate', '3', 3000, '2024-01-19', '2024-01-30'),
+(292823, 'Pollo', '0', 2000, '2024-02-22', '2024-02-24'),
+(1234543, 'Carne de Res', '0', 1500, '2024-02-22', '2024-02-25');
 
 -- --------------------------------------------------------
 
@@ -324,6 +413,7 @@ CREATE TABLE `pedidos_pedidos` (
   `pedi_fecha` date NOT NULL,
   `pedi_estado` varchar(1) NOT NULL,
   `pedi_comprobatePago` varchar(45) NOT NULL,
+  `pedi_proveedor_id` int(11) NOT NULL,
   `pedi_user_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -331,9 +421,10 @@ CREATE TABLE `pedidos_pedidos` (
 -- Dumping data for table `pedidos_pedidos`
 --
 
-INSERT INTO `pedidos_pedidos` (`id`, `ref_pedido`, `pedi_fecha`, `pedi_estado`, `pedi_comprobatePago`, `pedi_user_id`) VALUES
-(1, 123456, '2024-02-20', '0', '23456787', 1),
-(2, 865437, '2024-02-20', '1', '64327986', 1);
+INSERT INTO `pedidos_pedidos` (`id`, `ref_pedido`, `pedi_fecha`, `pedi_estado`, `pedi_comprobatePago`, `pedi_proveedor_id`, `pedi_user_id`) VALUES
+(1, 8765489, '2024-02-22', '0', '23456787', 1, 1),
+(2, 28272, '2024-02-22', '1', '64327986', 2, 1),
+(3, 9383733, '2024-02-22', '2', '24356787', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +443,9 @@ CREATE TABLE `pedidos_pedidos_pedi_insumos` (
 --
 
 INSERT INTO `pedidos_pedidos_pedi_insumos` (`id`, `pedidos_id`, `implementostrabajo_id`) VALUES
-(1, 1, 1);
+(1, 2, 1),
+(2, 2, 2),
+(3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -371,29 +464,8 @@ CREATE TABLE `pedidos_pedidos_pedi_materiaprima` (
 --
 
 INSERT INTO `pedidos_pedidos_pedi_materiaprima` (`id`, `pedidos_id`, `materiaprima_id`) VALUES
-(1, 1, 1247473),
-(3, 2, 77654),
-(2, 2, 1247473);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pedidos_pedidos_pedi_proveedor`
---
-
-CREATE TABLE `pedidos_pedidos_pedi_proveedor` (
-  `id` bigint(20) NOT NULL,
-  `pedidos_id` int(11) NOT NULL,
-  `proveedores_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pedidos_pedidos_pedi_proveedor`
---
-
-INSERT INTO `pedidos_pedidos_pedi_proveedor` (`id`, `pedidos_id`, `proveedores_id`) VALUES
-(1, 1, 2),
-(2, 2, 2);
+(2, 1, 292823),
+(1, 1, 1234543);
 
 -- --------------------------------------------------------
 
@@ -413,7 +485,9 @@ CREATE TABLE `proveedores_proveedores` (
 --
 
 INSERT INTO `proveedores_proveedores` (`prov_id`, `nit`, `prov_nombre`, `prov_telefono`) VALUES
-(2, 123456789, 'Andres la carne de usted', '3187652345');
+(1, 123456789, 'Andres la carne de usted', '3187652345'),
+(2, 9283322, 'Insumos de la esquina', '315678222'),
+(3, 1019132790, 'Las verduras del amor', '6371122334');
 
 -- --------------------------------------------------------
 
@@ -442,7 +516,8 @@ CREATE TABLE `users_user` (
 --
 
 INSERT INTO `users_user` (`id`, `password`, `last_login`, `first_name`, `email`, `is_active`, `date_joined`, `username`, `name`, `last_name`, `rol`, `is_staff`, `is_superuser`) VALUES
-(1, 'pbkdf2_sha256$720000$ePeKalkusLacviaMOTbVPN$vweYxG2yigBD6lyAlQdL0hPlYowIAzCvMejn5O8BG/w=', '2024-02-21 01:45:58.168197', '', '', 1, '2024-02-16 16:12:13.610643', 'vivian', 'vivian', 'hincapie', '', 1, 1);
+(1, 'pbkdf2_sha256$720000$NaNbxIW1MU87jGkVbvaOb1$W+3QzPOvcjG3WiBI4/sTy3W5iXXZ6tAzyyshJR+kznY=', '2024-02-26 17:20:09.146754', '', '', 1, '2024-02-22 20:47:52.526221', 'vivian', 'vivian', 'hincapie', '', 1, 1),
+(2, 'pbkdf2_sha256$720000$g04vaCZer7ZAbUquHC94Ri$J0o0aclrkfxTaSQpYFjZYsFvIE8eNksw1zl85Fqy33o=', NULL, '', '', 1, '2024-02-23 00:43:34.756560', 'ihincapie', 'Ivan', 'Hincapie', '1', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -554,6 +629,7 @@ ALTER TABLE `materiaprima_materiaprima`
 ALTER TABLE `pedidos_pedidos`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `ref_pedido` (`ref_pedido`),
+  ADD KEY `pedidos_pedidos_pedi_proveedor_id_25486401_fk_proveedor` (`pedi_proveedor_id`),
   ADD KEY `pedidos_pedidos_pedi_user_id_e51c09ad_fk_users_user_id` (`pedi_user_id`);
 
 --
@@ -571,14 +647,6 @@ ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `pedidos_pedidos_pedi_mat_pedidos_id_materiaprima__317c5dab_uniq` (`pedidos_id`,`materiaprima_id`),
   ADD KEY `pedidos_pedidos_pedi_materiaprima_id_68484054_fk_materiapr` (`materiaprima_id`);
-
---
--- Indexes for table `pedidos_pedidos_pedi_proveedor`
---
-ALTER TABLE `pedidos_pedidos_pedi_proveedor`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `pedidos_pedidos_pedi_pro_pedidos_id_proveedores_i_9f17fd3b_uniq` (`pedidos_id`,`proveedores_id`),
-  ADD KEY `pedidos_pedidos_pedi_proveedores_id_10d0d95b_fk_proveedor` (`proveedores_id`);
 
 --
 -- Indexes for table `proveedores_proveedores`
@@ -618,13 +686,13 @@ ALTER TABLE `users_user_user_permissions`
 -- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `auth_permission`
@@ -636,7 +704,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -654,7 +722,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `insumos_implementostrabajo`
 --
 ALTER TABLE `insumos_implementostrabajo`
-  MODIFY `it_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `it_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `materiaprima_caracteristicasorganolepticas`
@@ -672,37 +740,31 @@ ALTER TABLE `materiaprima_desinfeccion`
 -- AUTO_INCREMENT for table `pedidos_pedidos`
 --
 ALTER TABLE `pedidos_pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pedidos_pedidos_pedi_insumos`
 --
 ALTER TABLE `pedidos_pedidos_pedi_insumos`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pedidos_pedidos_pedi_materiaprima`
 --
 ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `pedidos_pedidos_pedi_proveedor`
---
-ALTER TABLE `pedidos_pedidos_pedi_proveedor`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `proveedores_proveedores`
 --
 ALTER TABLE `proveedores_proveedores`
-  MODIFY `prov_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prov_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_user`
 --
 ALTER TABLE `users_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users_user_groups`
@@ -756,6 +818,7 @@ ALTER TABLE `materiaprima_desinfeccion`
 -- Constraints for table `pedidos_pedidos`
 --
 ALTER TABLE `pedidos_pedidos`
+  ADD CONSTRAINT `pedidos_pedidos_pedi_proveedor_id_25486401_fk_proveedor` FOREIGN KEY (`pedi_proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`),
   ADD CONSTRAINT `pedidos_pedidos_pedi_user_id_e51c09ad_fk_users_user_id` FOREIGN KEY (`pedi_user_id`) REFERENCES `users_user` (`id`);
 
 --
@@ -771,13 +834,6 @@ ALTER TABLE `pedidos_pedidos_pedi_insumos`
 ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   ADD CONSTRAINT `pedidos_pedidos_pedi_materiaprima_id_68484054_fk_materiapr` FOREIGN KEY (`materiaprima_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`),
   ADD CONSTRAINT `pedidos_pedidos_pedi_pedidos_id_d50eb29d_fk_pedidos_p` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos_pedidos` (`id`);
-
---
--- Constraints for table `pedidos_pedidos_pedi_proveedor`
---
-ALTER TABLE `pedidos_pedidos_pedi_proveedor`
-  ADD CONSTRAINT `pedidos_pedidos_pedi_pedidos_id_1b2ab32d_fk_pedidos_p` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos_pedidos` (`id`),
-  ADD CONSTRAINT `pedidos_pedidos_pedi_proveedores_id_10d0d95b_fk_proveedor` FOREIGN KEY (`proveedores_id`) REFERENCES `proveedores_proveedores` (`prov_id`);
 
 --
 -- Constraints for table `users_user_groups`
