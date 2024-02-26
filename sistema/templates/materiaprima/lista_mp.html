@@ -102,5 +102,21 @@
         </div>
     </div>
 </div>   
+
+<div class="modal fade" id="delete_mp" role="dialog"></div>
+
 {% endblock content %}
+
+{% block extrajs %}
+
+<script>
+    function delete_materiaprima(url){
+        var $ = jQuery.noConflict();
+        $('#delete_mp').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+</script>
+    
+{% endblock extrajs %}
     
