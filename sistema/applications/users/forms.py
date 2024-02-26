@@ -75,7 +75,7 @@ class UserRegisterForm(forms.ModelForm):
         return last_name
     
 class UserUpdateForm(forms.ModelForm):
-
+    '''Clase de formulario para editar un usuario'''
     password=forms.CharField(
             label='Contraseña:',
             required=True,
