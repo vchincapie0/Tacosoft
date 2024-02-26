@@ -23,7 +23,7 @@ class ProveedorCreateForm(forms.ModelForm):
         }
 
     def clean_prov_telefono(self):
-        '''Funcion que valida que el telefono de proveedores sea mayor a 10'''
+        '''Funcion que valida que el telefono de proveedores sea == a 10'''
         cantidad = self.cleaned_data['prov_telefono']
         if len(cantidad) < 10:
             raise forms.ValidationError("El teléfono debe tener al menos 10 digitos.")
@@ -32,6 +32,7 @@ class ProveedorCreateForm(forms.ModelForm):
         return cantidad
     
     def clean_prov_nombre(self):
+        '''Funcion que valida que el nombre de proveedores no contenga caracteres especiales'''
         nombre = self.cleaned_data['prov_nombre']
         if not re.match("^[a-zA-Z ]+$", nombre):
             raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
