@@ -89,7 +89,7 @@
                             <td class="">
                                 <a class="m-2 btn btn-warning" href="{% url 'pedidos_app:update_pedidos' p.id %}" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
                                 <!--No tocar, no es un error-->
-                                <a class="m-2 btn btn-danger" onclick="delete_mp('{% url 'pedidos_app:delete_pedidos' p.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                                <a class="m-2 btn btn-danger" onclick="delete_pedido('{% url 'pedidos_app:delete_pedidos' p.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                             
                         </tr>
@@ -149,7 +149,7 @@
 {% block extrajs %}
 
 <script>
-    function delete_mp(url){
+    function delete_pedido(url){
         var $ = jQuery.noConflict();
         $('#delete_pedidos').load(url,function(){
             $(this).modal('show');
