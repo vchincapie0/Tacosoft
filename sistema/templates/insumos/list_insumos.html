@@ -52,7 +52,7 @@
                             <td class="">
                                 <a class="btn btn-warning" href="{% url 'insumos_app:update_insumos' i.it_codigo %}" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
                                 |
-                                <a class="btn btn-danger" href="{% url 'insumos_app:delete_insumos' i.it_codigo %}" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                                <a class="btn btn-danger" onclick="delete_insumos('{% url 'insumos_app:delete_insumos' i.it_codigo %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                             
                         </tr>
@@ -102,5 +102,19 @@
         </div>
     </div>
 </div>   
+<div class="modal fade" id="delete_insumos" role="dialog"></div>
 {% endblock content %}
+
+{% block extrajs %}
+
+<script>
+    function delete_insumos(url){
+        var $ = jQuery.noConflict();
+        $('#delete_insumos').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+</script>
+    
+{% endblock %}
     
