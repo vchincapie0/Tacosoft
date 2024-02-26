@@ -99,6 +99,23 @@
             {% endif %}
         </div>
     </div>
-</div>   
+</div>  
+
+<div class="modal fade" id="delete_usuarios" role="dialog"></div>
 {% endblock content %}
+
+
+{% block extrajs %}
+    <script>
+        function delete_user(url){
+            var $ = jQuery.noConflict();
+            $('#delete_usuarios').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+    </script>
+{% endblock  %}
+    
+
+
     
