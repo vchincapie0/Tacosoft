@@ -52,7 +52,7 @@
                             <td>{{m.mp_fechallegada}}</td>
                             <td>{{m.mp_fechavencimiento}}</td>
                             <td>
-                                <a class="btn btn-primary" href="{% url 'mp_app:detail_mp' m.mp_lote %}" type="button"><i class="fa-regular fa-eye"></i></a>
+                                <a class="btn btn-danger" onclick="delete_materiaprima('{% url 'mp_app:delete_pedidos' p.id %}')" type="button"><i class="fa-regular fa-eye"></i></a>
                             </td>
                             
                         </tr>
@@ -102,21 +102,7 @@
         </div>
     </div>
 </div>   
-
-<div class="modal fade" id="delete_mp" role="dialog"></div>
-
 {% endblock content %}
 
-{% block extrajs %}
 
-<script>
-    function delete_materiaprima(url){
-        var $ = jQuery.noConflict();
-        $('#delete_mp').load(url,function(){
-            $(this).modal('show');
-        }); 
-    }
-</script>
-    
-{% endblock extrajs %}
     
