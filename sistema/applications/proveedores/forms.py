@@ -23,6 +23,7 @@ class ProveedorCreateForm(forms.ModelForm):
         }
 
     def clean_prov_telefono(self):
+        '''Funcion que valida que el telefono de proveedores sea mayor a 10'''
         cantidad = self.cleaned_data['prov_telefono']
         if len(cantidad) < 10:
             raise forms.ValidationError("El teléfono debe tener al menos 10 digitos.")
