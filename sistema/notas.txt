@@ -1,1 +1,2 @@
 Con este archivo pondremos notas que sean de utilidad para cada uno, explicaciones, etc. 
+creacion de branch se hace push
