@@ -1,36 +1,28 @@
-{%extends "base.html"%}
-{%block title%} Eliminar Implemento de Trabajo {%endblock%}
-
-{%block content%}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Eliminar Implemento de Trabajo</h1>
-        </div> 
-    </div>
-
-    <div class="mt-4 row justify-content-center">
-        <div class="col-md-4">
-            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
-                {%csrf_token%}
-
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Borrar Implementos de Trabajo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="{% url 'insumos_app:delete_insumos' object.it_codigo %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+              {%csrf_token%}
+          
                 <div class="row">
                     <div class="col">
-                        <h5>Implemento: {{object.it_nombre}} de código: {{object.it_codigo}}</h5>
-                      <p>¿Seguro que desea borrar este Implemento?</p>
+                        <h3>Implemento: {{object.it_nombre}} de codigo: {{object.it_codigo}}</h3>
+                        <p style="color: red; font-weight: bolder;">¿Seguro que desea borrar este Implemento de Trabajo?</p>
                     </div>
                 </div>
-                <div class="row justify-content-between">
-                    <div class="col">
-                        <button class="btn btn-danger" type="submit">Eliminar</button>
+
+                <div class="row">
+                    <div class="col text-center d-flex justify-content-center">
+                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="m-2 btn btn-success" type="submit">Eliminar</button>
                     </div>
-                    <div class="col">
-                        <a href="{% url 'insumos_app:list_insumos' %}" type="button" class="btn btn-primary">Cancelar</a>
-                    </div> 
                 </div>
-                
             </form>
         </div>
+    
     </div>
-</div>    
-{%endblock%}
+</div>
