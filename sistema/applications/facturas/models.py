@@ -19,7 +19,7 @@ class Facturas(models.Model):
     @property
     def fac_total(self):
         # Calcula el total sumando el subtotal y el IVA
-        return self.fac_subtotal + self.fac_iva
+        return self.fac_subtotal * self.fac_iva
 
     def __str__(self):
         return f"{self.num_factura}-{self.fac_proveedor}-{self.fac_numeroPedido}-{self.fac_total}"
