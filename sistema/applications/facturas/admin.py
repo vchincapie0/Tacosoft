@@ -3,4 +3,14 @@ from .models import Facturas
 
 # Register your models here.
 
-admin.site.register(Facturas)
+class FacturasAdmin(admin.ModelAdmin):
+
+    #Muestra los datos en forma mas estetica en admin
+    list_display=(
+        'num_factura',
+        'fac_proveedor',
+        'fac_numeroPedido',
+        'fac_total',    
+    )
+
+admin.site.register(Facturas, FacturasAdmin)
