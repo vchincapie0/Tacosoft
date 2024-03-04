@@ -8,7 +8,7 @@ from .models import Facturas
 
 # Create your views here.
 
-class InsumosListView(LoginRequiredMixin, ListView):
+class FacturasListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
     model = Facturas
     template_name = "facturas/list_factura.html"
