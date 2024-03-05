@@ -46,7 +46,7 @@
                             <td>{{p.prov_nombre}}</td>
                             <td>{{p.prov_telefono}}</td>
                             <td class="">
-                                <a class="btn btn-warning" href="{% url 'proveedores_app:update_proveedores' p.prov_id %}" type="button"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <a class="btn btn-warning" onclick="update_proveedor('{% url 'proveedores_app:update_proveedores' p.prov_id %}')" type="button"><i class="fa-regular fa-pen-to-square"></i></a>
                                 |
                                 <a class="btn btn-danger" onclick="delete_proveedor('{% url 'proveedores_app:delete_proveedores' p.prov_id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                                 
@@ -100,6 +100,8 @@
     </div>
 </div>   
 <div class="modal fade" id="delete_proveedor" role="dialog"></div>
+<div class="modal fade" id="update_proveedor" role="dialog"></div>
+
 {% endblock content %}
 
 {% block extrajs %}
@@ -109,6 +111,13 @@
         function delete_proveedor(url){
             var $ = jQuery.noConflict();
             $('#delete_proveedor').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+
+        function update_proveedor(url){
+            var $ = jQuery.noConflict();
+            $('#update_proveedor').load(url,function(){
                 $(this).modal('show');
             }); 
         }
