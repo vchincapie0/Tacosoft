@@ -87,11 +87,11 @@
 
 
                             <td class="">
-                                <a class="m-2 btn btn-warning" href="{% url 'pedidos_app:update_pedidos' p.id %}" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
+                                <a class="m-2 btn btn-warning" onclick="update_pedidos('{% url 'pedidos_app:update_pedidos' p.id %}')" type="button"><i class="fa-regular fa-pen-to-square"></i></a>
                                 <!--No tocar, no es un error-->
                                 <a class="m-2 btn btn-danger" onclick="delete_pedido('{% url 'pedidos_app:delete_pedidos' p.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
-                            
+                                                        
                         </tr>
                         
                         {%endfor%}
@@ -142,6 +142,8 @@
 </div>  
 
 <div class="modal fade" id="delete_pedidos" role="dialog"></div>
+<div class="modal fade" id="update_pedidos" role="dialog"></div>
+
 
 {% endblock content %}
 
@@ -155,6 +157,16 @@
             $(this).modal('show');
         }); 
     }
+<<<<<<< HEAD
+    function update_pedidos(url){
+        var $ = jQuery.noConflict();
+        $('#update_pedidos').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+=======
+    
+>>>>>>> 48362864ccf8b858e5a7ebaca7c9603262cbb112
 </script>
     
 {% endblock  %}
