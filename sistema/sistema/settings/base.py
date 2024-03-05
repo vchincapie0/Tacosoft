@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'applications.proveedores',
     'applications.pedidos',
     'applications.facturas',
+    'applications.procesamiento',
+
 
 
 
