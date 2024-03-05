@@ -11,6 +11,7 @@ class FacturaCreateForm(forms.ModelForm):
             'fac_numeroPedido',
             'fac_fechaLlegada',
             'fac_numeroUnidades',
+            'img_factura',
             'fac_subtotal',
             'fac_iva',
             )
