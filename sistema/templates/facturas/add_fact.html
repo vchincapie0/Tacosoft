@@ -1,1 +1,88 @@
-<h2>Aqui ira el formulario de agregar factura</h2>
+{%extends "base.html"%}
+{%block title%} Añadir Factura {%endblock%}
+
+{%block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Agregar Factura</h1>
+        </div> 
+    </div>
+
+    <div class="mt-4 row justify-content-center">
+        <div class="col-md-6">
+            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+                <!-- {%csrf_token%}
+
+                {% if form.errors %}
+                    <div class="alert alert-info">
+                        {{form.errors.it_nombre.0}}
+                        {{form.errors.it_cantidad.0}}
+                    </div>
+                {% endif %} -->
+
+                <div class="mx-4 my-2 row">
+                    
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_nombre" class="form-label">Número Factura: </label>
+                        {{form.num_factura}}   
+                    </div>
+              
+               
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechallegada" class="form-label">Proveedor:</label>
+                        {{form.fac_proveedor}}   
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_mp_fechavencimiento" class="form-label">Número de Pedido:</label>
+                        <br>
+                        {{form.fac_numeroPedido}}  
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Fecha de Llegada: </label>
+                        {{form.fac_fechaLlegada}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Número de Unidades: </label>
+                        {{form.fac_numeroUnidades}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Imagen Factura: </label>
+                        {{form.img_factura}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">SubTotal: </label>
+                        {{form.fac_subtotal}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">IVA: </label>
+                        {{form.fac_iva}}
+                    </div>
+
+                    <div class="mb-3 col-12">
+                        <label for="id_imp_lote" class="form-label">Total: </label>
+                        <input type="number" name="" id="">
+                    </div>
+
+
+
+                    <div class="col">
+                        <a href="#" type="button" class="btn btn-warning">Calcular</a>
+                        |
+                        <button class="btn btn-success" type="submit">Guardar</button>
+                        |
+                        <a href="{% url 'facturas_app:list_factura' %}" type="button" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>    
+{%endblock%}
