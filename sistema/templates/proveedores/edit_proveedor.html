@@ -1,3 +1,6 @@
+{%extends "base.html"%}
+{%block title%} Editar Proveedor {%endblock%}
+{%block content%}
 <div class="modal-dialog modal-md" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
@@ -11,7 +14,6 @@
                 <div class="alert alert-info">    
                     {{form.errors.prov_nombre.0}}
                     {{form.errors.prov_telefono.0}}
-                    
                 </div>
             {% endif %}
 
@@ -44,3 +46,4 @@
         </div>    
     </div>
 </div>
+{%endblock%}
