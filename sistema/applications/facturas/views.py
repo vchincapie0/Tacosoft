@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Facturas
 #from .forms import 
-from .forms import FacturaCreateForm
+from .forms import FacturaCreateForm, FacturaUpdateForm
 
 # Create your views here.
 
@@ -34,3 +34,11 @@ class FacturasCreateView(LoginRequiredMixin, CreateView):
     form_class = FacturaCreateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('facturas_app:list_factura')  
+
+class FacturasUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de Facturas'''
+    model =Facturas 
+    template_name = "facturas/edit_factura.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=FacturaUpdateForm
+    success_url= reverse_lazy('facturas_app:edit_factura')
