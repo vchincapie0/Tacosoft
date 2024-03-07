@@ -4,8 +4,7 @@
 {%block content%}
 <form method="post" action="">
   {%csrf_token%}
-  <div class="btn btn-warning" onclick="prepare_mp('{% url 'mp_app:prepare_mp' m.mp_lote}')" type="button"><i class="fa-solid fa-trash-can"></i></div>
-    <div class="card-header">
+  <div class="card text-center border-warning text-bg-dark" style="--bs-bg-opacity: .5;"></div> 
       <h3>Caracteristicas Organolepticas</h3>
     </div>
     <div class="card-body">
@@ -57,18 +56,4 @@
   </div>
 </div>
 </form>
-
-<div class="modal fade" id="prepare_mp" role="dialog"></div>
 {%endblock%}
-
-{% block extrajs %}
-    
-    <script>
-        function prepare_mp(url){
-            var $ = jQuery.noConflict();
-            $('#prepare_mp').load(url,function(){
-                $(this).modal('show');
-            }); 
-        }
-    </script>
-{% endblock  %}
