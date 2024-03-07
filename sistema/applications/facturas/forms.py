@@ -19,3 +19,22 @@ class FacturaCreateForm(forms.ModelForm):
         widgets={
            'fac_fechaLlegada':forms.SelectDateWidget(), 
         }
+
+class FacturaUpdateForm(forms.ModelForm):
+    '''Formulario para editar facturas'''
+    class Meta:
+        model = Facturas
+        fields = (
+            'num_factura',
+            'fac_proveedor',
+            'fac_numeroPedido',
+            'fac_fechaLlegada',
+            'fac_numeroUnidades',
+            'img_factura',
+            'fac_subtotal',
+            'fac_iva',
+            )
+        
+        widgets={
+           'fac_fechaLlegada':forms.SelectDateWidget(), 
+        }
