@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{% url 'facturas_app:delete_factura' object.f.id %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+          <form action="{% url 'facturas_app:delete_factura' object.id %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
               {%csrf_token%}
           
                 <div class="row">

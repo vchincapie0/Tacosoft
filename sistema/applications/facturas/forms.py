@@ -38,3 +38,4 @@ class FacturaUpdateForm(forms.ModelForm):
         widgets={
            'fac_fechaLlegada':forms.SelectDateWidget(), 
         }
+        
