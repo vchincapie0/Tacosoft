@@ -17,5 +17,5 @@ class FacturaCreateForm(forms.ModelForm):
             )
         
         widgets={
-            
+           'fac_fechaLlegada':forms.SelectDateWidget(), 
         }
