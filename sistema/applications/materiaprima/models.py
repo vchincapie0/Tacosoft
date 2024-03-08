@@ -51,3 +51,13 @@ class Desinfeccion(models.Model):
 
     def __str__(self):
         return str(self.mp_lote)+'-'+self.des_nombre+self.responsable
+    
+
+    
+class Existenciamp(models.models):
+    exiMP_codigo=models.PositiveIntegerField('codigo', primary_key=True)
+    exiMP_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
+    exiMP_cantidadIngresada=models.PositiveBigIntegerField('cantidad ingresada')
+    exiMP_cantidadEgresada=models.PositiveBigIntegerField('cantidad de salida')
+
+    
