@@ -54,7 +54,7 @@ class Desinfeccion(models.Model):
     
 
     
-class Existenciamp(models.models):
+class Existenciamp(models.Model):
     exiMP_codigo=models.PositiveIntegerField('codigo', primary_key=True)
     mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
     exiMP_cantidadIngresada=models.PositiveBigIntegerField('cantidad ingresada')
