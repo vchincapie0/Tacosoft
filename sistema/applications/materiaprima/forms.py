@@ -80,3 +80,23 @@ class DesinfeccionMPForm(forms.ModelForm):
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
             }
+        
+
+
+class Existenciamp(forms.ModelForm):
+
+    class Meta:
+
+        model = Desinfeccion
+        fields=(
+            'mp_lote',
+            'exiMP_codigo',
+            'exiMP_cantidadIngresada',
+            'exiMP_cantidadEgresada',
+             
+        )
+
+        widgets={
+            'exiMP_cantidadIngresada':forms.NumberInput(attrs={'placeholder': 'cantida Ingresada'}),   
+            'exiMP_cantidadEgresada':forms.NumberInput(attrs={'placeholder': 'cantidad Egresada'}),   
+            }
