@@ -1,6 +1,7 @@
 {%extends "base.html"%}
 {%block title%} Detalle Materia Prima {%endblock%}
 
+
 {%block content%}
     
     <div class="row">
@@ -51,6 +52,7 @@
                 {% endfor %}
 
                 <a class="btn btn-info" href="{% url 'mp_app:desinfeccion_mp' materiaprima.mp_lote %}" type="button"><i class="fa-solid fa-pump-medical"></i></a>
+                <a class="btn btn-warning" href="{% url 'mp_app:exitencia_mp' materiaprima.mp_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
             </div>
           </div>
         </div>
