@@ -1,5 +1,5 @@
 from django import forms
-from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas, Existenciamp
+from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas
 
 class MateriaPrimaForm(forms.ModelForm):
     """Form definition for Materia Prima."""
@@ -79,24 +79,4 @@ class DesinfeccionMPForm(forms.ModelForm):
             'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
-            }
-        
-
-
-class ExistenciampForm(forms.ModelForm):
-
-    class Meta:
-
-        model = Existenciamp
-        fields=(
-            'mp_lote',
-            'exiMP_codigo',
-            'exiMP_cantidadIngresada',
-            'exiMP_cantidadEgresada',
-             
-        )
-
-        widgets={
-            'exiMP_cantidadIngresada':forms.NumberInput(attrs={'placeholder': 'cantida Ingresada'}),   
-            'exiMP_cantidadEgresada':forms.NumberInput(attrs={'placeholder': 'cantidad Egresada'}),   
-            }
+            }    
