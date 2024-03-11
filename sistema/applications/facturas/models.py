@@ -7,7 +7,7 @@ from applications.pedidos.models import Pedidos
 class Facturas(models.Model):
     '''Clase para la creacion de tabla factura en bd'''
 
-    num_factura=models.PositiveIntegerField('Numero Factura',unique=True)
+    num_factura=models.PositiveIntegerField('Numero Factura',unique=True, primary_key=True)
     fac_proveedor=models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     fac_numeroPedido=models.ForeignKey(Pedidos,on_delete=models.CASCADE)
     fac_fechaLlegada=models.DateField('Fecha Llegada')

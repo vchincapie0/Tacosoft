@@ -60,9 +60,10 @@
 
 
                             <td class="">
-                                <a class="btn btn-warning" href="{% url 'facturas_app:edit_factura' f.id %}" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
+                                <a class="btn btn-warning" href="{% url 'facturas_app:edit_factura' f.num_factura %}" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
                                 |
-                                <a class="btn btn-danger" onclick="delete_factura('{% url 'facturas_app:delete_factura' f.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                                <a class="btn btn-danger" onclick="delete_factura('{% url 'facturas_app:delete_factura' f.num_factura %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+
                             </td>
                             
                         </tr>
