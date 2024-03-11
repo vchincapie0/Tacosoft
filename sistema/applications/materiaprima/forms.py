@@ -1,5 +1,5 @@
 from django import forms
-from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas
+from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas, Existenciamp
 
 class MateriaPrimaForm(forms.ModelForm):
     """Form definition for Materia Prima."""
@@ -83,11 +83,11 @@ class DesinfeccionMPForm(forms.ModelForm):
         
 
 
-class Existenciamp(forms.ModelForm):
+class ExistenciampForm(forms.ModelForm):
 
     class Meta:
 
-        model = Desinfeccion
+        model = Existenciamp
         fields=(
             'mp_lote',
             'exiMP_codigo',
