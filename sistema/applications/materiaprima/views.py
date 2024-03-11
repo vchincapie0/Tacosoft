@@ -6,8 +6,9 @@ from django.views.generic import ListView,CreateView,DetailView
 from django.urls import reverse_lazy
 
 #Importacion modelos y formularios
-from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas
+from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas, Existenciamp
 from .forms import MateriaPrimaForm,CaracteristicasMPForm,DesinfeccionMPForm
+
 
 # Create your views here.
 
@@ -93,4 +94,12 @@ class MateriaPrimaDetailView(LoginRequiredMixin, DetailView):
     template_name = "materiaprima/detail_mp.html"
     login_url=reverse_lazy('users_app:login')
     context_object_name = 'materiaprima'
+
+
+class ExistenciampView(LoginRequiredMixin, ListView):
+    '''Vists para la creacion de la existencias materia prima'''
+    model = Existenciamp
+    template_name = "materiaprima/existencia_mp.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('mp_app:exitencia_mp')
 
