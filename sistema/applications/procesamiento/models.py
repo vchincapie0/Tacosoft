@@ -61,3 +61,19 @@ class Coccion(models.Model):
     
     def __str__(self):
         return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
+
+class Picado(models.Model):
+
+    CHECK_CHOICES=(
+        ('0','Aprobado'),
+        ('1','No Aprobado'),
+
+    )
+
+    cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
+    pica_cantidad=models.IntegerField(default=100)
+    pica_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
+
+    
+    def __str__(self):
+        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
