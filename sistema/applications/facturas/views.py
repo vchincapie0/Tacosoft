@@ -46,6 +46,6 @@ class FacturasUpdateView(LoginRequiredMixin, UpdateView):
 class FacturasDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar facturas'''
     model = Facturas
-    template_name = "facturas/delete_factura.html"
+    template_name = "facturas/delete_fact.html"
     login_url=reverse_lazy('users_app:login')
-    success_url= reverse_lazy('facturas_app:delete_factura')
+    success_url= reverse_lazy('facturas_app:list_factura')
