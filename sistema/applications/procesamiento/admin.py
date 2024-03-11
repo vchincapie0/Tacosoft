@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Procesamiento
+from .models import *
 
 # Register your models here.
 
