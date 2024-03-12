@@ -23,7 +23,7 @@ class Procesamiento(models.Model):
     
 
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
+        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_pesoMpCruda}-{self.proces_pesoPostProceso}"
 
 
 class Equipos(models.Model):
@@ -43,7 +43,7 @@ class Equipos(models.Model):
 
     
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
+        return f"{self.cod_procesamiento}-{self.equi_encargadoCocina}-{self.equi_encargadoEntrega}-{self.equi_nombre}"
 
 class Coccion(models.Model):
 
@@ -60,7 +60,7 @@ class Coccion(models.Model):
 
     
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
+        return f"{self.cod_procesamiento}-{self.cocc_tiempoCoccion}-{self.cocc_temperaturafinal}"
 
 class Picado(models.Model):
 
@@ -76,4 +76,4 @@ class Picado(models.Model):
 
     
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
+        return f"{self.cod_procesamiento}-{self.pica_cantidad}"
