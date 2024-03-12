@@ -10,73 +10,67 @@ class ProductoTerminado(forms.ModelForm):
         model = ProductoTerminado
         fields = (
             'PT_lote',
-            'mp_nombre',
-            'mp_tipo',
-            'mp_cantidad',
-            'mp_fechallegada',
-            'mp_fechavencimiento',
+            'IdCoccion',
+            'IdPicado',
+            'PT_prodNombre',
+            'PT_fechapreparacion',
+            'PT_fechavencimiento',
             )
         
         widgets={
-            'mp_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Materia Prima'}),
-            'mp_fechallegada':forms.SelectDateWidget(),
-            'mp_fechavencimiento':forms.SelectDateWidget(),
+            'PT_prodNombre':forms.TextInput(attrs={'placeholder': 'Nombre Producto'}),
+            'PT_fechapreparacion':forms.SelectDateWidget(),
+            'PT_fechavencimiento':forms.SelectDateWidget(),
         }
     
-    def clean_it_cantidad(self):
-        cantidad = self.cleaned_data['it_cantidad']
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-        return cantidad
-
-class CaracteristicasMPForm(forms.ModelForm):
+class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
 
     class Meta:
 
-        model = CaracteristicasOrganolepticas
+        model = CaracteristicasOrganolepticasPT
         fields=(
-            'mp_lote',
+            'PT_lote',
+            'observaciones',
             'olor',
+            'sabor',
             'textura',
-            'limpieza',
-            'empaque',
             'color',
             'estado',
              
         )
 
         widgets={
+                
+                'observaciones':forms.Textarea(),
                 'olor':forms.CheckboxInput(),
+                'sabor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
-                'limpieza':forms.CheckboxInput(),
-                'empaque':forms.CheckboxInput(),
                 'color':forms.CheckboxInput(),
                 'estado':forms.Select(),     
             }
         
             
             
-class DesinfeccionMPForm(forms.ModelForm):
+class ExistenciaPTForm(forms.ModelForm):
 
     class Meta:
 
-        model = Desinfeccion
+        model = ExistenciaPT
         fields=(
-            'mp_lote',
-            'des_nombre',
-            'concentracion',
-            'responsable',
-            'tiempo_inicio',
-            'tiempo_fin',
-            'obsevacion', 
-             
-        )
-
-        widgets={
-            'des_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Desinfectante'}),
-            'concentracion':forms.NumberInput(attrs={'max_length': '2'}),
-            'responsable':forms.TextInput(attrs={'placeholder': 'Nombre Responsable'}),
-            'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
-            'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
-            'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
-            }
+            'PT_lote',
+            'ExisPT_CantidadIngresada',
+            'ExisPT_CantidadEgresada',
+          
+        )     
+        
+        def clean_ExisPT_CantidadIngresada(self):
+            cantidadingr  = self.cleaned_data['ExisPT_CantidadIngresada']
+            if cantidadingr<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return cantidadingr
+        
+        def clean_ExisPT_CantidadEgresada(self):
+            cantidadegr  = self.cleaned_data['ExisPT_CantidadEgresada']
+            if cantidadegr<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return cantidadegr
