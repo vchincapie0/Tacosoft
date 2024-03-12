@@ -125,6 +125,13 @@
                 $(this).modal('show');
             }); 
         }
+
+        function add_user(url){
+            var $ = jQuery.noConflict();
+            $('#add_usuarios').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
     </script>
 {% endblock  %}  
     
