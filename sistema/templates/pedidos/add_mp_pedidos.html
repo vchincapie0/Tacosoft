@@ -5,8 +5,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{% url 'pedidos_app:add__mp_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+          <form id="pedidoAddMpForm" action="{% url 'pedidos_app:add__mp_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
               {%csrf_token%}
+
+                {% if form.errors %}
+                    <div class="alert alert-info">
+                        {{form.errors.mp_cantidad.0}}
+                    </div>
+                {% endif %}
           
               <div class="row">
                   <div class="mb-3 col">
@@ -50,4 +56,23 @@
     </div>
 </div>
 
-    
+<script>
+    $(document).ready(function () {
+        $('#pedidoAddMpForm').submit(function (event) {
+            event.preventDefault(); // Evita la redirección predeterminada
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                // Verifica la respuesta y actualiza el contenido del modal
+                $('#add_mp_pedidos').html(data);
+                },
+                error: function (xhr, status, error) {
+                // Maneja errores de Ajax, si es necesario
+                }
+            });
+        });
+    });
+</script>

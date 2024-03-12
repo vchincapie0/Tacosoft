@@ -53,9 +53,7 @@ class CaracteristicasMPForm(forms.ModelForm):
                 'color':forms.CheckboxInput(),
                 'estado':forms.Select(),     
             }
-        
-            
-            
+                       
 class DesinfeccionMPForm(forms.ModelForm):
 
     class Meta:
