@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" href="{% url 'insumos_app:add_insumos' %}" role="button">Agregar Implementos</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_insumos('{% url 'insumos_app:add_insumos' %}')" role="button">Agregar Implementos</a>
                 </div>
                 
                 <div class="col-6">
@@ -103,11 +103,21 @@
     </div>
 </div>   
 <div class="modal fade" id="delete_insumos" role="dialog"></div>
+<div class="modal fade" id="add_insumos" role="dialog"></div>
+
 {% endblock content %}
 
 {% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
+    function add_insumos(url){
+        var $ = jQuery.noConflict();
+        $('#add_insumos').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
     function delete_insumos(url){
         var $ = jQuery.noConflict();
         $('#delete_insumos').load(url,function(){
