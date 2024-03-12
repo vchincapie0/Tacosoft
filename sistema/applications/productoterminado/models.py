@@ -47,3 +47,27 @@ class CaracteristicasOrganolepticasPT(models.Model):
     
     def __str__(self):
         return str(self.PT_lote)+'-'+self.estado
+    
+    # Creación model Empaque.
+
+class EmpaqueProductoTerminado(models.Model):
+
+    PT_lote=models.ForeignKey(ProductoTerminado,on_delete=models.CASCADE)
+    Emp_pesoKgPT = models.FloatField('Peso Empaque')
+    Emp_cantidadBolsas = models.IntegerField('Cantidad Bolsas')
+
+
+    def __str__(self):
+        return f"{self.PT_lote}-{self.Emp_pesoKgPT}-{self.Emp_cantidadBolsas}"
+
+# Creación model Vacio.
+
+class Vacio(models.Model):
+
+    PT_lote=models.ForeignKey(ProductoTerminado,on_delete=models.CASCADE)
+    Cantidad_bolsas_rechazadas = models.IntegerField('Cantidad Bolsas Rechazadas')
+    Cantidad_bolsas_liberadas = models.IntegerField('Cantidad Bolsas Liberadas')
+
+
+    def __str__(self):
+        return f"{self.PT_lote}-{self.Cantidad_bolsas_rechazadas}-{self.Cantidad_bolsas_liberadas}"
