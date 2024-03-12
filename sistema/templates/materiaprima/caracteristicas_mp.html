@@ -1,52 +1,80 @@
-{%extends "base.html"%}
-{%block title%} Caracteristicas Materia Prima {%endblock%}
-
-{%block content%}
-<form method="post" action="">
-  {%csrf_token%}
-  <div class="card text-center border-warning text-bg-dark" style="--bs-bg-opacity: .5;"></div> 
-      <h3>Caracteristicas Organolepticas</h3>
+<div class="modal-dialog modal-md" role="document">
+  <div class="modal-content bg-dark text-white">
+    <div class="modal-header">
+      <h5 class="modal-title">Agregar Características Organolepticas</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
     </div>
-    <div class="card-body">
-    
-      <h5 class="card-title">Lote: {{form.mp_lote}}</h5>
-      <p class="card-text">
-        <div class="form-check">
-          <label class="form-check-label" for="flexCheckDefault">
-            Olor: 
-            {{form.olor}}
-          </label>
+    <div class="modal-body">
+      <form id="addCaracteristicasForm" method="post" action="{% url 'mp_app:caracteristicas_mp' %}">
+        {%csrf_token%}
+        <div class="card text-center border-warning text-bg-dark" style="--bs-bg-opacity: .5;"></div> 
+            <h3>Características Organolepticas</h3>
+          </div>
+          <div class="card-body">
+          
+            <h5 class="card-title">Lote: {{form.mp_lote}}</h5>
+            <p class="card-text">
+              <div class="form-check">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Olor: 
+                  {{form.olor}}
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Textura: 
+                  {{form.textura}}
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Limpieza: 
+                  {{form.limpieza}}
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Empaque: 
+                  {{form.empaque}}
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Color: 
+                  {{form.color}}
+                </label>
+              </div
+            </p>
         </div>
-        <div class="form-check">
-          <label class="form-check-label" for="flexCheckDefault">
-            Textura: 
-            {{form.textura}}
-          </label>
+        <div class="card-footer text-body-secondary">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <a type="button" class="btn btn-danger" href="{% url 'mp_app:lista_mp' %}">Cancelar</a>
         </div>
-        <div class="form-check">
-          <label class="form-check-label" for="flexCheckDefault">
-            Limpieza: 
-            {{form.limpieza}}
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label" for="flexCheckDefault">
-            Empaque: 
-            {{form.empaque}}
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label" for="flexCheckDefault">
-            Color: 
-            {{form.color}}
-          </label>
-        </div
-      </p>
-  </div>
-  <div class="card-footer text-body-secondary">
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a type="button" class="btn btn-danger" href="{% url 'mp_app:lista_mp' %}">Cancelar</a>
+      </div>
+      </form>
+      </div>
+  
   </div>
 </div>
-</form>
-{%endblock%}
+
+
+<script>
+  $(document).ready(function () {
+          $('#addCaracteristicasForm').submit(function (event) {
+              event.preventDefault(); // Evita la redirección predeterminada
+
+              $.ajax({
+                  type: 'POST',
+                  url: $(this).attr('action'),
+                  data: $(this).serialize(),
+                  success: function (data) {
+                      // Verifica la respuesta y actualiza el contenido del modal
+                      $('#caracteristicas_add').html(data);
+                  },
+                  error: function (xhr, status, error) {
+                      // Maneja errores de Ajax, si es necesario
+                  }
+              });
+          });
+      });
+</script>

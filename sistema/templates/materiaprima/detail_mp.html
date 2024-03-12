@@ -34,7 +34,7 @@
                   </div>
                 {% else %}
                   <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-                  <a class="btn btn-primary" href="{% url 'mp_app:prepare_mp' materiaprima.mp_lote %}" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
+                  <a class="btn btn-primary" onclick="caracteristicas_add('{% url 'mp_app:caracteristicas_mp' %}')" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
                 {% endif %}
               <p class="card-text">
                 {% for c in materiaprima.caracteristicasorganolepticas_set.all %}
