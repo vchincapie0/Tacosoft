@@ -12,10 +12,9 @@ class ProductoTerminado(models.Model):
     PT_fechapreparacion=models.DateField('Fecha Preparacion')
     PT_fechavencimiento=models.DateField('Fecha Vencimiento')
 
-
-
     def __str__(self):
         return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_materiaprima}"
 
 
-# Create your models here.
+# Creación model Picado.
+
