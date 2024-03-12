@@ -95,7 +95,20 @@
           </div>
         </div>
       </div>
-    
-   
-    
+  
+      <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
 {%endblock%}
+
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+  function caracteristicas_add(url){
+        var $ = jQuery.noConflict();
+        $('#caracteristicas_add').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+</script>
+{% endblock %}
+  

@@ -41,7 +41,6 @@ class CaracteristicasMPForm(forms.ModelForm):
             'limpieza',
             'empaque',
             'color',
-            'estado',
              
         )
 
@@ -50,8 +49,7 @@ class CaracteristicasMPForm(forms.ModelForm):
                 'textura':forms.CheckboxInput(),
                 'limpieza':forms.CheckboxInput(),
                 'empaque':forms.CheckboxInput(),
-                'color':forms.CheckboxInput(),
-                'estado':forms.Select(),     
+                'color':forms.CheckboxInput(),    
             }
                        
 class DesinfeccionMPForm(forms.ModelForm):
