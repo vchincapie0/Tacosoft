@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{% url 'pedidos_app:add__prov_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+          <form id="pedidoAddProvForm" action="{% url 'pedidos_app:add__prov_pedidos' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
               {%csrf_token%}
           
                 {% if form.errors %}
@@ -47,4 +47,24 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('#pedidoAddProvForm').submit(function (event) {
+            event.preventDefault(); // Evita la redirección predeterminada
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                // Verifica la respuesta y actualiza el contenido del modal
+                $('#add_prov_pedidos').html(data);
+                },
+                error: function (xhr, status, error) {
+                // Maneja errores de Ajax, si es necesario
+                }
+            });
+        });
+    });
+</script>
     
