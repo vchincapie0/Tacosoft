@@ -6,8 +6,8 @@ from applications.procesamiento.models import Coccion, Picado
 class ProductoTerminado(models.Model):
 
     PT_lote=models.AutoField('id',primary_key=True)
-    ID=models.ForeignKey(Coccion,on_delete=models.CASCADE)
-    ID=models.ForeignKey(Picado,on_delete=models.CASCADE)
+    IdCoccion=models.ForeignKey(Coccion,on_delete=models.CASCADE)
+    IdPicado=models.ForeignKey(Picado,on_delete=models.CASCADE)
     PT_prodNombre=models.CharField('Nombre Producto Terminado', max_length=50)
     PT_fechapreparacion=models.DateField('Fecha Preparacion')
     PT_fechavencimiento=models.DateField('Fecha Vencimiento')
@@ -70,4 +70,4 @@ class Vacio(models.Model):
 
 
     def __str__(self):
-        return f"{self.PT_lote}-{self.Cantidad_bolsas_rechazadas}-{self.Cantidad_bolsas_liberadas}"
+        return f"{self.PT_lote}-{self.Cantidad_bolsas_rechazadas}-{self.ExisPT_CantidadEgresada}"
