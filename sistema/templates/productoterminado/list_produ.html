@@ -11,13 +11,13 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" href="{% url 'mp_app:add_mp' %}" role="button">Agregar Materia Prima</a>
+                    <a name="" id="" class="btn btn-success" href="{% url 'produ_app:add_produ' %}" role="button">Agregar Producto Terminado</a>
                 </div>
                 
                 <div class="col-6">
                     <form class="d-flex" role="search">
                         {% csrf_token %}
-                        <input class="form-control me-2" type="search" placeholder="Buscar Materia Prima" aria-label="Search" name="kword" id="kword">
+                        <input class="form-control me-2" type="search" placeholder="Buscar Producto Terminado" aria-label="Search" name="kword" id="kword">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -25,34 +25,33 @@
             
         </div>
         <div class="card-body">
-            <h4 class="card-title">Materia Prima</h4>
+            <h4 class="card-title">Producto Terminado</h4>
             
             <div class="table-responsive">
                 <table class="table table-secondary">
                     <thead>
                         <tr>
                             <th scope="col">Lote</th>
-                            <th scope="col">Materia Prima</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Fecha de Llegada</th>
+                            <th scope="col">Id Cocción</th>
+                            <th scope="col">Id Picado</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Fecha de preparación</th>
                             <th scope="col">Fecha de vencimiento</th>
-                            <th scope="col">Detalles</th>
                             
 
                         </tr>
                     </thead>
                     <tbody>
-                        {%for m in materiaprima%}
+                        {%for p in productoterminado%}
                         <tr>
-                            <td>{{m.mp_lote}}</td>
-                            <td>{{m.mp_nombre}}</td>
-                            <td>{{m.get_mp_tipo_display}}</td>
-                            <td>{{m.mp_cantidad}} g</td>
-                            <td>{{m.mp_fechallegada}}</td>
-                            <td>{{m.mp_fechavencimiento}}</td>
+                            <td>{{p.PT_lote}}</td>
+                            <td>{{p.IdCoccion}}</td>
+                            <td>{{p.IdPicado}}</td>
+                            <td>{{p.PT_prodNombre}} g</td>
+                            <td>{{p.PT_fechapreparacion}}</td>
+                            <td>{{p.PT_fechavencimiento}}</td>
                             <td>
-                                <a href="{% url 'mp_app:detail_mp' m.mp_lote %}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                <a href="{% url 'produ_app:detail_PT' p.PT_lote %}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                             </td>
                             
                         </tr>
