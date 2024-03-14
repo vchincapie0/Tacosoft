@@ -1,7 +1,7 @@
 from django import forms
 from .models import ProductoTerminado, ExistenciaPT, CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
 
-class ProductoTerminado(forms.ModelForm):
+class ProductoTerminadoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
 
     class Meta:

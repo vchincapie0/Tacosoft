@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ProductoTerminado
-from .forms import ProductoTerminadoForm, ProcesamientosUpdateForm
+from .forms import ProductoTerminadoForm
 
 # Create your views here.
 
