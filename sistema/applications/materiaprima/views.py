@@ -2,12 +2,12 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import ListView,CreateView,DetailView
+from django.views.generic import ListView,CreateView,DetailView, UpdateView
 from django.urls import reverse_lazy
 
 #Importacion modelos y formularios
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas, Existenciamp
-from .forms import MateriaPrimaForm,CaracteristicasMPForm,DesinfeccionMPForm
+from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm
 
 
 # Create your views here.
@@ -45,6 +45,39 @@ class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = CaracteristicasMPForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:lista_mp')
+
+    def get_queryset(self):
+        '''Funcion para recoger el mp_lote correspondiente para las caracteristicas organolep'''
+        pk = self.kwargs['mp_lote']
+        lista = MateriaPrima.objects.filter(
+            caracteristicasorganolepticas__mp_lote = pk
+        )
+        return lista
+
+    def caracteristicasMP(request):
+        '''funcio para validar el formulario'''
+        if request.method == 'POST':
+            formulario = CaracteristicasMPForm(request.POST)
+
+            if formulario.is_valid():
+
+                return redirect('MateriaPrimaDetailView')
+        else:
+        # El formulario está vacío, así que simplemente inicializa un formulario vacío
+            formulario = CaracteristicasMPForm()
+
+    # Renderiza la vista con el formulario
+        return render(request, 'caracteristicas_mp.html', {'formulario': formulario})
+    
+class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
+    model = CaracteristicasOrganolepticas
+    template_name = "materiaprima/updateCaracteristicas_mp.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = CaracteristicasMPUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
 
