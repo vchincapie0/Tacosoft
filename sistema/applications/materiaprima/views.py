@@ -72,7 +72,7 @@ class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
         return render(request, 'caracteristicas_mp.html', {'formulario': formulario})
     
 class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
-    '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
+    '''Vista para la edición de las caracteristicas organolepticas de la materia prima'''
     model = CaracteristicasOrganolepticas
     template_name = "materiaprima/updateCaracteristicas_mp.html"
     login_url=reverse_lazy('users_app:login')
@@ -81,28 +81,20 @@ class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
 
-    def get_queryset(self):
-        '''Funcion para recoger el mp_lote correspondiente para las caracteristicas organolep'''
-        pk = self.kwargs['mp_lote']
-        lista = MateriaPrima.objects.filter(
-            caracteristicasorganolepticas__mp_lote = pk
-        )
-        return lista
-
     def caracteristicasMP(request):
         '''funcio para validar el formulario'''
         if request.method == 'POST':
-            formulario = CaracteristicasMPForm(request.POST)
+            formulario = CaracteristicasMPUpdateForm(request.POST)
 
             if formulario.is_valid():
 
                 return redirect('MateriaPrimaDetailView')
         else:
         # El formulario está vacío, así que simplemente inicializa un formulario vacío
-            formulario = CaracteristicasMPForm()
+            formulario = CaracteristicasMPUpdateForm()
 
     # Renderiza la vista con el formulario
-        return render(request, 'caracteristicas_mp.html', {'formulario': formulario})
+        return render(request, 'updateCaracteristicas_mp.html', {'formulario': formulario})
     
 class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Vists para la creacion de la desinfeccion de la materia prima'''
