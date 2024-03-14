@@ -30,7 +30,7 @@ class ProcesamientosCreateView(LoginRequiredMixin, CreateView):
     template_name = "procesamientos/add_procesamientos.html"
     login_url=reverse_lazy('home_app:home')
     #Campos que se van a mostrar en el formulario
-    form_class = ImplementosTrabajoForm
+    form_class = ProcesamientosForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('procesamientos_app:list_procesamientos')  
 
