@@ -13,6 +13,12 @@
         <div class="col">
             <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
                 {%csrf_token%}
+
+                {% if form.errors %}
+                    <div class="alert alert-info">
+                        {{form.errors.mp_cantidad.0}}
+                    </div>
+                {% endif %}
             
                 <div class="row">
                     <div class="mb-3 col-md-6 col-12">

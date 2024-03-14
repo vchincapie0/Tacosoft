@@ -53,9 +53,7 @@ class CaracteristicasMPForm(forms.ModelForm):
                 'color':forms.CheckboxInput(),
                 'estado':forms.Select(),     
             }
-        
-            
-            
+                       
 class DesinfeccionMPForm(forms.ModelForm):
 
     class Meta:
@@ -79,4 +77,4 @@ class DesinfeccionMPForm(forms.ModelForm):
             'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
-            }
+            }    

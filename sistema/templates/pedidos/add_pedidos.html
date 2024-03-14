@@ -57,7 +57,7 @@
                     <div class="m-3 col-12">
                         <label for="id_imp_lote" class="form-label">Proveedor: </label>
                         {{form.pedi_proveedor}}
-                        <a onclick="abrir_modal_add_mp('{% url 'pedidos_app:add__prov_pedidos' %}')" type="button" style="color: greenyellow;" class=""><i class="fa-solid fa-plus fa-xl"></i></a>
+                        <a onclick="abrir_modal_add_prov('{% url 'pedidos_app:add__prov_pedidos' %}')" type="button" style="color: greenyellow;" class=""><i class="fa-solid fa-plus fa-xl"></i></a>
                     </div>
 
                     <div class="mb-3 col-12">
@@ -98,6 +98,8 @@
 {%endblock%}
 
 {% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <script type="text/javascript">
     function toggleInsumosField(value) {
     const insumosField = document.getElementById('id_pedi_insumos');
@@ -111,6 +113,7 @@
     toggleInsumosField(document.getElementById('id_tipo_pedido').value);
 
     function abrir_modal_add_mp(url){
+        //Función para abrir el modal de creación materia prima en el formulario de add_pedido
         var $ = jQuery.noConflict();
         $('#add_mp_pedidos').load(url,function(){
             $(this).modal('show');
@@ -118,13 +121,15 @@
     }
 
     function abrir_modal_add_it(url){
+        //Función para abrir el modal de creación implementos de trabajo en el formulario de add_pedido
         var $ = jQuery.noConflict();
         $('#add_it_pedidos').load(url,function(){
             $(this).modal('show');
         }); 
     }
 
-    function abrir_modal_add_it(url){
+    function abrir_modal_add_prov(url){
+        //Función para abrir el modal de creación proveedores en el formulario de add_pedido
         var $ = jQuery.noConflict();
         $('#add_prov_pedidos').load(url,function(){
             $(this).modal('show');
