@@ -5,53 +5,49 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
     </div>
     <div class="modal-body">
-      <form id="addCaracteristicasForm" method="post" action="{% url 'mp_app:caracteristicas_mp' %}">
+      <form id="addCaracteristicasForm" method="POST" action="{% url 'mp_app:caracteristicas_mp' %}">
         {%csrf_token%}
-        <div class="card text-center border-warning text-bg-dark" style="--bs-bg-opacity: .5;"></div> 
-            <h3>Características Organolepticas</h3>
-          </div>
-          <div class="card-body">
+            <div class="mx-4 my-2 row">
+                
+                <div class="mb-3 col-12">
+                    <label for="id_mp_nombre" class="form-label">Lote Materia Prima: </label>
+                    {{form.mp_lote}}   
+                </div>
           
-            <h5 class="card-title">Lote: {{form.mp_lote}}</h5>
-            <p class="card-text">
-              <div class="form-check">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Olor: 
-                  {{form.olor}}
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Textura: 
-                  {{form.textura}}
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Limpieza: 
-                  {{form.limpieza}}
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Empaque: 
+           
+                <div class="mb-3 col-12">
+                    <label for="id_mp_fechallegada" class="form-label">Olor:</label>
+                    {{form.olor}}   
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_mp_fechavencimiento" class="form-label">Textura: </label>
+                    {{form.textura}}  
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_imp_lote" class="form-label">Limpieza: </label>
+                    {{form.limpieza}}
+                </div>
+
+                <div class="mb-3 col-12">
+                  <label for="id_imp_lote" class="form-label">Empaque: </label>
                   {{form.empaque}}
-                </label>
+                </div>
+
+              <div class="mb-3 col-12">
+                <label for="id_imp_lote" class="form-label">Color: </label>
+                {{form.color}}
               </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Color: 
-                  {{form.color}}
-                </label>
-              </div
-            </p>
-        </div>
-        <div class="card-footer text-body-secondary">
-          <button type="submit" class="btn btn-primary">Guardar</button>
-          <a type="button" class="btn btn-danger" href="{% url 'mp_app:lista_mp' %}">Cancelar</a>
-        </div>
-      </div>
-      </form>
+
+                <div class="col">
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                    |
+                    <a href="{% url 'insumos_app:list_insumos' %}" type="button" class="btn btn-danger">Cancelar</a>
+                </div>
+            </div>
+            
+        </form>
       </div>
   
   </div>
