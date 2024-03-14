@@ -51,6 +51,29 @@ class CaracteristicasMPForm(forms.ModelForm):
                 'empaque':forms.CheckboxInput(),
                 'color':forms.CheckboxInput(),    
             }
+        
+class CaracteristicasMPUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = CaracteristicasOrganolepticas
+        fields=(
+            'mp_lote',
+            'olor',
+            'textura',
+            'limpieza',
+            'empaque',
+            'color',
+             
+        )
+
+        widgets={
+                'olor':forms.CheckboxInput(),
+                'textura':forms.CheckboxInput(),
+                'limpieza':forms.CheckboxInput(),
+                'empaque':forms.CheckboxInput(),
+                'color':forms.CheckboxInput(),    
+            }
                        
 class DesinfeccionMPForm(forms.ModelForm):
 
