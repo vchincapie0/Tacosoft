@@ -115,8 +115,22 @@
             {% endif %}
         </div>
     </div>
-</div>   
+</div> 
+<div class="modal fade" id="add_mp" role="dialog"></div>
+
 {% endblock content %}
 
 
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+    function add_mp(url){
+        var $ = jQuery.noConflict();
+        $('#add_mp').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+</script>
+{% endblock extrajs %}
     
