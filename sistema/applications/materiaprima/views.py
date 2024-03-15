@@ -25,7 +25,7 @@ class MateriaPrimaListView(LoginRequiredMixin, ListView):
         palabra_clave= self.request.GET.get("kword",'')
         lista = MateriaPrima.objects.filter(
             mp_nombre__icontains = palabra_clave
-        )
+        ).prefetch_related('caracteristicasorganolepticas_set')
         return lista
 
 class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
