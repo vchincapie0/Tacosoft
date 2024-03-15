@@ -1,4 +1,5 @@
 from django.db import models
+from applications.users.models import User
 
 # Create your models here.
 
@@ -44,7 +45,7 @@ class Desinfeccion(models.Model):
     mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
     des_nombre=models.CharField('Nombre del Desinfectante',max_length=20)
     concentracion = models.IntegerField('Concentración')
-    responsable = models.CharField('Responsable', max_length=50)
+    responsable = models.ForeignKey(User, on_delete=models.CASCADE)
     tiempo_inicio=models.TimeField('Tiempo de Inicio')
     tiempo_fin=models.TimeField('Fin Desinfección')
     obsevacion=models.CharField('Observaciones',max_length=100)
