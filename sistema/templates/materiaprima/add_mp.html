@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-            <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+            <form id="addMpForm" action="{% url 'mp_app:add_mp' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
                 {%csrf_token%}
 
                 {% if form.errors %}
