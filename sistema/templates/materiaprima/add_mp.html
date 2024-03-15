@@ -1,16 +1,10 @@
-{%extends "base.html"%}
-{%block title%} Añadir Materia Prima {%endblock%}
-
-{%block content%}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Agregar Materia Prima</h1>
-        </div> 
-    </div>
-
-    <div class="mt-4 row">
-        <div class="col">
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Materia Prima</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
             <form action="" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
                 {%csrf_token%}
 
@@ -61,6 +55,28 @@
                 
             </form>
         </div>
+    
     </div>
-</div>    
-{%endblock%}
+</div>
+
+
+<script>
+    $(document).ready(function () {
+            $('#addMpForm').submit(function (event) {
+                event.preventDefault(); // Evita la redirección predeterminada
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        // Verifica la respuesta y actualiza el contenido del modal
+                        $('#add_mp').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        // Maneja errores de Ajax, si es necesario
+                    }
+                });
+            });
+        });
+</script>
