@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 
 #Importacion modelos y formularios
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas, Existenciamp
-from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm
+from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm, DesinfeccionMPUpdateForm
 
 
 # Create your views here.
@@ -62,6 +62,23 @@ class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = DesinfeccionMPForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:lista_mp')
+
+    def get_queryset(self):
+        pk = self.kwargs['mp_lote']
+        lista = MateriaPrima.objects.filter(
+            desinfeccion__mp_lote = pk
+        )
+        return lista
+
+class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
+    '''Vista para la edición de la desinfeccion de la materia prima'''
+    model = Desinfeccion
+    template_name = "materiaprima/updateDesinfeccion_mp.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = DesinfeccionMPUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
 
