@@ -72,7 +72,7 @@ class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
         )
         return lista
 
-class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
+class DesinfeccionMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edición de la desinfeccion de la materia prima'''
     model = Desinfeccion
     template_name = "materiaprima/updateDesinfeccion_mp.html"
