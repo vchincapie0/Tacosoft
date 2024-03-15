@@ -41,12 +41,12 @@
                     {% if c.estado == '1' %}
                       <div class="row">
                         <div class="col-6">Estado: <p style="color: red;">{{ c.get_estado_display }}</p></div>
-                        <div class="col-6 d-flex justify-content-center align-items-center"><a href="{% url 'mp_app:updateCaracteristicas_mp' c.pk %}" class="btn btn-warning" type="button">Editar</a></div>
+                        <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'mp_app:updateCaracteristicas_mp' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                       </div>
                     {% else %}
                       <div class="row">
                         <div class="col-6">Estado: <p style="color: green;">{{ c.get_estado_display }}</p></div>
-                        <div class="col-6 d-flex justify-content-center align-items-center"><a <a href="{% url 'mp_app:updateCaracteristicas_mp' c.pk %}" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
+                        <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'mp_app:updateCaracteristicas_mp' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                       </div>
                         
                         
@@ -97,6 +97,8 @@
       </div>
   
       <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
+      <div class="modal fade" id="caracteristicas_update" role="dialog"></div>
+
 {%endblock%}
 
 
@@ -106,6 +108,13 @@
   function caracteristicas_add(url){
         var $ = jQuery.noConflict();
         $('#caracteristicas_add').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function caracteristicas_update(url){
+        var $ = jQuery.noConflict();
+        $('#caracteristicas_update').load(url,function(){
             $(this).modal('show');
         }); 
     }
