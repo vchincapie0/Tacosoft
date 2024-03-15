@@ -12,7 +12,4 @@ urlpatterns = [
     path('mp_detail/<pk>',views.MateriaPrimaDetailView.as_view(),name='detail_mp'),
     path('existenciamp/<pk>' ,views.ExistenciampView.as_view(),name='exitencia_mp'),
 
-    
-
-    
 ]
