@@ -51,7 +51,7 @@ class Desinfeccion(models.Model):
     obsevacion=models.CharField('Observaciones',max_length=100)
 
     def __str__(self):
-        return str(self.mp_lote)+'-'+self.des_nombre+self.responsable
+        return str(self.mp_lote)+'-'+self.des_nombre
     
 
     

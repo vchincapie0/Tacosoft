@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView,CreateView,DetailView, UpdateView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 #Importacion modelos y formularios
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas, Existenciamp
@@ -71,6 +72,23 @@ class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
             desinfeccion__mp_lote = pk
         )
         return lista
+    
+    # Example view handling the form submission
+    def desinfeccion_form_view(request):
+        if request.method == 'POST':
+            form = DesinfeccionMPForm(request.POST)
+        if form.is_valid():
+            # Create a new instance of Desinfeccion
+            desinfeccion_instance = form.save(commit=False)
+            # Set the current logged-in user as the responsable
+            desinfeccion_instance.responsable = request.user
+            # Save the instance
+            desinfeccion_instance.save()
+            # Redirect or do whatever you need after successful form submission
+            return reverse_lazy('mp_app:lista_mp')
+        else:
+            form = DesinfeccionMPForm()
+        return render(request, 'materiaprima/desinfeccion_mp.html', {'form': form})
 
 class DesinfeccionMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edición de la desinfeccion de la materia prima'''

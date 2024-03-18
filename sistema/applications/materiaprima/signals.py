@@ -11,8 +11,13 @@ def actualizar_estado(sender, instance, **kwargs):
     else:
         instance.estado = '1'
 
+# Signal to automatically set the responsable field to the logged-in user
 @receiver(pre_save, sender=Desinfeccion)
 def set_responsable(sender, instance, **kwargs):
+    # Check if the responsable field is empty
     if not instance.responsable:
-        # Asigna el usuario actual como responsable
-        instance.responsable = instance.mp_lote.responsable
+        # Get the logged-in user from the request object
+        user = instance.responsable
+        # Assign the logged-in user as the responsable
+        if user.is_authenticated:
+            instance.responsable = user
