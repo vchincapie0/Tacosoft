@@ -13,7 +13,7 @@ class Procesamiento(models.Model):
     )
 
     cod_procesamiento=models.AutoField('id',primary_key=True)
-    proces_nombreProd=models.CharField('Nombre', max_length=50)
+    mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
     proces_pesoMpCruda=models.FloatField('Peso Crudo')
     proces_pesoPostProceso=models.FloatField('Peso Post Proceso')
     proces_merma=models.FloatField('Peso Merma')
