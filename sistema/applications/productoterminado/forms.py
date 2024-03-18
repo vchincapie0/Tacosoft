@@ -11,7 +11,7 @@ class ProductoTerminadoForm(forms.ModelForm):
         fields = (
             'PT_lote',
             'IdCoccion',
-            'IdPicado',
+            'IdPicado',   
             'PT_prodNombre',
             'PT_fechapreparacion',
             'PT_fechavencimiento',

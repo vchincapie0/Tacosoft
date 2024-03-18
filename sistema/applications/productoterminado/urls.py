@@ -8,4 +8,7 @@ urlpatterns = [
     path('add_produ/',views.ProduCreateView.as_view(),name='add_produ'),
     path('update_produ/<pk>',views.ProduUpdateView.as_view(),name='update_produ'),
     path('delete_produ/<pk>',views.ProduDeleteView.as_view(),name='delete_produ'),
+    path('existenciamp/<pk>' ,views.ExistenciaPTView.as_view(),name='exitenciaPT),
+
+
 ]
