@@ -13,17 +13,15 @@ class Procesamiento(models.Model):
     )
 
     cod_procesamiento=models.AutoField('id',primary_key=True)
-    mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
     proces_pesoMpCruda=models.FloatField('Peso Crudo')
     proces_pesoPostProceso=models.FloatField('Peso Post Proceso')
     proces_merma=models.FloatField('Peso Merma')
     proces_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
-
-    proces_materiaprima=models.ManyToManyField(MateriaPrima, blank=True)
+    proces_materiaprima=models.ManyToManyField(MateriaPrima)
     
 
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.mp_nombre}-{self.proces_pesoMpCruda}-{self.proces_pesoPostProceso}"
+        return f"{self.cod_procesamiento}-{self.proces_materiaprima}-{self.proces_pesoMpCruda}-{self.proces_pesoPostProceso}"
 
 
 class Equipos(models.Model):

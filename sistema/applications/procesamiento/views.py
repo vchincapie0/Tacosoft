@@ -11,7 +11,7 @@ from .forms import ProcesamientosForm, ProcesamientosUpdateForm
 class ProcesamientosListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de Procesamiento'''
     model = Procesamientos
-    template_name = "Procesamientos/list_procesamiento.html"
+    template_name = "Procesamientos/list_procesamientos.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'procesamientos'
