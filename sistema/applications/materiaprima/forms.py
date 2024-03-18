@@ -140,7 +140,6 @@ class DesinfeccionMPUpdateForm(forms.ModelForm):
             'mp_lote':forms.TextInput(attrs={'readonly':'readonly'}),
             'des_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Desinfectante'}),
             'concentracion':forms.NumberInput(attrs={'max_length': '2'}),
-            'responsable':forms.TextInput(attrs={'placeholder': 'Nombre Responsable'}),
             'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
