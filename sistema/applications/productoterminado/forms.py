@@ -11,7 +11,8 @@ class ProductoTerminadoForm(forms.ModelForm):
         fields = (
             'PT_lote',
             'IdCoccion',
-            'IdPicado',   
+            'IdPicado',
+            'PT_cantidad',   
             'PT_prodNombre',
             'PT_fechapreparacion',
             'PT_fechavencimiento',
@@ -22,7 +23,23 @@ class ProductoTerminadoForm(forms.ModelForm):
             'PT_fechapreparacion':forms.SelectDateWidget(),
             'PT_fechavencimiento':forms.SelectDateWidget(),
         }
-    
+     def PT_cantidad(self):
+        cantidad = self.cleaned_data['PT_cantidad']
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+        return cantidad
+
+
+    def clean_PT_fechavencimiento(self):
+        fecha_vencimiento = self.cleaned_data['PT_fechavencimiento']
+        fecha_actual = timezone.now().date()
+
+        # Comprueba si la fecha de vencimiento es anterior a la fecha actual
+        if fecha_vencimiento < fecha_actual:
+            raise forms.ValidationError('La fecha de vencimiento debe ser posterior a la fecha actual.')
+
+        return fecha_vencimiento
+
 class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
 
     class Meta:
@@ -49,7 +66,32 @@ class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
                 'estado':forms.Select(),     
             }
         
-            
+class CaracteristicasPTUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = CaracteristicasOrganolepticasPT
+        fields=(
+
+            'PT_lote',
+            'observaciones',
+            'olor',
+            'sabor',
+            'textura',
+            'color',
+            'estado',
+             
+        )
+
+        widgets={
+                
+                'observaciones':forms.Textarea(),
+                'olor':forms.CheckboxInput(),
+                'sabor':forms.CheckboxInput(),
+                'textura':forms.CheckboxInput(),
+                'color':forms.CheckboxInput(),
+                'estado':forms.Select(),     
+            }
             
 class ExistenciaPTForm(forms.ModelForm):
 
