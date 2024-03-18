@@ -15,7 +15,6 @@ def actualizar_estado(sender, instance, **kwargs):
 # Signal receiver function to automatically set the responsable field after saving Desinfeccion instance
 @receiver(post_save, sender=Desinfeccion)
 def set_responsable(sender, instance, created, **kwargs):
-    print('Verificando que funcione señal')
     if created and not instance.responsable:
         user = get_user_model().objects.first()  # Or use the appropriate logic to get the logged-in user
         if user:
