@@ -23,7 +23,7 @@ class Procesamiento(models.Model):
     
 
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_nombreProd}-{self.proces_pesoMpCruda}-{self.proces_pesoPostProceso}"
+        return f"{self.cod_procesamiento}-{self.mp_nombre}-{self.proces_pesoMpCruda}-{self.proces_pesoPostProceso}"
 
 
 class Equipos(models.Model):
