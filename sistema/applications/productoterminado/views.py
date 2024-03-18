@@ -3,8 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado,ExistenciaPT
-from .forms import ProductoTerminadoForm
+from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT
+from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm
 
 # Create your views here.
 
@@ -55,3 +55,13 @@ class ExistenciaPTView(LoginRequiredMixin, ListView):
     template_name = "productoterminado/existenciaPT.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('produ_app:exitenciaPT')
+
+class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
+    '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
+    model = CaracteristicasOrganolepticasPT
+    template_name = "productoterminado/caracteristicas_mp.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = CaracteristicasOrganolepticasPTForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:lista_mp')
