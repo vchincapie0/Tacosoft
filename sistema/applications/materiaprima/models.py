@@ -48,7 +48,7 @@ class Desinfeccion(models.Model):
     responsable = models.ForeignKey(User, on_delete=models.CASCADE)
     tiempo_inicio=models.TimeField('Tiempo de Inicio')
     tiempo_fin=models.TimeField('Fin Desinfección')
-    obsevacion=models.CharField('Observaciones',max_length=100)
+    obsevacion=models.CharField('Observaciones',max_length=100, null=True, blank=True)
 
     def __str__(self):
         return str(self.mp_lote)+'-'+self.des_nombre
