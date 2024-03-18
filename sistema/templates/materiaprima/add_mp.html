@@ -61,27 +61,3 @@
     
     </div>
 </div>
-
-
-<script>
-    $(document).ready(function () {
-    $('#addMpForm').submit(function (event) {
-        event.preventDefault(); // Evita la redirección predeterminada
-
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            async: true, // Establece la solicitud como asíncrona
-            success: function (data) {
-                // Verifica la respuesta y actualiza el contenido del modal
-                $('#add_mp').html(data);
-                $('#add_mp').modal('hide'); // Cierra el modal
-            },
-            error: function (xhr, status, error) {
-                // Maneja errores de Ajax, si es necesario
-            }
-        });
-    });
-});
-</script>
