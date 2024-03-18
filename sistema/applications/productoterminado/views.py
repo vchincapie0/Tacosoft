@@ -59,9 +59,9 @@ class ExistenciaPTView(LoginRequiredMixin, ListView):
 class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
     model = CaracteristicasOrganolepticasPT
-    template_name = "productoterminado/caracteristicas_mp.html"
+    template_name = "productoterminado/caracteristicas_PT.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = CaracteristicasOrganolepticasPTForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-    success_url= reverse_lazy('mp_app:lista_mp')
+    success_url= reverse_lazy('produ_app:list_produ')
