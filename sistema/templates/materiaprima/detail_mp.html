@@ -109,6 +109,8 @@
   
       <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
       <div class="modal fade" id="caracteristicas_update" role="dialog"></div>
+      <div class="modal fade" id="desinfeccion_add" role="dialog"></div>
+
 
 {%endblock%}
 
@@ -126,6 +128,13 @@
     function caracteristicas_update(url){
         var $ = jQuery.noConflict();
         $('#caracteristicas_update').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function desinfeccion_add(url){
+        var $ = jQuery.noConflict();
+        $('#desinfeccion_add').load(url,function(){
             $(this).modal('show');
         }); 
     }
