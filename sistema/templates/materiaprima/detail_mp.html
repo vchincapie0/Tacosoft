@@ -95,7 +95,7 @@
                   <p class="card-text">Tiempo de inicio: {{d.tiempo_inicio}}</p>
                   <p class="card-text">Tiempo final: {{d.tiempo_fin}}</p>
                   <p class="card-text">Observaciones: {{d.obsevacion}}</p>
-                  <a class="btn btn-info" href="{% url 'mp_app:updateDesinfeccion_mp' d.pk %}" type="button"><i class="fa-solid fa-pump-medical"></i> Editar</a>
+                  <a class="btn btn-info" onclick="desinfeccion_update('{% url 'mp_app:updateDesinfeccion_mp' d.id %}')" type="button"><i class="fa-solid fa-pump-medical"></i> Editar</a>
                 {% endfor %}
               </div>
               {% else %}
@@ -110,6 +110,8 @@
       <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
       <div class="modal fade" id="caracteristicas_update" role="dialog"></div>
       <div class="modal fade" id="desinfeccion_add" role="dialog"></div>
+      <div class="modal fade" id="desinfeccion_update" role="dialog"></div>
+
 
 
 {%endblock%}
@@ -135,6 +137,13 @@
     function desinfeccion_add(url){
         var $ = jQuery.noConflict();
         $('#desinfeccion_add').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function desinfeccion_update(url){
+        var $ = jQuery.noConflict();
+        $('#desinfeccion_update').load(url,function(){
             $(this).modal('show');
         }); 
     }

@@ -5,7 +5,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
     </div>
     <div class="modal-body">
-      <form method="post" action="{% url 'mp_app:desinfeccion_mp' %}">
+      <form method="post" action="{% url 'mp_app:desinfeccion_mp' %}" id="desinfeccionForm">
         {%csrf_token%}
         <div class="card text-center text-bg-dark" style="--bs-bg-opacity: .5;">
           <div class="card-body">
@@ -57,7 +57,7 @@
 
 <script>
   $(document).ready(function () {
-          $('#addInsumosForm').submit(function (event) {
+          $('#desinfeccionForm').submit(function (event) {
               event.preventDefault(); // Evita la redirección predeterminada
 
               $.ajax({
@@ -66,7 +66,7 @@
                   data: $(this).serialize(),
                   success: function (data) {
                       // Verifica la respuesta y actualiza el contenido del modal
-                      $('#add_insumos').html(data);
+                      $('#desinfeccion_add').html(data);
                   },
                   error: function (xhr, status, error) {
                       // Maneja errores de Ajax, si es necesario
