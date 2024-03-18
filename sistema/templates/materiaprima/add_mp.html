@@ -61,3 +61,26 @@
     
     </div>
 </div>
+
+<!---Muestra los errores dentro del modal y evita el redireccionamiento cuando hay algun error-->
+<script>
+    $(document).ready(function () {
+    $('#addMpForm').submit(function (event) {
+        event.preventDefault(); // Evita la redirección predeterminada
+
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            async: true, // Establece la solicitud como asíncrona
+            success: function (data) {
+                // Verifica la respuesta y actualiza el contenido del modal
+                $('#add_mp').html(data);
+            },
+            error: function (xhr, status, error) {
+                // Maneja errores de Ajax, si es necesario
+            }
+        });
+    });
+});
+</script>
