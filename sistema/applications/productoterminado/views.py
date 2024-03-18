@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT
@@ -65,3 +65,10 @@ class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView)
     form_class = CaracteristicasOrganolepticasPTForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('produ_app:list_produ')
+
+class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
+    '''Vista donde se muestran los detalles de producto terminado'''
+    model = ProductoTerminado
+    template_name = "productoterminado/PT_detail.html"
+    login_url=reverse_lazy('users_app:login')
+    context_object_name = 'productoterminado'    
