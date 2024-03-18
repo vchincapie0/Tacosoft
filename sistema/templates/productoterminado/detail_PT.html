@@ -25,18 +25,18 @@
             </div>
             <div class="card-body">
                <!-- Verificar si ya existen características organolépticas -->
-                {% if materiaprima.caracteristicasorganolepticas_set.all %}
+                {% if productoterminado.CaracteristicasOrganolepticasPT_set.all %}
                   <!-- Si ya existen, mostrar un mensaje o desactivar el enlace/botón para ingresar nuevas características -->
                   <div class="alert alert-warning" role="alert">
-                      Ya se han ingresado características organolépticas para esta materia prima.
+                      Ya se han ingresado características organolépticas para este producto terminado.
                       
                   </div>
                 {% else %}
                   <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-                  <a class="btn btn-primary" href="{% url 'produ_app:caracteristicas_mp' materiaprima.mp_lote %}" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
+                  <a class="btn btn-primary" href="{% url 'produ_app:caracteristicas_PT' productoterminado.PT_lote %}" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
                 {% endif %}
               <p class="card-text">
-                {% for c in materiaprima.caracteristicasorganolepticas_set.all %}
+                {% for c in productoterminado.CaracteristicasOrganolepticasPT_set.all %}
                     {% if c.estado == '1' %}
                       <div class="row">
                         <div class="col-6">Estado: <p style="color: red;">{{ c.get_estado_display }}</p></div>
