@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 from .models import ProductoTerminado, ExistenciaPT, CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
 
 class ProductoTerminadoForm(forms.ModelForm):
@@ -23,7 +24,7 @@ class ProductoTerminadoForm(forms.ModelForm):
             'PT_fechapreparacion':forms.SelectDateWidget(),
             'PT_fechavencimiento':forms.SelectDateWidget(),
         }
-    def PT_cantidad(self):
+    def pt_cantidad(self):
         cantidad = self.cleaned_data['PT_cantidad']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
