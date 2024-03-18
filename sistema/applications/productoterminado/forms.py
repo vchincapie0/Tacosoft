@@ -23,7 +23,7 @@ class ProductoTerminadoForm(forms.ModelForm):
             'PT_fechapreparacion':forms.SelectDateWidget(),
             'PT_fechavencimiento':forms.SelectDateWidget(),
         }
-     def PT_cantidad(self):
+    def PT_cantidad(self):
         cantidad = self.cleaned_data['PT_cantidad']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
