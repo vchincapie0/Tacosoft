@@ -100,7 +100,7 @@
               </div>
               {% else %}
               <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-                <a class="btn btn-info" href="{% url 'mp_app:desinfeccion_mp' %}" type="button"><i class="fa-solid fa-pump-medical"></i> Registrar Desinfección</a>
+                <a class="btn btn-info" onclick="desinfeccion_add('{% url 'mp_app:desinfeccion_mp' %}')" type="button"><i class="fa-solid fa-pump-medical"></i> Registrar Desinfección</a>
               {% endif %}
             </div>
           </div>
