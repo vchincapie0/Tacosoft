@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView,
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado
+from .models import ProductoTerminado,ExistenciaPT
 from .forms import ProductoTerminadoForm
 
 # Create your views here.
@@ -44,7 +44,14 @@ class ProduUpdateView(LoginRequiredMixin, UpdateView):
     
 class ProduDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar los producto terminado'''
-    model = ProductoTerminadoForm
+    model = ProductoTerminado
     template_name = "productoterminado/delete_produ.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('produ_app:list_produ')
+
+class ExistenciaPTView(LoginRequiredMixin, ListView):
+    '''Vists para la creacion de la existencias producto terminado'''
+    model = ExistenciaPT
+    template_name = "productoterminado/existenciaPT.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('produ_app:exitenciaPT')
