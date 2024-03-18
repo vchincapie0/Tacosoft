@@ -3,13 +3,15 @@
 
 
 {%block content%}
-    
-    <div class="row">
+      <div class="mt-3 row">
+
+        <!--Tarjeta de los detalles de materia prima-->
         <div class="col-sm-6 mb-3 mb-sm-0">
           <div class="card">
             <div class="card-header">
-                <h5>Detalles Materia Prima</h5>
+              <h5>Detalles Materia Prima</h5>
             </div>
+
             <div class="card-body">
               <p class="card-text">Lote: {{ materiaprima.mp_lote }} |  {{materiaprima.mp_nombre}}</p>
               <p class="card-text">Tipo: {{ materiaprima.get_mp_tipo_display }} </p>
@@ -19,44 +21,68 @@
             </div>
           </div>
         </div>
+
+        <!--Tarjeta del Stock-->
         <div class="col-sm-6">
           <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Caracteristicas Organolepticas</h5>
+              <h5>STOCK</h5>
             </div>
+
             <div class="card-body">
-               <!-- Verificar si ya existen características organolépticas -->
-                {% if materiaprima.caracteristicasorganolepticas_set.all %}
-                  <!-- Si ya existen, mostrar un mensaje o desactivar el enlace/botón para ingresar nuevas características -->
-                  <div class="alert alert-warning" role="alert">
-                      Ya se han ingresado características organolépticas para esta materia prima.
-                      
-                  </div>
-                {% else %}
-                  <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-                  <a class="btn btn-primary" href="{% url 'mp_app:prepare_mp' materiaprima.mp_lote %}" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
-                {% endif %}
+              <p>Aqui va ir la información del stock</p>
+              <a class="btn btn-success" href="{% url 'mp_app:exitencia_mp' materiaprima.mp_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3 row">
+        <!--Tarjeta de Caracteristicas Organolepticas-->
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-header">
+              Características Organoléticas
+            </div>
+
+            <div class="card-body">
+              <!-- Verificar si ya existen características organolépticas -->
+              {% if materiaprima.caracteristicasorganolepticas_set.all %}
+              <!-- Si ya existen, mostrar un mensaje o desactivar el enlace/botón para ingresar nuevas características -->
+              <div class="alert alert-warning" role="alert">
+                  Ya se han ingresado características organolépticas para esta materia prima.                  
+              </div>
+              {% else %}
+              <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
+              <a class="btn btn-primary" onclick="caracteristicas_add('{% url 'mp_app:caracteristicas_mp' %}')" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
+              {% endif %}
               <p class="card-text">
                 {% for c in materiaprima.caracteristicasorganolepticas_set.all %}
-                    {% if c.estado == '1' %}
-                      <div class="row">
-                        <div class="col-6">Estado: <p style="color: red;">{{ c.get_estado_display }}</p></div>
-                        <div class="col-6 d-flex justify-content-center align-items-center"><a href="#" class="btn btn-warning" type="button">Editar</a></div>
-                      </div>
-                    {% else %}
-                      <div class="row">
-                        <div class="col-6">Estado: <p style="color: green;">{{ c.get_estado_display }}</p></div>
-                        <div class="col-6 d-flex justify-content-center align-items-center"><a href="#" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
-                      </div>
-                        
-                        
-                    {% endif %}
+                  {% if c.estado == '1' %}
+                    <div class="row">
+                      <div class="col-6">Estado: <p style="color: red;">{{ c.get_estado_display }}</p></div>
+                      <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'mp_app:updateCaracteristicas_mp' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
+                    </div>
+                  {% else %}
+                    <div class="row">
+                      <div class="col-6">Estado: <p style="color: green;">{{ c.get_estado_display }}</p></div>
+                      <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'mp_app:updateCaracteristicas_mp' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
+                    </div>
+ 
+                  {% endif %}
                 {% endfor %}
               </p>
             </div>
+          </div>
+        </div>
+
+        <!--Tarjeta de Desinfección-->
+        <div class="col-sm-6">
+          <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Desinfeccion</h5>
+              Desinfección
             </div>
+
             <div class="card-body">
               <!-- Verificar si ya existen Desinfeccion -->
               {% if materiaprima.desinfeccion_set.all %}
@@ -69,33 +95,40 @@
                   <p class="card-text">Tiempo de inicio: {{d.tiempo_inicio}}</p>
                   <p class="card-text">Tiempo final: {{d.tiempo_fin}}</p>
                   <p class="card-text">Observaciones: {{d.obsevacion}}</p>
+                  <a class="btn btn-info" href="{% url 'mp_app:updateDesinfeccion_mp' d.pk %}" type="button"><i class="fa-solid fa-pump-medical"></i> Editar</a>
                 {% endfor %}
-                <div class="row"></div>
-                <a class="btn btn-info" href="#" type="button"><i class="fa-solid fa-pump-medical"></i> Editar</a>
               </div>
-            {% else %}
+              {% else %}
               <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-              <a class="btn btn-info" href="{% url 'mp_app:desinfeccion_mp' materiaprima.mp_lote %}" type="button"><i class="fa-solid fa-pump-medical"></i></a>
-            {% endif %}
+                <a class="btn btn-info" href="{% url 'mp_app:desinfeccion_mp' %}" type="button"><i class="fa-solid fa-pump-medical"></i> Registrar Desinfección</a>
+              {% endif %}
             </div>
           </div>
         </div>
       </div>
+  
+      <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
+      <div class="modal fade" id="caracteristicas_update" role="dialog"></div>
 
-      <div class="mt-3 row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <div class="card">
-            <div class="card-header">
-                <h5>STOCK</h5>
-            </div>
-            <div class="card-body">
-             <p>Aqui va ir la información del stock</p>
-             <a class="btn btn-success" href="{% url 'mp_app:exitencia_mp' materiaprima.mp_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-   
-    
 {%endblock%}
+
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+  function caracteristicas_add(url){
+        var $ = jQuery.noConflict();
+        $('#caracteristicas_add').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function caracteristicas_update(url){
+        var $ = jQuery.noConflict();
+        $('#caracteristicas_update').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+</script>
+{% endblock %}
+  
