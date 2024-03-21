@@ -28,7 +28,7 @@ class ProduCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea un producto terminado'''
     model = ProductoTerminado
     template_name = "productoterminado/add_produ.html"
-    login_url=reverse_lazy('home_app:home')
+    login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = ProductoTerminadoForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
