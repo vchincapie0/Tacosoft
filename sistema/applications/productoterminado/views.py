@@ -69,6 +69,6 @@ class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView)
 class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
     '''Vista donde se muestran los detalles de producto terminado'''
     model = ProductoTerminado
-    template_name = "productoterminado/PT_detail.html"
+    template_name = "productoterminado/detail_PT.html"
     login_url=reverse_lazy('users_app:login')
     context_object_name = 'productoterminado'    
