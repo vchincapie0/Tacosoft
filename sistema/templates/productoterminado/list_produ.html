@@ -36,6 +36,7 @@
                             <th scope="col">Cantidad</th>
                             <th scope="col">Fecha de preparación</th>
                             <th scope="col">Fecha de vencimiento</th>
+                            <th scope="col">Estado Características Organolepticas</th>
                             <th scope="col">Detalles</th>
                             
                         </tr>
@@ -50,6 +51,21 @@
                             <td>{{p.PT_cantidad}} g</td>
                             <td>{{p.PT_fechapreparacion}}</td>
                             <td>{{p.PT_fechavencimiento}}</td>
+                            <td>
+                                {% if p.caracteristicasorganolepticasPT_set.all %}
+                                    {% for caracteristica in p.caracteristicasorganolepticasPT_set.all %}
+                                        {% if caracteristica.estado == '0' %}
+                                            <p style="color: green;">{{ caracteristica.get_estado_display }}</p> <!-- Display the estado field -->
+                                        {% else %}
+                                            <p style="color: red;">{{ caracteristica.get_estado_display }}</p>
+                                        {%endif%}
+                                    {% endfor %}
+                                {% else %}
+                                    No hay características registradas
+                                {% endif %}
+                            </td>
+
+
                             <td>
                                 <a href="{% url 'produ_app:detail_PT' p.PT_lote %}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                             </td>
