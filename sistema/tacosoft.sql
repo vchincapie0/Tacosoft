@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 09:13 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-03-2024 a las 16:24:09
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tacosoft`
+-- Base de datos: `tacosoft`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_group`
+-- Estructura de tabla para la tabla `auth_group`
 --
 
 CREATE TABLE `auth_group` (
@@ -35,7 +35,7 @@ CREATE TABLE `auth_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_group_permissions`
+-- Estructura de tabla para la tabla `auth_group_permissions`
 --
 
 CREATE TABLE `auth_group_permissions` (
@@ -47,7 +47,7 @@ CREATE TABLE `auth_group_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_permission`
+-- Estructura de tabla para la tabla `auth_permission`
 --
 
 CREATE TABLE `auth_permission` (
@@ -58,7 +58,7 @@ CREATE TABLE `auth_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `auth_permission`
+-- Volcado de datos para la tabla `auth_permission`
 --
 
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
@@ -138,7 +138,7 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_admin_log`
+-- Estructura de tabla para la tabla `django_admin_log`
 --
 
 CREATE TABLE `django_admin_log` (
@@ -153,7 +153,7 @@ CREATE TABLE `django_admin_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `django_admin_log`
+-- Volcado de datos para la tabla `django_admin_log`
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
@@ -162,7 +162,7 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_content_type`
+-- Estructura de tabla para la tabla `django_content_type`
 --
 
 CREATE TABLE `django_content_type` (
@@ -172,7 +172,7 @@ CREATE TABLE `django_content_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `django_content_type`
+-- Volcado de datos para la tabla `django_content_type`
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
@@ -198,7 +198,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_migrations`
+-- Estructura de tabla para la tabla `django_migrations`
 --
 
 CREATE TABLE `django_migrations` (
@@ -209,7 +209,7 @@ CREATE TABLE `django_migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `django_migrations`
+-- Volcado de datos para la tabla `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
@@ -241,12 +241,13 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (26, 'pedidos', '0002_initial', '2024-03-15 17:18:22.788390'),
 (27, 'procesamiento', '0001_initial', '2024-03-15 17:18:23.203606'),
 (28, 'sessions', '0001_initial', '2024-03-15 17:18:23.236441'),
-(29, 'materiaprima', '0003_alter_desinfeccion_obsevacion', '2024-03-18 18:16:48.975849');
+(29, 'materiaprima', '0003_alter_desinfeccion_obsevacion', '2024-03-18 18:16:48.975849'),
+(30, 'procesamiento', '0002_remove_procesamiento_proces_nombreprod_and_more', '2024-03-22 15:18:54.322575');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_session`
+-- Estructura de tabla para la tabla `django_session`
 --
 
 CREATE TABLE `django_session` (
@@ -256,17 +257,18 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `django_session`
+-- Volcado de datos para la tabla `django_session`
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('b0y96oi1csk5grbcqidxccmhjvliko7x', '.eJxVjMsOwiAURP-FtSG0PESX7vsNZC5cbNVAUtqV8d9tky50OXPOzFsErMsY1sZzmJK4Ci1Ovx0hPrnsID1Q7lXGWpZ5Irkr8qBNDjXx63a4fwcj2rite-NVJNtRj3NyuFhlfTZW5y1pUpl7E33W6ByIHBwTYG0GTGJ20OLzBelUON4:1rnfLI:s85zvfa8aI2sEZ9QDplM9GaqBTg7q0aAMXrnSKUpMY4', '2024-04-05 13:53:56.194168'),
 ('vdd3kv4gt6kfynz59xvb59z70vmh7ay3', '.eJxVjMEOwiAQRP-FsyEWKAsevfsNZBcWqRpISnsy_rtt0oPeJvPezFsEXJcS1s5zmJK4iEGcfjvC-OS6g_TAem8ytrrME8ldkQft8tYSv66H-3dQsJdtrQC9B_Cj9Yh8hqwzMRHAiJkUg9WAKhI7l9lGdmSM3iIMSSevwIjPF_lJOI0:1rlBEE:JfUuXBaCcsbcy3MgEE0fsMiYHPxcXHnGEHZErwHnr4I', '2024-03-29 17:20:22.090769'),
 ('wxyukbyjrur4cn2rktw7pr32qcu1p5c1', '.eJxVjMEOwiAQRP-FsyEWKAsevfsNZBcWqRpISnsy_rtt0oPeJvPezFsEXJcS1s5zmJK4iEGcfjvC-OS6g_TAem8ytrrME8ldkQft8tYSv66H-3dQsJdtrQC9B_Cj9Yh8hqwzMRHAiJkUg9WAKhI7l9lGdmSM3iIMSSevwIjPF_lJOI0:1rmGlC:fey0X3YvWG2mgJToQ07Rwre1haMIPDSFYNx79QwkyaU', '2024-04-01 17:26:54.596993');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facturas_facturas`
+-- Estructura de tabla para la tabla `facturas_facturas`
 --
 
 CREATE TABLE `facturas_facturas` (
@@ -283,7 +285,7 @@ CREATE TABLE `facturas_facturas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `insumos_implementostrabajo`
+-- Estructura de tabla para la tabla `insumos_implementostrabajo`
 --
 
 CREATE TABLE `insumos_implementostrabajo` (
@@ -297,7 +299,7 @@ CREATE TABLE `insumos_implementostrabajo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materiaprima_caracteristicasorganolepticas`
+-- Estructura de tabla para la tabla `materiaprima_caracteristicasorganolepticas`
 --
 
 CREATE TABLE `materiaprima_caracteristicasorganolepticas` (
@@ -314,7 +316,7 @@ CREATE TABLE `materiaprima_caracteristicasorganolepticas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materiaprima_desinfeccion`
+-- Estructura de tabla para la tabla `materiaprima_desinfeccion`
 --
 
 CREATE TABLE `materiaprima_desinfeccion` (
@@ -329,7 +331,7 @@ CREATE TABLE `materiaprima_desinfeccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `materiaprima_desinfeccion`
+-- Volcado de datos para la tabla `materiaprima_desinfeccion`
 --
 
 INSERT INTO `materiaprima_desinfeccion` (`id`, `des_nombre`, `concentracion`, `tiempo_inicio`, `tiempo_fin`, `obsevacion`, `responsable_id`, `mp_lote_id`) VALUES
@@ -338,7 +340,7 @@ INSERT INTO `materiaprima_desinfeccion` (`id`, `des_nombre`, `concentracion`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materiaprima_existenciamp`
+-- Estructura de tabla para la tabla `materiaprima_existenciamp`
 --
 
 CREATE TABLE `materiaprima_existenciamp` (
@@ -351,7 +353,7 @@ CREATE TABLE `materiaprima_existenciamp` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materiaprima_materiaprima`
+-- Estructura de tabla para la tabla `materiaprima_materiaprima`
 --
 
 CREATE TABLE `materiaprima_materiaprima` (
@@ -364,7 +366,7 @@ CREATE TABLE `materiaprima_materiaprima` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `materiaprima_materiaprima`
+-- Volcado de datos para la tabla `materiaprima_materiaprima`
 --
 
 INSERT INTO `materiaprima_materiaprima` (`mp_lote`, `mp_nombre`, `mp_tipo`, `mp_cantidad`, `mp_fechallegada`, `mp_fechavencimiento`) VALUES
@@ -374,7 +376,7 @@ INSERT INTO `materiaprima_materiaprima` (`mp_lote`, `mp_nombre`, `mp_tipo`, `mp_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos_pedidos`
+-- Estructura de tabla para la tabla `pedidos_pedidos`
 --
 
 CREATE TABLE `pedidos_pedidos` (
@@ -390,7 +392,7 @@ CREATE TABLE `pedidos_pedidos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos_pedidos_pedi_insumos`
+-- Estructura de tabla para la tabla `pedidos_pedidos_pedi_insumos`
 --
 
 CREATE TABLE `pedidos_pedidos_pedi_insumos` (
@@ -402,7 +404,7 @@ CREATE TABLE `pedidos_pedidos_pedi_insumos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos_pedidos_pedi_materiaprima`
+-- Estructura de tabla para la tabla `pedidos_pedidos_pedi_materiaprima`
 --
 
 CREATE TABLE `pedidos_pedidos_pedi_materiaprima` (
@@ -414,7 +416,7 @@ CREATE TABLE `pedidos_pedidos_pedi_materiaprima` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procesamiento_coccion`
+-- Estructura de tabla para la tabla `procesamiento_coccion`
 --
 
 CREATE TABLE `procesamiento_coccion` (
@@ -428,7 +430,7 @@ CREATE TABLE `procesamiento_coccion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procesamiento_equipos`
+-- Estructura de tabla para la tabla `procesamiento_equipos`
 --
 
 CREATE TABLE `procesamiento_equipos` (
@@ -444,7 +446,7 @@ CREATE TABLE `procesamiento_equipos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procesamiento_picado`
+-- Estructura de tabla para la tabla `procesamiento_picado`
 --
 
 CREATE TABLE `procesamiento_picado` (
@@ -457,12 +459,11 @@ CREATE TABLE `procesamiento_picado` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procesamiento_procesamiento`
+-- Estructura de tabla para la tabla `procesamiento_procesamiento`
 --
 
 CREATE TABLE `procesamiento_procesamiento` (
   `cod_procesamiento` int(11) NOT NULL,
-  `proces_nombreProd` varchar(50) NOT NULL,
   `proces_pesoMpCruda` double NOT NULL,
   `proces_pesoPostProceso` double NOT NULL,
   `proces_merma` double NOT NULL,
@@ -472,7 +473,7 @@ CREATE TABLE `procesamiento_procesamiento` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procesamiento_procesamiento_proces_materiaprima`
+-- Estructura de tabla para la tabla `procesamiento_procesamiento_proces_materiaprima`
 --
 
 CREATE TABLE `procesamiento_procesamiento_proces_materiaprima` (
@@ -484,7 +485,7 @@ CREATE TABLE `procesamiento_procesamiento_proces_materiaprima` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proveedores_proveedores`
+-- Estructura de tabla para la tabla `proveedores_proveedores`
 --
 
 CREATE TABLE `proveedores_proveedores` (
@@ -497,7 +498,7 @@ CREATE TABLE `proveedores_proveedores` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_user`
+-- Estructura de tabla para la tabla `users_user`
 --
 
 CREATE TABLE `users_user` (
@@ -517,17 +518,18 @@ CREATE TABLE `users_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users_user`
+-- Volcado de datos para la tabla `users_user`
 --
 
 INSERT INTO `users_user` (`id`, `password`, `last_login`, `first_name`, `email`, `is_active`, `date_joined`, `username`, `name`, `last_name`, `rol`, `is_staff`, `is_superuser`) VALUES
 (1, 'pbkdf2_sha256$720000$cXzJddfCMUdgfUrtasA4Vy$uSzacMrd8fQdhviZZ+r/jwnYZZVLVfHsopEqUlcZUL4=', '2024-03-18 17:26:54.541190', '', '', 1, '2024-03-15 17:19:41.537167', 'vivian', 'vivian', 'hincapie', '', 1, 1),
-(2, 'pbkdf2_sha256$720000$cdwZXOypYZB66MBKy4reYX$DiR/T7mSXR7Z7bk4SWz5/Bs2mi8k8J7ZU9EgVIjfcFs=', NULL, '', '', 1, '2024-03-18 20:12:48.279701', 'johan', 'johan', 'tovar', '', 1, 1);
+(2, 'pbkdf2_sha256$720000$cdwZXOypYZB66MBKy4reYX$DiR/T7mSXR7Z7bk4SWz5/Bs2mi8k8J7ZU9EgVIjfcFs=', NULL, '', '', 1, '2024-03-18 20:12:48.279701', 'johan', 'johan', 'tovar', '', 1, 1),
+(3, 'pbkdf2_sha256$720000$MF4NFHxzgQhdQDS5q9Tufy$8QmKinFIt5e95hoqFzlrP/8qB/TmVbszLVlLrezpyYY=', '2024-03-22 13:53:56.159068', '', '', 1, '2024-03-18 21:32:15.023645', 'dani', 'daniel', 'castro', '', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_user_groups`
+-- Estructura de tabla para la tabla `users_user_groups`
 --
 
 CREATE TABLE `users_user_groups` (
@@ -539,7 +541,7 @@ CREATE TABLE `users_user_groups` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_user_user_permissions`
+-- Estructura de tabla para la tabla `users_user_user_permissions`
 --
 
 CREATE TABLE `users_user_user_permissions` (
@@ -549,18 +551,18 @@ CREATE TABLE `users_user_user_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `auth_group`
+-- Indices de la tabla `auth_group`
 --
 ALTER TABLE `auth_group`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `auth_group_permissions`
+-- Indices de la tabla `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD PRIMARY KEY (`id`),
@@ -568,14 +570,14 @@ ALTER TABLE `auth_group_permissions`
   ADD KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`);
 
 --
--- Indexes for table `auth_permission`
+-- Indices de la tabla `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`);
 
 --
--- Indexes for table `django_admin_log`
+-- Indices de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD PRIMARY KEY (`id`),
@@ -583,27 +585,27 @@ ALTER TABLE `django_admin_log`
   ADD KEY `django_admin_log_user_id_c564eba6_fk_users_user_id` (`user_id`);
 
 --
--- Indexes for table `django_content_type`
+-- Indices de la tabla `django_content_type`
 --
 ALTER TABLE `django_content_type`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
 
 --
--- Indexes for table `django_migrations`
+-- Indices de la tabla `django_migrations`
 --
 ALTER TABLE `django_migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `django_session`
+-- Indices de la tabla `django_session`
 --
 ALTER TABLE `django_session`
   ADD PRIMARY KEY (`session_key`),
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Indexes for table `facturas_facturas`
+-- Indices de la tabla `facturas_facturas`
 --
 ALTER TABLE `facturas_facturas`
   ADD PRIMARY KEY (`num_factura`),
@@ -611,20 +613,20 @@ ALTER TABLE `facturas_facturas`
   ADD KEY `facturas_facturas_fac_proveedor_id_88c2f86a_fk_proveedor` (`fac_proveedor_id`);
 
 --
--- Indexes for table `insumos_implementostrabajo`
+-- Indices de la tabla `insumos_implementostrabajo`
 --
 ALTER TABLE `insumos_implementostrabajo`
   ADD PRIMARY KEY (`it_codigo`);
 
 --
--- Indexes for table `materiaprima_caracteristicasorganolepticas`
+-- Indices de la tabla `materiaprima_caracteristicasorganolepticas`
 --
 ALTER TABLE `materiaprima_caracteristicasorganolepticas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `materiaprima_caracte_mp_lote_id_95f75499_fk_materiapr` (`mp_lote_id`);
 
 --
--- Indexes for table `materiaprima_desinfeccion`
+-- Indices de la tabla `materiaprima_desinfeccion`
 --
 ALTER TABLE `materiaprima_desinfeccion`
   ADD PRIMARY KEY (`id`),
@@ -632,20 +634,20 @@ ALTER TABLE `materiaprima_desinfeccion`
   ADD KEY `materiaprima_desinfe_mp_lote_id_62d9fec8_fk_materiapr` (`mp_lote_id`);
 
 --
--- Indexes for table `materiaprima_existenciamp`
+-- Indices de la tabla `materiaprima_existenciamp`
 --
 ALTER TABLE `materiaprima_existenciamp`
   ADD PRIMARY KEY (`exiMP_codigo`),
   ADD KEY `materiaprima_existen_mp_lote_id_fdb972fd_fk_materiapr` (`mp_lote_id`);
 
 --
--- Indexes for table `materiaprima_materiaprima`
+-- Indices de la tabla `materiaprima_materiaprima`
 --
 ALTER TABLE `materiaprima_materiaprima`
   ADD PRIMARY KEY (`mp_lote`);
 
 --
--- Indexes for table `pedidos_pedidos`
+-- Indices de la tabla `pedidos_pedidos`
 --
 ALTER TABLE `pedidos_pedidos`
   ADD PRIMARY KEY (`id`),
@@ -654,7 +656,7 @@ ALTER TABLE `pedidos_pedidos`
   ADD KEY `pedidos_pedidos_pedi_user_id_e51c09ad_fk_users_user_id` (`pedi_user_id`);
 
 --
--- Indexes for table `pedidos_pedidos_pedi_insumos`
+-- Indices de la tabla `pedidos_pedidos_pedi_insumos`
 --
 ALTER TABLE `pedidos_pedidos_pedi_insumos`
   ADD PRIMARY KEY (`id`),
@@ -662,7 +664,7 @@ ALTER TABLE `pedidos_pedidos_pedi_insumos`
   ADD KEY `pedidos_pedidos_pedi_implementostrabajo_i_eb66a06e_fk_insumos_i` (`implementostrabajo_id`);
 
 --
--- Indexes for table `pedidos_pedidos_pedi_materiaprima`
+-- Indices de la tabla `pedidos_pedidos_pedi_materiaprima`
 --
 ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   ADD PRIMARY KEY (`id`),
@@ -670,34 +672,34 @@ ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   ADD KEY `pedidos_pedidos_pedi_materiaprima_id_68484054_fk_materiapr` (`materiaprima_id`);
 
 --
--- Indexes for table `procesamiento_coccion`
+-- Indices de la tabla `procesamiento_coccion`
 --
 ALTER TABLE `procesamiento_coccion`
   ADD PRIMARY KEY (`id`),
   ADD KEY `procesamiento_coccio_cod_procesamiento_id_eff9cbb8_fk_procesami` (`cod_procesamiento_id`);
 
 --
--- Indexes for table `procesamiento_equipos`
+-- Indices de la tabla `procesamiento_equipos`
 --
 ALTER TABLE `procesamiento_equipos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `procesamiento_equipo_cod_procesamiento_id_ac3cf2f6_fk_procesami` (`cod_procesamiento_id`);
 
 --
--- Indexes for table `procesamiento_picado`
+-- Indices de la tabla `procesamiento_picado`
 --
 ALTER TABLE `procesamiento_picado`
   ADD PRIMARY KEY (`id`),
   ADD KEY `procesamiento_picado_cod_procesamiento_id_179b7cfd_fk_procesami` (`cod_procesamiento_id`);
 
 --
--- Indexes for table `procesamiento_procesamiento`
+-- Indices de la tabla `procesamiento_procesamiento`
 --
 ALTER TABLE `procesamiento_procesamiento`
   ADD PRIMARY KEY (`cod_procesamiento`);
 
 --
--- Indexes for table `procesamiento_procesamiento_proces_materiaprima`
+-- Indices de la tabla `procesamiento_procesamiento_proces_materiaprima`
 --
 ALTER TABLE `procesamiento_procesamiento_proces_materiaprima`
   ADD PRIMARY KEY (`id`),
@@ -705,21 +707,21 @@ ALTER TABLE `procesamiento_procesamiento_proces_materiaprima`
   ADD KEY `procesamiento_proces_materiaprima_id_2475e44e_fk_materiapr` (`materiaprima_id`);
 
 --
--- Indexes for table `proveedores_proveedores`
+-- Indices de la tabla `proveedores_proveedores`
 --
 ALTER TABLE `proveedores_proveedores`
   ADD PRIMARY KEY (`prov_id`),
   ADD UNIQUE KEY `nit` (`nit`);
 
 --
--- Indexes for table `users_user`
+-- Indices de la tabla `users_user`
 --
 ALTER TABLE `users_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `users_user_groups`
+-- Indices de la tabla `users_user_groups`
 --
 ALTER TABLE `users_user_groups`
   ADD PRIMARY KEY (`id`),
@@ -727,7 +729,7 @@ ALTER TABLE `users_user_groups`
   ADD KEY `users_user_groups_group_id_9afc8d0e_fk_auth_group_id` (`group_id`);
 
 --
--- Indexes for table `users_user_user_permissions`
+-- Indices de la tabla `users_user_user_permissions`
 --
 ALTER TABLE `users_user_user_permissions`
   ADD PRIMARY KEY (`id`),
@@ -735,240 +737,240 @@ ALTER TABLE `users_user_user_permissions`
   ADD KEY `users_user_user_perm_permission_id_0b93982e_fk_auth_perm` (`permission_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `auth_group`
+-- AUTO_INCREMENT de la tabla `auth_group`
 --
 ALTER TABLE `auth_group`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `auth_group_permissions`
+-- AUTO_INCREMENT de la tabla `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `auth_permission`
+-- AUTO_INCREMENT de la tabla `auth_permission`
 --
 ALTER TABLE `auth_permission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
--- AUTO_INCREMENT for table `django_admin_log`
+-- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `django_content_type`
+-- AUTO_INCREMENT de la tabla `django_content_type`
 --
 ALTER TABLE `django_content_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `django_migrations`
+-- AUTO_INCREMENT de la tabla `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `insumos_implementostrabajo`
+-- AUTO_INCREMENT de la tabla `insumos_implementostrabajo`
 --
 ALTER TABLE `insumos_implementostrabajo`
   MODIFY `it_codigo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `materiaprima_caracteristicasorganolepticas`
+-- AUTO_INCREMENT de la tabla `materiaprima_caracteristicasorganolepticas`
 --
 ALTER TABLE `materiaprima_caracteristicasorganolepticas`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `materiaprima_desinfeccion`
+-- AUTO_INCREMENT de la tabla `materiaprima_desinfeccion`
 --
 ALTER TABLE `materiaprima_desinfeccion`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `pedidos_pedidos`
+-- AUTO_INCREMENT de la tabla `pedidos_pedidos`
 --
 ALTER TABLE `pedidos_pedidos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pedidos_pedidos_pedi_insumos`
+-- AUTO_INCREMENT de la tabla `pedidos_pedidos_pedi_insumos`
 --
 ALTER TABLE `pedidos_pedidos_pedi_insumos`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pedidos_pedidos_pedi_materiaprima`
+-- AUTO_INCREMENT de la tabla `pedidos_pedidos_pedi_materiaprima`
 --
 ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `procesamiento_coccion`
+-- AUTO_INCREMENT de la tabla `procesamiento_coccion`
 --
 ALTER TABLE `procesamiento_coccion`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `procesamiento_equipos`
+-- AUTO_INCREMENT de la tabla `procesamiento_equipos`
 --
 ALTER TABLE `procesamiento_equipos`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `procesamiento_picado`
+-- AUTO_INCREMENT de la tabla `procesamiento_picado`
 --
 ALTER TABLE `procesamiento_picado`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `procesamiento_procesamiento`
+-- AUTO_INCREMENT de la tabla `procesamiento_procesamiento`
 --
 ALTER TABLE `procesamiento_procesamiento`
   MODIFY `cod_procesamiento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `procesamiento_procesamiento_proces_materiaprima`
+-- AUTO_INCREMENT de la tabla `procesamiento_procesamiento_proces_materiaprima`
 --
 ALTER TABLE `procesamiento_procesamiento_proces_materiaprima`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `proveedores_proveedores`
+-- AUTO_INCREMENT de la tabla `proveedores_proveedores`
 --
 ALTER TABLE `proveedores_proveedores`
   MODIFY `prov_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users_user`
+-- AUTO_INCREMENT de la tabla `users_user`
 --
 ALTER TABLE `users_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `users_user_groups`
+-- AUTO_INCREMENT de la tabla `users_user_groups`
 --
 ALTER TABLE `users_user_groups`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users_user_user_permissions`
+-- AUTO_INCREMENT de la tabla `users_user_user_permissions`
 --
 ALTER TABLE `users_user_user_permissions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `auth_group_permissions`
+-- Filtros para la tabla `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
 
 --
--- Constraints for table `auth_permission`
+-- Filtros para la tabla `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
 
 --
--- Constraints for table `django_admin_log`
+-- Filtros para la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_users_user_id` FOREIGN KEY (`user_id`) REFERENCES `users_user` (`id`);
 
 --
--- Constraints for table `facturas_facturas`
+-- Filtros para la tabla `facturas_facturas`
 --
 ALTER TABLE `facturas_facturas`
   ADD CONSTRAINT `facturas_facturas_fac_numeroPedido_id_fd746173_fk_pedidos_p` FOREIGN KEY (`fac_numeroPedido_id`) REFERENCES `pedidos_pedidos` (`id`),
   ADD CONSTRAINT `facturas_facturas_fac_proveedor_id_88c2f86a_fk_proveedor` FOREIGN KEY (`fac_proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`);
 
 --
--- Constraints for table `materiaprima_caracteristicasorganolepticas`
+-- Filtros para la tabla `materiaprima_caracteristicasorganolepticas`
 --
 ALTER TABLE `materiaprima_caracteristicasorganolepticas`
   ADD CONSTRAINT `materiaprima_caracte_mp_lote_id_95f75499_fk_materiapr` FOREIGN KEY (`mp_lote_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`);
 
 --
--- Constraints for table `materiaprima_desinfeccion`
+-- Filtros para la tabla `materiaprima_desinfeccion`
 --
 ALTER TABLE `materiaprima_desinfeccion`
   ADD CONSTRAINT `materiaprima_desinfe_mp_lote_id_62d9fec8_fk_materiapr` FOREIGN KEY (`mp_lote_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`),
   ADD CONSTRAINT `materiaprima_desinfe_responsable_id_2ff1c09f_fk_users_use` FOREIGN KEY (`responsable_id`) REFERENCES `users_user` (`id`);
 
 --
--- Constraints for table `materiaprima_existenciamp`
+-- Filtros para la tabla `materiaprima_existenciamp`
 --
 ALTER TABLE `materiaprima_existenciamp`
   ADD CONSTRAINT `materiaprima_existen_mp_lote_id_fdb972fd_fk_materiapr` FOREIGN KEY (`mp_lote_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`);
 
 --
--- Constraints for table `pedidos_pedidos`
+-- Filtros para la tabla `pedidos_pedidos`
 --
 ALTER TABLE `pedidos_pedidos`
   ADD CONSTRAINT `pedidos_pedidos_pedi_proveedor_id_25486401_fk_proveedor` FOREIGN KEY (`pedi_proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`),
   ADD CONSTRAINT `pedidos_pedidos_pedi_user_id_e51c09ad_fk_users_user_id` FOREIGN KEY (`pedi_user_id`) REFERENCES `users_user` (`id`);
 
 --
--- Constraints for table `pedidos_pedidos_pedi_insumos`
+-- Filtros para la tabla `pedidos_pedidos_pedi_insumos`
 --
 ALTER TABLE `pedidos_pedidos_pedi_insumos`
   ADD CONSTRAINT `pedidos_pedidos_pedi_implementostrabajo_i_eb66a06e_fk_insumos_i` FOREIGN KEY (`implementostrabajo_id`) REFERENCES `insumos_implementostrabajo` (`it_codigo`),
   ADD CONSTRAINT `pedidos_pedidos_pedi_pedidos_id_862621ad_fk_pedidos_p` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos_pedidos` (`id`);
 
 --
--- Constraints for table `pedidos_pedidos_pedi_materiaprima`
+-- Filtros para la tabla `pedidos_pedidos_pedi_materiaprima`
 --
 ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   ADD CONSTRAINT `pedidos_pedidos_pedi_materiaprima_id_68484054_fk_materiapr` FOREIGN KEY (`materiaprima_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`),
   ADD CONSTRAINT `pedidos_pedidos_pedi_pedidos_id_d50eb29d_fk_pedidos_p` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos_pedidos` (`id`);
 
 --
--- Constraints for table `procesamiento_coccion`
+-- Filtros para la tabla `procesamiento_coccion`
 --
 ALTER TABLE `procesamiento_coccion`
   ADD CONSTRAINT `procesamiento_coccio_cod_procesamiento_id_eff9cbb8_fk_procesami` FOREIGN KEY (`cod_procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
 
 --
--- Constraints for table `procesamiento_equipos`
+-- Filtros para la tabla `procesamiento_equipos`
 --
 ALTER TABLE `procesamiento_equipos`
   ADD CONSTRAINT `procesamiento_equipo_cod_procesamiento_id_ac3cf2f6_fk_procesami` FOREIGN KEY (`cod_procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
 
 --
--- Constraints for table `procesamiento_picado`
+-- Filtros para la tabla `procesamiento_picado`
 --
 ALTER TABLE `procesamiento_picado`
   ADD CONSTRAINT `procesamiento_picado_cod_procesamiento_id_179b7cfd_fk_procesami` FOREIGN KEY (`cod_procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
 
 --
--- Constraints for table `procesamiento_procesamiento_proces_materiaprima`
+-- Filtros para la tabla `procesamiento_procesamiento_proces_materiaprima`
 --
 ALTER TABLE `procesamiento_procesamiento_proces_materiaprima`
   ADD CONSTRAINT `procesamiento_proces_materiaprima_id_2475e44e_fk_materiapr` FOREIGN KEY (`materiaprima_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`),
   ADD CONSTRAINT `procesamiento_proces_procesamiento_id_3b1663d1_fk_procesami` FOREIGN KEY (`procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
 
 --
--- Constraints for table `users_user_groups`
+-- Filtros para la tabla `users_user_groups`
 --
 ALTER TABLE `users_user_groups`
   ADD CONSTRAINT `users_user_groups_group_id_9afc8d0e_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
   ADD CONSTRAINT `users_user_groups_user_id_5f6f5a90_fk_users_user_id` FOREIGN KEY (`user_id`) REFERENCES `users_user` (`id`);
 
 --
--- Constraints for table `users_user_user_permissions`
+-- Filtros para la tabla `users_user_user_permissions`
 --
 ALTER TABLE `users_user_user_permissions`
   ADD CONSTRAINT `users_user_user_perm_permission_id_0b93982e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
