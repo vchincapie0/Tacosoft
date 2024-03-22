@@ -45,8 +45,6 @@
                         {%for p in productoterminado%}
                         <tr>
                             <td>{{p.PT_lote}}</td>
-                            <td>{{p.IdCoccion}}</td>
-                            <td>{{p.IdPicado}}</td>
                             <td>{{p.PT_prodNombre}}</td>
                             <td>{{p.PT_cantidad}} g</td>
                             <td>{{p.PT_fechapreparacion}}</td>
@@ -67,7 +65,7 @@
 
 
                             <td>
-                                <a href="{% url 'produ_app:detail_PT' p.PT_lote %}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                <a href="#" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                             </td>
                             
                         </tr>

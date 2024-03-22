@@ -10,7 +10,7 @@ class ProductoTerminadoForm(forms.ModelForm):
 
         model = ProductoTerminado
         fields = (
-            'PT_lote',
+            #'PT_lote',
             'IdCoccion',
             'IdPicado',
             'PT_cantidad',   
