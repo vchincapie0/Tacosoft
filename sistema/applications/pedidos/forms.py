@@ -1,4 +1,7 @@
 import re
+from django.utils import timezone
+from django.core.exceptions import ValidationError
+from datetime import timedelta
 from django import forms
 from .models import Pedidos
 from applications.materiaprima.models import MateriaPrima
@@ -60,6 +63,21 @@ class PedidosCreateForm(forms.ModelForm):
         js = (
             'https://code.jquery.com/jquery-3.7.1.min.js',
         )
+
+    def clean_pedi_fecha(self):
+        fecha_pedido = self.cleaned_data.get('pedi_fecha')
+
+        # Obtener la fecha actual
+        fecha_actual = timezone.now().date()
+
+        # Calcular la fecha hace tres días
+        tres_dias_atras = fecha_actual - timedelta(days=3)
+
+        # Verificar si la fecha del pedido es posterior a la fecha actual o más de tres días en el pasado
+        if fecha_pedido > fecha_actual or fecha_pedido < tres_dias_atras:
+            raise ValidationError("La fecha del pedido debe ser la actual o hasta tres días anteriores.")
+        
+        return fecha_pedido
 
 class PedidosUpdateForm(forms.ModelForm):
 

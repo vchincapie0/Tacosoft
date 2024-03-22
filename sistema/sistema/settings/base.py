@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'applications.pedidos',
     'applications.facturas',
     'applications.procesamiento',
+    'applications.productoterminado',
 
 
 

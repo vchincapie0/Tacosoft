@@ -13,7 +13,7 @@ class ProcesamientoForm(forms.ModelForm):
 
         model = Procesamiento
         fields = (
-            'proces_nombreProd',
+            #'proces_nombreProd',
             'proces_pesoMpCruda',
             'proces_pesoPostProceso',
             'proces_merma',
@@ -21,7 +21,7 @@ class ProcesamientoForm(forms.ModelForm):
             )
         
         widgets={
-            'proces_nombreProd':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
+           # 'proces_nombreProd':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
             'proces_pesoMpCruda':forms.NumberInput(attrs={'placeholder': 'Peso Crudo'}),
             'proces_pesoPostProceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
             'proces_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
@@ -61,13 +61,8 @@ class ProcesamientoUpdateForm(forms.ModelForm):
     class Meta:
 
         model =  Procesamiento 
-        fields = ['proces_nombreProd', 'proces_pesoMpCruda', 'proces_pesoPostProceso', 'proces_merma', 'proces_check']
+        fields = [ 'proces_pesoMpCruda', 'proces_pesoPostProceso', 'proces_merma', 'proces_check']
     
-    def clean_proces_nombreProd(self):
-        nombre = self.cleaned_data['proces_nombreProd']
-        if not re.match("^[a-zA-Z ]+$", nombre):
-            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
-        return nombre
     
 
     def clean_proces_pesoMpCruda(self):

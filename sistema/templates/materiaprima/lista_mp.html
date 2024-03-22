@@ -38,6 +38,7 @@
                             <th scope="col">Fecha de Llegada</th>
                             <th scope="col">Fecha de vencimiento</th>
                             <th scope="col">Estado Características Organolepticas</th>
+                            <th scope="col">Desinfección</th>
                             <th scope="col">Detalles</th>
                             
 
@@ -64,6 +65,15 @@
                                 {% else %}
                                     No hay características registradas
                                 {% endif %}
+                            </td>
+                            <td>
+                                
+                                {% if m.desinfeccion_set.all %}
+                                    <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i> 
+                                {% else %}
+                                    <i class="fa-solid fa-xmark" style="color: red;"></i> 
+                                {% endif %}
+                                    
                             </td>
                             <td>
                                 <a href="{% url 'mp_app:detail_mp' m.mp_lote %}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
