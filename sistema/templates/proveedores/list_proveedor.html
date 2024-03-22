@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" href="{% url 'proveedores_app:add_proveedores' %}" role="button">Agregar Proveedor</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_proveedor('{% url 'proveedores_app:add_proveedores' %}')" role="button">Agregar Proveedor</a>
                 </div>
                 
                 <div class="col-6">
@@ -98,7 +98,8 @@
             {% endif %}
         </div>
     </div>
-</div>   
+</div> 
+<div class="modal fade" id="add_proveedor" role="dialog"></div>
 <div class="modal fade" id="delete_proveedor" role="dialog"></div>
 <div class="modal fade" id="update_proveedor" role="dialog"></div>
 
@@ -108,6 +109,13 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script>
+        function add_proveedor(url){
+            var $ = jQuery.noConflict();
+            $('#add_proveedor').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+
         function delete_proveedor(url){
             var $ = jQuery.noConflict();
             $('#delete_proveedor').load(url,function(){
