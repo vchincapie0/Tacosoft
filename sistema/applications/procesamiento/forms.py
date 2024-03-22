@@ -63,11 +63,6 @@ class ProcesamientoUpdateForm(forms.ModelForm):
         model =  Procesamiento 
         fields = [ 'proces_pesoMpCruda', 'proces_pesoPostProceso', 'proces_merma', 'proces_check']
     
-    #def clean_proces_nombreProd(self):
-     #   nombre = self.cleaned_data['proces_nombreProd']
-      #  if not re.match("^[a-zA-Z ]+$", nombre):
-       #     raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
-        #return nombre
     
 
     def clean_proces_pesoMpCruda(self):
