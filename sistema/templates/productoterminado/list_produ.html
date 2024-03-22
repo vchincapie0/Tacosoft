@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" href="{% url 'produ_app:add_produ' %}" role="button">Agregar Producto Terminado</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_produ('{% url 'produ_app:add_produ' %}')" role="button">Agregar Producto Terminado</a>
                 </div>
                 
                 <div class="col-6">
@@ -117,7 +117,22 @@
         </div>
     </div>
 </div>   
+<div class="modal fade" id="add_produ" role="dialog"></div>
+
 {% endblock content %}
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+    function add_produ(url){
+        var $ = jQuery.noConflict();
+        $('#add_produ').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+</script>
+{% endblock extrajs %}
 
 
     
