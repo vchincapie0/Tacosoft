@@ -8,6 +8,7 @@ class ProductoTerminado(models.Model):
     PT_lote=models.AutoField('id',primary_key=True)
     IdCoccion=models.ForeignKey(Coccion,on_delete=models.CASCADE)
     IdPicado=models.ForeignKey(Picado,on_delete=models.CASCADE)
+    PT_cantidad=models.IntegerField(default=100)
     PT_prodNombre=models.CharField('Nombre Producto Terminado', max_length=50)
     PT_fechapreparacion=models.DateField('Fecha Preparacion')
     PT_fechavencimiento=models.DateField('Fecha Vencimiento')
