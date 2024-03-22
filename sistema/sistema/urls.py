@@ -14,12 +14,9 @@ urlpatterns = [
     path('', include('applications.proveedores.urls')),
     path('', include('applications.pedidos.urls')),
     path('', include('applications.facturas.urls')),
-<<<<<<< HEAD
+    path('', include('applications.procesamiento.urls')),
     path('', include('applications.productoterminado.urls')),
 
-=======
-    path('', include('applications.procesamiento.urls')),
->>>>>>> 2e68a10a3cf1def54ad13f11d2ecaa1f335a4397
 
 
 
