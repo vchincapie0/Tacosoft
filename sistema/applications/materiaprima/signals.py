@@ -1,5 +1,6 @@
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.contrib.auth import get_user_model
 from .models import CaracteristicasOrganolepticas, Desinfeccion
 
 @receiver(pre_save, sender=CaracteristicasOrganolepticas)
@@ -11,13 +12,11 @@ def actualizar_estado(sender, instance, **kwargs):
     else:
         instance.estado = '1'
 
-# Signal to automatically set the responsable field to the logged-in user
-@receiver(pre_save, sender=Desinfeccion)
-def set_responsable(sender, instance, **kwargs):
-    # Check if the responsable field is empty
-    if not instance.responsable:
-        # Get the logged-in user from the request object
-        user = instance.responsable
-        # Assign the logged-in user as the responsable
-        if user.is_authenticated:
+# Signal receiver function to automatically set the responsable field after saving Desinfeccion instance
+@receiver(post_save, sender=Desinfeccion)
+def set_responsable(sender, instance, created, **kwargs):
+    if created and not instance.responsable:
+        user = get_user_model().objects.first()  # Or use the appropriate logic to get the logged-in user
+        if user:
             instance.responsable = user
+            instance.save(update_fields=['responsable'])

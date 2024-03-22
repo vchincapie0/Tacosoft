@@ -53,24 +53,3 @@
   </div>
 </div>
 
-
-<script>
-  $(document).ready(function () {
-          $('#addCaracteristicasForm').submit(function (event) {
-              event.preventDefault(); // Evita la redirección predeterminada
-
-              $.ajax({
-                  type: 'POST',
-                  url: $(this).attr('action'),
-                  data: $(this).serialize(),
-                  success: function (data) {
-                      // Verifica la respuesta y actualiza el contenido del modal
-                      $('#caracteristicas_add').html(data);
-                  },
-                  error: function (xhr, status, error) {
-                      // Maneja errores de Ajax, si es necesario
-                  }
-              });
-          });
-      });
-</script>

@@ -1,5 +1,6 @@
 from django.db import models
 from applications.users.models import User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -45,7 +46,7 @@ class Desinfeccion(models.Model):
     mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
     des_nombre=models.CharField('Nombre del Desinfectante',max_length=20)
     concentracion = models.IntegerField('Concentración')
-    responsable = models.ForeignKey(User, on_delete=models.CASCADE)
+    responsable = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     tiempo_inicio=models.TimeField('Tiempo de Inicio')
     tiempo_fin=models.TimeField('Fin Desinfección')
     obsevacion=models.CharField('Observaciones',max_length=100, null=True, blank=True)
@@ -53,7 +54,16 @@ class Desinfeccion(models.Model):
     def __str__(self):
         return str(self.mp_lote)+'-'+self.des_nombre
     
+    def save(self, *args, **kwargs):
+        # Check if responsable is empty
+        if not self.responsable:
+            # Get the currently logged-in user
+            user = get_user_model().objects.first()  # Or use the appropriate logic to get the logged-in user
+            if user:
+                self.responsable = user
+        super().save(*args, **kwargs)
 
+    
     
 class Existenciamp(models.Model):
     exiMP_codigo=models.PositiveIntegerField('codigo', primary_key=True)
