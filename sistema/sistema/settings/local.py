@@ -1,5 +1,4 @@
 #Configuaracion del entorno local
-from pathlib import Path
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!

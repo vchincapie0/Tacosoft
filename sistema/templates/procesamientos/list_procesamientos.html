@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Procesamiento
+{% endblock title %}
+
+
+{% block content %}
+
+<a href="{% url 'procesamientos_app:picado' %}" type="button" class="btn btn-danger">picado</a>
+<a href="#" type="button" class="btn btn-success">Coccion</a>
+
+{% endblock content %}
