@@ -46,7 +46,13 @@
                             <td>{{u.id}}</td>
                             <td>{{u.name}}</td>
                             <td>{{u.last_name}}</td>
-                            <td>{{u.get_rol_display}}</td>
+                            <td>
+                                {% if u.is_admin %}
+                                    Administrador
+                                {% else %}
+                                    Operario
+                                {% endif %}
+                            </td>
                             <td>{{u.username}}</td>
                             <td class="">
                                 <a class="btn btn-warning" onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button"><i class="fa-solid fa-user-pen"></i></a>
