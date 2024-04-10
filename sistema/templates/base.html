@@ -27,7 +27,10 @@
                     </div>
                 </div>
                 <hr>
+                    
                 <ul class="sidebar-nav">
+
+                    {% if user.is_admin %}
                     <li class="sidebar-item">
                         <a href="{% url 'users_app:list_user' %}" class="sidebar-link">
                             <i class="fa-solid fa-users pe-2"></i>
@@ -52,6 +55,8 @@
                             </li>
                         </ul>
                     </li>
+                    {% endif %}
+                    
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                             data-bs-target="#producto" aria-expanded="false" aria-controls="producto">
