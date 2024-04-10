@@ -29,7 +29,9 @@ class UserRegisterForm(forms.ModelForm):
         fields = ('username',
                   'name',
                   'last_name',
-                  'rol',)
+                  'is_admin',
+                  'is_employee',)
+                  
         
     def clean_username(self):
         '''Función para validar si el usuario ya existe'''
@@ -94,7 +96,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'name', 'last_name', 'rol']
+        fields = ['username', 'name', 'last_name', 'is_admin','is_employee',]
 
     def __init__(self, *args, **kwargs):
         super(UserUpdateForm, self).__init__(*args, **kwargs)
