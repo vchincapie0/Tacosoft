@@ -34,11 +34,11 @@
                             <th scope="col">Proveedor</th>
                             <th scope="col">Pedido</th>
                             <th scope="col">Fecha de Llegada</th>
-                            <th scope="col">Numero Unidades</th>
+                            <th scope="col">Unidades</th>
                             <th scope="col">Subtotal</th>
                             <th scope="col">IVA</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Imagen Factura</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Detalles</th>
 
 
@@ -55,15 +55,15 @@
                             <td>{{f.fac_numeroPedido}}</td>
                             <td>{{f.fac_fechaLlegada}}</td>
                             <td>{{f.fac_numeroUnidades}}</td>
-                            <td>{{f.fac_subtotal}}</td>
+                            <td>$ {{f.fac_subtotal}}</td>
                             <td>{{f.fac_iva}}</td>
-                            <td>{{f.fac_total}}</td>
+                            <td>$ {{f.fac_total}}</td>
                             <td>
                                 
                                 {% if f.img_factura %}
                                     <img src="{{ f.img_factura.url }}" alt="" style="max-width: 3rem;">
                                 {% else %}
-                                    No hay imagen de factura cargada 
+                                    No hay imagen cargada 
                                 {% endif %}
 
                             </td>
