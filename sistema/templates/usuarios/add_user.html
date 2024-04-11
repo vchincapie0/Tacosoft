@@ -1,4 +1,5 @@
-<div class="modal-dialog modal-dialog-centered" role="document">
+{% load static %}
+<div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
         <h5 class="modal-title">Añadir Usuario</h5>
@@ -21,38 +22,40 @@
             <div class="mx-4 my-2 row">
                 
                 <div class="mb-3 col-12">
-                    <label for="id_mp_nombre" class="form-label">Nombres: </label>
+                    <label for="id_name" class="form-label">Nombres: </label>
                     {{form.name}}   
                 </div>
           
            
                 <div class="mb-3 col-12">
-                    <label for="id_mp_fechallegada" class="form-label">Apellidos:</label>
+                    <label for="id_last_name" class="form-label">Apellidos:</label>
                     {{form.last_name}}   
                 </div>
 
-                <div class="mb-3 col-12">
-                    <label for="id_mp_fechavencimiento" class="form-label">Administrador:</label>
-                    {{form.is_admin}}  
+                <div class="row">
+                    <div class="col">
+                        <label for="id_is_admin" class="form-label">Administrador:</label>
+                        {{form.is_admin}}  
+                    </div>
+
+                    <div class="col">
+                        <label for="id_is_employee" class="form-label">Operario:</label>
+                        {{form.is_employee}}  
+                    </div>
                 </div>
 
                 <div class="mb-3 col-12">
-                    <label for="id_mp_fechavencimiento" class="form-label">Operario:</label>
-                    {{form.is_employee}}  
-                </div>
-
-                <div class="mb-3 col-12">
-                    <label for="id_imp_lote" class="form-label">Username: </label>
+                    <label for="id_username" class="form-label">Username: </label>
                     {{form.username}}
                 </div>
 
                 <div class="mb-3 col-12">
-                    <label for="id_imp_lote" class="form-label">Contraseña: </label>
+                    <label for="id_password" class="form-label">Contraseña: </label>
                     {{form.password}}
                 </div>
     
                 <div class="mb-3 col-12">
-                    <label for="id_imp_lote" class="form-label">Repetir Contraseña: </label>
+                    <label for="id_password2" class="form-label">Repetir Contraseña: </label>
                     {{form.password2}}
                 </div>
 
@@ -90,5 +93,23 @@
                 });
             });
         });
+
+    $(document).ready(function () {
+    // Captura el evento de cambio en el checkbox de Administrador
+    $('#id_is_admin').change(function () {
+        if ($(this).is(':checked')) {
+            // Si se marca el checkbox de Administrador, desmarca el checkbox de Operario
+            $('#id_is_employee').prop('checked', false);
+        }
+    });
+
+    // Captura el evento de cambio en el checkbox de Operario
+    $('#id_is_employee').change(function () {
+        if ($(this).is(':checked')) {
+            // Si se marca el checkbox de Operario, desmarca el checkbox de Administrador
+            $('#id_is_admin').prop('checked', false);
+        }
+    });
+    });
 </script>
     

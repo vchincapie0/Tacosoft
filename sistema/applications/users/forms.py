@@ -32,7 +32,7 @@ class UserRegisterForm(forms.ModelForm):
                   'is_admin',
                   'is_employee',)
         widgets={
-            'username':forms.TextInput(attrs={'class':'form-control'}),
+            'username':forms.TextInput(attrs={'class':'form-control','placeholder':'Ejemplo: mperez22'}),
             'name':forms.TextInput(attrs={'placeholder': 'Ejemplo: María','class':'form-control'}),
             'last_name':forms.TextInput(attrs={'placeholder': 'Ejemplo: Perez','class':'form-control'}),
             'is_admin':forms.CheckboxInput(attrs={'class':'form-check-input'}),
