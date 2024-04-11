@@ -22,9 +22,15 @@
                     <button class="toggle-btn" type="button">
                         <img src="{% static 'img/Logotacomas.png' %}" alt="">
                     </button>
-                    <div class="sidebar-logo">
-                        <a href="{% url 'home_app:home' %}">TacoMas</a>
+                    <div class="mt-2 sidebar-logo">
+                        <a href="{% url 'home_app:home' %}">TacoMas</a> 
+                        {% if user.is_admin %}
+                            <p style="color: #fff;">Administrador</p>
+                        {% else %}
+                            <p style="color: #fff;">Operario</p>
+                        {% endif %}  
                     </div>
+                        
                 </div>
                 <hr>
                     
