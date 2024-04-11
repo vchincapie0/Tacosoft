@@ -31,11 +31,10 @@
                 <table class="table table-secondary">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Usuario</th>
                             <th scope="col">Nombres</th>
                             <th scope="col">Apellidos</th>
                             <th scope="col">Rol</th>
-                            <th scope="col">Username</th>
                             <th scope="col">Acciones</th>
 
                         </tr>
@@ -43,7 +42,7 @@
                     <tbody>
                         {%for u in usuarios%}
                         <tr class="">
-                            <td>{{u.id}}</td>
+                            <td><a onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button" style="color: blue; text-decoration-line: underline;">{{u.username}}</a></td>
                             <td>{{u.name}}</td>
                             <td>{{u.last_name}}</td>
                             <td>
@@ -53,10 +52,7 @@
                                     Operario
                                 {% endif %}
                             </td>
-                            <td>{{u.username}}</td>
-                            <td class="">
-                                <a class="btn btn-warning" onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button"><i class="fa-solid fa-user-pen"></i></a>
-                                |
+                            <td >
                                 <a class="btn btn-danger" onclick="delete_user('{% url 'users_app:delete_user' u.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
