@@ -18,8 +18,9 @@ class ProveedorCreateForm(forms.ModelForm):
         )
 
         widgets={
-            'prov_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
-            'prov_telefono':forms.TextInput(attrs={'placeholder': 'Teléfono', 'type':'number'}),
+            'nit':forms.NumberInput(attrs={'class':'form-control'}),
+            'prov_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Proveedor','class':'form-control'}),
+            'prov_telefono':forms.TextInput(attrs={'placeholder': 'Teléfono', 'type':'number','class':'form-control'}),
         }
 
     def clean_prov_telefono(self):
