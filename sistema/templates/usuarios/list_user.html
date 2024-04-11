@@ -42,7 +42,7 @@
                     <tbody>
                         {%for u in usuarios%}
                         <tr class="">
-                            <td><a onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button" style="color: blue; text-decoration-line: underline;">{{u.username}}</a></td>
+                            <td><a onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{u.username}}</a></td>
                             <td>{{u.name}}</td>
                             <td>{{u.last_name}}</td>
                             <td>
@@ -134,6 +134,9 @@
                 $(this).modal('show');
             }); 
         }
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
 {% endblock  %}  
     
