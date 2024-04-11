@@ -3,6 +3,11 @@ from applications.proveedores.models import Proveedores
 from applications.pedidos.models import Pedidos
 
 # Create your models here.
+class IVA (models.Model):
+    "Clase para tabla generica de IVA"
+
+    valor=models.DecimalField('IVA', default=0, max_digits=2, decimal_places=2)
+
 
 class Facturas(models.Model):
     '''Clase para la creacion de tabla factura en bd'''
@@ -13,7 +18,7 @@ class Facturas(models.Model):
     fac_fechaLlegada=models.DateField('Fecha Llegada')
     fac_numeroUnidades=models.PositiveIntegerField('Numero de Unidades')
     fac_subtotal=models.FloatField('Subtotal')
-    fac_iva=models.FloatField('IVA')
+    fac_iva=models.ForeignKey(IVA, on_delete=models.CASCADE )
     fac_total=models.FloatField('Total', default=0.0)
     img_factura=models.ImageField(upload_to='facturas',blank=True,null=True)
 
