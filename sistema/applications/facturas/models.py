@@ -6,7 +6,10 @@ from applications.pedidos.models import Pedidos
 class IVA (models.Model):
     "Clase para tabla generica de IVA"
 
-    valor=models.DecimalField('IVA', default=0, max_digits=2, decimal_places=2)
+    valor=models.FloatField('IVA', default=0)
+
+    def __str__(self):
+        return f"{self.valor}"
 
 
 class Facturas(models.Model):

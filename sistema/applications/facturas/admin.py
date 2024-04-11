@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Facturas
+from .models import Facturas, IVA
 
 # Register your models here.
 
@@ -14,3 +14,4 @@ class FacturasAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(Facturas, FacturasAdmin)
+admin.site.register(IVA)
