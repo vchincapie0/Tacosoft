@@ -26,7 +26,8 @@ class Pedidos(models.Model):
     pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
 
     def __str__(self):
-        return f"{self.ref_pedido}-{self.pedi_estado}"
+        estado = dict(self.ESTADO_CHOICES)[self.pedi_estado] if self.pedi_estado else 'Estado Desconocido'
+        return f"N° Pedido: {self.ref_pedido} - Estado: {estado}"
 
 
 

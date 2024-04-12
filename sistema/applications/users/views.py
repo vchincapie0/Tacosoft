@@ -43,7 +43,9 @@ class UserRegisterView(LoginRequiredMixin,FormView):
             form.cleaned_data['last_name'],
             form.cleaned_data['username'],
             form.cleaned_data['password'],
-            rol=form.cleaned_data['rol'],
+            is_admin=form.cleaned_data['is_admin'],
+            is_employee=form.cleaned_data['is_employee'],
+
 
         )
         return super(UserRegisterView, self).form_valid(form)

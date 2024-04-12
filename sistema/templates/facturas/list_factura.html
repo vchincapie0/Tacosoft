@@ -10,7 +10,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" href="{% url 'facturas_app:add_factura' %}" role="button">Agregar Factura</a>
+                    <a name="" id="" class="btn btn-success"  onclick="add_factura('{% url 'facturas_app:add_factura' %}')" role="button">Agregar Factura</a>
                 </div>
                 
                 <div class="col-6">
@@ -24,7 +24,7 @@
             
         </div>
         <div class="card-body">
-            <h4 class="card-title">Implementos de Trabajo</h4>
+            <h4 class="card-title">Facturas Registradas</h4>
             
             <div class="table-responsive">
                 <table class="table table-secondary">
@@ -34,10 +34,11 @@
                             <th scope="col">Proveedor</th>
                             <th scope="col">Pedido</th>
                             <th scope="col">Fecha de Llegada</th>
-                            <th scope="col">Numero Unidades</th>
+                            <th scope="col">Unidades</th>
                             <th scope="col">Subtotal</th>
-                            <th scope="col">IVA</th>
-                            <th scope="col">Imagen Factura</th>
+                            <th scope="col">IVA (%)</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Detalles</th>
 
 
@@ -49,21 +50,27 @@
                     <tbody>
                         {%for f in facturas%}
                         <tr>
-                            <td>{{f.num_factura}}</td>
+                            <td><a onclick="edit_factura('{% url 'facturas_app:edit_factura' f.pk %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{f.num_factura}}</a></td>
                             <td>{{f.fac_proveedor}}</td>
-                            <td>{{f.fac_numeroPedido}}</td>
-                            <td>{{f.fac_fechaLlegada}}</td>
+                            <td>{{f.fac_numeroPedido.ref_pedido}}</td>
+                            <td>{{f.fac_fechaLlegada|date:"d/m/y"}}</td>
                             <td>{{f.fac_numeroUnidades}}</td>
-                            <td>{{f.fac_subtotal}}</td>
+                            <td>$ {{f.fac_subtotal}}</td>
                             <td>{{f.fac_iva}}</td>
-                            <td>aqui hira la imagen</td>
+                            <td>$ {{f.fac_total}}</td>
+                            <td>
+                                
+                                {% if f.img_factura %}
+                                    <img src="{{ f.img_factura.url }}" alt="" style="max-width: 3rem;">
+                                {% else %}
+                                    No hay imagen cargada 
+                                {% endif %}
+
+                            </td>
 
 
                             <td class="">
-                                <a class="btn btn-warning" href="{% url 'facturas_app:edit_factura' f.num_factura %}" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
-                                |
                                 <a class="btn btn-danger" onclick="delete_factura('{% url 'facturas_app:delete_factura' f.num_factura %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
-
                             </td>
                             
                         </tr>
@@ -112,7 +119,9 @@
             {% endif %}
         </div>
     </div>
-</div>   
+</div> 
+<div class="modal fade" id="add_factura" role="dialog"></div>
+<div class="modal fade" id="edit_factura" role="dialog"></div>
 <div class="modal fade" id="delete_factura" role="dialog"></div>
 {% endblock content %}
 
@@ -120,12 +129,29 @@
 {% block extrajs %}
 
 <script>
+    function add_factura(url){
+        var $ = jQuery.noConflict();
+        $('#add_factura').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
+    function edit_factura(url){
+        var $ = jQuery.noConflict();
+        $('#edit_factura').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+
     function delete_factura(url){
         var $ = jQuery.noConflict();
         $('#delete_factura').load(url,function(){
             $(this).modal('show');
         }); 
     }
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
     
 {% endblock %}

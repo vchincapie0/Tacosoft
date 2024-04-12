@@ -45,11 +45,11 @@
                             <td>{{p.nit}}</td>
                             <td>{{p.prov_nombre}}</td>
                             <td>{{p.prov_telefono}}</td>
-                            <td class="">
-                                <a class="btn btn-warning" onclick="update_proveedor('{% url 'proveedores_app:update_proveedores' p.prov_id %}')" type="button"><i class="fa-regular fa-pen-to-square"></i></a>
-                                |
-                                <a class="btn btn-danger" onclick="delete_proveedor('{% url 'proveedores_app:delete_proveedores' p.prov_id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
-                                
+                            <td>
+                                <div class="d-flex justify-content-center ">
+                                <a class="m-auto btn btn-warning" onclick="update_proveedor('{% url 'proveedores_app:update_proveedores' p.prov_id %}')" type="button"><i class="fa-regular fa-pen-to-square"></i> </a>
+                                <a class="m-auto btn btn-danger" onclick="delete_proveedor('{% url 'proveedores_app:delete_proveedores' p.prov_id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                                </div>
                             </td>
                             
                         </tr>
