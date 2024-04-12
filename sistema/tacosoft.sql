@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2024 at 09:30 PM
+-- Generation Time: Apr 12, 2024 at 02:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -153,7 +153,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (89, 'Can add vacio', 23, 'add_vacio'),
 (90, 'Can change vacio', 23, 'change_vacio'),
 (91, 'Can delete vacio', 23, 'delete_vacio'),
-(92, 'Can view vacio', 23, 'view_vacio');
+(92, 'Can view vacio', 23, 'view_vacio'),
+(93, 'Can add iva', 24, 'add_iva'),
+(94, 'Can change iva', 24, 'change_iva'),
+(95, 'Can delete iva', 24, 'delete_iva'),
+(96, 'Can view iva', 24, 'view_iva');
 
 -- --------------------------------------------------------
 
@@ -177,7 +181,14 @@ CREATE TABLE `django_admin_log` (
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2024-03-18 18:05:18.165334', '2', '92827373-Queso-hipoclorito', 3, '', 7, 1);
+(2, '2024-04-11 00:02:19.803785', '5', 'vivian', 2, '[{\"changed\": {\"fields\": [\"Administrador\"]}}]', 10, 5),
+(3, '2024-04-11 15:03:06.019821', '124555', '124555-12313123-lkjsfjsfdjkljlksd-57575675-0-4845.0', 2, '[{\"changed\": {\"fields\": [\"Img factura\"]}}]', 14, 5),
+(4, '2024-04-11 17:49:00.918783', '1', '0.5', 1, '[{\"added\": {}}]', 24, 5),
+(5, '2024-04-11 17:49:10.835531', '2', '0.19', 1, '[{\"added\": {}}]', 24, 5),
+(6, '2024-04-11 17:49:16.506837', '1', '0.05', 2, '[{\"changed\": {\"fields\": [\"IVA\"]}}]', 24, 5),
+(7, '2024-04-11 17:49:27.368887', '3', '0.00', 1, '[{\"added\": {}}]', 24, 5),
+(8, '2024-04-11 23:35:26.774551', '2', '19.0', 2, '[{\"changed\": {\"fields\": [\"IVA\"]}}]', 24, 5),
+(9, '2024-04-11 23:35:32.206625', '1', '5.0', 2, '[{\"changed\": {\"fields\": [\"IVA\"]}}]', 24, 5);
 
 -- --------------------------------------------------------
 
@@ -201,6 +212,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (2, 'auth', 'permission'),
 (4, 'contenttypes', 'contenttype'),
 (14, 'facturas', 'facturas'),
+(24, 'facturas', 'iva'),
 (11, 'insumos', 'implementostrabajo'),
 (6, 'materiaprima', 'caracteristicasorganolepticas'),
 (7, 'materiaprima', 'desinfeccion'),
@@ -271,7 +283,10 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (31, 'materiaprima', '0004_alter_desinfeccion_responsable', '2024-03-22 15:46:12.876477'),
 (32, 'procesamiento', '0002_remove_procesamiento_proces_nombreprod_and_more', '2024-03-22 15:46:12.937424'),
 (33, 'productoterminado', '0002_productoterminado_pt_cantidad', '2024-03-22 15:46:12.962161'),
-(34, 'users', '0002_remove_user_rol_user_is_admin_user_is_employee', '2024-04-10 17:46:39.444867');
+(34, 'users', '0002_remove_user_rol_user_is_admin_user_is_employee', '2024-04-10 17:46:39.444867'),
+(35, 'facturas', '0003_facturas_fac_total_alter_facturas_fac_subtotal', '2024-04-11 15:28:26.209266'),
+(36, 'facturas', '0004_iva_alter_facturas_fac_iva', '2024-04-11 17:45:51.654588'),
+(37, 'facturas', '0005_alter_iva_valor', '2024-04-11 17:55:51.336757');
 
 -- --------------------------------------------------------
 
@@ -291,7 +306,8 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('18pu7xtixvv02m725rvjxmuu9jhxcfda', '.eJxVjEEOwiAQRe_C2hAZyAAu3XsGMsAgVQNJaVfGu9smXej2vff_WwRalxrWwXOYsrgIEKdfFik9ue0iP6jdu0y9LfMU5Z7Iww5565lf16P9O6g06rZWjGcs3hcGNEgWk1UMzuvsoqZUVEHNymtAa5Uy6Fw0G0oeHGTwWny-zHg21w:1rnh1Z:HiVu7NBoEeit1azpyENCGODrPqcGZYPMPebQGn4MrRg', '2024-04-05 15:41:41.834884'),
-('pj4i4dmoijqanbpr37os6szenr4lq8v3', '.eJxVjMEOwiAQRP-FsyEWKAsevfsNZBcWqRpISnsy_rtt0oPeJvPezFsEXJcS1s5zmJK4iEGcfjvC-OS6g_TAem8ytrrME8ldkQft8tYSv66H-3dQsJdtrQC9B_Cj9Yh8hqwzMRHAiJkUg9WAKhI7l9lGdmSM3iIMSSevwIjPF_lJOI0:1rubzq:pCD8RLR2hTDPICcF1uYM5sllHw6d7Qo0oW4KU5pm_18', '2024-04-24 17:44:30.158581'),
+('96sb3ve2kew14kjt7e8xn9umvy2t0q00', '.eJxVjEsOwiAUAO_C2hCw5UFduvcM5H1AqoYmpV0Z725IutDtzGTeKuK-lbi3tMZZ1EU5dfplhPxMtQt5YL0vmpe6rTPpnujDNn1bJL2uR_s3KNhK347IPsOEcoYkAp5yRrGWjaMQ3GAsEfkAk_UANDCD89kaIJLRQCD1-QL_xjg3:1ruhsn:RNjn1cKXDb4_aOTSCW2YYkHLRyZm5JoIDaWAGIhOhGk', '2024-04-25 00:01:37.843407'),
+('n7os63w7z3wekn11v9m2sbfoea9xghu1', '.eJxVjEsOwiAUAO_C2hCw5UFduvcM5H1AqoYmpV0Z725IutDtzGTeKuK-lbi3tMZZ1EU5dfplhPxMtQt5YL0vmpe6rTPpnujDNn1bJL2uR_s3KNhK347IPsOEcoYkAp5yRrGWjaMQ3GAsEfkAk_UANDCD89kaIJLRQCD1-QL_xjg3:1rv1zx:g9pav0I0PVlMOXD7yT7cF_W2OIRWOJmsoJITwQIeU0U', '2024-04-25 21:30:21.144187'),
 ('vdd3kv4gt6kfynz59xvb59z70vmh7ay3', '.eJxVjMEOwiAQRP-FsyEWKAsevfsNZBcWqRpISnsy_rtt0oPeJvPezFsEXJcS1s5zmJK4iEGcfjvC-OS6g_TAem8ytrrME8ldkQft8tYSv66H-3dQsJdtrQC9B_Cj9Yh8hqwzMRHAiJkUg9WAKhI7l9lGdmSM3iIMSSevwIjPF_lJOI0:1rlBEE:JfUuXBaCcsbcy3MgEE0fsMiYHPxcXHnGEHZErwHnr4I', '2024-03-29 17:20:22.090769'),
 ('wxyukbyjrur4cn2rktw7pr32qcu1p5c1', '.eJxVjMEOwiAQRP-FsyEWKAsevfsNZBcWqRpISnsy_rtt0oPeJvPezFsEXJcS1s5zmJK4iEGcfjvC-OS6g_TAem8ytrrME8ldkQft8tYSv66H-3dQsJdtrQC9B_Cj9Yh8hqwzMRHAiJkUg9WAKhI7l9lGdmSM3iIMSSevwIjPF_lJOI0:1rmGlC:fey0X3YvWG2mgJToQ07Rwre1haMIPDSFYNx79QwkyaU', '2024-04-01 17:26:54.596993');
 
@@ -306,11 +322,39 @@ CREATE TABLE `facturas_facturas` (
   `fac_fechaLlegada` date NOT NULL,
   `fac_numeroUnidades` int(10) UNSIGNED NOT NULL CHECK (`fac_numeroUnidades` >= 0),
   `fac_subtotal` double NOT NULL,
-  `fac_iva` double NOT NULL,
+  `fac_iva_id` bigint(20) NOT NULL,
   `img_factura` varchar(100) DEFAULT NULL,
   `fac_numeroPedido_id` int(11) NOT NULL,
-  `fac_proveedor_id` int(11) NOT NULL
+  `fac_proveedor_id` int(11) NOT NULL,
+  `fac_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facturas_facturas`
+--
+
+INSERT INTO `facturas_facturas` (`num_factura`, `fac_fechaLlegada`, `fac_numeroUnidades`, `fac_subtotal`, `fac_iva_id`, `img_factura`, `fac_numeroPedido_id`, `fac_proveedor_id`, `fac_total`) VALUES
+(234566, '2024-01-17', 500, 5000, 2, 'facturas/factura1.png', 1, 1, 5950);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facturas_iva`
+--
+
+CREATE TABLE `facturas_iva` (
+  `id` bigint(20) NOT NULL,
+  `valor` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facturas_iva`
+--
+
+INSERT INTO `facturas_iva` (`id`, `valor`) VALUES
+(1, 5),
+(2, 19),
+(3, 0);
 
 -- --------------------------------------------------------
 
@@ -348,7 +392,7 @@ CREATE TABLE `materiaprima_caracteristicasorganolepticas` (
 --
 
 INSERT INTO `materiaprima_caracteristicasorganolepticas` (`id`, `olor`, `textura`, `limpieza`, `empaque`, `color`, `estado`, `mp_lote_id`) VALUES
-(1, 1, 1, 0, 0, 0, '1', 123456);
+(1, 1, 1, 1, 1, 1, '0', 123456);
 
 -- --------------------------------------------------------
 
@@ -366,13 +410,6 @@ CREATE TABLE `materiaprima_desinfeccion` (
   `responsable_id` bigint(20) DEFAULT NULL,
   `mp_lote_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `materiaprima_desinfeccion`
---
-
-INSERT INTO `materiaprima_desinfeccion` (`id`, `des_nombre`, `concentracion`, `tiempo_inicio`, `tiempo_fin`, `obsevacion`, `responsable_id`, `mp_lote_id`) VALUES
-(1, 'hipoclorito', 20, '12:36:00.000000', '13:36:00.000000', 'algo aqui', 1, 123456);
 
 -- --------------------------------------------------------
 
@@ -653,9 +690,10 @@ CREATE TABLE `users_user` (
 --
 
 INSERT INTO `users_user` (`id`, `password`, `last_login`, `first_name`, `email`, `is_active`, `date_joined`, `username`, `name`, `last_name`, `is_staff`, `is_superuser`, `is_admin`, `is_employee`) VALUES
-(1, 'pbkdf2_sha256$720000$cXzJddfCMUdgfUrtasA4Vy$uSzacMrd8fQdhviZZ+r/jwnYZZVLVfHsopEqUlcZUL4=', '2024-04-10 17:44:30.151114', '', '', 1, '2024-03-15 17:19:41.537167', 'vivian', 'vivian', 'hincapie', 1, 1, 0, 0),
 (2, 'pbkdf2_sha256$720000$cdwZXOypYZB66MBKy4reYX$DiR/T7mSXR7Z7bk4SWz5/Bs2mi8k8J7ZU9EgVIjfcFs=', '2024-03-22 15:41:41.824590', '', '', 1, '2024-03-18 20:12:48.279701', 'johan', 'johan', 'tovar', 1, 1, 0, 0),
-(3, 'pbkdf2_sha256$720000$sIse1QLpC0vXbWFwD1JCpM$yBtm60+Gdayv+GjBlDKLrORZZjPKAkBhXOmDXU3bN+c=', NULL, '', '', 1, '2024-04-10 19:20:13.435578', 'jgon23', 'Jaime', 'Gonzalez', 0, 0, 1, 0);
+(3, 'pbkdf2_sha256$720000$sIse1QLpC0vXbWFwD1JCpM$yBtm60+Gdayv+GjBlDKLrORZZjPKAkBhXOmDXU3bN+c=', '2024-04-11 00:01:17.869176', '', '', 1, '2024-04-10 19:20:13.435578', 'jgon23', 'Jaime', 'Gonzalez', 0, 0, 0, 1),
+(4, 'pbkdf2_sha256$720000$ngUxG3pYsMXvFmQ0iyXBWs$2rsa3UKApMVqktb4+Z26x/KixpWwuDpiRuvxPpySJAA=', '2024-04-11 21:29:28.076758', '', '', 1, '2024-04-10 23:52:13.668170', 'oper12', 'operario', 'operariol', 0, 0, 0, 1),
+(5, 'pbkdf2_sha256$720000$Gh8MlFZM4fDkztKBGeLHlg$/WvnsbQl17a6ys5MCf2nunxfIQXau0qcQI/ILJ1fqC4=', '2024-04-11 21:30:21.136226', '', '', 1, '2024-04-11 00:00:11.000000', 'vivian', 'vivian', 'hincapie', 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -741,7 +779,14 @@ ALTER TABLE `django_session`
 ALTER TABLE `facturas_facturas`
   ADD PRIMARY KEY (`num_factura`),
   ADD KEY `facturas_facturas_fac_numeroPedido_id_fd746173_fk_pedidos_p` (`fac_numeroPedido_id`),
-  ADD KEY `facturas_facturas_fac_proveedor_id_88c2f86a_fk_proveedor` (`fac_proveedor_id`);
+  ADD KEY `facturas_facturas_fac_proveedor_id_88c2f86a_fk_proveedor` (`fac_proveedor_id`),
+  ADD KEY `facturas_facturas_fac_iva_id_bbfc3a11` (`fac_iva_id`);
+
+--
+-- Indexes for table `facturas_iva`
+--
+ALTER TABLE `facturas_iva`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `insumos_implementostrabajo`
@@ -923,25 +968,31 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `facturas_iva`
+--
+ALTER TABLE `facturas_iva`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `insumos_implementostrabajo`
@@ -1049,7 +1100,7 @@ ALTER TABLE `proveedores_proveedores`
 -- AUTO_INCREMENT for table `users_user`
 --
 ALTER TABLE `users_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_user_groups`
@@ -1091,6 +1142,7 @@ ALTER TABLE `django_admin_log`
 -- Constraints for table `facturas_facturas`
 --
 ALTER TABLE `facturas_facturas`
+  ADD CONSTRAINT `facturas_facturas_fac_iva_id_bbfc3a11_fk_facturas_iva_id` FOREIGN KEY (`fac_iva_id`) REFERENCES `facturas_iva` (`id`),
   ADD CONSTRAINT `facturas_facturas_fac_numeroPedido_id_fd746173_fk_pedidos_p` FOREIGN KEY (`fac_numeroPedido_id`) REFERENCES `pedidos_pedidos` (`id`),
   ADD CONSTRAINT `facturas_facturas_fac_proveedor_id_88c2f86a_fk_proveedor` FOREIGN KEY (`fac_proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`);
 
