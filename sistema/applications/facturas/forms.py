@@ -23,7 +23,7 @@ class FacturaCreateForm(forms.ModelForm):
             'fac_fechaLlegada':forms.SelectDateWidget(),
             'fac_numeroUnidades':forms.NumberInput(attrs={'class':'form-control'}), 
             'img_factura':forms.FileInput(attrs={'class':'form-control'}),
-            'fac_subtotal':forms.NumberInput(attrs={'class':'form-control'}),
+            'fac_subtotal':forms.NumberInput(attrs={'class':'form-control','placeholder':'Subtotal'}),
             'fac_iva':forms.Select(attrs={'class':'form-select'}),
         }
 
@@ -49,7 +49,7 @@ class FacturaUpdateForm(forms.ModelForm):
             'fac_fechaLlegada':forms.SelectDateWidget(),
             'fac_numeroUnidades':forms.NumberInput(attrs={'class':'form-control'}), 
             'img_factura':forms.FileInput(attrs={'class':'form-control'}),
-            'fac_subtotal':forms.NumberInput(attrs={'class':'form-control'}),
+            'fac_subtotal':forms.NumberInput(attrs={'class':'form-control','placeholder':'Subtotal'}),
             'fac_iva':forms.Select(attrs={'class':'form-select'}),
         }
         
