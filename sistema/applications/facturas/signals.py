@@ -10,6 +10,6 @@ def calcular_total_factura(sender, instance, **kwargs):
     
     # Calcular el total como subtotal más IVA
     subtotal = instance.fac_subtotal
-    total = subtotal+(subtotal * iva_valor)  # Calcular el total con IVA
+    total = subtotal+((subtotal * iva_valor)/100)  # Calcular el total con IVA
     # Asignar el total calculado a fac_total
     instance.fac_total = total
