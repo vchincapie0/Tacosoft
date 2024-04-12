@@ -18,34 +18,33 @@
                 <div class="mx-4 my-2 row">
                     
                     <div class="mb-3 col-12">
-                        <label for="id_mp_nombre" class="form-label">Número Factura: </label>
+                        <label for="id_num_factura" class="form-label">Número Factura: </label>
                         {{form.num_factura}}   
                     </div>
             
             
                     <div class="mb-3 col-12">
-                        <label for="id_mp_fechallegada" class="form-label">Proveedor:</label>
+                        <label for="id_fac_proveedor" class="form-label">Proveedor:</label>
                         {{form.fac_proveedor}}   
                     </div>
 
                     <div class="mb-3 col-12">
-                        <label for="id_mp_fechavencimiento" class="form-label">Número de Pedido:</label>
-                        <br>
+                        <label for="id_fac_numeroPedido" class="form-label">Pedido:</label>
                         {{form.fac_numeroPedido}}  
                     </div>
 
                     <div class="mb-3 col-12">
-                        <label for="id_imp_lote" class="form-label">Fecha de Llegada: </label>
+                        <label for="" class="form-label">Fecha de Llegada: </label>
                         {{form.fac_fechaLlegada}}
                     </div>
 
                     <div class="mb-3 col-12">
-                        <label for="id_imp_lote" class="form-label">Número de Unidades: </label>
+                        <label for="id_fac_numeroUnidades" class="form-label">Número de Unidades: </label>
                         {{form.fac_numeroUnidades}}
                     </div>
 
                     <div class="mb-3 col-12">
-                        <label for="id_imp_lote" class="form-label">Cargar Imagen: </label>
+                        <label for="id_img_factura" class="form-label">Cargar Imagen: </label>
                         {{form.img_factura}}
                     </div>
 
@@ -81,7 +80,9 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
+    
     $(document).ready(function () {
             $('#facAddForm').submit(function (event) {
                 event.preventDefault(); // Evita la redirección predeterminada
