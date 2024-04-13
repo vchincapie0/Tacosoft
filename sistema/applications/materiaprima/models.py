@@ -10,6 +10,8 @@ class MateriaPrimaGenerica(models.Model):
         ('1','Lácteo'),
         ('2','Verduras'),
         ('3','Frutas'),
+        ('4','Otros'),
+
     )
 
     mp_nombre=models.CharField('Nombre',max_length=50)
