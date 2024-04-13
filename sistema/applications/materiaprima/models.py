@@ -5,13 +5,6 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 class MateriaPrimaGenerica(models.Model):
     '''Tabla de materia prima generica'''
-    mp_nombre=models.CharField('Nombre',max_length=50)
-
-    def __str__(self):
-        return f"{self.mp_nombre}"
-  
-class MateriaPrima(models.Model):
-    ''''Tabla de materia prima con caracteristicas'''
     TIPO_CHOICES=(
         ('0','Proteina'),
         ('1','Lácteo'),
@@ -19,15 +12,24 @@ class MateriaPrima(models.Model):
         ('3','Frutas'),
     )
 
+    mp_nombre=models.CharField('Nombre',max_length=50)
+    mp_tipo=models.CharField('Tipo',max_length=1,choices=TIPO_CHOICES,default=0)
+
+    def __str__(self):
+        return f"{self.mp_nombre}"
+  
+class MateriaPrima(models.Model):
+    ''''Tabla de materia prima con caracteristicas'''
+    
+
     mp_lote = models.IntegerField('Lote', primary_key=True)
     mp_nombre = models.ForeignKey(MateriaPrimaGenerica, on_delete=models.CASCADE)
-    mp_tipo=models.CharField('Tipo',max_length=1,choices=TIPO_CHOICES,default=0)
     mp_cantidad=models.IntegerField(default=100)
     mp_fechallegada=models.DateField('Fecha Ingreso')
     mp_fechavencimiento = models.DateField('Fecha Vencimiento')
 
     def __str__(self):
-        return str(self.mp_lote)+'-'+self.mp_nombre
+        return str(self.mp_lote+'-'+self.mp_nombre)
 
 class CaracteristicasOrganolepticas(models.Model):
     '''Tabla para caracteristicas organolepticas de materiaprima'''

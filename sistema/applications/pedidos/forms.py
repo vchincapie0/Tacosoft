@@ -151,7 +151,7 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         fields = (
             'mp_lote',
             'mp_nombre',
-            'mp_tipo',
+            #'mp_tipo',
             'mp_cantidad',
             'mp_fechallegada',
             'mp_fechavencimiento',
@@ -160,7 +160,7 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         widgets={
             'mp_lote':forms.NumberInput(attrs={'class':'form-control'}),
             'mp_nombre':forms.Select(attrs={'class':'form-select'}),
-            'mp_tipo':forms.Select(attrs={'class':'form-select'}),
+            #'mp_tipo':forms.Select(attrs={'class':'form-select'}),
             'mp_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'mp_fechallegada':forms.SelectDateWidget(),
             'mp_fechavencimiento':forms.SelectDateWidget(),
