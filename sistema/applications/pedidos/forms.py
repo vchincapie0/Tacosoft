@@ -94,7 +94,8 @@ class PedidosUpdateForm(forms.ModelForm):
         required=True,
         max_length=1,
         widget=forms.Select(
-            choices=PEDIDO_CHOICES
+            choices=PEDIDO_CHOICES,
+            attrs={'class':'form-select'}
         ),
     )
 
@@ -113,12 +114,14 @@ class PedidosUpdateForm(forms.ModelForm):
         )
 
         widgets={
-            'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido'}),
-            'pedi_fecha':forms.DateInput(),
-            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago'}),
-            'pedi_proveedor':forms.Select(),
-            'pedi_materiaprima':forms.SelectMultiple(),
-            'pedi_insumos':forms.SelectMultiple(),
+            'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido','class':'form-control'}),
+            'pedi_user':forms.Select(attrs={'class':'form-select'}),
+            'pedi_estado':forms.Select(attrs={'class':'form-select'}),
+            'pedi_fecha':forms.SelectDateWidget(),
+            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago','class':'form-control'}),
+            'pedi_proveedor':forms.Select(attrs={'class':'form-select'}),
+            'pedi_materiaprima':forms.SelectMultiple(attrs={'class':'form-select'}),
+            'pedi_insumos':forms.SelectMultiple(attrs={'class':'form-select'}),
 
         }
         
