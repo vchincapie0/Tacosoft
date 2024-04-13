@@ -30,7 +30,6 @@ class PedidosCreateForm(forms.ModelForm):
         model=Pedidos
         fields=(
             'ref_pedido',
-            'pedi_user',
             'pedi_fecha',
             'pedi_estado',
             'pedi_comprobatePago',
@@ -41,7 +40,6 @@ class PedidosCreateForm(forms.ModelForm):
 
         widgets={
             'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido','class':'form-control'}),
-            'pedi_user':forms.Select(attrs={'class':'form-select'}),
             'pedi_estado':forms.Select(attrs={'class':'form-select'}),
             'pedi_fecha':forms.SelectDateWidget(),
             'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago','class':'form-control'}),
