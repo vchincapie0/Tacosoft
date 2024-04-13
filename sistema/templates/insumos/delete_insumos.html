@@ -10,15 +10,17 @@
           
                 <div class="row">
                     <div class="col">
-                        <h3>Implemento: {{object.it_nombre}} de codigo: {{object.it_codigo}}</h3>
-                        <p style="color: red; font-weight: bolder;">¿Seguro que desea borrar este Implemento de Trabajo?</p>
+                        <h4 style="color: red; font-weight: bolder;">¿Desea borrar Implemento de Trabajo: {{object.it_nombre}}?</h4>
+                        <h5>Fecha de Entrega: {{object.it_fechaEntrega|date:"d/m/y"}}</h5>
+                        <p class="text-center"><i class="fa-solid fa-circle-info"></i> Esta acción será permanente</p>
+
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col text-center d-flex justify-content-center">
-                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button class="m-2 btn btn-success" type="submit">Eliminar</button>
+                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </form>
