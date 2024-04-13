@@ -159,7 +159,7 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         
         widgets={
             'mp_lote':forms.NumberInput(attrs={'class':'form-control'}),
-            'mp_nombre':forms.TextInput(attrs={'placeholder': 'Ejemplo: Queso','class':'form-control'}),
+            'mp_nombre':forms.Select(attrs={'class':'form-select'}),
             'mp_tipo':forms.Select(attrs={'class':'form-select'}),
             'mp_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'mp_fechallegada':forms.SelectDateWidget(),
