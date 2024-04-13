@@ -3,10 +3,15 @@ from applications.users.models import User
 from django.contrib.auth import get_user_model
 
 # Create your models here.
+class MateriaPrimaGenerica(models.Model):
+    '''Tabla de materia prima generica'''
+    mp_nombre=models.CharField('Nombre',max_length=50)
 
+    def __str__(self):
+        return f"{self.mp_nombre}"
   
 class MateriaPrima(models.Model):
-
+    ''''Tabla de materia prima con caracteristicas'''
     TIPO_CHOICES=(
         ('0','Proteina'),
         ('1','Lácteo'),
@@ -15,7 +20,7 @@ class MateriaPrima(models.Model):
     )
 
     mp_lote = models.IntegerField('Lote', primary_key=True)
-    mp_nombre = models.CharField('Nombre',max_length=50)
+    mp_nombre = models.ForeignKey(MateriaPrimaGenerica, on_delete=models.CASCADE)
     mp_tipo=models.CharField('Tipo',max_length=1,choices=TIPO_CHOICES,default=0)
     mp_cantidad=models.IntegerField(default=100)
     mp_fechallegada=models.DateField('Fecha Ingreso')
@@ -25,7 +30,7 @@ class MateriaPrima(models.Model):
         return str(self.mp_lote)+'-'+self.mp_nombre
 
 class CaracteristicasOrganolepticas(models.Model):
-
+    '''Tabla para caracteristicas organolepticas de materiaprima'''
     ESTADO_CHOICES=(
         ('0','Aprobado'),
         ('1','No Aprobado'),
@@ -42,9 +47,17 @@ class CaracteristicasOrganolepticas(models.Model):
     def __str__(self):
         return str(self.mp_lote)+'-'+self.estado
     
+class DesinfectanteGenerico(models.Model):
+    '''Tabla generica para desinfectantes'''
+    des_nombre=models.CharField('Nombre',max_length=50)
+    
+    def __str__(self):
+        return f"{self.des_nombre}"
+    
 class Desinfeccion(models.Model):
+    '''Tabla de desinfección de materia prima'''
     mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
-    des_nombre=models.CharField('Nombre del Desinfectante',max_length=20)
+    des_nombre=models.ForeignKey(DesinfectanteGenerico, on_delete=models.CASCADE)
     concentracion = models.IntegerField('Concentración')
     responsable = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     tiempo_inicio=models.TimeField('Tiempo de Inicio')

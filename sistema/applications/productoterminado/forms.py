@@ -10,19 +10,19 @@ class ProductoTerminadoForm(forms.ModelForm):
 
         model = ProductoTerminado
         fields = (
-            'PT_lote',
-            'IdCoccion',
-            'IdPicado',
-            'PT_cantidad',   
-            'PT_prodNombre',
-            'PT_fechapreparacion',
-            'PT_fechavencimiento',
+            'pt_lote',
+            'idCoccion',
+            'idPicado',
+            'pt_cantidad',   
+            'pt_nombre',
+            'pt_fechapreparacion',
+            'pt_fechavencimiento',
             )
         
         widgets={
-            'PT_prodNombre':forms.TextInput(attrs={'placeholder': 'Nombre Producto'}),
-            'PT_fechapreparacion':forms.SelectDateWidget(),
-            'PT_fechavencimiento':forms.SelectDateWidget(),
+            'pt_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Producto'}),
+            'pt_fechapreparacion':forms.SelectDateWidget(),
+            'pt_fechavencimiento':forms.SelectDateWidget(),
         }
     def pt_cantidad(self):
         cantidad = self.cleaned_data['PT_cantidad']
@@ -47,7 +47,7 @@ class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
 
         model = CaracteristicasOrganolepticasPT
         fields=(
-            'PT_lote',
+            'pt_lote',
             'observaciones',
             'olor',
             'sabor',
@@ -74,7 +74,7 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
         model = CaracteristicasOrganolepticasPT
         fields=(
 
-            'PT_lote',
+            'pt_lote',
             'observaciones',
             'olor',
             'sabor',
@@ -100,9 +100,9 @@ class ExistenciaPTForm(forms.ModelForm):
 
         model = ExistenciaPT
         fields=(
-            'PT_lote',
-            'ExisPT_CantidadIngresada',
-            'ExisPT_CantidadEgresada',
+            'pt_lote',
+            'exisPT_CantidadIngresada',
+            'exisPT_CantidadEgresada',
           
         )     
         
@@ -124,20 +124,20 @@ class EmpaqueProductoTerminadoForm(forms.ModelForm):
 
         model = EmpaqueProductoTerminado
         fields=(
-            'PT_lote',
-            'Emp_pesoKgPT',
-            'Emp_cantidadBolsas',
+            'pt_lote',
+            'emp_pesoKg',
+            'emp_cantidadBolsas',
           
         )     
         
         def clean_Emp_pesoKgPT(self):
-            pesoPT  = self.cleaned_data['Emp_pesoKgPT']
+            pesoPT  = self.cleaned_data['emp_pesoKgPT']
             if pesoPT<= 0:
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
             return pesoPT
         
         def clean_Emp_cantidadBolsas(self):
-            cantidadbol  = self.cleaned_data['Emp_cantidadBolsas']
+            cantidadbol  = self.cleaned_data['emp_cantidadBolsas']
             if cantidadbol<= 0:
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
             return cantidadbol
@@ -148,9 +148,9 @@ class VacioForm(forms.ModelForm):
 
         model = Vacio
         fields=(
-            'PT_lote',
-            'Cantidad_bolsas_rechazadas',
-            'Cantidad_bolsas_liberadas',
+            'pt_lote',
+            'cantidad_bolsas_rechazadas',
+            'cantidad_bolsas_liberadas',
           
         )     
         
