@@ -19,12 +19,14 @@ class MateriaPrimaListView(LoginRequiredMixin, ListView):
     context_object_name = 'materiaprima'
 
     def get_queryset(self):
-        '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
-        palabra_clave= self.request.GET.get("kword",'')
-        lista = MateriaPrima.objects.filter(
-            mp_nombre__icontains = palabra_clave
+        palabra_clave = self.request.GET.get("kword", '')
+        
+        # Filtrar por nombre específico de la materia prima
+        queryset = MateriaPrima.objects.filter(
+            mp_nombre__mp_nombre__icontains=palabra_clave
         ).prefetch_related('caracteristicasorganolepticas_set')
-        return lista
+        
+        return queryset
 
 class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''

@@ -31,7 +31,7 @@ class MateriaPrima(models.Model):
     mp_fechavencimiento = models.DateField('Fecha Vencimiento')
 
     def __str__(self):
-        return str(self.mp_lote+'-'+self.mp_nombre)
+        return str(self.mp_lote)+'-'+str(self.mp_nombre)
 
 class CaracteristicasOrganolepticas(models.Model):
     '''Tabla para caracteristicas organolepticas de materiaprima'''
@@ -69,7 +69,7 @@ class Desinfeccion(models.Model):
     obsevacion=models.CharField('Observaciones',max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return str(self.mp_lote)+'-'+self.des_nombre
+        return str(self.mp_lote)+'-'+str(self.des_nombre)
     
     def save(self, *args, **kwargs):
         # Check if responsable is empty
