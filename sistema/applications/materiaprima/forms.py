@@ -117,11 +117,12 @@ class DesinfeccionMPForm(forms.ModelForm):
         )
 
         widgets={
-            'des_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Desinfectante'}),
-            'concentracion':forms.NumberInput(attrs={'max_length': '2'}),
+            'mp_lote':forms.Select(attrs={'class':'form-select'}),
+            'des_nombre':forms.Select(attrs={'class':'form-select'}),
+            'concentracion':forms.NumberInput(attrs={'max_length': '2','class':'form-control'}),
             'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
-            'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
+            'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion','class':'form-control'})    
             }    
         
 class DesinfeccionMPUpdateForm(forms.ModelForm):
@@ -140,10 +141,10 @@ class DesinfeccionMPUpdateForm(forms.ModelForm):
         )
 
         widgets={
-            'mp_lote':forms.TextInput(attrs={'readonly':'readonly'}),
-            'des_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Desinfectante'}),
-            'concentracion':forms.NumberInput(attrs={'max_length': '2'}),
+            'mp_lote':forms.Select(attrs={'class':'form-select'}),
+            'des_nombre':forms.Select(attrs={'class':'form-select'}),
+            'concentracion':forms.NumberInput(attrs={'max_length': '2','class':'form-control'}),
             'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
-            'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion'})    
-            }    
+            'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion','class':'form-control'})    
+            }     

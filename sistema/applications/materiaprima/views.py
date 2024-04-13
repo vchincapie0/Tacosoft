@@ -75,22 +75,16 @@ class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
         )
         return lista
     
-    # Example view handling the form submission
-    def desinfeccion_form_view(request):
-        if request.method == 'POST':
-            form = DesinfeccionMPForm(request.POST)
-        if form.is_valid():
-            # Create a new instance of Desinfeccion
-            desinfeccion_instance = form.save(commit=False)
-            # Set the current logged-in user as the responsable
-            desinfeccion_instance.responsable = request.user
-            # Save the instance
-            desinfeccion_instance.save()
-            # Redirect or do whatever you need after successful form submission
-            return reverse_lazy('mp_app:lista_mp')
-        else:
-            form = DesinfeccionMPForm()
-        return render(request, 'materiaprima/desinfeccion_mp.html', {'form': form})
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        desinfeccion = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        desinfeccion.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        desinfeccion.save()
+        return super().form_valid(form)
 
 class DesinfeccionMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edición de la desinfeccion de la materia prima'''
