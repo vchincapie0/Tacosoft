@@ -188,9 +188,11 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
             )
         
         widgets={
-            'it_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
-            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada'}),
+            'it_codigo':forms.NumberInput(attrs={'placeholder': 'Código de Implemento de Trabajo','class':'form-control'}),
+            'it_nombre':forms.TextInput(attrs={'placeholder': 'Ejemplo: Guantes de Latex','class':'form-control'}),
+            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
             'it_fechaEntrega':forms.SelectDateWidget(),
+            'it_estado':forms.Select(attrs={'class':'form-select'})
         }
 
     def clean_it_cantidad(self):
