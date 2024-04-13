@@ -48,8 +48,8 @@
                         {%for m in materiaprima%}
                         <tr>
                             <td>{{m.mp_lote}}</td>
-                            <!-- <td>{{m.mp_nombre}}</td> -->
-                            <!-- <td>{{m.get_mp_tipo_display}}</td> -->
+                            <td>{{m.mp_nombre}}</td>
+                            <td>{{m.mp_nombre.get_mp_tipo_display}}</td>
                             <td>{{m.mp_cantidad}} g</td>
                             <td>{{m.mp_fechallegada}}</td>
                             <td>{{m.mp_fechavencimiento}}</td>
