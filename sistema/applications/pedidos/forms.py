@@ -65,6 +65,13 @@ class PedidosCreateForm(forms.ModelForm):
             'https://code.jquery.com/jquery-3.7.1.min.js',
         )
 
+    def clean_ref_pedido(self):
+        ref_pedido=self.cleaned_data.get('ref_pedido')
+
+        if Pedidos.objects.filter(ref_pedido=ref_pedido).exists():
+            raise ValidationError("Referencia de pedido ya se encuentra registrada")
+        return ref_pedido
+        
     def clean_pedi_fecha(self):
         fecha_pedido = self.cleaned_data.get('pedi_fecha')
 
