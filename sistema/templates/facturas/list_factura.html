@@ -58,14 +58,12 @@
                             <td>$ {{f.fac_subtotal}}</td>
                             <td>{{f.fac_iva}}</td>
                             <td>$ {{f.fac_total}}</td>
-                            <td>
-                                
+                            <td>                          
                                 {% if f.img_factura %}
-                                    <img src="{{ f.img_factura.url }}" alt="" style="max-width: 3rem;">
+                                    <a href="{{ f.img_factura.url }}"><img src="{{ f.img_factura.url }}" alt="" style="max-width: 3rem;"></a>                                   
                                 {% else %}
                                     No hay imagen cargada 
                                 {% endif %}
-
                             </td>
 
 
