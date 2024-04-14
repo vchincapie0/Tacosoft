@@ -22,27 +22,13 @@
           </div>
         </div>
 
-        <!--Tarjeta del Stock-->
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-header">
-              <h5>STOCK</h5>
-            </div>
-
-            <div class="card-body">
-              <p>Aqui va ir la información del stock</p>
-              <a class="btn btn-success" href="{% url 'mp_app:exitencia_mp' materiaprima.mp_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="mt-3 row">
         <!--Tarjeta de Caracteristicas Organolepticas-->
         <div class="col-sm-6 mb-3 mb-sm-0">
           <div class="card">
             <div class="card-header">
-              Características Organoléticas
+              Características Organolépticas
             </div>
 
             <div class="card-body">
@@ -50,8 +36,12 @@
               {% if materiaprima.caracteristicasorganolepticas_set.all %}
               <!-- Si ya existen, mostrar un mensaje o desactivar el enlace/botón para ingresar nuevas características -->
               <div class="alert alert-warning" role="alert">
-                  Ya se han ingresado características organolépticas para esta materia prima.                  
+                  Ya se han registrado características organolépticas para esta materia prima.                  
               </div>
+              {% else %}
+                <div class="alert alert-warning" role="alert">
+                  No se han registrado características organolépticas para esta materia prima.                  
+                </div>
               {% endif %}
               <p class="card-text">
                 {% for c in materiaprima.caracteristicasorganolepticas_set.all %}
@@ -104,6 +94,10 @@
                   <p class="card-text">Observaciones: {{d.obsevacion}}</p>
                   <a onclick="desinfeccion_update('{% url 'mp_app:updateDesinfeccion_mp' d.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
                 {% endfor %}
+              </div>
+              {% else %}
+              <div class="alert alert-warning" role="alert">
+                No se han ingresado desinfección para esta materia prima.                  
               </div>
               {% endif %}
             </div>
