@@ -52,9 +52,6 @@
               <div class="alert alert-warning" role="alert">
                   Ya se han ingresado características organolépticas para esta materia prima.                  
               </div>
-              {% else %}
-              <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-              <a class="btn btn-primary" onclick="caracteristicas_add('{% url 'mp_app:caracteristicas_mp' %}')" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
               {% endif %}
               <p class="card-text">
                 {% for c in materiaprima.caracteristicasorganolepticas_set.all %}
@@ -105,6 +102,7 @@
                   <p class="card-text">Tiempo de inicio: {{d.tiempo_inicio}}</p>
                   <p class="card-text">Tiempo final: {{d.tiempo_fin}}</p>
                   <p class="card-text">Observaciones: {{d.obsevacion}}</p>
+                  <a onclick="desinfeccion_update('{% url 'mp_app:updateDesinfeccion_mp' d.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
                 {% endfor %}
               </div>
               {% endif %}
@@ -113,8 +111,9 @@
         </div>
       </div>
   
-      <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
+      
       <div class="modal fade" id="caracteristicas_update" role="dialog"></div>
+      <div class="modal fade" id="desinfeccion_update" role="dialog"></div>
       
 
 {%endblock%}
@@ -123,12 +122,7 @@
 {% block extrajs %}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-  function caracteristicas_add(url){
-        var $ = jQuery.noConflict();
-        $('#caracteristicas_add').load(url,function(){
-            $(this).modal('show');
-        }); 
-    }
+  
 
     function caracteristicas_update(url){
         var $ = jQuery.noConflict();
@@ -136,6 +130,13 @@
             $(this).modal('show');
         }); 
     } 
+
+    function desinfeccion_update(url){
+        var $ = jQuery.noConflict();
+        $('#desinfeccion_update').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
 </script>
 {% endblock %}
   
