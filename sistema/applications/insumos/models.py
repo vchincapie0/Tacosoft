@@ -2,6 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+class InsumosGenerico(models.Model):
+    '''Tabla generica para implementos de trabajo'''
+    it_nombre=models.CharField('Nombre',max_length=50)
+    
+    def __str__(self):
+        return f"{self.it_nombre}"
+
 class ImplementosTrabajo(models.Model):
     
     class Estado(models.TextChoices):
@@ -9,7 +16,7 @@ class ImplementosTrabajo(models.Model):
         NO_DISPONIBLE = '1', 'No Disponible'
 
     it_codigo = models.AutoField(primary_key=True)
-    it_nombre = models.CharField('Nombre', max_length=50)
+    it_nombre = models.ForeignKey(InsumosGenerico, on_delete=models.CASCADE)
     it_cantidad = models.IntegerField('Cantidad')
     it_fechaEntrega = models.DateField('Fecha Entrega')
     it_estado = models.CharField('Estado', max_length=1, choices=Estado.choices)

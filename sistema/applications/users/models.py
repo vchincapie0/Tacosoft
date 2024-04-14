@@ -6,11 +6,6 @@ from .managers import UserManager
 class User(AbstractUser, PermissionsMixin):
     '''Clase para crear usuarios en bd'''
 
-    ROL_CHOICES = (
-        ('1','Administrador'),
-        ('2','Operario'),
-    )
-
     username = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
