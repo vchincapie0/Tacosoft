@@ -16,12 +16,7 @@ urlpatterns = [
     path('', include('applications.facturas.urls')),
     path('', include('applications.procesamiento.urls')),
     path('', include('applications.productoterminado.urls')),
-
-
-
-
-
-
+    path('', include('applications.existencias.urls')),
 
 
 ] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
