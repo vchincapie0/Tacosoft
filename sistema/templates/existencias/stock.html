@@ -1,0 +1,47 @@
+{%extends "base.html"%}
+{%block title%} Detalle Materia Prima {%endblock%}
+
+
+{%block content%}
+    <div class="mt-3 row">
+
+        <!--Tarjeta del Stock Materia Prima-->
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Stock Materia Prima</h5>
+                </div>
+
+                <div class="card-body">
+                <p>Aqui va ir la información del stock</p>
+                <a class="btn btn-success" href="{% url 'mp_app:exitencia_mp' materiaprima.mp_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
+                </div>
+            </div>
+        </div>
+      
+
+        <!--Tarjeta del Stock Producto Terminado-->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>STOCK</h5>
+                </div>
+
+                <div class="card-body">
+                    <p>Aqui va ir la información del stock</p>
+                    <a class="btn btn-success" href="" type="button"><i class="fa-regular fa-circle-check"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%endblock%}
+
+
+{% block extrajs %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+
+</script>
+{% endblock %}
+  
