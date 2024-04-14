@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
-class Existencias(LoginRequiredMixin,TemplateView):
+class ExistenciasTemplateView(LoginRequiredMixin,TemplateView):
     template_name = "existencias/stock.html"
     login_url=reverse_lazy('users_app:login')
 
