@@ -10,3 +10,26 @@ class ExistenciaMp(models.Model):
 
     def __str__(self):
         return str(self.mp_lote)+'-'+self.exiMP_cantidadIngresada+self.exiMP_cantidadEgresada
+
+    def ingresar_materia_prima(self, cantidad):
+            '''Método para registrar la entrada de materia prima'''
+
+            if cantidad > 0:
+                self.cantidad_ingresada += cantidad
+                self.save()
+                return True
+            return False
+
+    def egresar_materia_prima(self, cantidad):
+        '''Método para registrar la salida de materia prima'''
+
+        if cantidad > 0 and cantidad <= self.cantidad_disponible():
+            self.cantidad_egresada += cantidad
+            self.save()
+            return True
+        return False
+
+    def cantidad_disponible(self):
+        '''Método para calcular la cantidad disponible de materia prima'''
+
+        return self.cantidad_ingresada - self.cantidad_egresada
