@@ -71,14 +71,6 @@ class Desinfeccion(models.Model):
     def __str__(self):
         return str(self.mp_lote)+'-'+str(self.des_nombre)
     
-    def save(self, *args, **kwargs):
-        # Check if responsable is empty
-        if not self.responsable:
-            # Get the currently logged-in user
-            user = get_user_model().objects.first()  # Or use the appropriate logic to get the logged-in user
-            if user:
-                self.responsable = user
-        super().save(*args, **kwargs)
 
     
     

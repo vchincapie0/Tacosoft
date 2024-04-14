@@ -67,13 +67,6 @@ class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     form_class = DesinfeccionMPForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
-
-    def get_queryset(self):
-        pk = self.kwargs['mp_lote']
-        lista = MateriaPrima.objects.filter(
-            desinfeccion__mp_lote = pk
-        )
-        return lista
     
     def form_valid(self, form):
         '''funcion para automatizar el campo '''
