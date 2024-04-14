@@ -100,8 +100,8 @@
               <div class="alert alert-info" role="alert">
                 {% for d in materiaprima.desinfeccion_set.all %}
                   <p class="card-text">Agente Desinfectante: {{d.des_nombre}}</p>
-                  <p class="card-text">Concentracion: {{d.concentracion}}%</p>
-                  <p class="card-text">Responsable: {{d.responsable}}</p>
+                  <p class="card-text">Concentración: {{d.concentracion}}%</p>
+                  <p class="card-text">Responsable: {{d.responsable.name}} {{d.responsable.last_name}}</p>
                   <p class="card-text">Tiempo de inicio: {{d.tiempo_inicio}}</p>
                   <p class="card-text">Tiempo final: {{d.tiempo_fin}}</p>
                   <p class="card-text">Observaciones: {{d.obsevacion}}</p>
