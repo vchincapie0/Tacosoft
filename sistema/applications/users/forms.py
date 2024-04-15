@@ -10,7 +10,7 @@ class UserRegisterForm(forms.ModelForm):
         label='Contraseña:',
         required=True,
         widget=forms.PasswordInput(
-            attrs={'placeholder':'Contraseña'}
+            attrs={'placeholder':'Contraseña','class':'form-control'}
         ),
     )
 
@@ -18,7 +18,7 @@ class UserRegisterForm(forms.ModelForm):
         label='Repetir contraseña:',
         required=True,
         widget=forms.PasswordInput(
-            attrs={'placeholder':'Contraseña'}
+            attrs={'placeholder':'Contraseña','class':'form-control'}
         )
     )
 
@@ -29,7 +29,17 @@ class UserRegisterForm(forms.ModelForm):
         fields = ('username',
                   'name',
                   'last_name',
-                  'rol',)
+                  'is_admin',
+                  'is_employee',)
+        widgets={
+            'username':forms.TextInput(attrs={'class':'form-control','placeholder':'Ejemplo: mperez22'}),
+            'name':forms.TextInput(attrs={'placeholder': 'Ejemplo: María','class':'form-control'}),
+            'last_name':forms.TextInput(attrs={'placeholder': 'Ejemplo: Perez','class':'form-control'}),
+            'is_admin':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'is_employee':forms.CheckboxInput(attrs={'class':'form-check-input'})
+
+        }
+                  
         
     def clean_username(self):
         '''Función para validar si el usuario ya existe'''
@@ -80,7 +90,7 @@ class UserUpdateForm(forms.ModelForm):
             label='Contraseña:',
             required=True,
             widget=forms.PasswordInput(
-                attrs={'placeholder':'Contraseña Nueva'}
+                attrs={'placeholder':'Contraseña Nueva','class':'form-control'}
             )
         )    
 
@@ -88,18 +98,23 @@ class UserUpdateForm(forms.ModelForm):
         label='Repetir contraseña:',
             required=True,
             widget=forms.PasswordInput(
-                attrs={'placeholder':'Repetir Contraseña Nueva'}
+                attrs={'placeholder':'Repetir Contraseña Nueva','class':'form-control'}
             )
         ) 
 
     class Meta:
         model = User
-        fields = ['username', 'name', 'last_name', 'rol']
+        fields = ['username', 'name', 'last_name', 'is_admin','is_employee',]
+    
+        widgets={
+            'username':forms.TextInput(attrs={'class':'form-control-plaintext text-light','readonly':'True'}),
+            'name':forms.TextInput(attrs={'placeholder': 'Ejemplo: María','class':'form-control'}),
+            'last_name':forms.TextInput(attrs={'placeholder': 'Ejemplo: Perez','class':'form-control'}),
+            'is_admin':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'is_employee':forms.CheckboxInput(attrs={'class':'form-check-input'})
 
-    def __init__(self, *args, **kwargs):
-        super(UserUpdateForm, self).__init__(*args, **kwargs)
-        # Deshabilitar el campo de username
-        self.fields['username'].disabled = True
+        }
+
 
     def clean_name(self):
         '''Función para validar el campo de nombre'''

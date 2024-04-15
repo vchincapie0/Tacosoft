@@ -30,9 +30,7 @@ INSTALLED_APPS = [
     'applications.facturas',
     'applications.procesamiento',
     'applications.productoterminado',
-
-
-
+    'applications.existencias',
 
 ]
 

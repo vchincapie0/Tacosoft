@@ -31,7 +31,6 @@
                 <table class="table table-secondary">
                     <thead>
                         <tr>
-                            <th scope="col">Código</th>
                             <th scope="col">Implemento</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Fecha de Entrega</th>
@@ -44,14 +43,11 @@
                     <tbody>
                         {%for i in insumos%}
                         <tr>
-                            <td>{{i.it_codigo}}</td>
-                            <td>{{i.it_nombre}}</td>
+                            <td><a onclick="edit_insumos('{% url 'insumos_app:update_insumos' i.it_codigo %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{i.it_nombre}}</a></td>
                             <td>{{i.it_cantidad}}</td>
                             <td>{{i.it_fechaEntrega}}</td>
                             <td>{{i.get_it_estado_display}}</td>
-                            <td class="">
-                                <a class="btn btn-warning" onclick="edit_insumos('{% url 'insumos_app:update_insumos' i.it_codigo %}')" type="button"><i class="fa-regular fa-pen-to-square"></i></i></a>
-                                |
+                            <td>
                                 <a class="btn btn-danger" onclick="delete_insumos('{% url 'insumos_app:delete_insumos' i.it_codigo %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                             
@@ -133,6 +129,9 @@
             $(this).modal('show');
         }); 
     }
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
     
 {% endblock %}

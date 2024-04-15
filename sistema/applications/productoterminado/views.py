@@ -20,7 +20,7 @@ class ProduListView(LoginRequiredMixin, ListView):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
         lista = ProductoTerminado.objects.filter(
-            PT_prodNombre__icontains = palabra_clave
+            pt_nombre__pt_nombre__icontains = palabra_clave
         )
         return lista
     

@@ -49,7 +49,18 @@ class PedidosCreateView(LoginRequiredMixin, CreateView):
     #Campos que se van a mostrar en el formulario
     form_class = PedidosCreateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-    success_url= reverse_lazy('pedidos_app:list_pedidos') 
+    success_url= reverse_lazy('pedidos_app:list_pedidos')
+
+    def form_valid(self, form):
+        '''funcion para automatizar el campo pedi_user'''
+        user = self.request.user
+            # Guarda el formulario sin commit para asignar manualmente el usuario
+        pedido = form.save(commit=False)
+            # Asigna el usuario al campo pedi_user
+        pedido.pedi_user = user
+            # Ahora sí, guarda el pedido en la base de datos
+        pedido.save()
+        return super().form_valid(form)
 
 class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
     '''Clase para crear una materia prima nueva dentro del formulario de agregar pedidos'''
