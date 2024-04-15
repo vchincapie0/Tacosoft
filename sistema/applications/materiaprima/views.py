@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 #Importacion modelos y formularios
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas
+from applications.pedidos.models import Pedidos
 from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm, DesinfeccionMPUpdateForm
 
 
@@ -20,12 +21,20 @@ class MateriaPrimaListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         palabra_clave = self.request.GET.get("kword", '')
-        
-        # Filtrar por nombre específico de la materia prima
-        queryset = MateriaPrima.objects.filter(
-            mp_nombre__mp_nombre__icontains=palabra_clave
-        ).prefetch_related('caracteristicasorganolepticas_set')
-        
+
+        # Obtiene todas las materias primas
+        queryset = MateriaPrima.objects.all()
+
+        # Filtra pedidos rechazados
+        pedidos_rechazados_ids = Pedidos.objects.filter(pedi_estado='2').values_list('id', flat=True)
+
+        # Filtra las materias primas excluyendo aquellas asociadas a pedidos rechazados
+        queryset = queryset.exclude(pedidos__id__in=pedidos_rechazados_ids)
+
+        # Filtra por nombre específico de la materia prima si se proporciona una palabra clave
+        if palabra_clave:
+            queryset = queryset.filter(mp_nombre__icontains=palabra_clave)
+
         return queryset
 
 class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
