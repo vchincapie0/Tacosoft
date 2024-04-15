@@ -10,15 +10,6 @@ class ProductoTerminadoForm(forms.ModelForm):
 
         model = ProductoTerminado
         fields = (
-<<<<<<< HEAD
-            #'PT_lote',
-            'IdCoccion',
-            'IdPicado',
-            'PT_cantidad',   
-            'PT_prodNombre',
-            'PT_fechapreparacion',
-            'PT_fechavencimiento',
-=======
             'pt_lote',
             'idCoccion',
             'idPicado',
@@ -26,11 +17,10 @@ class ProductoTerminadoForm(forms.ModelForm):
             'pt_nombre',
             'pt_fechapreparacion',
             'pt_fechavencimiento',
->>>>>>> 66d77bd3f5a1294c1e034fa1a8f479d6c3f4a3a2
             )
         
         widgets={
-            'pt_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Producto'}),
+            'pt_nombre':forms.TextInput(attrs={'class':'form-select'}),
             'pt_fechapreparacion':forms.SelectDateWidget(),
             'pt_fechavencimiento':forms.SelectDateWidget(),
         }
