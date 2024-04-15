@@ -4,11 +4,29 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 
 #Importacion modelos y formularios
-from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas
+from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas,MateriaPrimaGenerica
 from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm, DesinfeccionMPUpdateForm
 
 
 # Create your views here.
+class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de las materias primas'''
+    model = MateriaPrimaGenerica
+    template_name = "materiaprima/lista_mp_generica.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'materiaprima'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        
+        # Filtrar por nombre específico de la materia prima
+        queryset = MateriaPrimaGenerica.objects.filter(
+            mp_nombre__icontains=palabra_clave
+        )
+        
+        return queryset
+
 
 class MateriaPrimaListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''
