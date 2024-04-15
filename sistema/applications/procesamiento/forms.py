@@ -54,31 +54,3 @@ class ProcesamientoForm(forms.ModelForm):
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
     
-    
-    
-class ProcesamientoUpdateForm(forms.ModelForm):
-    """Form Update Procesamiento de Trabajo."""
-    class Meta:
-
-        model =  Procesamiento 
-        fields = [ 'proces_pesoMpCruda', 'proces_pesoPostProceso', 'proces_merma', 'proces_check']
-    
-    
-
-    def clean_proces_pesoMpCruda(self):
-        cantidad = self.cleaned_data['proces_pesoMpCruda']
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-        return cantidad
-    
-    def clean_proces_pesoPostProceso(self):
-        cantidad = self.cleaned_data['proces_pesoPostProceso']
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-        return cantidad
-    
-    def clean_proces_merma(self):
-        cantidad = self.cleaned_data['proces_merma']
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-        return cantidad
