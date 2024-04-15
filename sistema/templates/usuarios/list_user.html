@@ -31,11 +31,10 @@
                 <table class="table table-secondary">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Usuario</th>
                             <th scope="col">Nombres</th>
                             <th scope="col">Apellidos</th>
                             <th scope="col">Rol</th>
-                            <th scope="col">Username</th>
                             <th scope="col">Acciones</th>
 
                         </tr>
@@ -43,14 +42,17 @@
                     <tbody>
                         {%for u in usuarios%}
                         <tr class="">
-                            <td>{{u.id}}</td>
+                            <td><a onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{u.username}}</a></td>
                             <td>{{u.name}}</td>
                             <td>{{u.last_name}}</td>
-                            <td>{{u.get_rol_display}}</td>
-                            <td>{{u.username}}</td>
-                            <td class="">
-                                <a class="btn btn-warning" onclick="edit_user('{% url 'users_app:edit_user' u.id %}')" type="button"><i class="fa-solid fa-user-pen"></i></a>
-                                |
+                            <td>
+                                {% if u.is_admin %}
+                                    Administrador
+                                {% else %}
+                                    Operario
+                                {% endif %}
+                            </td>
+                            <td >
                                 <a class="btn btn-danger" onclick="delete_user('{% url 'users_app:delete_user' u.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
@@ -132,6 +134,9 @@
                 $(this).modal('show');
             }); 
         }
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
 {% endblock  %}  
     

@@ -10,4 +10,4 @@ class Proveedores(models.Model):
     prov_telefono=models.CharField('Telefono',max_length=10)
 
     def __str__(self):
-        return f"{self.nit}-{self.prov_nombre}"
+        return f"{self.prov_nombre}"

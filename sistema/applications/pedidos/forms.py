@@ -19,8 +19,9 @@ class PedidosCreateForm(forms.ModelForm):
         label='Tipo de Pedido',
         required=True,
         max_length=1,
-        widget=forms.RadioSelect(
-            choices=PEDIDO_CHOICES
+        widget=forms.Select(
+            choices=PEDIDO_CHOICES,
+            attrs={'class':'form-select'}
         ),
     )
 
@@ -29,7 +30,6 @@ class PedidosCreateForm(forms.ModelForm):
         model=Pedidos
         fields=(
             'ref_pedido',
-            'pedi_user',
             'pedi_fecha',
             'pedi_estado',
             'pedi_comprobatePago',
@@ -39,12 +39,13 @@ class PedidosCreateForm(forms.ModelForm):
         )
 
         widgets={
-            'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido'}),
+            'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido','class':'form-control'}),
+            'pedi_estado':forms.Select(attrs={'class':'form-select'}),
             'pedi_fecha':forms.SelectDateWidget(),
-            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago'}),
-            'pedi_proveedor':forms.Select(),
-            'pedi_materiaprima':forms.SelectMultiple(),
-            'pedi_insumos':forms.SelectMultiple(),
+            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago','class':'form-control'}),
+            'pedi_proveedor':forms.Select(attrs={'class':'form-select'}),
+            'pedi_materiaprima':forms.SelectMultiple(attrs={'class':'form-select'}),
+            'pedi_insumos':forms.SelectMultiple(attrs={'class':'form-select'}),
 
         }
 
@@ -64,6 +65,13 @@ class PedidosCreateForm(forms.ModelForm):
             'https://code.jquery.com/jquery-3.7.1.min.js',
         )
 
+    def clean_ref_pedido(self):
+        ref_pedido=self.cleaned_data.get('ref_pedido')
+
+        if Pedidos.objects.filter(ref_pedido=ref_pedido).exists():
+            raise ValidationError("Referencia de pedido ya se encuentra registrada")
+        return ref_pedido
+        
     def clean_pedi_fecha(self):
         fecha_pedido = self.cleaned_data.get('pedi_fecha')
 
@@ -91,7 +99,8 @@ class PedidosUpdateForm(forms.ModelForm):
         required=True,
         max_length=1,
         widget=forms.Select(
-            choices=PEDIDO_CHOICES
+            choices=PEDIDO_CHOICES,
+            attrs={'class':'form-select'}
         ),
     )
 
@@ -110,12 +119,14 @@ class PedidosUpdateForm(forms.ModelForm):
         )
 
         widgets={
-            'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido'}),
-            'pedi_fecha':forms.DateInput(),
-            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago'}),
-            'pedi_proveedor':forms.Select(),
-            'pedi_materiaprima':forms.SelectMultiple(),
-            'pedi_insumos':forms.SelectMultiple(),
+            'ref_pedido':forms.NumberInput(attrs={'placeholder': 'Referencia del pedido','class':'form-control'}),
+            'pedi_user':forms.Select(attrs={'class':'form-select'}),
+            'pedi_estado':forms.Select(attrs={'class':'form-select'}),
+            'pedi_fecha':forms.SelectDateWidget(),
+            'pedi_comprobatePago':forms.TextInput(attrs={'placeholder':'Comprobante de Pago','class':'form-control'}),
+            'pedi_proveedor':forms.Select(attrs={'class':'form-select'}),
+            'pedi_materiaprima':forms.SelectMultiple(attrs={'class':'form-select'}),
+            'pedi_insumos':forms.SelectMultiple(attrs={'class':'form-select'}),
 
         }
         
@@ -145,14 +156,17 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         fields = (
             'mp_lote',
             'mp_nombre',
-            'mp_tipo',
+            #'mp_tipo',
             'mp_cantidad',
             'mp_fechallegada',
             'mp_fechavencimiento',
             )
         
         widgets={
-            'mp_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Materia Prima'}),
+            'mp_lote':forms.NumberInput(attrs={'class':'form-control'}),
+            'mp_nombre':forms.Select(attrs={'class':'form-select'}),
+            #'mp_tipo':forms.Select(attrs={'class':'form-select'}),
+            'mp_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'mp_fechallegada':forms.SelectDateWidget(),
             'mp_fechavencimiento':forms.SelectDateWidget(),
         }
@@ -179,9 +193,11 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
             )
         
         widgets={
-            'it_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
-            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada'}),
+            'it_codigo':forms.NumberInput(attrs={'placeholder': 'Código de Implemento de Trabajo','class':'form-control'}),
+            'it_nombre':forms.TextInput(attrs={'placeholder': 'Ejemplo: Guantes de Latex','class':'form-control'}),
+            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
             'it_fechaEntrega':forms.SelectDateWidget(),
+            'it_estado':forms.Select(attrs={'class':'form-select'})
         }
 
     def clean_it_cantidad(self):
@@ -208,8 +224,9 @@ class  PedidosAddProveedorCreateFrom(forms.ModelForm):
         )
 
         widgets={
-            'prov_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
-            'prov_telefono':forms.TextInput(attrs={'placeholder': 'Teléfono', 'type':'number'}),
+            'nit':forms.NumberInput(attrs={'class':'form-control'}),
+            'prov_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento','class':'form-control'}),
+            'prov_telefono':forms.TextInput(attrs={'placeholder': 'Teléfono', 'type':'number','class':'form-control'}),
         }
 
     def clean_prov_telefono(self):

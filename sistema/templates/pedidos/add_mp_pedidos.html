@@ -14,40 +14,42 @@
                     </div>
                 {% endif %}
           
-              <div class="row">
-                  <div class="mb-3 col">
-                      <label for="id_imp_lote" class="form-label">Lote:</label>
-                      {{form.mp_lote}}
-                  </div>
-                  <div class="mb-3 col">
-                      <label for="id_mp_nombre" class="form-label">Materia Prima:</label>
-                      {{form.mp_nombre}}   
-                  </div>
-                  <div class="mb-3 col">
-                      <label for="id_mp_nombre" class="form-label">Tipo:</label>
-                      {{form.mp_tipo}}   
-                  </div>
-                  <div class="mb-3 col">
-                      <label for="id_mp_nombre" class="form-label">Cantidad:</label>
-                      {{form.mp_cantidad}} g   
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="mb-3 col">
-                      <label for="id_mp_fechallegada" class="form-label">Fecha de Llegada:</label>
-                      {{form.mp_fechallegada}}   
-                  </div>
+              
+                <div class="mb-3 col">
+                    <label for="id_imp_lote" class="form-label">Lote:</label>
+                    {{form.mp_lote}}
+                </div>
+                <div class="mb-3 col">
+                    <label for="id_mp_nombre" class="form-label">Materia Prima:</label>
+                    {{form.mp_nombre}}   
+                </div>
 
-                  <div class="mb-3 col">
-                      <label for="id_mp_fechavencimiento" class="form-label">Fecha de Vencimiento</label>
-                      {{form.mp_fechavencimiento}}  
-                  </div>
-              </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="id_mp_cantidad" class="form-label">Cantidad: </label>
+                    </div>
+                    <div class="input-group mb-3 col-12">
+                        {{form.mp_cantidad}}
+                        <span class="input-group-text">Kg</span>
+                    </div>
+                </div>
+             
+              
+                <div class="mb-3 col">
+                    <label for="id_mp_fechallegada" class="form-label">Fecha de Llegada:</label>
+                    {{form.mp_fechallegada}}   
+                </div>
+
+                <div class="mb-3 col">
+                    <label for="id_mp_fechavencimiento" class="form-label">Fecha de Vencimiento</label>
+                    {{form.mp_fechavencimiento}}  
+                </div>
+             
       
                 <div class="row">
                     <div class="col text-center d-flex justify-content-center">
-                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button class="m-2 btn btn-success" type="submit">Guardar</button>
+                        <button type="button" class="m-2 btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </form>
