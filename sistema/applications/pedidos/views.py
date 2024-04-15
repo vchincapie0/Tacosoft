@@ -20,6 +20,7 @@ from .forms import (
     PedidosAddMpCreateFrom, 
     PedidosAddInsumosCreateFrom,
     PedidosAddProveedorCreateFrom,
+    PedidosUpdateMpUpdateFrom,
 )
 
 # Create your views here.
@@ -74,10 +75,10 @@ class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
 
     class PeidosMpUpdateView(LoginRequiredMixin, UpdateView):
         model = MateriaPrima
-        template_name = "pedidoos/update_mp_pedidos.html"
+        template_name = "pedidos/update_mp_pedidos.html"
         login_url=reverse_lazy('users_app:login')
         #Campos que se van a mostrar en el formulario
-        form_class = PedidosUpdateMpCreateFrom
+        form_class = PedidosUpdateMpUpdateFrom
         #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
         success_url= reverse_lazy('pedidos_app:update_pedidos')
 
