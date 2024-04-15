@@ -9,8 +9,8 @@ urlpatterns = [
     path('update_produ/<pk>',views.ProduUpdateView.as_view(),name='update_produ'),
     path('delete_produ/<pk>',views.ProduDeleteView.as_view(),name='delete_produ'),
     path('existenciaPT/<pk>' ,views.ExistenciaPTView.as_view(),name='exitenciaPT'),
-    path('PT_caracteristicas/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
-    path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='PT_detail'),
+    path('caracteristicas_PT/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
+    path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='detail_PT'),
 
 
 
