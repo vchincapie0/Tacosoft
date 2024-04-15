@@ -20,12 +20,14 @@ class ProductoTerminadoForm(forms.ModelForm):
             )
         
         widgets={
-            'pt_nombre':forms.TextInput(attrs={'class':'form-select'}),
+            'pt_lote':forms.NumberInput(attrs={'class':'form-control'}),
+            'pt_nombre':forms.Select(attrs={'class':'form-select'}),
+            'pt_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
             'pt_fechapreparacion':forms.SelectDateWidget(),
             'pt_fechavencimiento':forms.SelectDateWidget(),
         }
     def pt_cantidad(self):
-        cantidad = self.cleaned_data['PT_cantidad']
+        cantidad = self.cleaned_data['pt_cantidad']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
