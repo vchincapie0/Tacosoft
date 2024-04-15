@@ -73,7 +73,7 @@ class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('pedidos_app:add_pedidos') 
 
-    class PeidosMpUpdateView(LoginRequiredMixin, UpdateView):
+class PeidosMpUpdateView(LoginRequiredMixin, UpdateView):
         model = MateriaPrima
         template_name = "pedidos/update_mp_pedidos.html"
         login_url=reverse_lazy('users_app:login')
