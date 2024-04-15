@@ -3,11 +3,26 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ImplementosTrabajo
+from .models import ImplementosTrabajo,InsumosGenerico
 from .forms import ImplementosTrabajoForm, ImplementosUpdateForm
 
 # Create your views here.
+class InsumosGenericoListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de los Implementos de trabajo'''
+    model = InsumosGenerico
+    template_name = "insumos/list_insumos_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'insumos'
 
+    def get_queryset(self):
+        '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
+        palabra_clave= self.request.GET.get("kword",'')
+        lista = InsumosGenerico.objects.filter(
+           it_nombre__icontains = palabra_clave
+        )
+        return lista
+    
 class InsumosListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
     model = ImplementosTrabajo
