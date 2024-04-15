@@ -52,7 +52,7 @@ class Coccion(models.Model):
     )
 
     cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
-    cocc_tiempoCoccion=models.IntegerField(default=100)
+    cocc_tiempoCoccion=models.TimeField(default=100)
     cocc_temperaturafinal=models.FloatField('temperatura final')
     cocc_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
 
