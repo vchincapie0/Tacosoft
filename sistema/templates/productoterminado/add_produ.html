@@ -10,6 +10,7 @@
 
                 {% if form.errors %}
                     <div class="alert alert-info">
+                        {{form.errors}}
                         {{form.errors.pt_cantidad.0}}
                         {{form.errors.pt_fechapreparacion.0}}
                         {{form.errors.pt_fechavencimiento.0}}

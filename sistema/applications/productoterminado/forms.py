@@ -22,7 +22,7 @@ class ProductoTerminadoForm(forms.ModelForm):
         widgets={
             'pt_lote':forms.NumberInput(attrs={'class':'form-control'}),
             'pt_nombre':forms.Select(attrs={'class':'form-select'}),
-            'pt_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
+            'pt_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'pt_fechapreparacion':forms.SelectDateWidget(),
             'pt_fechavencimiento':forms.SelectDateWidget(),
         }
@@ -34,7 +34,7 @@ class ProductoTerminadoForm(forms.ModelForm):
 
 
     def clean_PT_fechavencimiento(self):
-        fecha_vencimiento = self.cleaned_data['PT_fechavencimiento']
+        fecha_vencimiento = self.cleaned_data['pt_fechavencimiento']
         fecha_actual = timezone.now().date()
 
         # Comprueba si la fecha de vencimiento es anterior a la fecha actual
