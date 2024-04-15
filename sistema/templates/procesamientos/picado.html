@@ -7,6 +7,17 @@
 
 {% block content %}
 
-<h1>aqui ba lo de picado</h1>
+<li class="sidebar-item">
+   <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+       data-bs-target="#producto" aria-expanded="false" aria-controls="producto">
+       <!--<i class="fa-solid fa-seedling pe-2"></i>-->
+         <span>Producto a procesar</span>
+   </a>
+   <ul id="producto" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+       <li class="sidebar-item">
+           <a href="#" class="sidebar-link">guacamole</a>
+       </li>
+   </ul>
+</li>
 
 {% endblock content %}
