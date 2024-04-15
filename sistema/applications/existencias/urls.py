@@ -4,6 +4,6 @@ from . import views
 app_name='existencias_app'
 
 urlpatterns = [
-    path('existencias/',views.ExistenciasTemplateView.as_view(),name='stock'),
+    path('existencias/',views.ExistenciasListView.as_view(),name='stock'),
 
 ]
