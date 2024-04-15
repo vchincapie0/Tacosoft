@@ -10,9 +10,9 @@
 
                 {% if form.errors %}
                     <div class="alert alert-info">
-                        {{form.errors.PT_cantidad.0}}
-                        {{form.errors.PT_fechapreparacion.0}}
-                        {{form.errors.PT_fechavencimiento.0}}
+                        {{form.errors.pt_cantidad.0}}
+                        {{form.errors.pt_fechapreparacion.0}}
+                        {{form.errors.pt_fechavencimiento.0}}
 
                     </div>
                 {% endif %}
@@ -20,11 +20,11 @@
                 
                     <div class="mb-3 col-md col-12">
                         <label for="id_PT_lote" class="form-label">Lote:</label>
-                        {{form.PT_lote}}
+                        {{form.pt_lote}}
                     </div>
                     <div class="mb-3 col-md col-12">
                         <label for="id_PT_prodNombre" class="form-label">Producto Terminado:</label>
-                        {{form.PT_prodNombre}}   
+                        {{form.pt_nombre}}   
                     </div>
                     <div class="mb-3 col-md col-12">
                         <label for="id_PT_prodNombre" class="form-label">Producto Terminado:</label>
@@ -36,18 +36,18 @@
                     </div>
                     <div class="mb-3 col-md col-12">
                         <label for="id_mp_nombre" class="form-label">Cantidad:</label>
-                        {{form.PT_cantidad}} g   
+                        {{form.pt_cantidad}} g   
                     </div>
                 
                 
                     <div class="mb-3 col-md col-12">
                         <label for="id_PT_fechapreparacion" class="form-label">Fecha de preparación:</label>
-                        {{form.PT_fechapreparacion}}   
+                        {{form.pt_fechapreparacion}}   
                     </div>
 
                     <div class="mb-3 col-md col-12">
                         <label for="id_PT_fechavencimiento" class="form-label">Fecha de Vencimiento</label>
-                        {{form.PT_fechavencimiento}}  
+                        {{form.pt_fechavencimiento}}  
                     </div>
                 
 

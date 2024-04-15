@@ -3,6 +3,7 @@ from applications.users.models import User
 from applications.materiaprima.models import MateriaPrima
 from applications.insumos.models import ImplementosTrabajo
 from applications.proveedores.models import Proveedores
+from django.utils import timezone
 
 # Create your models here.
 
@@ -17,8 +18,8 @@ class Pedidos(models.Model):
 
     id=models.AutoField('id',primary_key=True)
     ref_pedido=models.IntegerField('Referencia',unique=True)
-    pedi_user=models.ForeignKey(User,on_delete=models.CASCADE)
-    pedi_fecha=models.DateField('fecha')
+    pedi_user=models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank= True)
+    pedi_fecha=models.DateField('fecha',default=timezone.now)
     pedi_estado=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
     pedi_comprobatePago=models.CharField('Comprobante Pago',max_length=45)
     pedi_proveedor=models.ForeignKey(Proveedores, on_delete=models.CASCADE)
@@ -26,7 +27,8 @@ class Pedidos(models.Model):
     pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
 
     def __str__(self):
-        return f"{self.ref_pedido}-{self.pedi_estado}"
+        estado = dict(self.ESTADO_CHOICES)[self.pedi_estado] if self.pedi_estado else 'Estado Desconocido'
+        return f"N° Pedido: {self.ref_pedido} - Estado: {estado}"
 
 
 

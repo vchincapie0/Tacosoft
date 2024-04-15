@@ -11,8 +11,8 @@
                 <h5>Detalles Producto Terminado</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">Lote: {{ productoterminado.PT_lote }} |  {{productoterminado.PT_proNombre}}</p>
-              <p class="card-text">Cantidad: {{ productoterminado.PT_cantidad }} g </p>
+              <p class="card-text">Lote: {{ productoterminado.pt_lote }} |  {{productoterminado.PT_proNombre}}</p>
+              <p class="card-text">Cantidad: {{ productoterminado.pt_cantidad }} g </p>
               <p class="card-text">Fecha de Llegada: {{materiaprima.mp_fechallegada}}</p>
               <p class="card-text">Fecha de Vencimiento: {{materiaprima.mp_fechavencimiento}}</p>
             </div>
@@ -33,7 +33,7 @@
                   </div>
                 {% else %}
                   <!-- Si no existen, mostrar el enlace/botón para ingresar nuevas características -->
-                  <a class="btn btn-primary" href="{% url 'produ_app:caracteristicas_PT' productoterminado.PT_lote %}" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
+                  <a class="btn btn-primary" href="{% url 'produ_app:caracteristicas_PT' productoterminado.pt_lote %}" role="button"><i class="fa-regular fa-circle-check"></i> Agregar Características Organolépticas</a>
                 {% endif %}
               <p class="card-text">
                 {% for c in productoterminado.CaracteristicasOrganolepticasPT_set.all %}
@@ -67,7 +67,7 @@
             </div>
             <div class="card-body">
              <p>Aqui va ir la información del stock</p>
-             <a class="btn btn-success" href="{% url 'produ_app:exitenciaPT' productoterminado.PT_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
+             <a class="btn btn-success" href="{% url 'produ_app:exitenciaPT' productoterminado.pt_lote %}" type="button"><i class="fa-regular fa-circle-check"></i></a>
             </div>
           </div>
         </div>

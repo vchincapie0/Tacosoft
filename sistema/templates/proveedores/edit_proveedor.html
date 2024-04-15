@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-md" role="document">
+<div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
         <h5 class="modal-title">Editar Proveedor</h5>
@@ -17,26 +17,30 @@
             <div class="mx-4 my-2 row">
                 
                 <div class="mb-3 col-12">
-                    <label for="id_mp_nombre" class="form-label">NIT: </label>
+                    <label for="id_nit" class="form-label">NIT: </label>
                     {{form.nit}}   
                 </div>
         
         
                 <div class="mb-3 col-12">
-                    <label for="id_mp_fechallegada" class="form-label">Razon Social:</label>
+                    <label for="id_prov_nombre" class="form-label">Razón Social:</label>
                     {{form.prov_nombre}}   
                 </div>
 
                 <div class="mb-3 col-12">
-                    <label for="id_mp_fechavencimiento" class="form-label">Teléfono</label>
+                    <label for="id_prov_telefono" class="form-label">Teléfono:</label>
                     <br>
                     {{form.prov_telefono}}  
                 </div>
 
-                <div class="col">
-                    <button class="btn btn-success" type="submit">Guardar</button>
-                    |
-                    <a href="{% url 'proveedores_app:list_proveedores' %}" type="button" class="btn btn-danger">Cancelar</a>
+                <div class="d-flex justify-content-center">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-success" type="submit">Guardar</button>
+                            |
+                            <a href="{% url 'proveedores_app:list_proveedores' %}" type="button" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
           </form>

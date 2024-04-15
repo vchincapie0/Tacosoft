@@ -21,9 +21,11 @@ class ImplementosTrabajoForm(forms.ModelForm):
             )
         
         widgets={
-            'it_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Implemento'}),
-            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada'}),
+            'it_codigo':forms.NumberInput(attrs={'class':'form-control'}),
+            'it_nombre':forms.Select(attrs={'class':'form-select'}),
+            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
             'it_fechaEntrega':forms.SelectDateWidget(),
+            'it_estado':forms.Select(attrs={'class':'form-select'})
         }
 
     def clean_it_cantidad(self):
@@ -32,27 +34,22 @@ class ImplementosTrabajoForm(forms.ModelForm):
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
     
-    def clean_it_nombre(self):
-        nombre = self.cleaned_data['it_nombre']
-        if not re.match("^[a-zA-Z ]+$", nombre):
-            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
-        return nombre
-    
 class ImplementosUpdateForm(forms.ModelForm):
     """Form Update Implementos de Trabajo."""
     class Meta:
 
         model = ImplementosTrabajo
         fields = ['it_nombre', 'it_cantidad', 'it_fechaEntrega', 'it_estado']
+
+        widgets={
+            'it_nombre':forms.Select(attrs={'class':'form-select'}),
+            'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
+            'it_fechaEntrega':forms.SelectDateWidget(),
+            'it_estado':forms.Select(attrs={'class':'form-select'})
+        }
     
     def clean_it_cantidad(self):
         cantidad = self.cleaned_data['it_cantidad']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
-    
-    def clean_it_nombre(self):
-        nombre = self.cleaned_data['it_nombre']
-        if not re.match("^[a-zA-Z ]+$", nombre):
-            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
-        return nombre

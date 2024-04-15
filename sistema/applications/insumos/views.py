@@ -20,7 +20,7 @@ class InsumosListView(LoginRequiredMixin, ListView):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
         lista = ImplementosTrabajo.objects.filter(
-            it_nombre__icontains = palabra_clave
+           it_nombre__it_nombre__icontains = palabra_clave
         )
         return lista
     
