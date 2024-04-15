@@ -44,21 +44,11 @@
                     <tbody>
                         {%for p in productoterminado%}
                         <tr>
-<<<<<<< HEAD
                             <td>{{p.PT_lote}}</td>
                             <td>{{p.PT_prodNombre}}</td>
                             <td>{{p.PT_cantidad}} g</td>
                             <td>{{p.PT_fechapreparacion}}</td>
                             <td>{{p.PT_fechavencimiento}}</td>
-=======
-                            <td>{{p.pt_lote}}</td>
-                            <td>{{p.idCoccion}}</td>
-                            <td>{{p.idPicado}}</td>
-                            <td>{{p.pt_prodNombre}}</td>
-                            <td>{{p.pt_cantidad}} g</td>
-                            <td>{{p.pt_fechapreparacion}}</td>
-                            <td>{{p.pt_fechavencimiento}}</td>
->>>>>>> 66d77bd3f5a1294c1e034fa1a8f479d6c3f4a3a2
                             <td>
                                 {% if p.caracteristicasorganolepticasPT_set.all %}
                                     {% for caracteristica in p.caracteristicasorganolepticasPT_set.all %}
