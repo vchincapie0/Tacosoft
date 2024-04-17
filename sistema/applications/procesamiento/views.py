@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView,UpdateView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Procesamiento,Picado
+from .forms import  addPicado
 
 # Create your views here.
 
@@ -24,3 +25,10 @@ class PicadoListView(LoginRequiredMixin, ListView):
     context_object_name = 'procesamientos'
 # Create your views here.
     
+class PicadopdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de picado'''
+    model = Picado
+    template_name = "procesamiento/#"
+    login_url=reverse_lazy('users_app:login')
+    form_class=addPicado
+    success_url= reverse_lazy('procesamientos_app:add_picado')
