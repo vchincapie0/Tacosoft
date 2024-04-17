@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView, CreateView, UpdateView,
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ImplementosTrabajo,InsumosGenerico
-from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenericoForm
+from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm
 
 # Create your views here.
 
@@ -32,6 +32,14 @@ class InsumosGenericoCreateView(LoginRequiredMixin, CreateView):
     form_class=InsumosGenericoForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('insumos_app:list_insumos_generico')
+
+class InsumosGenericoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de user'''
+    model = InsumosGenerico
+    template_name = "insumos/update_insumos_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=InsumosGenericoUpdateForm
+    success_url= reverse_lazy('insumos_app:list_insumos')
 
 class InsumosListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''

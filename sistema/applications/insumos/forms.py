@@ -14,12 +14,16 @@ class InsumosGenericoForm(forms.ModelForm):
             
             'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
         }
-# class InsumosGenericoUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = InsumosGenerico
-#         fields = (
-#             'it_nombre',
-#             )
+class InsumosGenericoUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = InsumosGenerico
+        fields = (
+            'it_nombre',
+            )
+        widgets={
+            'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            }
         
 
 class ImplementosTrabajoForm(forms.ModelForm):
