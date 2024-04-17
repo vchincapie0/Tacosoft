@@ -73,14 +73,6 @@ class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('pedidos_app:add_pedidos') 
 
-class PeidosMpUpdateView(LoginRequiredMixin, UpdateView):
-        model = MateriaPrima
-        template_name = "pedidos/update_mp_pedidos.html"
-        login_url=reverse_lazy('users_app:login')
-        #Campos que se van a mostrar en el formulario
-        form_class = PedidosUpdateMpUpdateFrom
-        #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-        success_url= reverse_lazy('pedidos_app:update_pedidos')
 
 class PedidosAddInsumosCreateView(LoginRequiredMixin,CreateView):
     '''Clase para crear un implemento de trabajo nuevo dentro del formulario de agregar pedidos'''
