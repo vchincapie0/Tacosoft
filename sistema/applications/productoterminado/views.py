@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,Empaque
+from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado
 from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm
 
 # Create your views here.
@@ -76,7 +76,7 @@ class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
 
 class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     '''Vists para la creacion del empaque producto terminado'''
-    model = Empaque
+    model = EmpaqueProductoTerminado
     template_name = "materiaprima/desinfeccion_mp.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
