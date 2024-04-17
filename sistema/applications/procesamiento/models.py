@@ -5,18 +5,18 @@ from applications.materiaprima.models import MateriaPrima
 # Create your models here.
 
 class Procesamiento(models.Model):
-
     CHECK_CHOICES=(
         ('0','Aprobado'),
         ('1','No Aprobado'),
 
     )
 
+
     cod_procesamiento=models.AutoField('id',primary_key=True)
-    proces_pesoMpCruda=models.FloatField('Peso Crudo')
+    proces_pesoMP=models.FloatField('Peso ')
     proces_pesoPostProceso=models.FloatField('Peso Post Proceso')
     proces_merma=models.FloatField('Peso Merma')
-    proces_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
+    proces_estado=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
     proces_materiaprima=models.ManyToManyField(MateriaPrima)
     
 
@@ -69,9 +69,12 @@ class Picado(models.Model):
     )
 
     cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
-    pica_cantidad=models.IntegerField(default=100)
+    pica_nombre=models.CharField('Nombre',max_length=50)
+    pica_cantidad = models.IntegerField('Cantidad')
+    pica_pesoMPposproceso=models.FloatField('Peso ')
+    pica_merma=models.FloatField('Peso Merma')
     pica_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
 
     
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.pica_cantidad}"
+        return f"{self.pica_nombre}-{self.pica_cantidad}{self.pica_pesoMPposproceso}-{self.pica_merma}-{self.pica_check}"
