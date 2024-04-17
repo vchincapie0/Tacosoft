@@ -2,54 +2,54 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import Procesamiento
+from .models import Picado
 
-class ProcesamientoForm(forms.ModelForm):
+class addPicado(forms.ModelForm):
 
-    """Form definition Procesamiento."""
+    """Form definition Picado."""
 
     class Meta:
-        """Meta definition Procesamientoform."""
+        """Meta definition Picadoform."""
 
-        model = Procesamiento
+        model = Picado
         fields = (
-            #'proces_nombreProd',
-            'proces_pesoMpCruda',
-            'proces_pesoPostProceso',
-            'proces_merma',
-            'proces_check',
+            'pica_nombre',
+            'pica_cantidad',
+            'pica_pesoMPposproceso',
+            'pica_merma',
+            'pica_check',
             )
         
         widgets={
-           # 'proces_nombreProd':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
-            'proces_pesoMpCruda':forms.NumberInput(attrs={'placeholder': 'Peso Crudo'}),
-            'proces_pesoPostProceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'proces_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
-            'proces_check':forms.Select(attrs={'placeholder': 'Estado de Chequeo'}),
+            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
+            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
+            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
+            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'pica_check':forms.Select(attrs={'placeholder': 'Estado de Chequeo'}),
             
         }
         
-    def clean_proces_nombreProd(self):
-        nombre = self.cleaned_data['proces_nombreProd']
+    def clean_pica_nombre(self):
+        nombre = self.cleaned_data['pica_nombre']
         if not re.match("^[a-zA-Z ]+$", nombre):
             raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
         return nombre
     
 
-    def clean_proces_pesoMpCruda(self):
-        cantidad = self.cleaned_data['proces_pesoMpCruda']
+    def clean_pica_cantidad(self):
+        cantidad = self.cleaned_data['pica_cantidad']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
     
     def clean_proces_pesoPostProceso(self):
-        cantidad = self.cleaned_data['proces_pesoPostProceso']
+        cantidad = self.cleaned_data['pica_pesoMPposproceso']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
     
-    def clean_proces_merma(self):
-        cantidad = self.cleaned_data['proces_merma']
+    def clean_pica_merma(self):
+        cantidad = self.cleaned_data['pica_merma']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
