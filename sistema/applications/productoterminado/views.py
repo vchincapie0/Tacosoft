@@ -3,8 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm
+from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,Empaque
+from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaquePTForm
 
 # Create your views here.
 
@@ -67,8 +67,30 @@ class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView)
     success_url= reverse_lazy('produ_app:list_produ')
 
 class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
+    
     '''Vista donde se muestran los detalles de producto terminado'''
     model = ProductoTerminado
     template_name = "productoterminado/detail_PT.html"
     login_url=reverse_lazy('users_app:login')
-    context_object_name = 'productoterminado'    
+    context_object_name = 'productoterminado'
+
+class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
+    '''Vists para la creacion del empaque producto terminado'''
+    model = Empaque
+    template_name = "materiaprima/desinfeccion_mp.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = EmpaquePTForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+    
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        empaque = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        empaque.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        empaque.save()
+        return super().form_valid(form)    
