@@ -11,6 +11,8 @@ urlpatterns = [
     path('existenciaPT/<pk>' ,views.ExistenciaPTView.as_view(),name='exitenciaPT'),
     path('caracteristicas_PT/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
     path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='detail_PT'),
+    path('empaque_add/<pk>',views.EmpaqueProductoTerminadoCreateView.as_view(),name='empaque_add'),
+
 
 
 

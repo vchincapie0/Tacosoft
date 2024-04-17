@@ -77,7 +77,7 @@ class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
 class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     '''Vists para la creacion del empaque producto terminado'''
     model = EmpaqueProductoTerminado
-    template_name = "materiaprima/desinfeccion_mp.html"
+    template_name = "productoterminado/empaque_pt.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = EmpaqueProductoTerminadoForm
