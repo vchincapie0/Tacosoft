@@ -13,15 +13,15 @@ class Procesamiento(models.Model):
 
 
     cod_procesamiento=models.AutoField('id',primary_key=True)
-    proces_pesoMP=models.FloatField('Peso ')
+    proces_pesoMP=models.FloatField('Peso ', default=0.0)
     proces_pesoPostProceso=models.FloatField('Peso Post Proceso')
     proces_merma=models.FloatField('Peso Merma')
-    proces_estado=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
+    proces_estado=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
     proces_materiaprima=models.ManyToManyField(MateriaPrima)
     
 
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_materiaprima}-{self.proces_pesoMpCruda}-{self.proces_pesoPostProceso}"
+        return f"{self.cod_procesamiento}-{self.proces_materiaprima}--{self.proces_pesoPostProceso}"
 
 
 class Equipos(models.Model):
@@ -37,7 +37,7 @@ class Equipos(models.Model):
     equi_encargadoEntrega=models.CharField('Nombre', max_length=50)
     equi_calidad=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
     equi_nombre=models.CharField('Nombre', max_length=50)
-    equi_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
+    equi_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES, default="0")
 
     
     def __str__(self):
@@ -54,7 +54,7 @@ class Coccion(models.Model):
     cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
     cocc_tiempoCoccion=models.TimeField(default=100)
     cocc_temperaturafinal=models.FloatField('temperatura final')
-    cocc_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
+    cocc_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
 
     
     def __str__(self):
@@ -69,11 +69,11 @@ class Picado(models.Model):
     )
 
     cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
-    pica_nombre=models.CharField('Nombre',max_length=50)
-    pica_cantidad = models.IntegerField('Cantidad')
-    pica_pesoMPposproceso=models.FloatField('Peso ')
-    pica_merma=models.FloatField('Peso Merma')
-    pica_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
+    pica_nombre=models.CharField('Nombre',max_length=50, default="NULL")
+    pica_cantidad = models.IntegerField('Cantidad',default=0)
+    pica_pesoMPposproceso=models.FloatField('Peso',default=0)
+    pica_merma=models.FloatField('Peso Merma',default=0)
+    pica_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
 
     
     def __str__(self):
