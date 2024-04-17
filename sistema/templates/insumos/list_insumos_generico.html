@@ -42,7 +42,7 @@
                             <td><a onclick="edit_insumos('{% url 'insumos_app:update_insumos_generico' i.id %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{i.it_nombre}}</a></td>
                         
                             <td>
-                                <a class="btn btn-danger" onclick="#" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                                <a class="btn btn-danger" onclick="delete_insumos('{% url 'insumos_app:delete_insumos_generico' i.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                             
                         </tr>

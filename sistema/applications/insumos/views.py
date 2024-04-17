@@ -41,6 +41,13 @@ class InsumosGenericoUpdateView(LoginRequiredMixin, UpdateView):
     form_class=InsumosGenericoUpdateForm
     success_url= reverse_lazy('insumos_app:list_insumos')
 
+class InsumosGenericoDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Implenentos de Trabajo'''
+    model = InsumosGenerico
+    template_name = "insumos/delete_insumos_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('insumos_app:list_insumos_generico')
+
 class InsumosListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
     model = ImplementosTrabajo
