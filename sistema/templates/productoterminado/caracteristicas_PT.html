@@ -5,45 +5,50 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form id="addCaracteristicasForm" method="POST" action="{% url 'mp_app:caracteristicas_mp' %}">
+        <form id="addCaracteristicasForm" method="POST" action="{% url 'produ_app:caracteristicas_PT' %}">
           {%csrf_token%}
               <div class="mx-4 my-2 row">
                   
                   <div class="mb-3 col-12">
-                      <label for="id_mp_nombre" class="form-label">Lote Materia Prima: </label>
-                      {{form.mp_lote}}   
+                      <label for="id_pt_lote" class="form-label">Lote Producto Terminado: </label>
+                      {{form.pt_lote}}   
                   </div>
             
              
                   <div class="mb-3 col-12">
-                      <label for="id_mp_fechallegada" class="form-label">Olor:</label>
+                      <label for="id_pt_olor" class="form-label">Olor:</label>
                       {{form.olor}}   
                   </div>
   
                   <div class="mb-3 col-12">
-                      <label for="id_mp_fechavencimiento" class="form-label">Textura: </label>
-                      {{form.textura}}  
+                      <label for="id_pt_sabor" class="form-label">Sabor: </label>
+                      {{form.sabor}}  
                   </div>
   
                   <div class="mb-3 col-12">
-                      <label for="id_imp_lote" class="form-label">Limpieza: </label>
-                      {{form.limpieza}}
+                      <label for="id_pt_textura" class="form-label">Textura: </label>
+                      {{form.textura}}
                   </div>
   
                   <div class="mb-3 col-12">
-                    <label for="id_imp_lote" class="form-label">Empaque: </label>
-                    {{form.empaque}}
+                      <label for="id_pt_color" class="form-label">Color: </label>
+                     {{form.color}}
                   </div>
   
+                  <div class="mb-3 col-12">
+                     <label for="id_pt_estado" class="form-label">Estado: </label>
+                     {{form.estado}}
+                  </div>
+
                 <div class="mb-3 col-12">
-                  <label for="id_imp_lote" class="form-label">Color: </label>
-                  {{form.color}}
+                    <label for="id_pt_observaciones" class="form-label">Observaciones: </label>
+                    {{form.observaciones}}
                 </div>
   
                   <div class="col">
                       <button class="btn btn-success" type="submit">Guardar</button>
                       |
-                      <a href="{% url 'mp_app:lista_mp' %}" type="button" class="btn btn-danger">Cancelar</a>
+                      <a href="{% url 'produ_app:list_produ' %}" type="button" class="btn btn-danger">Cancelar</a>
                   </div>
               </div>
               

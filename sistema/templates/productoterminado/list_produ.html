@@ -50,17 +50,19 @@
                             <td>{{p.pt_fechapreparacion}}</td>
                             <td>{{p.pt_fechavencimiento}}</td>
                             <td>
-                                {% if p.caracteristicasorganolepticasPT_set.all %}
-                                    {% for caracteristica in p.caracteristicasorganolepticasPT_set.all %}
-                                        {% if caracteristica.estado == '0' %}
-                                            <p style="color: green;">{{ caracteristica.get_estado_display }}</p> <!-- Display the estado field -->
-                                        {% else %}
-                                            <p style="color: red;">{{ caracteristica.get_estado_display }}</p>
-                                        {%endif%}
-                                    {% endfor %}
-                                {% else %}
-                                    No hay características registradas
-                                {% endif %}
+                                {% if m.caracteristicasorganolepticas_set.all %}
+                                {% for caracteristica in m.caracteristicasorganolepticas_set.all %}
+                                    {% if caracteristica.estado == '0' %}
+                                    <p style="color: green;">{{ caracteristica.get_estado_display }}</p>
+                                        
+                                    {% else %}
+                                        <p style="color: red;">{{ caracteristica.get_estado_display }}</p>
+                                    {%endif%}
+                                {% endfor %}
+                            {% else %}
+                                <a onclick="caracteristicas_add('{% url 'produ_app:caracteristicas_PT' %}')" type="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Agregar"
+                                ><i class="fa-solid fa-plus" style="color: green;"></i></a>
+                            {% endif %}
                             </td>
 
 
@@ -116,6 +118,7 @@
     </div>
 </div>   
 <div class="modal fade" id="add_produ" role="dialog"></div>
+<div class="modal fade" id="caracteristicas_add" role="dialog"></div>
 
 {% endblock content %}
 
@@ -126,6 +129,12 @@
     function add_produ(url){
         var $ = jQuery.noConflict();
         $('#add_produ').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+    function caracteristicas_add(url){
+        var $ = jQuery.noConflict();
+        $('#caracteristicas_add').load(url,function(){
             $(this).modal('show');
         }); 
     }
