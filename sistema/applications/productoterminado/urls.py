@@ -12,6 +12,8 @@ urlpatterns = [
     path('caracteristicas_PT/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
     path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='detail_PT'),
     path('empaque_add/',views.EmpaqueProductoTerminadoCreateView.as_view(),name='empaque_add'),
+    path('vacio_add/',views.EmpaqueProductoTerminadoCreateView.as_view(),name='vacio_add'),
+
 
 
 
