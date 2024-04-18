@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,VacioProductoTerminado
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioProductoTerminadoForm
+from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm
 
 # Create your views here.
 
@@ -100,7 +100,7 @@ class VacioProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     template_name = "productoterminado/vacio_pt.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
-    form_class = VacioProductoTerminadoForm
+    form_class = VacioForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('produ_app:list_produ')
     
