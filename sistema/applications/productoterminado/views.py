@@ -108,9 +108,9 @@ class VacioProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
         '''funcion para automatizar el campo '''
         user = self.request.user
              # Guarda el formulario sin commit para asignar manualmente el usuario
-        empaque = form.save(commit=False)
+        Vacio = form.save(commit=False)
              # Asigna el usuario al campo pedi_user
-        empaque.responsable = user
+        Vacio.responsable = user
              # Ahora sí, guarda el pedido en la base de datos
-        empaque.save()
+        Vacio.save()
         return super().form_valid(form)   
