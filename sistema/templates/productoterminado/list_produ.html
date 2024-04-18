@@ -38,6 +38,7 @@
                             <th scope="col">Fecha de vencimiento</th>
                             <th scope="col">Estado Características Organolepticas</th>
                             <th scope="col">Empaque</th>
+                            <th scope="col">Vacio</th>
                             <th scope="col">Detalles</th>
                             
                         </tr>
@@ -78,7 +79,19 @@
                                 {% endif %}
                                     
                             </td>
-
+                            <td>
+                                {% if m.vacio_set.all %}
+                                
+                                {% for d in m.vacio_set.all  %}
+                                <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i>
+                                {% endfor %}
+                                    
+                                {% else %}
+                                <a onclick="vacio_add('{% url 'produ_app:vacio_add' %}')" type="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Agregar"><i class="fa-solid fa-plus" style="color: green;"></i></a>
+                                    
+                                {% endif %}
+                                    
+                            </td>
 
                             <td>
                                 <a href="{% url 'produ_app:detail_PT' p.pt_lote %}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
@@ -134,6 +147,7 @@
 <div class="modal fade" id="add_produ" role="dialog"></div>
 <div class="modal fade" id="caracteristicas_add" role="dialog"></div>
 <div class="modal fade" id="empaque_add" role="dialog"></div>
+<div class="modal fade" id="vacio_add" role="dialog"></div>
 
 
 {% endblock content %}
@@ -157,6 +171,12 @@
     function empaque_add(url){
         var $ = jQuery.noConflict();
         $('#empaque_add').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+    function vacio_add(url){
+        var $ = jQuery.noConflict();
+        $('#vacio_add').load(url,function(){
             $(this).modal('show');
         }); 
     }
