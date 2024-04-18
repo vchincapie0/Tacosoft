@@ -101,11 +101,40 @@
             </div>
           </div>
         </div>
+        <!--Tarjeta de Empaque-->
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">
+              Empaque al Vacio
+            </div>
+
+            <div class="card-body">
+              <!-- Verificar si el producto esta empacado al vacio correctamente-->
+              {% if productoterminado.VacioProductoTerminado_set.all %}
+              <!-- Si ya existen, mostrar un mensaje o desactivar el enlace/botón para ingresar nuevas características -->
+              <div class="alert alert-info" role="alert">
+                {% for d in productoterminado.VacioProductoTerminado_set.all %}
+                  <p class="card-text">Lote: {{d.pt_lote}}</p>
+                  <p class="card-text">Cantidad Bolsas Rechazadas: {{d.cantidad_bolsas_rechazadas}}%</p>
+                  <p class="card-text">Cantidad Bolsas Liberadas: {{d.cantidad_bolsas_liberadas}}</p>
+                  <a onclick="vacio_update('{% url 'produ_app:vacio_update' d.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
+                {% endfor %}
+              </div>
+              {% else %}
+              <div class="alert alert-warning" role="alert">
+                No se han registrado bolsas empacadas al vacio de producto terminado.                  
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
       </div>
   
       
       <div class="modal fade" id="caracteristicas_update" role="dialog"></div>
       <div class="modal fade" id="empaque_update" role="dialog"></div>
+      <div class="modal fade" id="vacio_update" role="dialog"></div>
+
       
 
 {%endblock%}
@@ -126,6 +155,12 @@
     function empaque_update(url){
         var $ = jQuery.noConflict();
         $('#empaque_update').load(url,function(){
+            $(this).modal('show');
+        }); 
+    }
+    function vacio_update(url){
+        var $ = jQuery.noConflict();
+        $('#vacio_update').load(url,function(){
             $(this).modal('show');
         }); 
     }
