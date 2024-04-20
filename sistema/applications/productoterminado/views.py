@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm
+from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm,CaracteristicasPTUpdateForm
 
 # Create your views here.
 
@@ -57,12 +57,21 @@ class ExistenciaPTView(LoginRequiredMixin, ListView):
     success_url= reverse_lazy('produ_app:exitenciaPT')
 
 class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
-    '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
+    '''Vista para la creacion de las caracteristicas organolepticas de Producto terminado'''
     model = CaracteristicasOrganolepticasPT
     template_name = "productoterminado/caracteristicas_PT.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = CaracteristicasOrganolepticasPTForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+class CaracteristicasProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para la edición de las caracteristicas organolepticas de producto terminado'''
+    model = CaracteristicasOrganolepticasPT
+    template_name = "productoterminado/updatecaracteristicas_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = CaracteristicasPTUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('produ_app:list_produ')
 
