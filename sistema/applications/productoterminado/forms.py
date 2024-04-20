@@ -88,6 +88,7 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
 
         widgets={
                 
+                'pt_lote':forms.TextInput(attrs={'readonly':'readonly'}),
                 'observaciones':forms.Textarea(),
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
