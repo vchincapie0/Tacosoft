@@ -21,7 +21,8 @@ class FacturasListView(LoginRequiredMixin, ListView):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
         lista = Facturas.objects.filter(
-            num_factura__icontains = palabra_clave
+            num_factura__icontains = palabra_clave,
+            is_active=True  # Solo usuarios activos
         )
         return lista
     
