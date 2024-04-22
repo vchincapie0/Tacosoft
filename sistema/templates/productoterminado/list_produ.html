@@ -67,9 +67,9 @@
                             {% endif %}
                             </td>
                             <td>
-                                {% if p.EmpaqueProductoTerminado_set.all %}
+                                {% if  p.empaqueproductoterminado_set.all %}
                                 
-                                {% for p in p.EmpaqueProductoTerminado_set.all  %}
+                                {% for prod in p.empaqueproductoterminado_set.all  %}
                                 <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i>
                                 {% endfor %}
                                     
@@ -82,7 +82,7 @@
                             <td>
                                 {% if p.vacio_set.all %}
                                 
-                                {% for d in p.vacio_set.all  %}
+                                {% for vac in p.vacio_set.all  %}
                                 <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i>
                                 {% endfor %}
                                     
