@@ -22,7 +22,7 @@ class addPicado(forms.ModelForm):
             )
         
         widgets={
-            'cod_procesamiento':forms.NumberInput(attrs={'class':'form-control'}),
+            
             'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
             'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
             'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),

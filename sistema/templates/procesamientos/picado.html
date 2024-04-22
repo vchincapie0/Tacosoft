@@ -23,7 +23,7 @@
                 <table class="table table-secondary">
                     <thead>
                         <tr>
-                            <th scope="col">Codigo Procesamiento</th>
+                            
                             <th scope="col">Producto</th>
                             <th scope="col">Pesaje MateriaPrima</th>
                             <th scope="col">Peso Despues Proceso</th>
@@ -36,7 +36,7 @@
                         {%for p in picado%}
                         <tr>
                             <td><a onclick="add_picado('{% url 'procesamientos_app:add_picado'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a></td>
-                            <td>{{p.cod_procesamiento}}</td>
+                            
                             <td>{{p.pica_nombre}}</td>
                             <td>{{p.pica_cantidad}}</td>
                             <td>{{p.pica_pesoMPposproceso}}</td>
