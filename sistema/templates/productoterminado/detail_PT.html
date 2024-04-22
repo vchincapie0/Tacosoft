@@ -27,17 +27,19 @@
                 <h5>Características Organolépticas</h5>
             </div>
             <div class="card-body">
-                {% if productoterminado.caracteristicasorganolepticas_set.all %}
-                    {% for c in productoterminado.caracteristicasorganolepticas_set.all %}
-                        {% if c.estado == '1' %}
+                {% if productoterminado.updateCaracteristicaspt_set.all %}
+                    {% for p in productoterminado.updateCaracteristicaspt_set.all %}
+                        {% if p.estado == '1' %}
                           <div class="row">
-                            <div class="col-6">Estado: <p style="color: red;">{{ c.get_estado_display }}</p>
+                            <div class="col-6">Estado: <p style="color: red;">{{ p.get_estado_display }}</p>
                             <p>Caracerísticas NO Satisfactorias:</p>
                             <ul>
-                              {% if not c.olor %}<li>Olor</li>{% endif %}
-                              {% if not c.sabor %}<li>Sabor</li>{% endif %}
-                              {% if not c.textura %}<li>Textuara</li>{% endif %}
-                              {% if not c.color %}<li>Color</li>{% endif %}
+                              {% if not p.olor %}<li>Olor</li>{% endif %}
+                              {% if not p.sabor %}<li>Sabor</li>{% endif %}
+                              {% if not p.textura %}<li>Textuara</li>{% endif %}
+                              {% if not p.color %}<li>Color</li>{% endif %}
+                              {% if not p.estado %}<li>Estado</li>{% endif %}
+
                             </ul>
                               
                             </div>
@@ -45,7 +47,7 @@
                           </div>
                         {% else %}
                           <div class="row">
-                            <div class="col-6">Estado: <p style="color: green;">{{ c.get_estado_display }}</p></div>
+                            <div class="col-6">Estado: <p style="color: green;">{{ p.get_estado_display }}</p></div>
                             <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'produ_app:updateCaracteristicas_pt' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                           </div>
                         {% endif %}

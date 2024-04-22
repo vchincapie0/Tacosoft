@@ -34,13 +34,18 @@
                       <label for="id_pt_color" class="form-label">Color: </label>
                      {{form.color}}
                   </div>
-  
-                <div class="mb-3 col-12">
+                  
+                  <div class="mb-3 col-12">
+                    <label for="id_pt_estado" class="form-label">Estado: </label>
+                   {{form.estado}}
+                  </div>  
+
+                   <div class="mb-3 col-12">
                     <label for="id_pt_observaciones" class="form-label">Observaciones: </label>
                     {{form.observaciones}}
-                </div>
+                   </div>
   
-                  <div class="col">
+                   <div class="col">
                       <button class="btn btn-success" type="submit">Guardar</button>
                       |
                       <a href="{% url 'produ_app:list_produ' %}" type="button" class="btn btn-danger">Cancelar</a>
@@ -52,5 +57,4 @@
     
     </div>
   </div>
-  
-  
+ 

@@ -52,8 +52,8 @@
                             <td>{{p.pt_fechapreparacion}}</td>
                             <td>{{p.pt_fechavencimiento}}</td>
                             <td>
-                                {% if m.caracteristicasorganolepticas_set.all %}
-                                {% for caracteristica in m.caracteristicasorganolepticas_set.all %}
+                                {% if p.caracteristicasorganolepticaspt_set.all %}
+                                {% for caracteristica in p.caracteristicasorganolepticaspt_set.all %}
                                     {% if caracteristica.estado == '0' %}
                                     <p style="color: green;">{{ caracteristica.get_estado_display }}</p>
                                         
@@ -67,9 +67,9 @@
                             {% endif %}
                             </td>
                             <td>
-                                {% if m.empaque_set.all %}
+                                {% if p.empaque_set.all %}
                                 
-                                {% for d in m.empaque_set.all  %}
+                                {% for d in p.empaque_set.all  %}
                                 <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i>
                                 {% endfor %}
                                     
@@ -80,9 +80,9 @@
                                     
                             </td>
                             <td>
-                                {% if m.vacio_set.all %}
+                                {% if p.vacio_set.all %}
                                 
-                                {% for d in m.vacio_set.all  %}
+                                {% for d in p.vacio_set.all  %}
                                 <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i>
                                 {% endfor %}
                                     
