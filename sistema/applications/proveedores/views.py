@@ -18,7 +18,8 @@ class ProveedoresListView(LoginRequiredMixin, ListView):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
         lista = Proveedores.objects.filter(
-            prov_nombre__icontains = palabra_clave
+            prov_nombre__icontains = palabra_clave,
+            is_active=True  # Solo proveedores activos
         )
         return lista
     
