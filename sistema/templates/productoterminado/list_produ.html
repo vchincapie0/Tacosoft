@@ -67,9 +67,9 @@
                             {% endif %}
                             </td>
                             <td>
-                                {% if p.empaque_set.all %}
+                                {% if p.EmpaqueProductoTerminado_set.all %}
                                 
-                                {% for d in p.empaque_set.all  %}
+                                {% for p in p.EmpaqueProductoTerminado_set.all  %}
                                 <i class="fa-solid fa-check" style="color: rgb(0, 81, 255);"></i>
                                 {% endfor %}
                                     

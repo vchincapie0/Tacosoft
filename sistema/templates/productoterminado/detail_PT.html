@@ -70,11 +70,11 @@
             </div>
             <div class="card-body">
                 {% if productoterminado.EmpaqueProductoTerminado_set.all %}
-                    {% for d in productoterminado.EmpaqueProductoTerminado_set.all %}
-                        <p class="card-text">Lote: {{d.pt_lote}}</p>
-                        <p class="card-text">Peso: {{d.emp_pesoKg}}%</p>
-                        <p class="card-text">Cantidad Bolsas: {{d.emp_cantidadBolsas}}</p>
-                        <a onclick="empaque_update('{% url 'produ_app:empaque_update' d.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
+                    {% for p in productoterminado.EmpaqueProductoTerminado_set.all %}
+                        <p class="card-text">Lote: {{p.pt_lote}}</p>
+                        <p class="card-text">Peso: {{p.emp_pesoKg}}%</p>
+                        <p class="card-text">Cantidad Bolsas: {{p.emp_cantidadBolsas}}</p>
+                        <a onclick="empaque_update('{% url 'produ_app:empaque_update' p.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
                     {% endfor %}
                 {% else %}
                     <div class="alert alert-warning" role="alert">
