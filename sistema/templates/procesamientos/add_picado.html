@@ -80,7 +80,8 @@
                     data: $(this).serialize(),
                     success: function (data) {
                         // Verifica la respuesta y actualiza el contenido del modal
-                        $('#add_proveedor').html(data);
+                        $('#add_picado').html(data);
+                        $('#add_picado').modal('hide');
                     },
                     error: function (xhr, status, error) {
                         // Maneja errores de Ajax, si es necesario
