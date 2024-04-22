@@ -14,7 +14,7 @@ class MateriaPrimaGenericaForm(forms.ModelForm):
             'mp_tipo',
             )
         widgets={
-            'mp_nombre':forms.Select(attrs={'class':'form-select'}),
+            'mp_nombre':forms.TextInput(attrs={'class':'form-control'}),
             'mp_tipo':forms.Select(attrs={'class':'form-select'}),
         }
 
