@@ -68,7 +68,7 @@ class Picado(models.Model):
 
     )
 
-    cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
+    cod_procesamiento=models.AutoField('id',primary_key=True)
     pica_nombre=models.CharField('Nombre',max_length=50, default="NULL")
     pica_cantidad = models.IntegerField('Cantidad',default=0)
     pica_pesoMPposproceso=models.FloatField('Peso',default=0)
