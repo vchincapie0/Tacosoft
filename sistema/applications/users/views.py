@@ -66,18 +66,6 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('users_app:list_user')
 
-    def delete(self, request, *args, **kwargs):
-        '''Se sobreescribe el metodo delete para el borrado logico'''
-        # Obtiene el objeto User a eliminar
-        self.object = self.get_object()
-
-        # Marca al usuario como inactivo en lugar de eliminarlo
-        self.object.is_active = False
-        self.object.save()
-
-        # Redirige a la lista de usuarios después del borrado lógico
-        return redirect(self.get_success_url())
-
 class LogIn(LoginView):
     '''Vista para login'''
     template_name = 'usuarios/login.html'

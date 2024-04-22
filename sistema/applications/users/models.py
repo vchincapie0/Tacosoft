@@ -32,13 +32,13 @@ class User(AbstractUser, PermissionsMixin):
         self.is_active = False  # Marcar como inactivo en lugar de eliminar
         self.save(using=using)
 
-class UserDeletionAudit(models.Model):
-    '''Clase para logs de borrado de usuarios'''
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='deletion_logs')
-    deleted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='deletion_logs_created_by')
-    deleted_at = models.DateTimeField(auto_now_add=True)
+# class UserDeletionAudit(models.Model):
+#     '''Clase para logs de borrado de usuarios'''
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='deletion_logs')
+#     deleted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='deletion_logs_created_by')
+#     deleted_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f'{self.user} - Deleted by {self.deleted_by} at {self.deleted_at}'
+#     def __str__(self):
+#         return f'{self.user} - Deleted by {self.deleted_by} at {self.deleted_at}'
 
 
