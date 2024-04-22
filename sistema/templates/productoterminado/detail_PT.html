@@ -27,8 +27,8 @@
                 <h5>Características Organolépticas</h5>
             </div>
             <div class="card-body">
-                {% if productoterminado.updateCaracteristicaspt_set.all %}
-                    {% for p in productoterminado.updateCaracteristicaspt_set.all %}
+                {% if productoterminado.caracteristicasorganolepticaspt_set.all %}
+                    {% for p in productoterminado.caracteristicasorganolepticaspt_set.all %}
                         {% if p.estado == '1' %}
                           <div class="row">
                             <div class="col-6">Estado: <p style="color: red;">{{ p.get_estado_display }}</p>
@@ -43,12 +43,12 @@
                             </ul>
                               
                             </div>
-                            <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'produ_app:updateCaracteristicas_pt' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
+                            <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="updatecaracteristicas_pt('{% url 'produ_app:updatecaracteristicas_pt' p.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                           </div>
                         {% else %}
                           <div class="row">
                             <div class="col-6">Estado: <p style="color: green;">{{ p.get_estado_display }}</p></div>
-                            <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="caracteristicas_update('{% url 'produ_app:updateCaracteristicas_pt' c.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
+                            <div class="col-6 d-flex justify-content-center align-items-center"><a onclick="updatecaracteristicas_pt('{% url 'produ_app:updatecaracteristicas_pt' p.pk %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                           </div>
                         {% endif %}
                     {% endfor %}
@@ -107,7 +107,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="caracteristicas_update" role="dialog"></div>
+<div class="modal fade" id="updatecaracteristicas_pt" role="dialog"></div>
 <div class="modal fade" id="empaque_update" role="dialog"></div>
 <div class="modal fade" id="vacio_update" role="dialog"></div>
 
@@ -116,9 +116,9 @@
 {% block extrajs %}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-    function caracteristicas_update(url){
+    function updatecaracteristicas_pt(url){
         var $ = jQuery.noConflict();
-        $('#caracteristicas_update').load(url,function(){
+        $('#updatecaracteristicas_pt').load(url,function(){
             $(this).modal('show');
         }); 
     } 
