@@ -1,11 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView,CreateView,DetailView, UpdateView, TemplateView
+from django.views.generic import ListView,CreateView,DetailView, UpdateView, TemplateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
 #Importacion modelos y formularios
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas,MateriaPrimaGenerica,DesinfectanteGenerico
-from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm,DesinfeccionMPUpdateForm,MateriaPrimaGenericaForm
+from .forms import (
+    MateriaPrimaForm,
+    CaracteristicasMPForm,
+    CaracteristicasMPUpdateForm,
+    DesinfeccionMPForm,
+    DesinfeccionMPUpdateForm,
+    MateriaPrimaGenericaForm,
+    MateriaPrimaGenericaUpdateForm,
+)
 
 
 # Create your views here.
@@ -36,6 +44,21 @@ class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
     #Campos que se van a mostrar en el formulario
     form_class = MateriaPrimaGenericaForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:listaGenerica_mp')
+
+class MateriaPrimaGenericaUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de materia prima generica'''
+    model = MateriaPrimaGenerica
+    template_name = "materiaprima/update_mp_generica.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=MateriaPrimaGenericaUpdateForm
+    success_url= reverse_lazy('mp_app:listaGenerica_mp')
+
+class MateriaPrimaGenericaDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Implenentos de Trabajo'''
+    model = MateriaPrimaGenerica
+    template_name = "materiaprima/delete_mp_generica.html"
+    login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('mp_app:listaGenerica_mp')
 
 
@@ -76,6 +99,8 @@ class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     form_class = CaracteristicasMPForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
+
+
     
 class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edicion de las caracteristicas organolepticas de la materia prima'''

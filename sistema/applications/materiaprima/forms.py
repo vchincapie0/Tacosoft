@@ -2,6 +2,22 @@ from django import forms
 from django.utils import timezone
 from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica
 
+class MateriaPrimaGenericaUpdateForm(forms.ModelForm):
+    """Form definition for Materia Prima."""
+
+    class Meta:
+        """Meta definition for MateriaPrimaform."""
+
+        model = MateriaPrimaGenerica
+        fields = (
+            'mp_nombre',
+            'mp_tipo',
+            )
+        widgets={
+            'mp_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'mp_tipo':forms.Select(attrs={'class':'form-select'}),
+        }
+
 class MateriaPrimaGenericaForm(forms.ModelForm):
     """Form definition for Materia Prima."""
 
