@@ -13,6 +13,7 @@ class User(AbstractUser, PermissionsMixin):
     is_employee=models.BooleanField('Operario',default=False)
     is_staff=models.BooleanField(default=False)
     is_superuser=models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)  # Campo para el borrado lógico
 
     USERNAME_FIELD='username'
 
@@ -25,5 +26,10 @@ class User(AbstractUser, PermissionsMixin):
     
     def get_full_name(self):
         return self.nombres+'-'+self.apellidos
+    
+    def delete(self, using=None, keep_parents=False):
+        '''Funcion para borrado lógico'''
+        self.is_active = False  # Marcar como inactivo en lugar de eliminar
+        self.save(using=using)
 
 
