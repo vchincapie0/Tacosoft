@@ -1,6 +1,23 @@
 from django import forms
 from django.utils import timezone
-from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas
+from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica
+
+class MateriaPrimaGenericaForm(forms.ModelForm):
+    """Form definition for Materia Prima."""
+
+    class Meta:
+        """Meta definition for MateriaPrimaform."""
+
+        model = MateriaPrimaGenerica
+        fields = (
+            'mp_nombre',
+            'mp_tipo',
+            )
+        widgets={
+            'mp_nombre':forms.Select(attrs={'class':'form-select'}),
+            'mp_tipo':forms.Select(attrs={'class':'form-select'}),
+        }
+
 
 class MateriaPrimaForm(forms.ModelForm):
     """Form definition for Materia Prima."""
@@ -12,7 +29,6 @@ class MateriaPrimaForm(forms.ModelForm):
         fields = (
             'mp_lote',
             'mp_nombre',
-            #'mp_tipo',
             'mp_cantidad',
             'mp_fechallegada',
             'mp_fechavencimiento',
@@ -21,7 +37,6 @@ class MateriaPrimaForm(forms.ModelForm):
         widgets={
             'mp_lote':forms.NumberInput(attrs={'class':'form-control'}),
             'mp_nombre':forms.Select(attrs={'class':'form-select'}),
-            #'mp_tipo':forms.Select(attrs={'class':'form-select'}),
             'mp_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'mp_fechallegada':forms.SelectDateWidget(),
             'mp_fechavencimiento':forms.SelectDateWidget(),

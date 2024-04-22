@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 #Importacion modelos y formularios
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas,MateriaPrimaGenerica,DesinfectanteGenerico
-from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm, DesinfeccionMPUpdateForm
+from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm,DesinfeccionMPUpdateForm,MateriaPrimaGenericaForm
 
 
 # Create your views here.
@@ -26,6 +26,17 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
         )
         
         return queryset
+
+
+class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
+    '''Clase donde se crea una nueva materia prima'''
+    model = MateriaPrimaGenerica
+    template_name = "materiaprima/add_mp_generica.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = MateriaPrimaGenericaForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:lista_mp_generica')
 
 
 class MateriaPrimaListView(LoginRequiredMixin, ListView):

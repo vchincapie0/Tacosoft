@@ -5,6 +5,7 @@ app_name='mp_app'
 
 urlpatterns = [
     path('mpgeneric_list/',views.MateriaPrimaGenericaListView.as_view(),name='listaGenerica_mp'),
+    path('add_mp_generica/',views.MateriaPrimaGenericaCreateView.as_view(),name='add_mp_generica'),
     path('mp_list/',views.MateriaPrimaListView.as_view(),name='lista_mp'),
     path('mp_add/',views.MateriaPrimaCreateView.as_view(),name='add_mp'),
     path('mp_caracteristicas/',views.CaracteristicasMateriaPrimaCreateView.as_view(),name='caracteristicas_mp'),
