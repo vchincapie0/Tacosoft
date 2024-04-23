@@ -15,6 +15,8 @@ urlpatterns = [
     path('empaque_add/',views.EmpaqueProductoTerminadoCreateView.as_view(),name='empaque_add'),
     path('empaque_update/<pk>',views.EmpaqueProductoTerminadoUpdateView.as_view(),name='empaque_update'),
     path('vacio_add/',views.VacioProductoTerminadoCreateView.as_view(),name='vacio_add'),
+    path('vacio_update/<pk>',views.VacioProductoTerminadoUpdateView.as_view(),name='vacio_update'),
+
 
 
 
