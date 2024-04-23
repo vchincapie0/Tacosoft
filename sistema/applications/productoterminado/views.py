@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm,CaracteristicasPTUpdateForm
+from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm,CaracteristicasPTUpdateForm,EmpaqueUpdateForm
 
 # Create your views here.
 
@@ -90,6 +90,27 @@ class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = EmpaqueProductoTerminadoForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+    
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        empaque = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        empaque.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        empaque.save()
+        return super().form_valid(form)
+
+class EmpaqueProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vists para la edición del empaque producto terminado'''
+    model = EmpaqueProductoTerminado
+    template_name = "productoterminado/empaqueupdate_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = EmpaqueUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('produ_app:list_produ')
     

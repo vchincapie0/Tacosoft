@@ -69,8 +69,8 @@
                 <h5>Empaque</h5>
             </div>
             <div class="card-body">
-                {% if productoterminado.EmpaqueProductoTerminado_set.all %}
-                    {% for p in productoterminado.EmpaqueProductoTerminado_set.all %}
+                {% if productoterminado.empaqueproductoterminado_set.all %}
+                    {% for p in productoterminado.empaqueproductoterminado_set.all %}
                         <p class="card-text">Lote: {{p.pt_lote}}</p>
                         <p class="card-text">Peso: {{p.emp_pesoKg}}%</p>
                         <p class="card-text">Cantidad Bolsas: {{p.emp_cantidadBolsas}}</p>
@@ -90,11 +90,11 @@
                 <h5>Empaque al Vacio</h5>
             </div>
             <div class="card-body">
-                {% if productoterminado.VacioProductoTerminado_set.all %}
-                    {% for d in productoterminado.VacioProductoTerminado_set.all %}
-                        <p class="card-text">Lote: {{d.pt_lote}}</p>
-                        <p class="card-text">Cantidad Bolsas Rechazadas: {{d.cantidad_bolsas_rechazadas}}%</p>
-                        <p class="card-text">Cantidad Bolsas Liberadas: {{d.cantidad_bolsas_liberadas}}</p>
+                {% if productoterminado.vacioproductoterminado_set.all %}
+                    {% for p in productoterminado.vacioproductoterminado_set.all %}
+                        <p class="card-text">Lote: {{p.pt_lote}}</p>
+                        <p class="card-text">Cantidad Bolsas Rechazadas: {{p.cantidad_bolsas_rechazadas}}%</p>
+                        <p class="card-text">Cantidad Bolsas Liberadas: {{p.cantidad_bolsas_liberadas}}</p>
                         <a onclick="vacio_update('{% url 'produ_app:vacio_update' d.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
                     {% endfor %}
                 {% else %}
