@@ -145,6 +145,32 @@ class EmpaqueProductoTerminadoForm(forms.ModelForm):
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
             return cantidadbol
         
+class EmpaqueUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = EmpaqueProductoTerminado
+        fields=(
+            'pt_lote',
+            'emp_pesoKg',
+            'emp_cantidadBolsas',
+          
+        )     
+        
+        def clean_Emp_pesoKgPT(self):
+            pesoPT  = self.cleaned_data['emp_pesoKgPT']
+            if pesoPT<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return pesoPT
+        
+        def clean_Emp_cantidadBolsas(self):
+            cantidadbol  = self.cleaned_data['emp_cantidadBolsas']
+            if cantidadbol<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return cantidadbol
+        
+        
+        
 class VacioForm(forms.ModelForm):
 
     class Meta:
