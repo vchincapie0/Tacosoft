@@ -25,11 +25,16 @@ class Pedidos(models.Model):
     pedi_proveedor=models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     pedi_materiaprima=models.ManyToManyField(MateriaPrima, blank=True)
     pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
+    is_active = models.BooleanField(default=True)  # Campo para el borrado lógico
 
     def __str__(self):
         estado = dict(self.ESTADO_CHOICES)[self.pedi_estado] if self.pedi_estado else 'Estado Desconocido'
         return f"N° Pedido: {self.ref_pedido} - Estado: {estado}"
 
+    def delete(self, using=None, keep_parents=False):
+        '''Funcion para borrado lógico'''
+        self.is_active = False  # Marcar como inactivo en lugar de eliminar
+        self.save(using=using)
 
 
 
