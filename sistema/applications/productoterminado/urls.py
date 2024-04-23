@@ -13,6 +13,7 @@ urlpatterns = [
     path('updatecaracteristicas_pt/<pk>',views.CaracteristicasProductoTerminadoUpdateView.as_view(),name='updatecaracteristicas_pt'),
     path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='detail_PT'),
     path('empaque_add/',views.EmpaqueProductoTerminadoCreateView.as_view(),name='empaque_add'),
+    path('empaque_update/<pk>',views.EmpaqueProductoTerminadoUpdateView.as_view(),name='empaque_update'),
     path('vacio_add/',views.VacioProductoTerminadoCreateView.as_view(),name='vacio_add'),
 
 
