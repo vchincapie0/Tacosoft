@@ -3,8 +3,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm,CaracteristicasPTUpdateForm,EmpaqueUpdateForm,VacioUpdateForm
+from .models import (
+    ProductoTerminado,
+    ExistenciaPT,
+    CaracteristicasOrganolepticasPT,
+    EmpaqueProductoTerminado,
+    Vacio,
+    ProductoTerminadoGenerico,
+)
+from .forms import (
+    ProductoTerminadoForm,
+    CaracteristicasOrganolepticasPTForm,
+    EmpaqueProductoTerminadoForm,
+    VacioForm,
+    CaracteristicasPTUpdateForm,
+    EmpaqueUpdateForm,
+    VacioUpdateForm,
+)
 
 # Create your views here.
 
@@ -166,4 +181,22 @@ class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
         Vacio.responsable = user
              # Ahora sí, guarda el pedido en la base de datos
         Vacio.save()
-        return super().form_valid(form)      
+        return super().form_valid(form)   
+
+class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de las materias primas'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/list_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'producto'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        
+        # Filtrar por nombre específico de la materia prima
+        queryset = ProductoTerminadoGenerico.objects.filter(
+            pt_nombre__icontains=palabra_clave
+        )
+        
+        return queryset   
