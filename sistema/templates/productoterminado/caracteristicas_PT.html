@@ -1,0 +1,60 @@
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Características Organolepticas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+        <form id="addCaracteristicasForm" method="POST" action="{% url 'produ_app:caracteristicas_PT' %}">
+          {%csrf_token%}
+              <div class="mx-4 my-2 row">
+                  
+                  <div class="mb-3 col-12">
+                      <label for="id_pt_lote" class="form-label">Lote Producto Terminado: </label>
+                      {{form.pt_lote}}   
+                  </div>
+            
+             
+                  <div class="mb-3 col-12">
+                      <label for="id_pt_olor" class="form-label">Olor:</label>
+                      {{form.olor}}   
+                  </div>
+  
+                  <div class="mb-3 col-12">
+                      <label for="id_pt_sabor" class="form-label">Sabor: </label>
+                      {{form.sabor}}  
+                  </div>
+  
+                  <div class="mb-3 col-12">
+                      <label for="id_pt_textura" class="form-label">Textura: </label>
+                      {{form.textura}}
+                  </div>
+  
+                  <div class="mb-3 col-12">
+                      <label for="id_pt_color" class="form-label">Color: </label>
+                     {{form.color}}
+                  </div>
+                  
+                  <div class="mb-3 col-12">
+                    <label for="id_pt_estado" class="form-label">Estado: </label>
+                   {{form.estado}}
+                  </div>  
+
+                   <div class="mb-3 col-12">
+                    <label for="id_pt_observaciones" class="form-label">Observaciones: </label>
+                    {{form.observaciones}}
+                   </div>
+  
+                   <div class="col">
+                      <button class="btn btn-success" type="submit">Guardar</button>
+                      |
+                      <a href="{% url 'produ_app:list_produ' %}" type="button" class="btn btn-danger">Cancelar</a>
+                  </div>
+              </div>
+              
+          </form>
+        </div>
+    
+    </div>
+  </div>
+ 

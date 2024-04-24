@@ -3,8 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm
+from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
+from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm,CaracteristicasPTUpdateForm,EmpaqueUpdateForm,VacioUpdateForm
 
 # Create your views here.
 
@@ -57,7 +57,7 @@ class ExistenciaPTView(LoginRequiredMixin, ListView):
     success_url= reverse_lazy('produ_app:exitenciaPT')
 
 class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
-    '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
+    '''Vista para la creacion de las caracteristicas organolepticas de Producto terminado'''
     model = CaracteristicasOrganolepticasPT
     template_name = "productoterminado/caracteristicas_PT.html"
     login_url=reverse_lazy('users_app:login')
@@ -66,9 +66,104 @@ class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView)
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('produ_app:list_produ')
 
+class CaracteristicasProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para la edición de las caracteristicas organolepticas de producto terminado'''
+    model = CaracteristicasOrganolepticasPT
+    template_name = "productoterminado/updatecaracteristicas_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = CaracteristicasPTUpdateForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+
 class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
+    
     '''Vista donde se muestran los detalles de producto terminado'''
     model = ProductoTerminado
     template_name = "productoterminado/detail_PT.html"
     login_url=reverse_lazy('users_app:login')
-    context_object_name = 'productoterminado'    
+    context_object_name = 'productoterminado'
+
+class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
+    '''Vists para la creacion del empaque producto terminado'''
+    model = EmpaqueProductoTerminado
+    template_name = "productoterminado/empaque_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = EmpaqueProductoTerminadoForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+    
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        empaque = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        empaque.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        empaque.save()
+        return super().form_valid(form)
+
+class EmpaqueProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vists para la edición del empaque producto terminado'''
+    model = EmpaqueProductoTerminado
+    template_name = "productoterminado/empaqueupdate_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = EmpaqueUpdateForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+    
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        empaque = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        empaque.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        empaque.save()
+        return super().form_valid(form)    
+    
+class VacioProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
+    '''Vists para la creacion del vacio producto terminado'''
+    model = Vacio
+    template_name = "productoterminado/vacio_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = VacioForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+    
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        Vacio = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        Vacio.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        Vacio.save()
+        return super().form_valid(form)
+
+class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vists para la edición del vacio producto terminado'''
+    model = Vacio
+    template_name = "productoterminado/vacioupdate_pt.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = VacioUpdateForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_produ')
+    
+    def form_valid(self, form):
+        '''funcion para automatizar el campo '''
+        user = self.request.user
+             # Guarda el formulario sin commit para asignar manualmente el usuario
+        Vacio = form.save(commit=False)
+             # Asigna el usuario al campo pedi_user
+        Vacio.responsable = user
+             # Ahora sí, guarda el pedido en la base de datos
+        Vacio.save()
+        return super().form_valid(form)      
