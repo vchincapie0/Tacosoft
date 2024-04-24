@@ -30,12 +30,15 @@
                         {{form.pt_nombre}}   
                     </div>
 
-
-                    <div class="mb-3 col-3">
-                        <label for="id_mp_nombre" class="form-label">Cantidad:</label>
-                        {{form.pt_cantidad}}gr
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="id_PT_cantidad" class="form-label">Cantidad: </label>
+                        </div>
+                        <div class="input-group mb-3 col-12">
+                            {{form.pt_cantidad}}
+                            <span class="input-group-text">Kg</span>
+                        </div>
                     </div>
-                    
                                 
                     <div class="mb-3  col-12">
                         <label for="id_PT_fechapreparacion" class="form-label">Fecha de preparación:</label>
