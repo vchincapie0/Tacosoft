@@ -2,7 +2,29 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import ImplementosTrabajo
+from .models import ImplementosTrabajo,InsumosGenerico
+
+class InsumosGenericoForm(forms.ModelForm):
+    class Meta:
+        model = InsumosGenerico
+        fields = (
+            'it_nombre',
+            )
+        widgets={
+            
+            'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
+        }
+class InsumosGenericoUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = InsumosGenerico
+        fields = (
+            'it_nombre',
+            )
+        widgets={
+            'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            }
+        
 
 class ImplementosTrabajoForm(forms.ModelForm):
 
