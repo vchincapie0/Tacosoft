@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="#" role="button">Agregar Desinfectante</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_desinfectante('{% url 'mp_app:add_desinfeccion_generico' %}')" role="button">Agregar Desinfectante</a>
                 </div>
                 
                 <div class="col-6">
@@ -89,9 +89,9 @@
         </div>
     </div>
 </div>   
-<div class="modal fade" id="delete_insumos" role="dialog"></div>
-<div class="modal fade" id="add_insumos" role="dialog"></div>
-<div class="modal fade" id="edit_insumos" role="dialog"></div>
+<div class="modal fade" id="delete_desinfectante" role="dialog"></div>
+<div class="modal fade" id="add_desinfectante" role="dialog"></div>
+<div class="modal fade" id="edit_desinfectante" role="dialog"></div>
 
 
 {% endblock content %}
@@ -100,23 +100,23 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-    function add_insumos(url){
+    function add_desinfectante(url){
         var $ = jQuery.noConflict();
-        $('#add_insumos').load(url,function(){
+        $('#add_desinfectante').load(url,function(){
             $(this).modal('show');
         }); 
     }
 
-    function edit_insumos(url){
+    function edit_desinfectante(url){
         var $ = jQuery.noConflict();
-        $('#edit_insumos').load(url,function(){
+        $('#edit_desinfectante').load(url,function(){
             $(this).modal('show');
         }); 
     }
 
-    function delete_insumos(url){
+    function delete_desinfectante(url){
         var $ = jQuery.noConflict();
-        $('#delete_insumos').load(url,function(){
+        $('#delete_desinfectante').load(url,function(){
             $(this).modal('show');
         }); 
     }

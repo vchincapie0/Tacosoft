@@ -1,6 +1,6 @@
 from django import forms
 from django.utils import timezone
-from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica
+from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica, DesinfectanteGenerico
 
 class MateriaPrimaGenericaUpdateForm(forms.ModelForm):
     """Form definition for Materia Prima."""
@@ -134,6 +134,7 @@ class CaracteristicasMPUpdateForm(forms.ModelForm):
                        
 class DesinfeccionMPForm(forms.ModelForm):
 
+
     class Meta:
 
         model = Desinfeccion
@@ -154,7 +155,9 @@ class DesinfeccionMPForm(forms.ModelForm):
             'tiempo_inicio':forms.TimeInput(attrs={'type':'time'}),
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion','class':'form-control'})    
-            }    
+            } 
+
+
         
 class DesinfeccionMPUpdateForm(forms.ModelForm):
 
@@ -179,3 +182,16 @@ class DesinfeccionMPUpdateForm(forms.ModelForm):
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion','class':'form-control'})    
             }     
+
+class DesinfectanteGenericoForm(forms.ModelForm):
+
+    class Meta:
+
+        model = DesinfectanteGenerico
+        fields=(
+            'des_nombre',
+        )
+
+        widgets={
+            'des_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            } 

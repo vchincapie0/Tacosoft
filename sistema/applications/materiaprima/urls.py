@@ -13,6 +13,7 @@ urlpatterns = [
     path('mp_caracteristicas/',views.CaracteristicasMateriaPrimaCreateView.as_view(),name='caracteristicas_mp'),
     path('mp_update_caracteristicas/<pk>',views.CaracteristicasMateriaPrimaUpdateView.as_view(),name='updateCaracteristicas_mp'),
     path('desinfeccion_generico/',views.DesinfectanteGenericoListView.as_view(),name='desinfeccion_generico'),
+    path('add_desinfeccion_generico/',views.DesinfectanteGenericoCreateView.as_view(),name='add_desinfeccion_generico'),
     path('mp_desinfeccion/',views.DesinfeccionMateriaPrimaCreateView.as_view(),name='desinfeccion_mp'),
     path('mp_update_desinfeccion/<pk>',views.DesinfeccionMateriaPrimaUpdateView.as_view(),name='updateDesinfeccion_mp'),
     path('mp_detail/<pk>',views.MateriaPrimaDetailView.as_view(),name='detail_mp'),

@@ -13,6 +13,7 @@ from .forms import (
     DesinfeccionMPUpdateForm,
     MateriaPrimaGenericaForm,
     MateriaPrimaGenericaUpdateForm,
+    DesinfectanteGenericoForm,
 )
 
 
@@ -127,6 +128,18 @@ class DesinfectanteGenericoListView(LoginRequiredMixin, ListView):
            des_nombre__icontains = palabra_clave
         )
         return lista
+    
+class DesinfectanteGenericoCreateView(LoginRequiredMixin, CreateView):
+    '''Clase donde se crea una nueva materia prima'''
+    model = DesinfectanteGenerico
+    template_name = "materiaprima/add_desinfectante_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = DesinfectanteGenericoForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:desinfeccion_generico')
+
+
 class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Vists para la creacion de la desinfeccion de la materia prima'''
     model = Desinfeccion
