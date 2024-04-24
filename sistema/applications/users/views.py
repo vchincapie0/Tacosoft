@@ -26,7 +26,7 @@ class UsersListView(LoginRequiredMixin, ListView):
         palabra_clave= self.request.GET.get("kword",'')
         lista = User.objects.filter(
             name__icontains = palabra_clave,
-            is_active=True  # Solo usuarios activos
+            deleted=False # Solo usuarios activos
         )
         return lista
 
