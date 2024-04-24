@@ -27,7 +27,7 @@ class addPicado(forms.ModelForm):
             'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
             'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
             'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
-            'pica_check':forms.Select(attrs={'placeholder': 'Estado de Chequeo'}),
+            'pica_check':forms.Select(attrs={'class': 'form-select'}),
             
         }
         

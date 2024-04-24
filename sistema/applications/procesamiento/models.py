@@ -62,7 +62,7 @@ class Coccion(models.Model):
 
 class Picado(models.Model):
 
-    CHECK_CHOICES=(
+    ESTADO_CHOICES=(
         ('0','Aprobado'),
         ('1','No Aprobado'),
 
@@ -73,7 +73,7 @@ class Picado(models.Model):
     pica_cantidad = models.IntegerField('Cantidad',default=0)
     pica_pesoMPposproceso=models.FloatField('Peso',default=0)
     pica_merma=models.FloatField('Peso Merma',default=0)
-    pica_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
+    pica_check=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
 
     
     def __str__(self):
