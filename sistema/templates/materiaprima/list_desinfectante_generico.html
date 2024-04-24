@@ -39,8 +39,8 @@
                     <tbody>
                         {%for d in desinfectante%}
                         <tr>
-                            <td><a onclick="#" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{d.des_nombre}}</a></td>
-                            <td><a class="btn btn-danger" onclick="#" type="button"><i class="fa-solid fa-trash-can"></i></a></td>
+                            <td><a onclick="edit_desinfectante('{% url 'mp_app:update_desinfeccion_generico' d.id %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{d.des_nombre}}</a></td>
+                            <td><a class="btn btn-danger" onclick="delete_desinfectante('{% url 'mp_app:delete_desinfeccion_generico' d.id %}')" type="button"><i class="fa-solid fa-trash-can"></i></a></td>
 
                         </tr>
                         {%endfor%}
