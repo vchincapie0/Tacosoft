@@ -46,14 +46,15 @@ class Equipos(models.Model):
 class Coccion(models.Model):
 
     CHECK_CHOICES=(
-        ('0','Aprobado'),
-        ('1','No Aprobado'),
+        ('0','Aceptado'),
+        ('1','Rechazado'),
 
     )
 
     cod_procesamiento=models.AutoField(primary_key=True)
     cocc_cantidad = models.IntegerField('Cantidad')
     cocc_pesoMPposproceso=models.FloatField('Peso')
+    cocc_merma=models.FloatField('Peso Merma',default=0)
     cocc_tiempoCoccion=models.TimeField(default=100)
     cocc_temperaturafinal=models.FloatField('temperatura final')
     cocc_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
