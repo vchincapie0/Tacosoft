@@ -10,6 +10,11 @@ def log_user_change(sender, instance, **kwargs):
 
     else:
         if instance.pk is None:
+
+            # Verifica si la instancia user esta guardada antes de crear UserAudit
+            if instance.pk is not None:  # Se asegura que la instancia User este guardada
+                UserAudit.objects.create(user=instance, action=action, details=details)
+                
             action = 'C'  # Creación de usuario
             details = f"Usuario {instance.username} creado."
             print(f"User {instance.username} creado.")
@@ -18,6 +23,4 @@ def log_user_change(sender, instance, **kwargs):
             details = f"Usuario {instance.username} actualizado."
             print(f"User {instance.username} updated.")
 
-    # Verifica si la instancia user esta guardada antes de crear UserAudit
-    if instance.pk is not None:  # Se asegura que la instancia User este guardada
-        UserAudit.objects.create(user=instance, action=action, details=details)
+    
