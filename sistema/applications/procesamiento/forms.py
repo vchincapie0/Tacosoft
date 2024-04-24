@@ -87,8 +87,8 @@ class addCoccion(forms.ModelForm):
             'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
             'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
             'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
-            'cocc_tiempoCoccion':forms.TimeInput(attrs={'tiempo de coccion'}),
-            'cocc_temperaturafinal':forms.FloatField(attrs={'Temperatura Final'}),
-            'pica_check':forms.Select(attrs={'class': 'form-select'}),
+            'cocc_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'cocc_tiempoCoccion':forms.TimeInput(attrs={'placeholder':'tiempo de coccion'}),
+            'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final'}),
+            'cocc_check':forms.Select(attrs={'class': 'form-select'}),
         }
