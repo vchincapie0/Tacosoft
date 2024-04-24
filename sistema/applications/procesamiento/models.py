@@ -53,6 +53,7 @@ class Coccion(models.Model):
 
     cod_procesamiento=models.AutoField(primary_key=True)
     cocc_cantidad = models.IntegerField('Cantidad')
+    cocc_pesoMPposproceso=models.FloatField('Peso')
     cocc_tiempoCoccion=models.TimeField(default=100)
     cocc_temperaturafinal=models.FloatField('temperatura final')
     cocc_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
