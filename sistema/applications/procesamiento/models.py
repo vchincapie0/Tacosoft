@@ -52,6 +52,7 @@ class Coccion(models.Model):
     )
 
     cod_procesamiento=models.AutoField(primary_key=True)
+    cocc_nombre=models.CharField('Nombre',max_length=50)
     cocc_cantidad = models.IntegerField('Cantidad')
     cocc_pesoMPposproceso=models.FloatField('Peso')
     cocc_merma=models.FloatField('Peso Merma',default=0)

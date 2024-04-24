@@ -2,7 +2,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import Picado
+from .models import Picado, Coccion
 
 class addPicado(forms.ModelForm):
 
@@ -55,4 +55,36 @@ class addPicado(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
-    
+
+import re
+from django import forms
+from django.core.exceptions import ValidationError
+from django.contrib.auth import authenticate
+from .models import Picado
+
+class addCoccion(forms.ModelForm):
+
+    """Form definition coccion."""
+
+    class Meta:
+        """Meta definition Coccionform."""
+
+        model = Coccion
+        fields = (
+            'cod_procesamiento',
+            'cocc_cantidad',
+            'pica_cantidad',
+            'pica_pesoMPposproceso',
+            'pica_merma',
+            'pica_check',
+            )
+        
+        widgets={
+            'cod_procesamiento':forms.NumberInput(attrs={'class':'form-control'}),
+            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
+            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
+            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
+            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'pica_check':forms.Select(attrs={'class': 'form-select'}),
+            
+        }
