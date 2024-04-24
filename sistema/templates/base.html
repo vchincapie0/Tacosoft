@@ -67,6 +67,27 @@
                                 <span>Reportes</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#modulos" aria-expanded="false" aria-controls="modulos">
+                        <i class="fa-solid fa-wrench"></i>
+                                <span>Herramientas Administrador</span>
+                        </a>
+                        <ul id="modulos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{% url 'mp_app:listaGenerica_mp' %}" class="sidebar-link">Materia Prima</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{% url 'insumos_app:list_insumos_generico' %}" class="sidebar-link">Implementos de Trabajo</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Producto Terminado</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{% url 'mp_app:desinfeccion_generico' %}" class="sidebar-link">Desinfectante</a>
+                            </li>
+                        </ul>
+                    </li>
                     {% endif %}
                     
                     <li class="sidebar-item">
