@@ -9,7 +9,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy,reverse
 
 #Importacion modelos y formularios
-from .models import User
+from .models import User, UserAudit
 from .forms import UserRegisterForm, UserUpdateForm 
 
 # Create your views here.
@@ -93,3 +93,15 @@ class LogOut(View):
             reverse('users_app:login')
         )
     
+class UserAuditListView(LoginRequiredMixin, ListView):
+    model= UserAudit
+    template_name='usuarios/useraudit.html'
+    paginate_by=5
+    context_object_name='auditoria'
+
+    def get_queryset(self):
+        palabra_clave= self.request.GET.get("kword",'')
+        lista = User.objects.filter(
+            action__icontains = palabra_clave
+        )
+        return lista
