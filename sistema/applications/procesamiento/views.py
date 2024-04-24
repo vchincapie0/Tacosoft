@@ -36,6 +36,6 @@ class PicadocreateView(LoginRequiredMixin,CreateView):
 class PicadoDeleteView(LoginRequiredMixin,DeleteView):
     '''Vista para borrar picados'''
     model = Picado
-    template_name = "procesamiento/delete_picado.html"
+    template_name = "procesamientos/delete_picado.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('procesamientos_app:picado')

@@ -29,6 +29,7 @@
                             <th scope="col">Peso Despues Proceso</th>
                             <th scope="col" class="text-center">Merma</th>
                             <th scope="col" class="text-center">Estado</th>
+                            <th scope="col" class="text-center">Eliminar</th>
 
                         </tr>
                     </thead>
@@ -49,8 +50,14 @@
                                 <p class="text-danger">{{p.get_pica_check_display}}</p> 
                             {% endif %}
                         </td>
+                        <td>
+
+                            <a class="btn btn-danger" onclick="delete_picado('{% url 'procesamientos_app:delete_picado' p.cod_procesamiento %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+
+                        </td>
                         </tr>
                         {%endfor%}
+
                     </tbody>
                 </table>
             </div>
@@ -97,6 +104,7 @@
     </div>
 </div> 
 <div class="modal fade" id="add_picado" role="dialog"></div>
+<div class="modal fade" id="delete_picado" role="dialog"></div>
 
 
 {% endblock content %}
@@ -108,6 +116,13 @@
         function add_picado(url){
             var $ = jQuery.noConflict();
             $('#add_picado').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+
+        function delete_picado(url){
+            var $ = jQuery.noConflict();
+            $('#delete_picado').load(url,function(){
                 $(this).modal('show');
             }); 
         }

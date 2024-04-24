@@ -51,7 +51,8 @@ class Coccion(models.Model):
 
     )
 
-    cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
+    cod_procesamiento=models.AutoField(primary_key=True)
+    cocc_cantidad = models.IntegerField('Cantidad')
     cocc_tiempoCoccion=models.TimeField(default=100)
     cocc_temperaturafinal=models.FloatField('temperatura final')
     cocc_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
@@ -68,7 +69,7 @@ class Picado(models.Model):
 
     )
 
-    cod_procesamiento=models.AutoField('id',primary_key=True)
+    cod_procesamiento=models.AutoField(primary_key=True)
     pica_nombre=models.CharField('Nombre',max_length=50, default="NULL")
     pica_cantidad = models.IntegerField('Cantidad',default=0)
     pica_pesoMPposproceso=models.FloatField('Peso',default=0)
