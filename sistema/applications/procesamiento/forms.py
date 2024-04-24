@@ -72,19 +72,23 @@ class addCoccion(forms.ModelForm):
         model = Coccion
         fields = (
             'cod_procesamiento',
+            'cocc_nombre',
             'cocc_cantidad',
-            'pica_cantidad',
-            'pica_pesoMPposproceso',
-            'pica_merma',
-            'pica_check',
+            'cocc_pesoMPposproceso',
+            'cocc_merma',
+            'cocc_tiempoCoccion',
+            'cocc_temperaturafinal',
+            'cocc_check',
             )
         
         widgets={
-            'cod_procesamiento':forms.NumberInput(attrs={'class':'form-control'}),
-            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
-            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
-            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
-            'pica_check':forms.Select(attrs={'class': 'form-select'}),
             
+            'cod_procesamiento':forms.NumberInput(attrs={'class':'form-control'}),
+            'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
+            'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
+            'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
+            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'cocc_tiempoCoccion':forms.TimeInput(attrs={'tiempo de coccion'}),
+            'cocc_temperaturafinal':forms.FloatField(attrs={'Temperatura Final'}),
+            'pica_check':forms.Select(attrs={'class': 'form-select'}),
         }
