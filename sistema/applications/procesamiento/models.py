@@ -61,7 +61,7 @@ class Coccion(models.Model):
 
     
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.cocc_tiempoCoccion}-{self.cocc_temperaturafinal}"
+        return f"{self.cod_procesamiento}-{self.cocc_cantidad}-{self.cocc_pesoMPposproceso}-{self.cocc_merma}-{self.cocc_tiempoCoccion}-{self.cocc_temperaturafinal}-{self.cocc_check}"
 
 class Picado(models.Model):
 
