@@ -17,6 +17,8 @@ urlpatterns = [
     path('vacio_add/',views.VacioProductoTerminadoCreateView.as_view(),name='vacio_add'),
     path('vacio_update/<pk>',views.VacioProductoTerminadoUpdateView.as_view(),name='vacio_update'),
     path('list_pt_generico/',views.ProductoTerminadoGenericoListView.as_view(),name='list_pt_generico'),
+    path('add_pt_generico/',views.ProductoTerminadoGenericoCreateView.as_view(),name='add_pt_generico'),
+
 
 
 

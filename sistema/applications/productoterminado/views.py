@@ -10,6 +10,7 @@ from .models import (
     EmpaqueProductoTerminado,
     Vacio,
     ProductoTerminadoGenerico,
+    ProductoTerminadoGenerico,
 )
 from .forms import (
     ProductoTerminadoForm,
@@ -19,6 +20,7 @@ from .forms import (
     CaracteristicasPTUpdateForm,
     EmpaqueUpdateForm,
     VacioUpdateForm,
+    ProductoTerminadoGenericoForm,
 )
 
 # Create your views here.
@@ -200,3 +202,13 @@ class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
         )
         
         return queryset   
+    
+class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
+    '''Clase donde se crea una nueva materia prima'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/add_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = ProductoTerminadoGenericoForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_pt_generico')

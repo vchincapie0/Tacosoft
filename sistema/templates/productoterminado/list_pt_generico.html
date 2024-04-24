@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="#" role="button">Agregar Producto Terminado</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_produ('{% url 'produ_app:add_pt_generico' %}')" role="button">Agregar Producto Terminado</a>
                 </div>
                 
                 <div class="col-6">
@@ -106,7 +106,7 @@
 <script>
     function add_produ(url){
         var $ = jQuery.noConflict();
-        $('#add_produ').load(url,function(){
+        $('#add_producto').load(url,function(){
             $(this).modal('show');
         }); 
     }
