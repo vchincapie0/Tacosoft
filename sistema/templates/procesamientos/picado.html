@@ -42,6 +42,12 @@
                             <td>{{p.pica_pesoMPposproceso}}</td>
                             <td>{{p.pica_merma}}</td>
                             <td>{{p.pica_check}}</td>
+
+                            {% if p.pica_check == '0' %}
+                                <td class="text-success">{{p.get_p.pica_check_display}}</td>
+                            {% elif p.pica_check == '1' %}
+                                <td class="text-danger">{{p.get_p.pica_check_display}}</td> 
+                            {% endif %}
                             
                         </tr>
                         {%endfor%}
