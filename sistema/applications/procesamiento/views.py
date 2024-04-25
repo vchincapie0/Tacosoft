@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView,CreateView,DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Procesamiento,Picado,Coccion
-from .forms import  addPicado
+from .forms import  addPicado,addCoccion
 
 # Create your views here.
 
@@ -53,5 +53,12 @@ class CoccioncreateView(LoginRequiredMixin,CreateView):
     model = Coccion
     template_name = "procesamientos/add_coccion.html"
     login_url=reverse_lazy('home_app:home')
-    form_class=addPicado
+    form_class=addCoccion
+    success_url= reverse_lazy('procesamientos_app:coccion')
+
+class CoccionDeleteView(LoginRequiredMixin,DeleteView):
+    '''Vista para borrar coccion'''
+    model = Coccion
+    template_name = "procesamientos/delete_coccion.html"
+    login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('procesamientos_app:coccion')
