@@ -204,7 +204,7 @@ class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
         return queryset   
     
 class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
-    '''Clase donde se crea una nueva materia prima'''
+    '''Clase donde se crea un nuevo Producto terminado'''
     model = ProductoTerminadoGenerico
     template_name = "productoterminado/add_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
@@ -214,9 +214,16 @@ class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
     success_url= reverse_lazy('produ_app:list_pt_generico')
 
 class ProductoTerminadoGenericoUpdateView(LoginRequiredMixin, UpdateView):
-    '''Vista para actualizar los datos de user'''
+    '''Vista para actualizar los datos  Producto terminado'''
     model = ProductoTerminadoGenerico
     template_name = "productoterminado/update_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     form_class=ProductoTerminadoGenericoForm
+    success_url= reverse_lazy('produ_app:list_pt_generico')
+
+class ProductoTerminadoGenericoDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Producto terminado'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/delete_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('produ_app:list_pt_generico')
