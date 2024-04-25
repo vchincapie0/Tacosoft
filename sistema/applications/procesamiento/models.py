@@ -32,7 +32,7 @@ class Equipos(models.Model):
 
     )
 
-    cod_procesamiento=models.ForeignKey(Procesamiento,on_delete=models.CASCADE)
+    id_equipo=models.AutoField(primary_key=True)
     equi_encargadoCocina=models.CharField('Nombre', max_length=50)
     equi_encargadoEntrega=models.CharField('Nombre', max_length=50)
     equi_calidad=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
@@ -41,7 +41,7 @@ class Equipos(models.Model):
 
     
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.equi_encargadoCocina}-{self.equi_encargadoEntrega}-{self.equi_nombre}"
+        return f"{self.id_equipo}-{self.equi_encargadoCocina}-{self.equi_encargadoEntrega}-{self.equi_nombre}"
 
 class Coccion(models.Model):
 

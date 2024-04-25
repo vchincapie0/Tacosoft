@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView,CreateView,DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import Procesamiento,Picado,Coccion
+from .models import Procesamiento,Picado,Coccion,Equipos
 from .forms import  addPicado,addCoccion
 
 # Create your views here.
@@ -60,3 +60,11 @@ class CoccionDeleteView(LoginRequiredMixin,DeleteView):
     template_name = "procesamientos/delete_coccion.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('procesamientos_app:coccion')
+
+class EquiposListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de equipos'''
+    model = Equipos
+    template_name = "Procesamientos/equipos.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'procesamientos'
