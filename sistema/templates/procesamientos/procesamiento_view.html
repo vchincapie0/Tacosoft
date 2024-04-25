@@ -9,7 +9,7 @@
  <!-- Modal -->
  <div class="d-flex justify-content-center align-items-center vh-100">
    <div class="row">
-      <div class="col-md-6 col-6">
+      <div class="col-md-4 col-4">
         <div class="card text-center bg-dark border-dark" style="width: 18rem;">
           <img src="{% static 'img/picado.jpg' %}" class="card-img-top" alt="...">
           <div class="card-body">
@@ -17,12 +17,22 @@
           </div>    
         </div>
       </div>
-      <div class="col-md-6 col">
+
+      <div class="col-md-4 col">
           <div class="card text-center bg-dark border-dark" style="width: 18rem;">
               <img src="{% static 'img/coccion.jpeg' %}" class="card-img-top" alt="...">
               <div class="card-body">
                   <a href="{% url 'procesamientos_app:coccion' %}" class="btn btn-warning">Coccion</a>
               </div> 
+        </div>
+      </div>
+
+      <div class="col-md-4 col-4">
+        <div class="card text-center bg-dark border-dark" style="width: 18rem;">
+          <img src="{% static 'img/equipos.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+              <a href="" class="btn btn-warning">Equipos</a>
+          </div>    
         </div>
       </div>
     </div>
