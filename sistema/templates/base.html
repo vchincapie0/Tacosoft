@@ -62,6 +62,27 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                            data-bs-target="#existencias" aria-expanded="false" aria-controls="existencias">
+                            <i class="fa-regular fa-square-check pe-2"></i>
+                              <span>Existencias</span>
+                        </a>
+                        <ul id="existencias" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{% url 'existencias_app:stock' %}" class="sidebar-link">Stock Materia Prima</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Stock Producto Terminado</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Stock Implementos de Trabajo</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             <i class="fa-solid fa-file-lines pe-2"></i>
@@ -106,25 +127,6 @@
                             </li>
                             <li class="sidebar-item">
                                 <a href="{% url 'insumos_app:list_insumos' %}" class="sidebar-link">Implementos de Trabajo</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                            data-bs-target="#existencias" aria-expanded="false" aria-controls="existencias">
-                            <i class="fa-regular fa-square-check pe-2"></i>
-                              <span>Existencias</span>
-                        </a>
-                        <ul id="existencias" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="{% url 'existencias_app:stock' %}" class="sidebar-link">Stock Materia Prima</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Stock Producto Terminado</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Stock Implementos de Trabajo</a>
                             </li>
                         </ul>
                     </li>
