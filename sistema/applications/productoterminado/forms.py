@@ -224,7 +224,7 @@ class VacioUpdateForm(forms.ModelForm):
             'cantidad_bolsas_liberadas',
           
         )   
-        widget={
+        widgets={
             'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
             'cantidad_bolsas_rechazadas': forms.NumberInput(attrs={'class':'form-control'}),
             'cantidad_bolsas_liberadas':forms.NumberInput(attrs={'class':'form-control'}),
