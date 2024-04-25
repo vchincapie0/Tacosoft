@@ -14,7 +14,7 @@ class ProductoTerminadoForm(forms.ModelForm):
             'idCoccion',
             'idPicado',
             'pt_cantidad',   
-            'pt_nombre',
+            'pt_nombre', 
             'pt_fechapreparacion',
             'pt_fechavencimiento',
             )
