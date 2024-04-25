@@ -9,7 +9,7 @@
             {% csrf_token %}
             {% if form.errors  %}
                 <div class="alert alert-info"> 
-                    {{form.errors.cod_procesamiento.0}}
+                    {{form.errors.id_coccion.0}}
                     {{form.errors.cocc_nombre.0}}
                     {{form.errors.cocc_cantidad.0}}
                     {{form.errors.cocc_pesoMPposproceso.0}}
@@ -23,8 +23,8 @@
             <div class="mx-4 my-2 row">
 
                 <div class="mb-3 col-12">
-                    <label for="id_pica_nombre" class="form-label">codigo de procesamiento: </label>
-                    {{form.cod_procesamiento}}   
+                    <label for="id_pcod_coccion" class="form-label">codigo coccion: </label>
+                    {{form.id_coccion}}   
                 </div>
                 
                 <div class="mb-3 col-12">

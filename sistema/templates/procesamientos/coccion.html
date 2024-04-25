@@ -23,7 +23,7 @@
                 <table class="table table-secondary">
                     <thead>
                         <tr>
-                            <th scope="col">Codigo Procesamiento</th>
+                            <th scope="col">Codigo Coccion</th>
                             <th scope="col">Producto</th>
                             <th scope="col">Pesaje MateriaPrima</th>
                             <th scope="col">Peso Despues Proceso</th>
@@ -39,7 +39,7 @@
                         <a onclick="add_coccion('{% url 'procesamientos_app:add_coccion'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
                         {%for p in procesamientos%}
                         <tr>
-                            <td>{{p.cod_procesamiento}}</td>
+                            <td>{{p.id_coccion}}</td>
                             <td>{{p.cocc_nombre}}</td>
                             <td>{{p.cocc_cantidad}}</td>
                             <td>{{p.cocc_pesoMPposproceso}}</td>

@@ -71,7 +71,7 @@ class addCoccion(forms.ModelForm):
 
         model = Coccion
         fields = (
-            'cod_procesamiento',
+            'id_coccion',
             'cocc_nombre',
             'cocc_cantidad',
             'cocc_pesoMPposproceso',
@@ -83,7 +83,7 @@ class addCoccion(forms.ModelForm):
         
         widgets={
             
-            'cod_procesamiento':forms.NumberInput(attrs={'class':'form-control'}),
+            'id_coccion':forms.NumberInput(attrs={'class':'form-control'}),
             'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
             'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
             'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
