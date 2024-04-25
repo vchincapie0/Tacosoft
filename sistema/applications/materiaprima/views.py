@@ -4,11 +4,6 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 
 #Importacion modelos y formularios
-<<<<<<< HEAD
-from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas
-from applications.pedidos.models import Pedidos
-from .forms import MateriaPrimaForm,CaracteristicasMPForm,CaracteristicasMPUpdateForm,DesinfeccionMPForm, DesinfeccionMPUpdateForm
-=======
 from .models import MateriaPrima,Desinfeccion,CaracteristicasOrganolepticas,MateriaPrimaGenerica,DesinfectanteGenerico
 from .forms import (
     MateriaPrimaForm,
@@ -20,7 +15,6 @@ from .forms import (
     MateriaPrimaGenericaUpdateForm,
     DesinfectanteGenericoForm,
 )
->>>>>>> 91fccb82931ca6c44a9260c047633ed21a201818
 
 
 # Create your views here.

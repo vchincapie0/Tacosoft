@@ -156,3 +156,9 @@ a.sidebar-link:hover {
     transform: rotate(45deg);
     transition: all .2s ease-out;
 }
+
+.bienvenida{
+    color: rgb(235, 232, 232);
+    font-weight: bolder;
+    font-size: 40px; 
+}
