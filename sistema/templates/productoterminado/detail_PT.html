@@ -32,7 +32,7 @@
                     {% for p in productoterminado.caracteristicasorganolepticaspt_set.all %}
                         {% if p.estado == '1' %}
                         <div class="row">
-                            <div class="col-6">Estado: <p style="color: red;">{{ p.get_estado_display }}</p>
+                            <div class="col-6">Estado: <p style="color: red;" >{{ p.get_estado_display }}</p>
                             <p>Caracerísticas NO Satisfactorias:</p>
                             <ul>
                             {% if not p.olor %}<li>Olor</li>{% endif %}
