@@ -8,13 +8,11 @@ from .forms import  addPicado,addCoccion
 
 # Create your views here.
 
-class ProcesamientosListView(LoginRequiredMixin, ListView):
+class ProcesamientosView(LoginRequiredMixin, TemplateView):
     '''Clase para mostrar los datos de Procesamiento'''
-    model = Procesamiento
-    template_name = "Procesamientos/list_procesamientos.html"
+    template_name = "Procesamientos/procesamiento_view.html"
     login_url=reverse_lazy('users_app:login')
-    paginate_by=10
-    context_object_name = 'procesamientos'
+
 
 class PicadoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de picado'''
