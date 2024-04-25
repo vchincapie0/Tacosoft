@@ -133,6 +133,13 @@ class EmpaqueProductoTerminadoForm(forms.ModelForm):
           
         )     
         
+        widgets={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_pesoKg': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_cantidadBolsas': forms.NumberInput(attrs={'class':'form-control'})
+            
+        }    
+
         def clean_Emp_pesoKgPT(self):
             pesoPT  = self.cleaned_data['emp_pesoKgPT']
             if pesoPT<= 0:
@@ -155,7 +162,14 @@ class EmpaqueUpdateForm(forms.ModelForm):
             'emp_pesoKg',
             'emp_cantidadBolsas',
           
-        )     
+        )    
+
+        widgets={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_pesoKg': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_cantidadBolsas': forms.NumberInput(attrs={'class':'form-control'})
+            
+        }    
         
         def clean_Emp_pesoKgPT(self):
             pesoPT  = self.cleaned_data['emp_pesoKgPT']
@@ -179,7 +193,13 @@ class VacioForm(forms.ModelForm):
             'cantidad_bolsas_rechazadas',
             'cantidad_bolsas_liberadas',
           
-        )     
+        )
+        widget={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_rechazadas': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_liberadas':forms.NumberInput(attrs={'class':'form-control'}),
+            
+        }     
         
         def clean_Cantidad_bolsas_rechazadas(self):
             cantidadre  = self.cleaned_data['Cantidad_bolsas_rechazadas']
@@ -203,7 +223,13 @@ class VacioUpdateForm(forms.ModelForm):
             'cantidad_bolsas_rechazadas',
             'cantidad_bolsas_liberadas',
           
-        )     
+        )   
+        widget={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_rechazadas': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_liberadas':forms.NumberInput(attrs={'class':'form-control'}),
+            
+        }  
         
         def clean_Cantidad_bolsas_rechazadas(self):
             cantidadre  = self.cleaned_data['Cantidad_bolsas_rechazadas']
