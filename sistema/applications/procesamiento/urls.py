@@ -10,5 +10,5 @@ urlpatterns = [
     path('delete_picado/<pk>',views.PicadoDeleteView.as_view(),name='delete_picado'),
     path('coccion/',views.CoccionListView.as_view(),name='coccion'),
     path('add_coccion/',views.CoccioncreateView.as_view(),name='add_coccion'),
-    path('delete_coccin/<pk>',views.CoccionDeleteView.as_view(),name='delete_coccin'),
+    path('delete_coccion/<pk>',views.CoccionDeleteView.as_view(),name='delete_coccion'),
 ]

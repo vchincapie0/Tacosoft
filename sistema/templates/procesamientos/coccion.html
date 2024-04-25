@@ -56,7 +56,7 @@
                         </td>
                         <td>
 
-                            <a class="btn btn-danger" onclick="delete_picado('#')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                            <a class="btn btn-danger" onclick="delete_coccion('#')" type="button"><i class="fa-solid fa-trash-can"></i></a>
 
                         </td>
                         </tr>
@@ -108,7 +108,7 @@
     </div>
 </div> 
 <div class="modal fade" id="add_coccion" role="dialog"></div>
-<!--<div class="modal fade" id="delete_picado" role="dialog"></div>-->
+<div class="modal fade" id="delete_coccion" role="dialog"></div>
 
 
 {% endblock content %}
@@ -120,6 +120,13 @@
         function add_coccion(url){
             var $ = jQuery.noConflict();
             $('#add_coccion').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+
+        function delete_coccion(url){
+            var $ = jQuery.noConflict();
+            $('#delete_coccion').load(url,function(){
                 $(this).modal('show');
             }); 
         }
