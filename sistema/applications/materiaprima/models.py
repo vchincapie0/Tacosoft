@@ -1,6 +1,6 @@
 from django.db import models
 from applications.users.models import User
-from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 # Create your models here.
 class MateriaPrimaGenerica(models.Model):
@@ -27,8 +27,8 @@ class MateriaPrima(models.Model):
     mp_lote = models.IntegerField('Lote', primary_key=True)
     mp_nombre = models.ForeignKey(MateriaPrimaGenerica, on_delete=models.CASCADE)
     mp_cantidad=models.IntegerField(default=100)
-    mp_fechallegada=models.DateField('Fecha Ingreso')
-    mp_fechavencimiento = models.DateField('Fecha Vencimiento')
+    mp_fechallegada=models.DateField('Fecha Ingreso',default=timezone.now)
+    mp_fechavencimiento = models.DateField('Fecha Vencimiento',default=timezone.now)
 
     def __str__(self):
         return str(self.mp_lote)+'-'+str(self.mp_nombre)
