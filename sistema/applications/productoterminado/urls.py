@@ -9,8 +9,16 @@ urlpatterns = [
     path('update_produ/<pk>',views.ProduUpdateView.as_view(),name='update_produ'),
     path('delete_produ/<pk>',views.ProduDeleteView.as_view(),name='delete_produ'),
     path('existenciaPT/<pk>' ,views.ExistenciaPTView.as_view(),name='exitenciaPT'),
-    path('PT_caracteristicas/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
-    path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='PT_detail'),
+    path('caracteristicas_PT/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
+    path('updatecaracteristicas_pt/<pk>',views.CaracteristicasProductoTerminadoUpdateView.as_view(),name='updatecaracteristicas_pt'),
+    path('detail_PT/<pk>',views.ProductoTerminadoDetailView.as_view(),name='detail_PT'),
+    path('empaque_add/',views.EmpaqueProductoTerminadoCreateView.as_view(),name='empaque_add'),
+    path('empaque_update/<pk>',views.EmpaqueProductoTerminadoUpdateView.as_view(),name='empaque_update'),
+    path('vacio_add/',views.VacioProductoTerminadoCreateView.as_view(),name='vacio_add'),
+    path('vacio_update/<pk>',views.VacioProductoTerminadoUpdateView.as_view(),name='vacio_update'),
+
+
+
 
 
 

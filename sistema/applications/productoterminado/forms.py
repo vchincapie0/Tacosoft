@@ -20,19 +20,21 @@ class ProductoTerminadoForm(forms.ModelForm):
             )
         
         widgets={
-            'pt_nombre':forms.TextInput(attrs={'placeholder': 'Nombre Producto'}),
+            'pt_lote':forms.NumberInput(attrs={'class':'form-control'}),
+            'pt_nombre':forms.Select(attrs={'class':'form-select'}),
+            'pt_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
             'pt_fechapreparacion':forms.SelectDateWidget(),
             'pt_fechavencimiento':forms.SelectDateWidget(),
         }
     def pt_cantidad(self):
-        cantidad = self.cleaned_data['PT_cantidad']
+        cantidad = self.cleaned_data['pt_cantidad']
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
 
 
     def clean_PT_fechavencimiento(self):
-        fecha_vencimiento = self.cleaned_data['PT_fechavencimiento']
+        fecha_vencimiento = self.cleaned_data['pt_fechavencimiento']
         fecha_actual = timezone.now().date()
 
         # Comprueba si la fecha de vencimiento es anterior a la fecha actual
@@ -86,6 +88,7 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
 
         widgets={
                 
+                'pt_lote':forms.TextInput(attrs={'readonly':'readonly'}),
                 'observaciones':forms.Textarea(),
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
@@ -142,6 +145,30 @@ class EmpaqueProductoTerminadoForm(forms.ModelForm):
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
             return cantidadbol
         
+class EmpaqueUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = EmpaqueProductoTerminado
+        fields=(
+            'pt_lote',
+            'emp_pesoKg',
+            'emp_cantidadBolsas',
+          
+        )     
+        
+        def clean_Emp_pesoKgPT(self):
+            pesoPT  = self.cleaned_data['emp_pesoKgPT']
+            if pesoPT<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return pesoPT
+        
+        def clean_Emp_cantidadBolsas(self):
+            cantidadbol  = self.cleaned_data['emp_cantidadBolsas']
+            if cantidadbol<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return cantidadbol      
+        
 class VacioForm(forms.ModelForm):
 
     class Meta:
@@ -165,4 +192,29 @@ class VacioForm(forms.ModelForm):
             if cantidadlib <= 0:
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
             return cantidadlib
+        
+class VacioUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Vacio
+        fields=(
+            'pt_lote',
+            'cantidad_bolsas_rechazadas',
+            'cantidad_bolsas_liberadas',
+          
+        )     
+        
+        def clean_Cantidad_bolsas_rechazadas(self):
+            cantidadre  = self.cleaned_data['Cantidad_bolsas_rechazadas']
+            if cantidadre<= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return cantidadre
+        
+        def clean_Cantidad_bolsas_liberadas(self):
+            cantidadlib  = self.cleaned_data['Cantidad_bolsas_liberadas']
+            if cantidadlib <= 0:
+                raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+            return cantidadlib        
+
         

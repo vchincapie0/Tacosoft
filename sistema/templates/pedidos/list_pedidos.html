@@ -51,7 +51,7 @@
                             <td>{{p.pedi_fecha|date:"d/m/y"}}</td>
                             
                             {% if p.pedi_estado == '0' %}
-                                <td class="table-success">{{p.get_pedi_estado_display}}</td>
+                                <td class="table-success ">{{p.get_pedi_estado_display}}</td>
                             {% elif p.pedi_estado == '1' %}
                                 <td class="table-warning">{{p.get_pedi_estado_display}}</td> 
                             {% else %}

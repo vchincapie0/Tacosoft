@@ -147,6 +147,20 @@ class DesinfectanteGenericoCreateView(LoginRequiredMixin, CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:desinfeccion_generico')
 
+class DesinfectanteGenericoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de materia prima generica'''
+    model = DesinfectanteGenerico
+    template_name = "materiaprima/update_desinfectante_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=DesinfectanteGenericoForm
+    success_url= reverse_lazy('mp_app:desinfeccion_generico')
+
+class DesinfectanteGenericoDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Implenentos de Trabajo'''
+    model = DesinfectanteGenerico
+    template_name = "materiaprima/delete_desinfectante_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('mp_app:desinfeccion_generico')
 
 class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Vists para la creacion de la desinfeccion de la materia prima'''
