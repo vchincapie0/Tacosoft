@@ -92,3 +92,28 @@ class addCoccion(forms.ModelForm):
             'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final'}),
             'cocc_check':forms.Select(attrs={'class': 'form-select'}),
         }
+
+    def clean_cocc_nombre(self):
+        nombre = self.cleaned_data['cocc_nombre']
+        if not re.match("^[a-zA-Z ]+$", nombre):
+            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
+        return nombre
+    
+
+    def clean_cocc_cantidad(self):
+        cantidad = self.cleaned_data['cocc_cantidad']
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+        return cantidad
+    
+    def clean_cocc_pesoMPposproceso(self):
+        cantidad = self.cleaned_data['cocc_pesoMPposproceso']
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+        return cantidad
+    
+    def clean_cocc_merma(self):
+        cantidad = self.cleaned_data['cocc_merma']
+        if cantidad <= 0:
+            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
+        return cantidad
