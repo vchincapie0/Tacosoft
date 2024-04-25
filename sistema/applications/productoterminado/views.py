@@ -212,3 +212,11 @@ class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
     form_class = ProductoTerminadoGenericoForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('produ_app:list_pt_generico')
+
+class ProductoTerminadoGenericoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de user'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/update_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=ProductoTerminadoGenericoForm
+    success_url= reverse_lazy('produ_app:list_pt_generico')
