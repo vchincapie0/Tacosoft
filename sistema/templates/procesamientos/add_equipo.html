@@ -9,20 +9,17 @@
             {% csrf_token %}
             {% if form.errors  %}
                 <div class="alert alert-info"> 
+                    {{fom.errors}}
                     {{form.errors.id_equipo.0}}
                     {{form.errors.equi_encargadoCocina.0}}
                     {{form.errors.equi_encargadoEntrega.0}}
-                    {{form.errors.equi_calidad.0}}
                     {{form.errors.equi_nombre.0}}
+                    {{form.errors.equi_calidad.0}}
+                    
                 </div>
             {% endif %}
 
             <div class="mx-4 my-2 row">
-
-                <div class="mb-3 col-12">
-                    <label for="id_id_equipo" class="form-label">Codigo Equipo: </label>
-                    {{form.id_equipo}}   
-                </div>
                 
                 <div class="mb-3 col-12">
                     <label for="id_equi_encargadoCocina" class="form-label">Nombre Encargado en Cocina: </label>
@@ -37,7 +34,6 @@
 
                 <div class="mb-3 col-12">
                     <label for="id_equi_calidad" class="form-label">Calidad del Equipo:</label>
-                    <br>
                     {{form.equi_calidad}}  
                 </div>
 
@@ -45,6 +41,12 @@
                     <label for="id_equi_nombre" class="form-label">Nombre del Equipo:</label>
                     <br>
                     {{form.equi_nombre}}  
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_equi_calidad" class="form-label">Check:</label>
+                    <br>
+                    {{form.equi_check}}  
                 </div>
 
                 <div class="d-flex justify-content-center">

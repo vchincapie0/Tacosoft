@@ -28,6 +28,7 @@
                             <th scope="col">Encargado Entrega</th>
                             <th scope="col">Calida</th>
                             <th scope="col" class="text-center">Nombre Equipos</th>
+                            <th scope="col">Check</th>
                             <th scope="col" class="text-center">Eliminar</th>
 
                         </tr>
@@ -39,14 +40,21 @@
                             <td>{{p.id_equipo}}</td>
                             <td>{{p.equi_encargadoCocina}}</td>
                             <td>{{p.equi_encargadoEntrega}}</td>
-                            {% if p.equi_calidad == '0' %}
+                            <td>
+                                {% if p.equi_calidad == '0' %}
                                 <p class="text-success">{{p.get_equi_calidad_display}}</p>
-                            {% elif p.equi_calidad == '1' %}
-                                <p class="text-danger">{{p.get_equi_calidad_display}}</p> 
-                            {% endif %}
+                                {% elif p.equi_calidad == '1' %}
+                                    <p class="text-danger">{{p.get_equi_calidad_display}}</p> 
+                                {% endif %}
+                            </td>
                             <td>{{p.equi_nombre}}</td>
                             <td>
-
+                                {% if p.equi_check == '0' %}
+                                <p class="text-success">{{p.get_equi_check_display}}</p>
+                                {% elif p.equi_check == '1' %}
+                                    <p class="text-danger">{{p.get_equi_check_display}}</p> 
+                                {% endif %}
+                            </td>
                             
                         </td>
                         <td>
@@ -102,7 +110,7 @@
         </div>
     </div>
 </div> 
-<div class="modal fade" id="add_picado" role="dialog"></div>
+<div class="modal fade" id="add_equipos" role="dialog"></div>
 <!--<div class="modal fade" id="delete_picado" role="dialog"></div>-->
 
 

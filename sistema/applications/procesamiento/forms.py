@@ -127,7 +127,6 @@ class addEquipos(forms.ModelForm):
 
         model = Equipos
         fields = (
-            'id_equipo',
             'equi_encargadoCocina',
             'equi_encargadoEntrega',
             'equi_calidad',
@@ -136,7 +135,6 @@ class addEquipos(forms.ModelForm):
             )
         
         widgets={
-            'id_equipo':forms.NumberInput(attrs={'class':'form-control'}),
             'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario'}),
             'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega '}),
             'equi_calidad':forms.Select(attrs={'class': 'form-select'}),
