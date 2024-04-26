@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="updateCaracteristicasForm" method="POST" action="{% url 'mp_app:updateCaracteristicas_mp' object.pk %}">
+        <form id="updateCaracteristicasForm" method="POST" action="{% url 'mp_app:updateCaracteristicas_mp' object.pk %}" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
           {%csrf_token%}
               <div class="mx-4 my-2 row">
                   
