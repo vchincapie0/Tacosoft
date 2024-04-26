@@ -2,10 +2,10 @@
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
         <h5 class="modal-title">Editar Empaque al Vacio</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{% url 'produ_app:vacio_update' object.id %}" id="VacioUpdateForm">
+        <form method="post" action="{% url 'produ_app:vacio_update' object.id %}" id="VacioUpdateForm"class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
           {%csrf_token%}
           {%csrf_token%}
 
@@ -29,7 +29,8 @@
 
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                  <button type="submit" class="m-1 btn btn-primary">Guardar</button>
+                  <button type="submit" class="m-1 btn btn-success">Guardar</button>
+                  &nbsp;
                   <a type="button" class="m-1 btn btn-danger" href="{% url 'produ_app:list_produ' %}">Cancelar</a>
                 </div>
             </div>
