@@ -2,6 +2,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
+from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
@@ -40,17 +41,28 @@ class UserRegisterView(LoginRequiredMixin,FormView):
     success_url=reverse_lazy('users_app:list_user')
 
     def form_valid(self, form):
-        '''Funcion para guardar los datos de user'''
+        '''Función para guardar los datos del usuario'''
+        # Obtener los datos del formulario
+        username = form.cleaned_data['username']
+        name = form.cleaned_data['name']
+        last_name = form.cleaned_data['last_name']
+        password = form.cleaned_data['password']
+        is_admin = form.cleaned_data['is_admin']
+        is_employee = form.cleaned_data['is_employee']
+
+        # Crear el usuario en la base de datos
         User.objects.create_user(
-            form.cleaned_data['name'],
-            form.cleaned_data['last_name'],
-            form.cleaned_data['username'],
-            form.cleaned_data['password'],
-            is_admin=form.cleaned_data['is_admin'],
-            is_employee=form.cleaned_data['is_employee'],
-
-
+            username=username,
+            name=name,
+            last_name=last_name,
+            password=password,
+            is_admin=is_admin,
+            is_employee=is_employee,
         )
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El usuario {username} se ha agregado correctamente!')
+
         return super(UserRegisterView, self).form_valid(form)
     
 class UserUpdateView(LoginRequiredMixin, UpdateView):
@@ -76,9 +88,13 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         if new_password:
             # Encriptar la nueva contraseña antes de guardarla
             user.password = make_password(new_password)
+            username = user.username
 
         # Guardar los cambios en la base de datos
         user.save()
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡Los cambios de {username} se han guardado correctamente!')
 
         return super().form_valid(form)
 
@@ -88,6 +104,19 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "usuarios/delete_user.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('users_app:list_user')
+
+    def delete(self, request, *args, **kwargs):
+        # Obtener el usuario a eliminar
+        user = self.get_object()
+        username = user.username
+
+        # Realizar la eliminación (borrado lógico)
+        user.delete()
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El usuario {username} se ha eliminado correctamente!')
+
+        return redirect(self.success_url)
 
 class LogIn(LoginView):
     '''Vista para login'''
