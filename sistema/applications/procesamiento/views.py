@@ -68,3 +68,11 @@ class EquiposListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'procesamientos'
+
+class EquiposcreateView(LoginRequiredMixin,CreateView):
+    '''Vista para crear  de equipos'''
+    model = Equipos
+    template_name = "procesamientos/add_equipo.html"
+    login_url=reverse_lazy('home_app:home')
+    form_class=addCoccion
+    success_url= reverse_lazy('procesamientos_app:equipos')
