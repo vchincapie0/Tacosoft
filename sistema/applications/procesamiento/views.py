@@ -76,3 +76,10 @@ class EquiposcreateView(LoginRequiredMixin,CreateView):
     login_url=reverse_lazy('home_app:home')
     form_class=addEquipos
     success_url= reverse_lazy('procesamientos_app:equipos')
+
+class EquiposDeleteView(LoginRequiredMixin,DeleteView):
+    '''Vista para borrar equipos'''
+    model = Equipos
+    template_name = "procesamientos/delete_equipos.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('procesamientos_app:equipos')
