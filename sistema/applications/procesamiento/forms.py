@@ -2,7 +2,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import Picado, Coccion
+from .models import Picado, Coccion, Equipos
 
 class addPicado(forms.ModelForm):
 
@@ -117,3 +117,31 @@ class addCoccion(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
+
+class addEquipos(forms.ModelForm):
+
+    """Form definition Equipos."""
+
+    class Meta:
+        """Meta definition Equiposform."""
+
+        model = Equipos
+        fields = (
+            'id_equipo',
+            'equi_encargadoCocina',
+            'equi_encargadoEntrega',
+            'equi_calidad',
+            'equi_nombre',
+            'equi_check',
+            )
+        
+        widgets={
+            'id_equipo':forms.NumberInput(attrs={'class':'form-control'}),
+            'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario'}),
+            'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega '}),
+            'equi_calidad':forms.Select(attrs={'class': 'form-select'}),
+            'equi_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Equipo'}),
+            'equi_check':forms.Select(attrs={'class': 'form-select'}),
+            
+        }
+        
