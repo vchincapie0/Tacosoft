@@ -13,4 +13,5 @@ urlpatterns = [
     path('delete_coccion/<pk>',views.CoccionDeleteView.as_view(),name='delete_coccion'),
     path('equipos/',views.EquiposListView.as_view(),name='equipos'),
     path('add_equipos/',views.EquiposcreateView.as_view(),name='add_equipos'),
+    path('delete_equipo/<pk>',views.EquiposDeleteView.as_view(),name='delete_equipo'),
 ]
