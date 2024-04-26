@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="add_picado('#')" role="button">Agregar Equipos</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_equipos('{% url 'procesamientos_app:add_equipos' %}')" role="button">Agregar Equipos</a>
                 </div>
             </div>
             
@@ -32,22 +32,22 @@
 
                         </tr>
                     </thead>
-                    <!--<tbody>
-                        <a onclick="add_picado('{% url 'procesamientos_app:add_picado'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
+                    <tbody>
+                        <a onclick="add_equipos('{% url 'procesamientos_app:add_equipos'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
                         {%for p in procesamientos%}
                         <tr>
-                            <td>{{p.cod_procesamiento}}</td>
-                            <td>{{p.pica_nombre}}</td>
-                            <td>{{p.pica_cantidad}}</td>
-                            <td>{{p.pica_pesoMPposproceso}}</td>
-                            <td>{{p.pica_merma}}</td>
+                            <td>{{p.id_equipo}}</td>
+                            <td>{{p.equi_encargadoCocina}}</td>
+                            <td>{{p.equi_encargadoEntrega}}</td>
+                            {% if p.equi_calidad == '0' %}
+                                <p class="text-success">{{p.get_equi_calidad_display}}</p>
+                            {% elif p.equi_calidad == '1' %}
+                                <p class="text-danger">{{p.get_equi_calidad_display}}</p> 
+                            {% endif %}
+                            <td>{{p.equi_nombre}}</td>
                             <td>
 
-                            {% if p.pica_check == '0' %}
-                                <p class="text-success">{{p.get_pica_check_display}}</p>
-                            {% elif p.pica_check == '1' %}
-                                <p class="text-danger">{{p.get_pica_check_display}}</p> 
-                            {% endif %}
+                            
                         </td>
                         <td>
 
@@ -102,26 +102,19 @@
         </div>
     </div>
 </div> 
-<!--<div class="modal fade" id="add_picado" role="dialog"></div>
-<div class="modal fade" id="delete_picado" role="dialog"></div>
+<div class="modal fade" id="add_picado" role="dialog"></div>
+<!--<div class="modal fade" id="delete_picado" role="dialog"></div>-->
 
 
 {% endblock content %}
 
-<!--{% block extrajs %}
+{% block extrajs %}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script>
-        function add_picado(url){
+        function add_equipos(url){
             var $ = jQuery.noConflict();
-            $('#add_picado').load(url,function(){
-                $(this).modal('show');
-            }); 
-        }
-
-        function delete_picado(url){
-            var $ = jQuery.noConflict();
-            $('#delete_picado').load(url,function(){
+            $('#add_equipos').load(url,function(){
                 $(this).modal('show');
             }); 
         }

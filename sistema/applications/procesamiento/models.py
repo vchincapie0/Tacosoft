@@ -33,10 +33,10 @@ class Equipos(models.Model):
     )
 
     id_equipo=models.AutoField(primary_key=True)
-    equi_encargadoCocina=models.CharField('Nombre', max_length=50)
-    equi_encargadoEntrega=models.CharField('Nombre', max_length=50)
-    equi_calidad=models.CharField('estado',max_length=1, choices=CHECK_CHOICES)
-    equi_nombre=models.CharField('Nombre', max_length=50)
+    equi_encargadoCocina=models.CharField('Nombre', max_length=50,default="NULL")
+    equi_encargadoEntrega=models.CharField('Nombre', max_length=50,default="NULL")
+    equi_calidad=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
+    equi_nombre=models.CharField('Nombre', max_length=50,default="NULL")
     equi_check=models.CharField('estado',max_length=1, choices=CHECK_CHOICES, default="0")
 
     
