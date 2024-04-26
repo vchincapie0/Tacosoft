@@ -80,6 +80,6 @@ class EquiposcreateView(LoginRequiredMixin,CreateView):
 class EquiposDeleteView(LoginRequiredMixin,DeleteView):
     '''Vista para borrar equipos'''
     model = Equipos
-    template_name = "procesamientos/delete_equipos.html"
+    template_name = "procesamientos/delete_equipo.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('procesamientos_app:equipos')
