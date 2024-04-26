@@ -12,4 +12,5 @@ urlpatterns = [
     path('add_coccion/',views.CoccioncreateView.as_view(),name='add_coccion'),
     path('delete_coccion/<pk>',views.CoccionDeleteView.as_view(),name='delete_coccion'),
     path('equipos/',views.EquiposListView.as_view(),name='equipos'),
+    path('add_equipos/',views.EquiposcreateView.as_view(),name='add_equipos'),
 ]
