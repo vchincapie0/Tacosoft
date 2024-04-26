@@ -59,7 +59,7 @@
                         </td>
                         <td>
 
-                            <a class="btn btn-danger" onclick="delete_picado('#')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                            <a class="btn btn-danger" onclick="delete_equipo('{% url 'procesamientos_app:delete_equipo' p.id_equipo %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
 
                         </td>
                         </tr>
@@ -111,7 +111,7 @@
     </div>
 </div> 
 <div class="modal fade" id="add_equipos" role="dialog"></div>
-<!--<div class="modal fade" id="delete_picado" role="dialog"></div>-->
+<div class="modal fade" id="delete_equipo" role="dialog"></div>
 
 
 {% endblock content %}
@@ -123,6 +123,13 @@
         function add_equipos(url){
             var $ = jQuery.noConflict();
             $('#add_equipos').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+
+        function delete_equipo(url){
+            var $ = jQuery.noConflict();
+            $('#delete_equipo').load(url,function(){
                 $(this).modal('show');
             }); 
         }
