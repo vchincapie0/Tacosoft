@@ -1,5 +1,7 @@
 #Importación de Librerias
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
@@ -58,6 +60,27 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     login_url=reverse_lazy('users_app:login')
     form_class=UserUpdateForm
     success_url= reverse_lazy('users_app:list_user')
+
+    def get_object(self, queryset=None):
+        # Obtener el usuario basado en el parámetro pk de la URL
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(User, pk=pk)
+
+    def form_valid(self, form):
+        # Obtener el usuario actual a actualizar
+        user = form.save(commit=False)
+
+        # Obtener la nueva contraseña del formulario
+        new_password = form.cleaned_data.get('password')
+
+        if new_password:
+            # Encriptar la nueva contraseña antes de guardarla
+            user.password = make_password(new_password)
+
+        # Guardar los cambios en la base de datos
+        user.save()
+
+        return super().form_valid(form)
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar user'''
