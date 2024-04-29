@@ -33,28 +33,28 @@
                             <th scope="col">Hora</th>
                             <th scope="col">Acción</th>
                             <th scope="col">Detalles</th>
-                            <th scope="col">Usuario Afectado</th>
+                            <th scope="col">Pedido Afectado</th>
                         </tr>
                     </thead>
                     <tbody>
                         
-                        {% for a in auditoria %}
+                        {% for p in pedidos %}
                             <tr>
-                                <td>{{a.changed_by}}</td>
-                                <td>{{a.changed_at|date:"d/m/y"}}</td>
-                                <td>{{a.changed_at|time:"H:i" }}</td>
+                                <td>{{p.changed_by}}</td>
+                                <td>{{p.changed_at|date:"d/m/y"}}</td>
+                                <td>{{p.changed_at|time:"H:i" }}</td>
                                 <td>
-                                    {% if a.action == "C"  %}
-                                        <p class="text-success">{{a.get_action_display}}</p>
-                                    {% elif a.action == "U" %}
-                                        <p class="text-warning">{{a.get_action_display}}</p>
+                                    {% if p.action == "C"  %}
+                                        <p class="text-success">{{p.get_action_display}}</p>
+                                    {% elif p.action == "U" %}
+                                        <p class="text-warning">{{p.get_action_display}}</p>
                                     {% else %}
-                                        <p class="text-danger">{{a.get_action_display}}</p>
+                                        <p class="text-danger">{{p.get_action_display}}</p>
                                     {% endif %}
                                 </td>    
                                 
-                                <td>{{a.details}}</td>
-                                <td>{{a.user}}</td>
+                                <td>{{p.details}}</td>
+                                <td>{{p.pedido}}</td>
                             </tr>
                         {% endfor %}
                             
