@@ -9,7 +9,7 @@ from django.views.generic import (
 from django.urls import reverse_lazy
 
 #Importacion de modelos y formularios
-from .models import Pedidos
+from .models import Pedidos, PedidosAudit
 from applications.materiaprima.models import MateriaPrima
 from applications.insumos.models import ImplementosTrabajo
 from applications.proveedores.models import Proveedores
@@ -111,3 +111,11 @@ class PedidosDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "pedidos/delete_pedidos.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('pedidos_app:list_pedidos')
+
+class PedidosAuditListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de la Auditoria de Pedidos'''
+    model = PedidosAudit
+    template_name = "pedidos/pedidosaudit.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'pedidos'
