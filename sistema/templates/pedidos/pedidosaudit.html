@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
- Logs de Usuarios 
+ Logs de Pedidos
 {% endblock title %}
 
 
@@ -14,7 +14,7 @@
                 <div class="col-6">
                     <form class="d-flex" role="search">
                         {% csrf_token %}
-                        <input class="form-control me-2" type="search" placeholder="Buscar Usuario" aria-label="Search" name="kword" id="kword">
+                        <input class="form-control me-2" type="search" placeholder="Buscar Pedidos" aria-label="Search" name="kword" id="kword">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -22,7 +22,7 @@
             
         </div>
         <div class="card-body">
-            <h4 class="card-title">Logs de Usuarios</h4>
+            <h4 class="card-title">Logs de Pedidos</h4>
             
             <div class="table-responsive">
                 <table class="table table-secondary">

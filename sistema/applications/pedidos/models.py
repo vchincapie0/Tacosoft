@@ -44,6 +44,7 @@ class PedidosAudit(models.Model):
     ]
 
     changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    pedido = models.ForeignKey(Pedidos,on_delete=models.CASCADE, related_name='audit_logs', default='None')
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     details = models.TextField(blank=True, null=True)
     changed_at = models.DateTimeField(auto_now_add=True)
