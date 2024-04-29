@@ -25,7 +25,7 @@ class Pedidos(models.Model):
     pedi_proveedor=models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     pedi_materiaprima=models.ManyToManyField(MateriaPrima, blank=True)
     pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
-    is_active = models.BooleanField(default=True)  # Campo para el borrado lógico
+    deleted = models.BooleanField(default=False)  # Campo para el borrado lógico
 
     def __str__(self):
         estado = dict(self.ESTADO_CHOICES)[self.pedi_estado] if self.pedi_estado else 'Estado Desconocido'
@@ -33,8 +33,22 @@ class Pedidos(models.Model):
 
     def delete(self, using=None, keep_parents=False):
         '''Funcion para borrado lógico'''
-        self.is_active = False  # Marcar como inactivo en lugar de eliminar
+        self.deleted = True # Marcar como inactivo en lugar de eliminar
         self.save(using=using)
 
+class PedidosAudit(models.Model):
+    ACTION_CHOICES = [
+        ('C', 'Creado'),
+        ('U', 'Actualizado'),
+        ('D', 'Borrado')
+    ]
+
+    changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    action = models.CharField(max_length=1, choices=ACTION_CHOICES)
+    details = models.TextField(blank=True, null=True)
+    changed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.get_action_display()} - {self.changed_by} ({self.changed_at})'
 
 
