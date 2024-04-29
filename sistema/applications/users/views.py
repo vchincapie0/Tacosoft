@@ -1,14 +1,12 @@
 #Importación de Librerias
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.hashers import make_password
 from django.contrib import messages
-from time import sleep
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import  redirect
 from django.views.generic import View,ListView,UpdateView, FormView, DeleteView
+from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy,reverse
 
