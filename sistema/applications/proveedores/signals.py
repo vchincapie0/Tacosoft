@@ -27,4 +27,4 @@ def log_pedidos_change(sender, instance, created, **kwargs):
         details = f"La información de {instance.prov_nombre} ha sido actualizado."
 
     # Crear el registro de auditoría con el usuario que realizó la acción
-    ProveedoresAudit.objects.create( changed_by=changed_by, proveedor=instance.nit, action=action, details=details)
+    ProveedoresAudit.objects.create( changed_by=changed_by, proveedor=instance, action=action, details=details)
