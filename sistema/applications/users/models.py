@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
 # Create your models here.
 
-class User(AbstractUser, PermissionsMixin):
+class User(AbstractUser):
     '''Clase para crear usuarios en bd'''
 
     username = models.CharField(max_length=10, unique=True)

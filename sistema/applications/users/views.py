@@ -133,7 +133,7 @@ class LogOut(View):
 class UserAuditListView(LoginRequiredMixin, ListView):
     model= UserAudit
     template_name='usuarios/useraudit.html'
-    paginate_by=5
+    paginate_by=10
     context_object_name='auditoria'
 
     # def get_queryset(self):
