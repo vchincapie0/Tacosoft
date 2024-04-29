@@ -38,7 +38,7 @@ class PedidosListView(LoginRequiredMixin, ListView):
         palabra_clave= self.request.GET.get("kword",'')
         lista = Pedidos.objects.filter(
             ref_pedido__icontains = palabra_clave,
-            is_active=True  # Solo mostrará pedidos activos
+            deleted=False  # Solo mostrará pedidos activos
         )
         return lista
 
