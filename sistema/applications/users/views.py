@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+from time import sleep
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
@@ -79,21 +80,18 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return get_object_or_404(User, pk=pk)
 
     def form_valid(self, form):
-        # Obtener el usuario actual a actualizar
-        user = form.save(commit=False)
-
-        # Obtener la nueva contraseña del formulario
+        # # Obtener el usuario actualizado desde el formulario
+        user = form.instance
+        username = user.username
         new_password = form.cleaned_data.get('password')
 
         if new_password:
-            # Encriptar la nueva contraseña antes de guardarla
-            user.password = make_password(new_password)
-            username = user.username
+            #Si se proporciona una nueva contraseña, encriptarla y guardarla
+            user.set_password(new_password)
 
-        # Guardar los cambios en la base de datos
-        user.save()
+            # Guardar el usuario actualizado
+            user.save()
 
-        # Agregar un mensaje de éxito con el nombre de usuario
         messages.success(self.request, f'¡Los cambios de {username} se han guardado correctamente!')
 
         return super().form_valid(form)
@@ -104,19 +102,6 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "usuarios/delete_user.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('users_app:list_user')
-
-    def delete(self, request, *args, **kwargs):
-        # Obtener el usuario a eliminar
-        user = self.get_object()
-        username = user.username
-
-        # Realizar la eliminación (borrado lógico)
-        user.delete()
-
-        # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡El usuario {username} se ha eliminado correctamente!')
-
-        return redirect(self.success_url)
 
 class LogIn(LoginView):
     '''Vista para login'''

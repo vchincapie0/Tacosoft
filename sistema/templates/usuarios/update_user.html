@@ -97,5 +97,23 @@
                 });
             });
         });
+
+        $(document).ready(function () {
+            // Captura el evento de cambio en el checkbox de Administrador
+            $('#id_is_admin').change(function () {
+                if ($(this).is(':checked')) {
+                    // Si se marca el checkbox de Administrador, desmarca el checkbox de Operario
+                    $('#id_is_employee').prop('checked', false);
+                }
+            });
+
+            // Captura el evento de cambio en el checkbox de Operario
+            $('#id_is_employee').change(function () {
+                if ($(this).is(':checked')) {
+                    // Si se marca el checkbox de Operario, desmarca el checkbox de Administrador
+                    $('#id_is_admin').prop('checked', false);
+                }
+            });
+        });
 </script>
     
