@@ -14,7 +14,7 @@ class ProductoTerminadoForm(forms.ModelForm):
             'idCoccion',
             'idPicado',
             'pt_cantidad',   
-            'pt_nombre',
+            'pt_nombre', 
             'pt_fechapreparacion',
             'pt_fechavencimiento',
             )
@@ -88,8 +88,8 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
 
         widgets={
                 
-                'pt_lote':forms.TextInput(attrs={'readonly':'readonly'}),
-                'observaciones':forms.Textarea(),
+                'pt_lote':forms.TextInput(attrs={'class':'form-control-plaintext text-light'}),
+                'observaciones':forms.Textarea(attrs={'class':'form-control' }),
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
@@ -133,6 +133,13 @@ class EmpaqueProductoTerminadoForm(forms.ModelForm):
           
         )     
         
+        widgets={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_pesoKg': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_cantidadBolsas': forms.NumberInput(attrs={'class':'form-control'})
+            
+        }    
+
         def clean_Emp_pesoKgPT(self):
             pesoPT  = self.cleaned_data['emp_pesoKgPT']
             if pesoPT<= 0:
@@ -155,7 +162,14 @@ class EmpaqueUpdateForm(forms.ModelForm):
             'emp_pesoKg',
             'emp_cantidadBolsas',
           
-        )     
+        )    
+
+        widgets={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_pesoKg': forms.NumberInput(attrs={'class':'form-control'}),
+            'emp_cantidadBolsas': forms.NumberInput(attrs={'class':'form-control'})
+            
+        }    
         
         def clean_Emp_pesoKgPT(self):
             pesoPT  = self.cleaned_data['emp_pesoKgPT']
@@ -179,7 +193,13 @@ class VacioForm(forms.ModelForm):
             'cantidad_bolsas_rechazadas',
             'cantidad_bolsas_liberadas',
           
-        )     
+        )
+        widget={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_rechazadas': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_liberadas':forms.NumberInput(attrs={'class':'form-control'}),
+            
+        }     
         
         def clean_Cantidad_bolsas_rechazadas(self):
             cantidadre  = self.cleaned_data['Cantidad_bolsas_rechazadas']
@@ -203,7 +223,13 @@ class VacioUpdateForm(forms.ModelForm):
             'cantidad_bolsas_rechazadas',
             'cantidad_bolsas_liberadas',
           
-        )     
+        )   
+        widgets={
+            'pt_lote': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_rechazadas': forms.NumberInput(attrs={'class':'form-control'}),
+            'cantidad_bolsas_liberadas':forms.NumberInput(attrs={'class':'form-control'}),
+            
+        }  
         
         def clean_Cantidad_bolsas_rechazadas(self):
             cantidadre  = self.cleaned_data['Cantidad_bolsas_rechazadas']
