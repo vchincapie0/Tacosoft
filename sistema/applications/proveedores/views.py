@@ -19,7 +19,7 @@ class ProveedoresListView(LoginRequiredMixin, ListView):
         palabra_clave= self.request.GET.get("kword",'')
         lista = Proveedores.objects.filter(
             prov_nombre__icontains = palabra_clave,
-            is_active=True  # Solo proveedores activos
+            deleted=False  # Solo proveedores activos
         )
         return lista
     
