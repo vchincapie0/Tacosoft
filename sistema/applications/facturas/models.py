@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from applications.proveedores.models import Proveedores
 from applications.pedidos.models import Pedidos
+from applications.users.models import User
+
 
 # Create your models here.
 class IVA (models.Model):
@@ -25,12 +27,29 @@ class Facturas(models.Model):
     fac_iva=models.ForeignKey(IVA, on_delete=models.CASCADE )
     fac_total=models.FloatField('Total', default=0.0)
     img_factura=models.ImageField(upload_to='facturas',blank=True,null=True)
-    is_active = models.BooleanField(default=True)  # Campo para el borrado lógico
+    deleted = models.BooleanField(default=False)  # Campo para el borrado lógico
 
     def __str__(self):
         return f"{self.num_factura}-{self.fac_proveedor}-{self.fac_numeroPedido}-{self.fac_total}"
 
     def delete(self, using=None, keep_parents=False):
         '''Funcion para borrado lógico'''
-        self.is_active = False  # Marcar como inactivo en lugar de eliminar
+        self.is_active = True  # Marcar como inactivo en lugar de eliminar
         self.save(using=using)
+
+class FacturasAudit(models.Model):
+    ACTION_CHOICES = [
+        ('C', 'Creado'),
+        ('U', 'Actualizado'),
+        ('D', 'Borrado')
+    ]
+
+    changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    pedido = models.ForeignKey(Pedidos,on_delete=models.CASCADE, related_name='pedido_logs', default='None')
+    proveedor = models.ForeignKey(Pedidos,on_delete=models.CASCADE, related_name='prov_logs', default='None')
+    action = models.CharField(max_length=1, choices=ACTION_CHOICES)
+    details = models.TextField(blank=True, null=True)
+    changed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.get_action_display()} - {self.changed_by} ({self.changed_at})'
