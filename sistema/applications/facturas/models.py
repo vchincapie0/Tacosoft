@@ -34,7 +34,7 @@ class Facturas(models.Model):
 
     def delete(self, using=None, keep_parents=False):
         '''Funcion para borrado lógico'''
-        self.is_active = True  # Marcar como inactivo en lugar de eliminar
+        self.deleted = True  # Marcar como inactivo en lugar de eliminar
         self.save(using=using)
 
 class FacturasAudit(models.Model):
