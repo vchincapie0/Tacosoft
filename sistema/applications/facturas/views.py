@@ -54,7 +54,7 @@ class FacturasDeleteView(LoginRequiredMixin, DeleteView):
 class FacturasAuditListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de logs de Facturas'''
     model = Facturas
-    template_name = "facturas/list_factura.html"
+    template_name = "facturas/factura_audit.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'facturas'
