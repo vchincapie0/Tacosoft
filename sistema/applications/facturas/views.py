@@ -3,14 +3,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import Facturas
+from .models import Facturas, FacturasAudit
 #from .forms import 
 from .forms import FacturaCreateForm, FacturaUpdateForm
 
 # Create your views here.
 
 class FacturasListView(LoginRequiredMixin, ListView):
-    '''Clase para mostrar los datos de los Implementos de trabajo'''
+    '''Clase para mostrar los datos de las Facturas'''
     model = Facturas
     template_name = "facturas/list_factura.html"
     login_url=reverse_lazy('users_app:login')
@@ -22,7 +22,7 @@ class FacturasListView(LoginRequiredMixin, ListView):
         palabra_clave= self.request.GET.get("kword",'')
         lista = Facturas.objects.filter(
             num_factura__icontains = palabra_clave,
-            is_active=True  # Solo usuarios activos
+            deleted=False  # Solo usuarios activos
         )
         return lista
     
@@ -50,3 +50,11 @@ class FacturasDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "facturas/delete_fact.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('facturas_app:list_factura')
+
+class FacturasAuditListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de logs de Facturas'''
+    model = Facturas
+    template_name = "facturas/list_factura.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'facturas'
