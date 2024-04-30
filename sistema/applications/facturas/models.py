@@ -45,8 +45,9 @@ class FacturasAudit(models.Model):
     ]
 
     changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    pedido = models.ForeignKey(Pedidos,on_delete=models.CASCADE, related_name='pedido_logs', default='None')
-    proveedor = models.ForeignKey(Proveedores,on_delete=models.CASCADE, related_name='prov_logs', default='None')
+    factura = models.ForeignKey(Facturas,on_delete=models.CASCADE, related_name='fact_logs')
+    pedido = models.ForeignKey(Pedidos,on_delete=models.CASCADE, related_name='pedido_logs')
+    proveedor = models.ForeignKey(Proveedores,on_delete=models.CASCADE, related_name='prov_logs')
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     details = models.TextField(blank=True, null=True)
     changed_at = models.DateTimeField(auto_now_add=True)
