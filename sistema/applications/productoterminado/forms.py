@@ -54,9 +54,7 @@ class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
             'olor',
             'sabor',
             'textura',
-            'color',
-            'estado',
-             
+            'color',        
         )
 
         widgets={
@@ -65,8 +63,7 @@ class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
-                'color':forms.CheckboxInput(),
-                'estado':forms.Select(),     
+                'color':forms.CheckboxInput(),   
             }
         
 class CaracteristicasPTUpdateForm(forms.ModelForm):
@@ -82,7 +79,6 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
             'sabor',
             'textura',
             'color',
-            'estado',
              
         )
 
@@ -93,8 +89,7 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
-                'color':forms.CheckboxInput(),
-                'estado':forms.Select(),     
+                'color':forms.CheckboxInput(),   
             }
             
 class ExistenciaPTForm(forms.ModelForm):
