@@ -32,7 +32,7 @@
                     {% for p in productoterminado.caracteristicasorganolepticaspt_set.all %}
                         {% if p.estado == '1' %}
                         <div class="row">
-                            <div class="col-6">Estado: <p style="color: red;">{{ p.get_estado_display }}</p>
+                            <div class="col-6">Estado: <p style="color: red;" >{{ p.get_estado_display }}</p>
                             <p>Caracerísticas NO Satisfactorias:</p>
                             <ul>
                             {% if not p.olor %}<li>Olor</li>{% endif %}
@@ -77,7 +77,7 @@
                         <p class="card-text">Lote: {{p.pt_lote}}</p>
                         <p class="card-text">Peso: {{p.emp_pesoKg}}</p>
                         <p class="card-text">Cantidad Bolsas: {{p.emp_cantidadBolsas}}</p>
-                        <a onclick="empaque_update('{% url 'produ_app:empaque_update' p.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
+                        <a onclick="empaque_update('{% url 'produ_app:empaque_update' p.id %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                     {% endfor %}
                 {% else %}
                     <div class="alert alert-warning" role="alert">
@@ -101,7 +101,7 @@
                         <p class="card-text">Lote: {{p.pt_lote}}</p>
                         <p class="card-text">Cantidad Bolsas Rechazadas: {{p.cantidad_bolsas_rechazadas}}</p>
                         <p class="card-text">Cantidad Bolsas Liberadas: {{p.cantidad_bolsas_liberadas}}</p>
-                        <a onclick="vacio_update('{% url 'produ_app:vacio_update' p.id %}')" class="btn btn-info" type="button"><i class="fa-solid fa-pump-soap"></i> Editar</a></div>
+                        <a onclick="vacio_update('{% url 'produ_app:vacio_update' p.id %}')" class="btn btn-warning" type="button"><i class="fa-regular fa-circle-check"></i> Editar</a></div>
                     {% endfor %}
                 {% else %}
                     <div class="alert alert-warning" role="alert">
