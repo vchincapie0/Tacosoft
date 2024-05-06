@@ -72,7 +72,7 @@ class EquiposListView(LoginRequiredMixin, ListView):
 class PicadoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de Picado'''
     model = Picado
-    template_name = "procesamientos/update_picado.html"
+    template_name = "procesamientos/edit_picado.html"
     login_url=reverse_lazy('users_app:login')
     form_class=PicadoUpdateForm
     success_url= reverse_lazy('procesamientos_app:picado')
