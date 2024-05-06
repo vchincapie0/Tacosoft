@@ -3,7 +3,7 @@ from .models import Facturas, IVA
 
 
 class IVACreateForm(forms.ModelForm):
-    '''Formulario para crear facturas'''
+    '''Formulario para crear IVAf'''
     class Meta:
         model =IVA
         fields = (
@@ -12,6 +12,19 @@ class IVACreateForm(forms.ModelForm):
         widgets={
             'valor':forms.NumberInput(attrs={'class':'form-control'}), 
         }
+
+class IVAUpdateForm(forms.ModelForm):
+    '''Formulario para editar IVA'''
+    class Meta:
+        model =IVA
+        fields = (
+            'valor',
+            )
+        widgets={
+            'valor':forms.NumberInput(attrs={'class':'form-control'}), 
+        }
+
+
 class FacturaCreateForm(forms.ModelForm):
     '''Formulario para crear facturas'''
     class Meta:
