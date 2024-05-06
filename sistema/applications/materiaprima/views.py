@@ -91,6 +91,17 @@ class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp') 
 
+
+class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
+    '''Clase donde se crea una nueva materia prima'''
+    model = MateriaPrima
+    template_name = "materiaprima/update_mp.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = MateriaPrimaForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:lista_mp') 
+
 class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
     model = CaracteristicasOrganolepticas
