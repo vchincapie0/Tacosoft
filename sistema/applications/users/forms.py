@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from . models import User
+from . models import User, UserAudit
 
 class UserRegisterForm(forms.ModelForm):
     """Form definition for UserRegister."""
@@ -159,4 +159,22 @@ class UserUpdateForm(forms.ModelForm):
             raise ValidationError('Debes repetir la nueva contraseña.')
 
         return cleaned_data
-    
+
+class UserAuditFilterForm(forms.Form):
+    '''Formulario para filtar en userauditview'''
+    user = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                  required=False, 
+                                  label='Usuario Afectado',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=UserAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', required=False, widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))

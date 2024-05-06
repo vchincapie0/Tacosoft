@@ -10,13 +10,37 @@
     <div class="card text-bg-dark mb-3">
         <div class="card-header">
             <div class="row">
+                <!-- Botón con icono para mostrar/ocultar el formulario de filtro -->
+                <div class="col">
+                    <button id="toggleFilterBtn" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-filter"></i> Filtrar
+                    </button>
+                </div>
                 
-                <div class="col-6">
-                    <form class="d-flex" role="search">
+
+                <!--Contenedor para formulario filtro, inicialmente oculto-->
+                <div id="filterFormContainer" style="display: none;">
+                    <form method="get" class="form-inline mb-4">
                         {% csrf_token %}
-                        <input class="form-control me-2" type="search" placeholder="Buscar Usuario" aria-label="Search" name="kword" id="kword">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
+                        <div class="row">
+                            <div class="col-4"><label for="">Usuario Afectado: </label> {{filter_form.user}}</div>
+                            <div class="col-4"><label for="">Cambios Realizados por: </label> {{filter_form.changed_by}}</div>
+                            <div class="col-4"><label for="">Acción: </label> {{filter_form.action}}</div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-6"><label for="">Fecha Inicial: </label> {{filter_form.start_date}}</div>
+                            <div class="col-6"><label for="">Fecha Final: </label> {{filter_form.end_date}}</div>
+                        </div>
+                        
+                        <div class="mt-2 row d-flex justify-content-end">
+                            <div class="col-1">
+                                <button type="submit" class="btn btn-success">Filtrar</button>
+                            </div>
+                            <div class="col-2"><a href="{% url 'users_app:user_audit' %}" type="button" class="btn btn-outline-primary">Limpiar Filtro</a></div>
+                            
+                        </div>
+                      </form>
                 </div>
             </div>
             
@@ -106,4 +130,24 @@
 
 
 {% endblock content %}
+
+
+{% block extrajs %}
+    <!-- Script para manejar la funcionalidad de mostrar/ocultar el formulario de filtro -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleFilterBtn = document.getElementById('toggleFilterBtn');
+        const filterFormContainer = document.getElementById('filterFormContainer');
+    
+        toggleFilterBtn.addEventListener('click', function() {
+            if (filterFormContainer.style.display === 'none') {
+                filterFormContainer.style.display = 'block';
+            } else {
+                filterFormContainer.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock extrajs %}
+    
     
