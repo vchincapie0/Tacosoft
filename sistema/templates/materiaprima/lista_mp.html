@@ -49,7 +49,7 @@
                         <tr>
                             <td>{{m.mp_lote}}</td>
                             
-                            <td><a onclick="mp_update('{% url 'mp_app:mp_update' m.mp_lote %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{m.mp_nombre}}</a></td>
+                            <td><a  onclick="mp_update('{% url 'mp_app:mp_update' m.mp_lote %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{m.mp_nombre}}</a></td>
                             <td>{{m.mp_nombre.get_mp_tipo_display}}</td>
                             <td>{{m.mp_cantidad}} g</td>
                             <td>{{m.mp_fechallegada|date:"d/m/y"}}</td>

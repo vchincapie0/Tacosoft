@@ -5,7 +5,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{% url 'mp_app:mp_update' object.id %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;" id="MateriaPrimaUpdateForm">
+        <form action="{% url 'mp_app:mp_update' object.mp_lote %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;" id="MateriaPrimaUpdateForm">
             {%csrf_token%}
 
             {% if form.errors %}
@@ -54,7 +54,7 @@
                         <div class="col">
                             <button class="btn btn-success" type="submit">Guardar</button>
                             |
-                            <a href="{% url 'mp_app:mp_list' %}" type="button" class="btn btn-danger">Cancelar</a>
+                            <a href="{% url 'mp_app:lista_mp' %}" type="button" class="btn btn-danger">Cancelar</a>
                         </div>
                     </div>
                 </div>
