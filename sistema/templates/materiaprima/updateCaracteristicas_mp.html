@@ -1,8 +1,8 @@
 <div class="modal-dialog modal-md" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
-        <h5 class="modal-title">Agregar Características Organolepticas</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        <h5 class="modal-title">Editar Características Organolepticas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="updateCaracteristicasForm" method="POST" action="{% url 'mp_app:updateCaracteristicas_mp' object.pk %}">
@@ -42,8 +42,8 @@
   
                   <div class="col">
                       <button class="btn btn-success" type="submit">Guardar</button>
-                      |
-                      <a href="{% url 'mp_app:lista_mp' %}" type="button" class="btn btn-danger">Cancelar</a>
+                      &nbsp;
+                      <a href="{% url 'mp_app:lista_mp' %}" type="button" class="btn btn-secondary">Cancelar</a>
                   </div>
               </div>
               
