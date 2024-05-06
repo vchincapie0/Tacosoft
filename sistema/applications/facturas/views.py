@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-#Importacion de modelos y formularios
+#Importacion de modelos y formulariosg
 from .models import Facturas,IVA
 #from .forms import 
-from .forms import FacturaCreateForm, FacturaUpdateForm
+from .forms import FacturaCreateForm, FacturaUpdateForm, IVACreateForm
 
 # Create your views here.
 class IVAListView(LoginRequiredMixin, ListView):
@@ -15,6 +15,16 @@ class IVAListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'facturas'
+
+class IVACreateView(LoginRequiredMixin, CreateView):
+    '''Clase donde se crea una nueva factura'''
+    model = IVA
+    template_name = "facturas/add_IVA.html"
+    login_url=reverse_lazy('home_app:home')
+    #Campos que se van a mostrar en el formulario
+    form_class = IVACreateForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('facturas_app:list_IVA')  
 
 
 class FacturasListView(LoginRequiredMixin, ListView):

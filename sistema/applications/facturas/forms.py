@@ -7,10 +7,8 @@ class IVACreateForm(forms.ModelForm):
     class Meta:
         model =IVA
         fields = (
-            
             'valor',
             )
-        
         widgets={
             'valor':forms.NumberInput(attrs={'class':'form-control'}), 
         }
