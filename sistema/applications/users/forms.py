@@ -177,4 +177,6 @@ class UserAuditFilterForm(forms.Form):
     start_date = forms.DateField(label='Fecha inicial', 
                                  required=False, 
                                  widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
-    end_date = forms.DateField(label='Fecha final', required=False, widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
