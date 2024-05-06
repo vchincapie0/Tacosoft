@@ -95,7 +95,7 @@ class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
 class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Clase donde se modifica la materia prima registrada'''
     model = MateriaPrima
-    template_name = "materiaprima/update_mp.html"
+    template_name = "materiaprima/mp_update.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = MateriaPrimaForm
