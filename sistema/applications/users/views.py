@@ -1,16 +1,19 @@
 #Importación de Librerias
 from django.http import HttpResponseRedirect
-from django.contrib.auth.views import LoginView
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import  redirect
 from django.views.generic import View,ListView,UpdateView, FormView, DeleteView
+from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy,reverse
 
 #Importacion modelos y formularios
-from .models import User
-from .forms import UserRegisterForm, UserUpdateForm 
+from .models import User, UserAudit
+from .forms import UserRegisterForm, UserUpdateForm, UserAuditFilterForm
 
 # Create your views here.
 
@@ -25,7 +28,8 @@ class UsersListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         palabra_clave= self.request.GET.get("kword",'')
         lista = User.objects.filter(
-            name__icontains = palabra_clave
+            name__icontains = palabra_clave,
+            deleted=False # Solo usuarios activos
         )
         return lista
 
@@ -37,17 +41,28 @@ class UserRegisterView(LoginRequiredMixin,FormView):
     success_url=reverse_lazy('users_app:list_user')
 
     def form_valid(self, form):
-        '''Funcion para guardar los datos de user'''
+        '''Función para guardar los datos del usuario'''
+        # Obtener los datos del formulario
+        username = form.cleaned_data['username']
+        name = form.cleaned_data['name']
+        last_name = form.cleaned_data['last_name']
+        password = form.cleaned_data['password']
+        is_admin = form.cleaned_data['is_admin']
+        is_employee = form.cleaned_data['is_employee']
+
+        # Crear el usuario en la base de datos
         User.objects.create_user(
-            form.cleaned_data['name'],
-            form.cleaned_data['last_name'],
-            form.cleaned_data['username'],
-            form.cleaned_data['password'],
-            is_admin=form.cleaned_data['is_admin'],
-            is_employee=form.cleaned_data['is_employee'],
-
-
+            username=username,
+            name=name,
+            last_name=last_name,
+            password=password,
+            is_admin=is_admin,
+            is_employee=is_employee,
         )
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El usuario {username} se ha agregado correctamente!')
+
         return super(UserRegisterView, self).form_valid(form)
     
 class UserUpdateView(LoginRequiredMixin, UpdateView):
@@ -57,6 +72,28 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     login_url=reverse_lazy('users_app:login')
     form_class=UserUpdateForm
     success_url= reverse_lazy('users_app:list_user')
+
+    def get_object(self, queryset=None):
+        # Obtener el usuario basado en el parámetro pk de la URL
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(User, pk=pk)
+
+    def form_valid(self, form):
+        # # Obtener el usuario actualizado desde el formulario
+        user = form.instance
+        username = user.username
+        new_password = form.cleaned_data.get('password')
+
+        if new_password:
+            #Si se proporciona una nueva contraseña, encriptarla y guardarla
+            user.set_password(new_password)
+
+            # Guardar el usuario actualizado
+            user.save()
+
+        messages.success(self.request, f'¡Los cambios de {username} se han guardado correctamente!')
+
+        return super().form_valid(form)
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar user'''
@@ -92,3 +129,43 @@ class LogOut(View):
             reverse('users_app:login')
         )
     
+class UserAuditListView(LoginRequiredMixin, ListView):
+    model= UserAudit
+    template_name='usuarios/useraudit.html'
+    paginate_by=10
+    context_object_name='auditoria'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = UserAuditFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            user = form.cleaned_data.get('user')
+            action = form.cleaned_data.get('action')
+            changed_by = form.cleaned_data.get('changed_by')
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
+            if user:
+                queryset = queryset.filter(user=user)
+            if action:
+                queryset = queryset.filter(action=action)
+            if changed_by:
+                queryset = queryset.filter(changed_by=changed_by)
+            if start_date:
+                queryset = queryset.filter(changed_at__gte=start_date)
+            if end_date:
+                # Agregar 1 día a la fecha final para incluir todos los registros de ese día
+                end_date += timezone.timedelta(days=1)
+                queryset = queryset.filter(changed_at__lt=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = UserAuditFilterForm(self.request.GET)
+        return context

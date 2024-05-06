@@ -11,6 +11,7 @@
         <!-- Bootstrap CSS v5.2.1 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css'%}">
     </head>
 
     <body>
@@ -23,7 +24,7 @@
                         <img src="{% static 'img/Logotacomas.png' %}" alt="">
                     </button>
                     <div class="mt-2 sidebar-logo">
-                        <a href="{% url 'home_app:home' %}">TacoMas</a> 
+                        <a href="{% url 'home_app:home' %}">Taco Mas</a> 
                         {% if user.is_admin %}
                             <p style="color: #fff;">Administrador</p>
                         {% else %}
@@ -61,6 +62,27 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                            data-bs-target="#existencias" aria-expanded="false" aria-controls="existencias">
+                            <i class="fa-regular fa-square-check pe-2"></i>
+                              <span>Existencias</span>
+                        </a>
+                        <ul id="existencias" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{% url 'existencias_app:stock' %}" class="sidebar-link">Stock Materia Prima</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Stock Producto Terminado</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Stock Implementos de Trabajo</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             <i class="fa-solid fa-file-lines pe-2"></i>
@@ -110,6 +132,7 @@
                     </li>
 
                     <li class="sidebar-item">
+<<<<<<< HEAD
                         <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                             data-bs-target="#existencias" aria-expanded="false" aria-controls="existencias">
                             <i class="fa-regular fa-square-check pe-2"></i>
@@ -130,6 +153,9 @@
 
                     <li class="sidebar-item">
                         <a href="{% url 'procesamientos_app:procesamientos' %}" class="sidebar-link">
+=======
+                        <a href="{% url 'procesamientos_app:list_procesamientos' %}" class="sidebar-link">
+>>>>>>> a1149eb053fc25177279bf19269916628958bfa8
                             <i class="fa-solid fa-arrows-spin pe-2"></i>
                                 <span>Procesamiento</span>
                         </a>

@@ -11,6 +11,8 @@ urlpatterns = [
     path('add_prov_pedidos/',views.PedidosAddProveedoresCreateView.as_view(),name='add__prov_pedidos'),
     path('update_pedidos/<pk>',views.PedidosUpdateView.as_view(),name='update_pedidos'),
     path('delete_pedidos/<pk>',views.PedidosDeleteView.as_view(),name='delete_pedidos'),
+    path('pedidos_audit/',views.PedidosAuditListView.as_view(),name='pedidos_audit'),
+
 
     
     
