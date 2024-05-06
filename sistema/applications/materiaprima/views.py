@@ -93,7 +93,7 @@ class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
 
 
 class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
-    '''Clase donde se crea una nueva materia prima'''
+    '''Clase donde se modifica la materia prima registrada'''
     model = MateriaPrima
     template_name = "materiaprima/update_mp.html"
     login_url=reverse_lazy('users_app:login')
