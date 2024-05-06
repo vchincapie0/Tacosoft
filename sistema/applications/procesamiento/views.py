@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView,CreateView,DeleteView
+from django.views.generic import TemplateView, ListView,CreateView,DeleteView,UpdateView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Procesamiento,Picado,Coccion,Equipos
-from .forms import  addPicado,addCoccion,addEquipos
+from .forms import  addPicado,addCoccion,addEquipos,PicadoUpdateForm
 
 # Create your views here.
 
@@ -68,6 +68,14 @@ class EquiposListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'procesamientos'
+
+class PicadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de Picado'''
+    model = Picado
+    template_name = "procesamientos/update_picado.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=PicadoUpdateForm
+    success_url= reverse_lazy('procesamientos_app:picado')
 
 class EquiposcreateView(LoginRequiredMixin,CreateView):
     '''Vista para crear  de equipos'''
