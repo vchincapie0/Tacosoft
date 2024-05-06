@@ -13,7 +13,7 @@ class addPicado(forms.ModelForm):
 
         model = Picado
         fields = (
-            'cod_procesamiento',
+            
             'pica_nombre',
             'pica_cantidad',
             'pica_pesoMPposproceso',
@@ -22,7 +22,7 @@ class addPicado(forms.ModelForm):
             )
         
         widgets={
-            'cod_procesamiento':forms.NumberInput(attrs={'class':'form-control'}),
+            
             'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
             'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
             'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
@@ -71,7 +71,7 @@ class addCoccion(forms.ModelForm):
 
         model = Coccion
         fields = (
-            'id_coccion',
+            
             'cocc_nombre',
             'cocc_cantidad',
             'cocc_pesoMPposproceso',
@@ -83,7 +83,7 @@ class addCoccion(forms.ModelForm):
         
         widgets={
             
-            'id_coccion':forms.NumberInput(attrs={'class':'form-control'}),
+            
             'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
             'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
             'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
