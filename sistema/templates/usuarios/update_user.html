@@ -2,7 +2,7 @@
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
         <h5 class="modal-title">Actualizar Usuario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="{% url 'users_app:edit_user' object.id %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;" id="userEditForm">
@@ -77,7 +77,7 @@
     
     </div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
             $('#userEditForm').submit(function (event) {
@@ -95,6 +95,24 @@
                         // Maneja errores de Ajax, si es necesario
                     }
                 });
+            });
+        });
+
+        $(document).ready(function () {
+            // Captura el evento de cambio en el checkbox de Administrador
+            $('#id_is_admin').change(function () {
+                if ($(this).is(':checked')) {
+                    // Si se marca el checkbox de Administrador, desmarca el checkbox de Operario
+                    $('#id_is_employee').prop('checked', false);
+                }
+            });
+
+            // Captura el evento de cambio en el checkbox de Operario
+            $('#id_is_employee').change(function () {
+                if ($(this).is(':checked')) {
+                    // Si se marca el checkbox de Operario, desmarca el checkbox de Administrador
+                    $('#id_is_admin').prop('checked', false);
+                }
             });
         });
 </script>

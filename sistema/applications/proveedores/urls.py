@@ -8,6 +8,8 @@ urlpatterns = [
     path('add_proveedor/',views.ProveedoresCreateView.as_view(),name='add_proveedores'),
     path('edit_proveedor/<pk>',views.ProveedorUpdateView.as_view(),name='update_proveedores'),
     path('delete_proveedor/<pk>',views.ProveedoresDeleteView.as_view(),name='delete_proveedores'),
+    path('proveedor_audit/',views.ProveedoresAuditListView.as_view(),name='proveedor_audit'),
+
 
 
 

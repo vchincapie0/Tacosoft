@@ -3,11 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 # Importacion de modelos y formularios
-from .models import Proveedores
+from .models import Proveedores, ProveedoresAudit
 from .forms import ProveedorCreateForm, ProveedoresUpdateForm
 
 class ProveedoresListView(LoginRequiredMixin, ListView):
-    '''Clase para mostrar los datos de los Implementos de trabajo'''
+    '''Clase para mostrar los datos de los proveedores'''
     model = Proveedores
     template_name = "proveedores/list_proveedor.html"
     login_url=reverse_lazy('users_app:login')
@@ -18,7 +18,8 @@ class ProveedoresListView(LoginRequiredMixin, ListView):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
         lista = Proveedores.objects.filter(
-            prov_nombre__icontains = palabra_clave
+            prov_nombre__icontains = palabra_clave,
+            deleted=False  # Solo proveedores activos
         )
         return lista
     
@@ -46,3 +47,11 @@ class ProveedoresDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "proveedores/delete_proveedor.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('proveedores_app:list_proveedores')
+
+class ProveedoresAuditListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de logs de proveedores'''
+    model = ProveedoresAudit
+    template_name = "proveedores/proveedoraudit.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'proveedor'

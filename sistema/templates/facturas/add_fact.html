@@ -1,3 +1,4 @@
+{% load static %}
 <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
@@ -35,7 +36,7 @@
 
                     <div class="mb-3 col-12">
                         <label for="" class="form-label">Fecha de Llegada: </label>
-                        {{form.fac_fechaLlegada}}
+                        <div class="cont-fecha">{{form.fac_fechaLlegada}}</div>
                     </div>
 
                     <div class="mb-3 col-12">
