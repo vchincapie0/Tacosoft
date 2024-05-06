@@ -1,6 +1,19 @@
 from django import forms
-from .models import Facturas
+from .models import Facturas, IVA
 
+
+class IVACreateForm(forms.ModelForm):
+    '''Formulario para crear facturas'''
+    class Meta:
+        model =IVA
+        fields = (
+            
+            'valor',
+            )
+        
+        widgets={
+            'valor':forms.NumberInput(attrs={'class':'form-control'}), 
+        }
 class FacturaCreateForm(forms.ModelForm):
     '''Formulario para crear facturas'''
     class Meta:

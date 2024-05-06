@@ -8,4 +8,5 @@ urlpatterns = [
     path('add_facturas/', views.FacturasCreateView.as_view(), name='add_factura'),
     path('edit_facturas/<pk>', views.FacturasUpdateView.as_view(), name='edit_factura'),
     path('delete_facturas/<pk>', views.FacturasDeleteView.as_view(), name='delete_factura'),
+    path('list_IVA', views.IVAListView.as_view(), name='list_IVA'),
 ]

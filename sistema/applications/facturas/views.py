@@ -3,11 +3,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import Facturas
+from .models import Facturas,IVA
 #from .forms import 
 from .forms import FacturaCreateForm, FacturaUpdateForm
 
 # Create your views here.
+class IVAListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de los Implementos de trabajo'''
+    model = IVA
+    template_name = "facturas/list_IVA.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'facturas'
+
 
 class FacturasListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
