@@ -55,12 +55,27 @@ class addPicado(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
+    
+class PicadoUpdateForm(forms.ModelForm):
+    """Form Update Picado."""
+    class Meta:
 
-import re
-from django import forms
-from django.core.exceptions import ValidationError
-from django.contrib.auth import authenticate
-from .models import Picado
+        model =Picado
+        fields = [
+            'pica_nombre',
+            'pica_cantidad',
+            'pica_pesoMPposproceso',
+            'pica_merma'
+            ]
+
+        widgets={
+            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
+            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
+            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
+            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'pica_check':forms.Select(attrs={'class': 'form-select'}),
+        }
+
 
 class addCoccion(forms.ModelForm):
 
