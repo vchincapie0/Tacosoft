@@ -5,10 +5,10 @@ from django.urls import reverse_lazy
 <<<<<<< HEAD
 #Importacion de modelos y formulariosg
 from .models import Facturas,IVA
-=======
+
 #Importacion de modelos y formularios
 from .models import Facturas, FacturasAudit
->>>>>>> a1e805a279f57bb61989bae0298a25b42afaa84d
+
 #from .forms import 
 from .forms import (
     FacturaCreateForm, 
