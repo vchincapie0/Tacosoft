@@ -9,3 +9,10 @@ class Home(LoginRequiredMixin, TemplateView):
     template_name = "home/inicio.html"
     login_url=reverse_lazy('users_app:login')
 
+class AuditViews(LoginRequiredMixin, TemplateView):
+    template_name="administrador/auditorias/auditoriasindex.html"
+    login_url=reverse_lazy('users_app:login')
+
+class GenericsViews(LoginRequiredMixin, TemplateView):
+    template_name="administrador/genericas/geneticasindex.html"
+    login_url=reverse_lazy('users_app:login')
