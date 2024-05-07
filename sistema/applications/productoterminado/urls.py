@@ -16,6 +16,14 @@ urlpatterns = [
     path('empaque_update/<pk>',views.EmpaqueProductoTerminadoUpdateView.as_view(),name='empaque_update'),
     path('vacio_add/',views.VacioProductoTerminadoCreateView.as_view(),name='vacio_add'),
     path('vacio_update/<pk>',views.VacioProductoTerminadoUpdateView.as_view(),name='vacio_update'),
+    path('list_pt_generico/',views.ProductoTerminadoGenericoListView.as_view(),name='list_pt_generico'),
+    path('add_pt_generico/',views.ProductoTerminadoGenericoCreateView.as_view(),name='add_pt_generico'),
+    path('update_pt_generico/<pk>',views.ProductoTerminadoGenericoUpdateView.as_view(),name='update_pt_generico'),
+    path('delete_pt_generico/<pk>',views.ProductoTerminadoGenericoDeleteView.as_view(),name='delete_pt_generico'),
+
+
+
+
 
 
 
