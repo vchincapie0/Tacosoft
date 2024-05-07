@@ -11,48 +11,55 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="add_picado('{% url 'procesamientos_app:add_picado' %}')" role="button">Agregar Picado</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_equipos('{% url 'procesamientos_app:add_equipos' %}')" role="button">Agregar Equipos</a>
                 </div>
             </div>
             
         </div>
         <div class="card-body">
-            <h4 class="card-title">Picado</h4>
+            <h4 class="card-title">Equipos</h4>
             
             <div class="table-responsive text-center">
                 <table class="table table-secondary">
                     <thead>
                         <tr>
-                            <th scope="col">Codigo Procesamiento</th>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Pesaje MateriaPrima</th>
-                            <th scope="col">Peso Despues Proceso</th>
-                            <th scope="col" class="text-center">Merma</th>
-                            <th scope="col" class="text-center">Estado</th>
+                            <th scope="col">Codigo de Equipos</th>
+                            <th scope="col">Encargado Cosina</th>
+                            <th scope="col">Encargado Entrega</th>
+                            <th scope="col">Calida</th>
+                            <th scope="col" class="text-center">Nombre Equipos</th>
+                            <th scope="col">Check</th>
                             <th scope="col" class="text-center">Eliminar</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <a onclick="add_picado('{% url 'procesamientos_app:add_picado'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
+                        <a onclick="add_equipos('{% url 'procesamientos_app:add_equipos'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
                         {%for p in procesamientos%}
                         <tr>
-                            <td><a onclick="edit_picado('{% url 'procesamientos_app:edit_picado' p.cod_procesamiento %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{p.cod_procesamiento}} </a></td>
-                            <td>{{p.pica_nombre}}</td>
-                            <td>{{p.pica_cantidad}}</td>
-                            <td>{{p.pica_pesoMPposproceso}}</td>
-                            <td>{{p.pica_merma}}</td>
+                            <td>{{p.id_equipo}}</td>
+                            <td>{{p.equi_encargadoCocina}}</td>
+                            <td>{{p.equi_encargadoEntrega}}</td>
                             <td>
-
-                            {% if p.pica_check == '0' %}
-                                <p class="text-success">{{p.get_pica_check_display}}</p>
-                            {% elif p.pica_check == '1' %}
-                                <p class="text-danger">{{p.get_pica_check_display}}</p> 
-                            {% endif %}
+                                {% if p.equi_calidad == '0' %}
+                                <p class="text-success">{{p.get_equi_calidad_display}}</p>
+                                {% elif p.equi_calidad == '1' %}
+                                    <p class="text-danger">{{p.get_equi_calidad_display}}</p> 
+                                {% endif %}
+                            </td>
+                            <td>{{p.equi_nombre}}</td>
+                            <td>
+                                {% if p.equi_check == '0' %}
+                                <p class="text-success">{{p.get_equi_check_display}}</p>
+                                {% elif p.equi_check == '1' %}
+                                    <p class="text-danger">{{p.get_equi_check_display}}</p> 
+                                {% endif %}
+                            </td>
+                            
                         </td>
                         <td>
-        
-                            <a class="btn btn-danger" onclick="delete_picado('{% url 'procesamientos_app:delete_picado' p.cod_procesamiento %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+
+                            <a class="btn btn-danger" onclick="delete_equipo('{% url 'procesamientos_app:delete_equipo' p.id_equipo %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
 
                         </td>
                         </tr>
@@ -103,9 +110,8 @@
         </div>
     </div>
 </div> 
-<div class="modal fade" id="add_picado" role="dialog"></div>
-<div class="modal fade" id="delete_picado" role="dialog"></div>
-<div class="modal fade" id="edit_picado" role="dialog"></div>
+<div class="modal fade" id="add_equipos" role="dialog"></div>
+<div class="modal fade" id="delete_equipo" role="dialog"></div>
 
 
 {% endblock content %}
@@ -114,23 +120,16 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script>
-        function add_picado(url){
+        function add_equipos(url){
             var $ = jQuery.noConflict();
-            $('#add_picado').load(url,function(){
+            $('#add_equipos').load(url,function(){
                 $(this).modal('show');
             }); 
         }
 
-        function delete_picado(url){
+        function delete_equipo(url){
             var $ = jQuery.noConflict();
-            $('#delete_picado').load(url,function(){
-                $(this).modal('show');
-            }); 
-        }
-
-        function edit_picado(url){
-            var $ = jQuery.noConflict();
-            $('#edit_picado').load(url,function(){
+            $('#delete_equipo').load(url,function(){
                 $(this).modal('show');
             }); 
         }
