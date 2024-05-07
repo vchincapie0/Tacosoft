@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-<<<<<<< HEAD
+
 #Importacion de modelos y formulariosg
 from .models import Facturas,IVA
 
