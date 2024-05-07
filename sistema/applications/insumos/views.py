@@ -9,7 +9,7 @@ from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenerico
 # Create your views here.
 
 class InsumosGenericoListView(LoginRequiredMixin, ListView):
-    '''Clase para mostrar los datos de los Implementos de trabajo'''
+    '''Clase para mostrar los datos de los Insumos Genericos'''
     model = InsumosGenerico
     template_name = "insumos/list_insumos_generico.html"
     login_url=reverse_lazy('users_app:login')

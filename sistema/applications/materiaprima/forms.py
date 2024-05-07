@@ -174,7 +174,7 @@ class CaracteristicasMPUpdateForm(forms.ModelForm):
         )
 
         widgets={
-                'mp_lote':forms.TextInput(attrs={'readonly':'readonly'}),
+                'mp_lote':forms.TextInput(attrs={'class':'form-control'}),
                 'olor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
                 'limpieza':forms.CheckboxInput(),
