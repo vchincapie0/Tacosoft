@@ -14,5 +14,5 @@ class AuditViews(LoginRequiredMixin, TemplateView):
     login_url=reverse_lazy('users_app:login')
 
 class GenericsViews(LoginRequiredMixin, TemplateView):
-    template_name="administrador/genericas/geneticasindex.html"
+    template_name="administrador/genericas/genericasindex.html"
     login_url=reverse_lazy('users_app:login')
