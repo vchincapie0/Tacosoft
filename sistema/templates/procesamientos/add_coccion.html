@@ -1,0 +1,100 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Añadir Coccion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="proAddForm" action="{% url 'procesamientos_app:add_coccion' %}" method="POST" class="form-control bg-dark text-white" style="--bs-bg-opacity: .5;">
+            {% csrf_token %}
+            {% if form.errors  %}
+                <div class="alert alert-info"> 
+                    {{form.errors.cocc_nombre.0}}
+                    {{form.errors.cocc_cantidad.0}}
+                    {{form.errors.cocc_pesoMPposproceso.0}}
+                    {{form.errors.cocc_merma.0}}
+                    {{form.errors.cocc_tiempoCoccion.0}}
+                    {{form.errors.cocc_temperaturafinal.0}}
+                    {{form.errors.cocc_check.0}}
+                </div>
+            {% endif %}
+
+            <div class="mx-4 my-2 row">
+
+                
+                <div class="mb-3 col-12">
+                    <label for="id_pica_nombre" class="form-label">nombre producto: </label>
+                    {{form.cocc_nombre}}   
+                </div>
+        
+        
+                <div class="mb-3 col-12">
+                    <label for="id_pica_cantidad" class="form-label">peso materiaprima:</label>
+                    {{form.cocc_cantidad}}   
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_pica_pesoMPposproceso" class="form-label">peso pos proceso:</label>
+                    <br>
+                    {{form.cocc_pesoMPposproceso}}  
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_pica_merma" class="form-label">peso merma:</label>
+                    <br>
+                    {{form.cocc_merma}}  
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_cocc_tiempoCoccion" class="form-label">Tiempo de coccion:</label>
+                    <br>
+                    {{form.cocc_tiempoCoccion}}  
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_cocc_temperaturafinal" class="form-label">Temperatura Final:</label>
+                    <br>
+                    {{form.cocc_temperaturafinal}}  
+                </div>
+
+                <div class="mb-3 col-12">
+                    <label for="id_cocc_check" class="form-label">Validacion:</label>
+                    <br>
+                    {{form.cocc_check}}  
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-success" type="submit">Guardar</button>
+                            <a href="{% url 'procesamientos_app:coccion' %}" type="button" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>    
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+            $('#proAddForm').submit(function (event) {
+                event.preventDefault(); // Evita la redirección predeterminada
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        // Verifica la respuesta y actualiza el contenido del modal
+                        $('#add_coccion').html(data);
+                        $('#add_coccion').modal('hide');
+                    },
+                    error: function (xhr, status, error) {
+                        // Maneja errores de Ajax, si es necesario
+                    }
+                });
+            });
+        });
+</script>

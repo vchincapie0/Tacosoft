@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-md" role="document">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
         <h5 class="modal-title">Agregar Características Organolepticas</h5>
@@ -9,7 +9,7 @@
           {%csrf_token%}
               <div class="mx-4 my-2 row">
                   
-                  <div class="mb-3 col-12">
+                  <div class="mb-3 col-3 ">
                       <label for="id_pt_lote" class="form-label">Lote Producto Terminado: </label>
                       {{form.pt_lote}}   
                   </div>

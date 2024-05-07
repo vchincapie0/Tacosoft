@@ -2,8 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+<<<<<<< HEAD
 #Importacion de modelos y formulariosg
 from .models import Facturas,IVA
+=======
+#Importacion de modelos y formularios
+from .models import Facturas, FacturasAudit
+>>>>>>> a1e805a279f57bb61989bae0298a25b42afaa84d
 #from .forms import 
 from .forms import (
     FacturaCreateForm, 
@@ -48,7 +53,7 @@ class IVADeleteView(LoginRequiredMixin, DeleteView):
 
 
 class FacturasListView(LoginRequiredMixin, ListView):
-    '''Clase para mostrar los datos de los Implementos de trabajo'''
+    '''Clase para mostrar los datos de las Facturas'''
     model = Facturas
     template_name = "facturas/list_factura.html"
     login_url=reverse_lazy('users_app:login')
@@ -59,7 +64,8 @@ class FacturasListView(LoginRequiredMixin, ListView):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
         lista = Facturas.objects.filter(
-            num_factura__icontains = palabra_clave
+            num_factura__icontains = palabra_clave,
+            deleted=False  # Solo usuarios activos
         )
         return lista
     
@@ -87,3 +93,11 @@ class FacturasDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "facturas/delete_fact.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('facturas_app:list_factura')
+
+class FacturasAuditListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de logs de Facturas'''
+    model = FacturasAudit
+    template_name = "facturas/factura_audit.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'facturas'

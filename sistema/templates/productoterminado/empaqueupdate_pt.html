@@ -15,15 +15,19 @@
                 <label for="id_pt_lote" class="form-label">Lote Empaque:</label>
                 {{form.pt_lote}}  
             </div>
-    
-    
-            <div class="mb-3 col-12">
-                <label for="id_emp_pesoKg" class="form-label">Peso Empaque:</label>
-                {{form.emp_pesoKg}}
-            </div>
+
+            <div class="row">
+              <div class="col-12">
+                  <label for="id_emp_pesoKg" class="form-label">Peso Empaque: </label>
+              </div>
+              <div class="input-group mb-3 col-12">
+                  {{form.emp_pesoKg}}
+                  <span class="input-group-text">Kg</span>
+              </div>
+          </div>
 
             <div class="mb-3 col-12">
-                <label for="id_emp_cantidadBolsas" class="form-label">Cantidad Bolsas empacadas:</label>
+                <label for="id_emp_cantidadBolsas" class="form-label">Cantidad Bolsas Empacadas:</label>
                 {{form.emp_cantidadBolsas}}
             </div>       
 

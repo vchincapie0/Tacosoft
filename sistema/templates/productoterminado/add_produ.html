@@ -1,3 +1,23 @@
+<style>
+   .cont-fecha {
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+   .cont-fecha select{
+      padding: 8px 10px;
+      min-width: 30%;
+
+   }  
+   .cont-fecha select:nth-child(1){
+      border-radius: 6px 0 0 6px;
+   }
+   .cont-fecha select:nth-child(3){
+      border-radius: 0 6px 6px 0;
+
+   }
+</style>
+
 <div class="modal-dialog modal-md" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
@@ -30,21 +50,26 @@
                         {{form.pt_nombre}}   
                     </div>
 
-
-                    <div class="mb-3 col-3">
-                        <label for="id_mp_nombre" class="form-label">Cantidad:</label>
-                        {{form.pt_cantidad}}gr
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="id_PT_cantidad" class="form-label">Cantidad: </label>
+                        </div>
+                        <div class="input-group mb-3 col-12">
+                            {{form.pt_cantidad}}
+                            <span class="input-group-text">Kg</span>
+                        </div>
                     </div>
-                    
                                 
                     <div class="mb-3  col-12">
                         <label for="id_PT_fechapreparacion" class="form-label">Fecha de preparación:</label>
-                        {{form.pt_fechapreparacion}}   
+                        <div class="cont-fecha">{{form.pt_fechapreparacion}}</div>
+                           
                     </div>
 
                     <div class="mb-3  col-12">
                         <label for="id_PT_fechavencimiento" class="form-label">Fecha de Vencimiento</label>
-                        {{form.pt_fechavencimiento}}  
+                        <div class="cont-fecha">{{form.pt_fechavencimiento}}</div>
+                          
                     </div>
                            
                     <div class="row">

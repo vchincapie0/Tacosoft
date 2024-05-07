@@ -8,8 +8,13 @@ urlpatterns = [
     path('add_facturas/', views.FacturasCreateView.as_view(), name='add_factura'),
     path('edit_facturas/<pk>', views.FacturasUpdateView.as_view(), name='edit_factura'),
     path('delete_facturas/<pk>', views.FacturasDeleteView.as_view(), name='delete_factura'),
+<<<<<<< HEAD
     path('list_IVA/', views.IVAListView.as_view(), name='list_IVA'),
     path('add_IVA/', views.IVACreateView.as_view(), name='add_IVA'),
     path('update_IVA/<pk>', views.IVAUpdateView.as_view(), name='update_IVA'),
     path('delete_IVA/<pk>', views.IVADeleteView.as_view(), name='delete_IVA'),
+=======
+    path('facturas_audit/', views.FacturasAuditListView.as_view(), name='factura_audit'),
+
+>>>>>>> a1e805a279f57bb61989bae0298a25b42afaa84d
 ]

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 24-04-2024 a las 22:51:51
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-05-2024 a las 00:22:43
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,98 +82,114 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (18, 'Can change session', 5, 'change_session'),
 (19, 'Can delete session', 5, 'delete_session'),
 (20, 'Can view session', 5, 'view_session'),
-(21, 'Can add desinfectante generico', 6, 'add_desinfectantegenerico'),
-(22, 'Can change desinfectante generico', 6, 'change_desinfectantegenerico'),
-(23, 'Can delete desinfectante generico', 6, 'delete_desinfectantegenerico'),
-(24, 'Can view desinfectante generico', 6, 'view_desinfectantegenerico'),
-(25, 'Can add materia prima', 7, 'add_materiaprima'),
-(26, 'Can change materia prima', 7, 'change_materiaprima'),
-(27, 'Can delete materia prima', 7, 'delete_materiaprima'),
-(28, 'Can view materia prima', 7, 'view_materiaprima'),
-(29, 'Can add materia prima generica', 8, 'add_materiaprimagenerica'),
-(30, 'Can change materia prima generica', 8, 'change_materiaprimagenerica'),
-(31, 'Can delete materia prima generica', 8, 'delete_materiaprimagenerica'),
-(32, 'Can view materia prima generica', 8, 'view_materiaprimagenerica'),
-(33, 'Can add desinfeccion', 9, 'add_desinfeccion'),
-(34, 'Can change desinfeccion', 9, 'change_desinfeccion'),
-(35, 'Can delete desinfeccion', 9, 'delete_desinfeccion'),
-(36, 'Can view desinfeccion', 9, 'view_desinfeccion'),
-(37, 'Can add caracteristicas organolepticas', 10, 'add_caracteristicasorganolepticas'),
-(38, 'Can change caracteristicas organolepticas', 10, 'change_caracteristicasorganolepticas'),
-(39, 'Can delete caracteristicas organolepticas', 10, 'delete_caracteristicasorganolepticas'),
-(40, 'Can view caracteristicas organolepticas', 10, 'view_caracteristicasorganolepticas'),
+(21, 'Can add caracteristicas organolepticas', 6, 'add_caracteristicasorganolepticas'),
+(22, 'Can change caracteristicas organolepticas', 6, 'change_caracteristicasorganolepticas'),
+(23, 'Can delete caracteristicas organolepticas', 6, 'delete_caracteristicasorganolepticas'),
+(24, 'Can view caracteristicas organolepticas', 6, 'view_caracteristicasorganolepticas'),
+(25, 'Can add desinfeccion', 7, 'add_desinfeccion'),
+(26, 'Can change desinfeccion', 7, 'change_desinfeccion'),
+(27, 'Can delete desinfeccion', 7, 'delete_desinfeccion'),
+(28, 'Can view desinfeccion', 7, 'view_desinfeccion'),
+(29, 'Can add desinfectante generico', 8, 'add_desinfectantegenerico'),
+(30, 'Can change desinfectante generico', 8, 'change_desinfectantegenerico'),
+(31, 'Can delete desinfectante generico', 8, 'delete_desinfectantegenerico'),
+(32, 'Can view desinfectante generico', 8, 'view_desinfectantegenerico'),
+(33, 'Can add materia prima', 9, 'add_materiaprima'),
+(34, 'Can change materia prima', 9, 'change_materiaprima'),
+(35, 'Can delete materia prima', 9, 'delete_materiaprima'),
+(36, 'Can view materia prima', 9, 'view_materiaprima'),
+(37, 'Can add materia prima generica', 10, 'add_materiaprimagenerica'),
+(38, 'Can change materia prima generica', 10, 'change_materiaprimagenerica'),
+(39, 'Can delete materia prima generica', 10, 'delete_materiaprimagenerica'),
+(40, 'Can view materia prima generica', 10, 'view_materiaprimagenerica'),
 (41, 'Can add user', 11, 'add_user'),
 (42, 'Can change user', 11, 'change_user'),
 (43, 'Can delete user', 11, 'delete_user'),
 (44, 'Can view user', 11, 'view_user'),
-(45, 'Can add insumos generico', 12, 'add_insumosgenerico'),
-(46, 'Can change insumos generico', 12, 'change_insumosgenerico'),
-(47, 'Can delete insumos generico', 12, 'delete_insumosgenerico'),
-(48, 'Can view insumos generico', 12, 'view_insumosgenerico'),
-(49, 'Can add implementos trabajo', 13, 'add_implementostrabajo'),
-(50, 'Can change implementos trabajo', 13, 'change_implementostrabajo'),
-(51, 'Can delete implementos trabajo', 13, 'delete_implementostrabajo'),
-(52, 'Can view implementos trabajo', 13, 'view_implementostrabajo'),
-(53, 'Can add proveedores', 14, 'add_proveedores'),
-(54, 'Can change proveedores', 14, 'change_proveedores'),
-(55, 'Can delete proveedores', 14, 'delete_proveedores'),
-(56, 'Can view proveedores', 14, 'view_proveedores'),
-(57, 'Can add pedidos', 15, 'add_pedidos'),
-(58, 'Can change pedidos', 15, 'change_pedidos'),
-(59, 'Can delete pedidos', 15, 'delete_pedidos'),
-(60, 'Can view pedidos', 15, 'view_pedidos'),
-(61, 'Can add iva', 16, 'add_iva'),
-(62, 'Can change iva', 16, 'change_iva'),
-(63, 'Can delete iva', 16, 'delete_iva'),
-(64, 'Can view iva', 16, 'view_iva'),
-(65, 'Can add facturas', 17, 'add_facturas'),
-(66, 'Can change facturas', 17, 'change_facturas'),
-(67, 'Can delete facturas', 17, 'delete_facturas'),
-(68, 'Can view facturas', 17, 'view_facturas'),
-(69, 'Can add procesamiento', 18, 'add_procesamiento'),
-(70, 'Can change procesamiento', 18, 'change_procesamiento'),
-(71, 'Can delete procesamiento', 18, 'delete_procesamiento'),
-(72, 'Can view procesamiento', 18, 'view_procesamiento'),
-(73, 'Can add picado', 19, 'add_picado'),
-(74, 'Can change picado', 19, 'change_picado'),
-(75, 'Can delete picado', 19, 'delete_picado'),
-(76, 'Can view picado', 19, 'view_picado'),
-(77, 'Can add equipos', 20, 'add_equipos'),
-(78, 'Can change equipos', 20, 'change_equipos'),
-(79, 'Can delete equipos', 20, 'delete_equipos'),
-(80, 'Can view equipos', 20, 'view_equipos'),
-(81, 'Can add coccion', 21, 'add_coccion'),
-(82, 'Can change coccion', 21, 'change_coccion'),
-(83, 'Can delete coccion', 21, 'delete_coccion'),
-(84, 'Can view coccion', 21, 'view_coccion'),
-(85, 'Can add producto terminado', 22, 'add_productoterminado'),
-(86, 'Can change producto terminado', 22, 'change_productoterminado'),
-(87, 'Can delete producto terminado', 22, 'delete_productoterminado'),
-(88, 'Can view producto terminado', 22, 'view_productoterminado'),
-(89, 'Can add existencia pt', 23, 'add_existenciapt'),
-(90, 'Can change existencia pt', 23, 'change_existenciapt'),
-(91, 'Can delete existencia pt', 23, 'delete_existenciapt'),
-(92, 'Can view existencia pt', 23, 'view_existenciapt'),
-(93, 'Can add empaque producto terminado', 24, 'add_empaqueproductoterminado'),
-(94, 'Can change empaque producto terminado', 24, 'change_empaqueproductoterminado'),
-(95, 'Can delete empaque producto terminado', 24, 'delete_empaqueproductoterminado'),
-(96, 'Can view empaque producto terminado', 24, 'view_empaqueproductoterminado'),
-(97, 'Can add caracteristicas organolepticas pt', 25, 'add_caracteristicasorganolepticaspt'),
-(98, 'Can change caracteristicas organolepticas pt', 25, 'change_caracteristicasorganolepticaspt'),
-(99, 'Can delete caracteristicas organolepticas pt', 25, 'delete_caracteristicasorganolepticaspt'),
-(100, 'Can view caracteristicas organolepticas pt', 25, 'view_caracteristicasorganolepticaspt'),
-(101, 'Can add producto terminado generico', 26, 'add_productoterminadogenerico'),
-(102, 'Can change producto terminado generico', 26, 'change_productoterminadogenerico'),
-(103, 'Can delete producto terminado generico', 26, 'delete_productoterminadogenerico'),
-(104, 'Can view producto terminado generico', 26, 'view_productoterminadogenerico'),
-(105, 'Can add vacio', 27, 'add_vacio'),
-(106, 'Can change vacio', 27, 'change_vacio'),
-(107, 'Can delete vacio', 27, 'delete_vacio'),
-(108, 'Can view vacio', 27, 'view_vacio'),
-(109, 'Can add existencia mp', 28, 'add_existenciamp'),
-(110, 'Can change existencia mp', 28, 'change_existenciamp'),
-(111, 'Can delete existencia mp', 28, 'delete_existenciamp'),
-(112, 'Can view existencia mp', 28, 'view_existenciamp');
+(45, 'Can add user audit', 12, 'add_useraudit'),
+(46, 'Can change user audit', 12, 'change_useraudit'),
+(47, 'Can delete user audit', 12, 'delete_useraudit'),
+(48, 'Can view user audit', 12, 'view_useraudit'),
+(49, 'Can add insumos generico', 13, 'add_insumosgenerico'),
+(50, 'Can change insumos generico', 13, 'change_insumosgenerico'),
+(51, 'Can delete insumos generico', 13, 'delete_insumosgenerico'),
+(52, 'Can view insumos generico', 13, 'view_insumosgenerico'),
+(53, 'Can add implementos trabajo', 14, 'add_implementostrabajo'),
+(54, 'Can change implementos trabajo', 14, 'change_implementostrabajo'),
+(55, 'Can delete implementos trabajo', 14, 'delete_implementostrabajo'),
+(56, 'Can view implementos trabajo', 14, 'view_implementostrabajo'),
+(57, 'Can add proveedores', 15, 'add_proveedores'),
+(58, 'Can change proveedores', 15, 'change_proveedores'),
+(59, 'Can delete proveedores', 15, 'delete_proveedores'),
+(60, 'Can view proveedores', 15, 'view_proveedores'),
+(61, 'Can add proveedores audit', 16, 'add_proveedoresaudit'),
+(62, 'Can change proveedores audit', 16, 'change_proveedoresaudit'),
+(63, 'Can delete proveedores audit', 16, 'delete_proveedoresaudit'),
+(64, 'Can view proveedores audit', 16, 'view_proveedoresaudit'),
+(65, 'Can add pedidos audit', 17, 'add_pedidosaudit'),
+(66, 'Can change pedidos audit', 17, 'change_pedidosaudit'),
+(67, 'Can delete pedidos audit', 17, 'delete_pedidosaudit'),
+(68, 'Can view pedidos audit', 17, 'view_pedidosaudit'),
+(69, 'Can add pedidos', 18, 'add_pedidos'),
+(70, 'Can change pedidos', 18, 'change_pedidos'),
+(71, 'Can delete pedidos', 18, 'delete_pedidos'),
+(72, 'Can view pedidos', 18, 'view_pedidos'),
+(73, 'Can add facturas', 19, 'add_facturas'),
+(74, 'Can change facturas', 19, 'change_facturas'),
+(75, 'Can delete facturas', 19, 'delete_facturas'),
+(76, 'Can view facturas', 19, 'view_facturas'),
+(77, 'Can add facturas audit', 20, 'add_facturasaudit'),
+(78, 'Can change facturas audit', 20, 'change_facturasaudit'),
+(79, 'Can delete facturas audit', 20, 'delete_facturasaudit'),
+(80, 'Can view facturas audit', 20, 'view_facturasaudit'),
+(81, 'Can add iva', 21, 'add_iva'),
+(82, 'Can change iva', 21, 'change_iva'),
+(83, 'Can delete iva', 21, 'delete_iva'),
+(84, 'Can view iva', 21, 'view_iva'),
+(85, 'Can add coccion', 22, 'add_coccion'),
+(86, 'Can change coccion', 22, 'change_coccion'),
+(87, 'Can delete coccion', 22, 'delete_coccion'),
+(88, 'Can view coccion', 22, 'view_coccion'),
+(89, 'Can add equipos', 23, 'add_equipos'),
+(90, 'Can change equipos', 23, 'change_equipos'),
+(91, 'Can delete equipos', 23, 'delete_equipos'),
+(92, 'Can view equipos', 23, 'view_equipos'),
+(93, 'Can add picado', 24, 'add_picado'),
+(94, 'Can change picado', 24, 'change_picado'),
+(95, 'Can delete picado', 24, 'delete_picado'),
+(96, 'Can view picado', 24, 'view_picado'),
+(97, 'Can add procesamiento', 25, 'add_procesamiento'),
+(98, 'Can change procesamiento', 25, 'change_procesamiento'),
+(99, 'Can delete procesamiento', 25, 'delete_procesamiento'),
+(100, 'Can view procesamiento', 25, 'view_procesamiento'),
+(101, 'Can add producto terminado', 26, 'add_productoterminado'),
+(102, 'Can change producto terminado', 26, 'change_productoterminado'),
+(103, 'Can delete producto terminado', 26, 'delete_productoterminado'),
+(104, 'Can view producto terminado', 26, 'view_productoterminado'),
+(105, 'Can add existencia pt', 27, 'add_existenciapt'),
+(106, 'Can change existencia pt', 27, 'change_existenciapt'),
+(107, 'Can delete existencia pt', 27, 'delete_existenciapt'),
+(108, 'Can view existencia pt', 27, 'view_existenciapt'),
+(109, 'Can add empaque producto terminado', 28, 'add_empaqueproductoterminado'),
+(110, 'Can change empaque producto terminado', 28, 'change_empaqueproductoterminado'),
+(111, 'Can delete empaque producto terminado', 28, 'delete_empaqueproductoterminado'),
+(112, 'Can view empaque producto terminado', 28, 'view_empaqueproductoterminado'),
+(113, 'Can add caracteristicas organolepticas pt', 29, 'add_caracteristicasorganolepticaspt'),
+(114, 'Can change caracteristicas organolepticas pt', 29, 'change_caracteristicasorganolepticaspt'),
+(115, 'Can delete caracteristicas organolepticas pt', 29, 'delete_caracteristicasorganolepticaspt'),
+(116, 'Can view caracteristicas organolepticas pt', 29, 'view_caracteristicasorganolepticaspt'),
+(117, 'Can add producto terminado generico', 30, 'add_productoterminadogenerico'),
+(118, 'Can change producto terminado generico', 30, 'change_productoterminadogenerico'),
+(119, 'Can delete producto terminado generico', 30, 'delete_productoterminadogenerico'),
+(120, 'Can view producto terminado generico', 30, 'view_productoterminadogenerico'),
+(121, 'Can add vacio', 31, 'add_vacio'),
+(122, 'Can change vacio', 31, 'change_vacio'),
+(123, 'Can delete vacio', 31, 'delete_vacio'),
+(124, 'Can view vacio', 31, 'view_vacio'),
+(125, 'Can add existencia mp', 32, 'add_existenciamp'),
+(126, 'Can change existencia mp', 32, 'change_existenciamp'),
+(127, 'Can delete existencia mp', 32, 'delete_existenciamp'),
+(128, 'Can view existencia mp', 32, 'view_existenciamp');
 
 -- --------------------------------------------------------
 
@@ -213,30 +229,34 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'contenttypes', 'contenttype'),
-(28, 'existencias', 'existenciamp'),
-(17, 'facturas', 'facturas'),
-(16, 'facturas', 'iva'),
-(13, 'insumos', 'implementostrabajo'),
-(12, 'insumos', 'insumosgenerico'),
-(10, 'materiaprima', 'caracteristicasorganolepticas'),
-(9, 'materiaprima', 'desinfeccion'),
-(6, 'materiaprima', 'desinfectantegenerico'),
-(7, 'materiaprima', 'materiaprima'),
-(8, 'materiaprima', 'materiaprimagenerica'),
-(15, 'pedidos', 'pedidos'),
-(21, 'procesamiento', 'coccion'),
-(20, 'procesamiento', 'equipos'),
-(19, 'procesamiento', 'picado'),
-(18, 'procesamiento', 'procesamiento'),
-(25, 'productoterminado', 'caracteristicasorganolepticaspt'),
-(24, 'productoterminado', 'empaqueproductoterminado'),
-(23, 'productoterminado', 'existenciapt'),
-(22, 'productoterminado', 'productoterminado'),
-(26, 'productoterminado', 'productoterminadogenerico'),
-(27, 'productoterminado', 'vacio'),
-(14, 'proveedores', 'proveedores'),
+(32, 'existencias', 'existenciamp'),
+(19, 'facturas', 'facturas'),
+(20, 'facturas', 'facturasaudit'),
+(21, 'facturas', 'iva'),
+(14, 'insumos', 'implementostrabajo'),
+(13, 'insumos', 'insumosgenerico'),
+(6, 'materiaprima', 'caracteristicasorganolepticas'),
+(7, 'materiaprima', 'desinfeccion'),
+(8, 'materiaprima', 'desinfectantegenerico'),
+(9, 'materiaprima', 'materiaprima'),
+(10, 'materiaprima', 'materiaprimagenerica'),
+(18, 'pedidos', 'pedidos'),
+(17, 'pedidos', 'pedidosaudit'),
+(22, 'procesamiento', 'coccion'),
+(23, 'procesamiento', 'equipos'),
+(24, 'procesamiento', 'picado'),
+(25, 'procesamiento', 'procesamiento'),
+(29, 'productoterminado', 'caracteristicasorganolepticaspt'),
+(28, 'productoterminado', 'empaqueproductoterminado'),
+(27, 'productoterminado', 'existenciapt'),
+(26, 'productoterminado', 'productoterminado'),
+(30, 'productoterminado', 'productoterminadogenerico'),
+(31, 'productoterminado', 'vacio'),
+(15, 'proveedores', 'proveedores'),
+(16, 'proveedores', 'proveedoresaudit'),
 (5, 'sessions', 'session'),
-(11, 'users', 'user');
+(11, 'users', 'user'),
+(12, 'users', 'useraudit');
 
 -- --------------------------------------------------------
 
@@ -256,33 +276,41 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2024-04-24 20:49:39.262796'),
-(2, 'contenttypes', '0002_remove_content_type_name', '2024-04-24 20:49:39.345788'),
-(3, 'auth', '0001_initial', '2024-04-24 20:49:39.652216'),
-(4, 'auth', '0002_alter_permission_name_max_length', '2024-04-24 20:49:39.720374'),
-(5, 'auth', '0003_alter_user_email_max_length', '2024-04-24 20:49:39.737301'),
-(6, 'auth', '0004_alter_user_username_opts', '2024-04-24 20:49:39.749928'),
-(7, 'auth', '0005_alter_user_last_login_null', '2024-04-24 20:49:39.763951'),
-(8, 'auth', '0006_require_contenttypes_0002', '2024-04-24 20:49:39.767357'),
-(9, 'auth', '0007_alter_validators_add_error_messages', '2024-04-24 20:49:39.779920'),
-(10, 'auth', '0008_alter_user_username_max_length', '2024-04-24 20:49:39.797026'),
-(11, 'auth', '0009_alter_user_last_name_max_length', '2024-04-24 20:49:39.811682'),
-(12, 'auth', '0010_alter_group_name_max_length', '2024-04-24 20:49:39.836329'),
-(13, 'auth', '0011_update_proxy_permissions', '2024-04-24 20:49:39.850210'),
-(14, 'auth', '0012_alter_user_first_name_max_length', '2024-04-24 20:49:39.867135'),
-(15, 'users', '0001_initial', '2024-04-24 20:49:40.238877'),
-(16, 'admin', '0001_initial', '2024-04-24 20:49:40.415064'),
-(17, 'admin', '0002_logentry_remove_auto_add', '2024-04-24 20:49:40.431422'),
-(18, 'admin', '0003_logentry_add_action_flag_choices', '2024-04-24 20:49:40.449188'),
-(19, 'materiaprima', '0001_initial', '2024-04-24 20:49:40.891721'),
-(20, 'existencias', '0001_initial', '2024-04-24 20:49:40.994997'),
-(21, 'proveedores', '0001_initial', '2024-04-24 20:49:41.049697'),
-(22, 'insumos', '0001_initial', '2024-04-24 20:49:41.154101'),
-(23, 'pedidos', '0001_initial', '2024-04-24 20:49:41.666098'),
-(24, 'facturas', '0001_initial', '2024-04-24 20:49:41.977121'),
-(25, 'procesamiento', '0001_initial', '2024-04-24 20:49:42.445605'),
-(26, 'productoterminado', '0001_initial', '2024-04-24 20:49:43.163957'),
-(27, 'sessions', '0001_initial', '2024-04-24 20:49:43.215094');
+(1, 'contenttypes', '0001_initial', '2024-05-06 22:10:59.140326'),
+(2, 'contenttypes', '0002_remove_content_type_name', '2024-05-06 22:10:59.302406'),
+(3, 'auth', '0001_initial', '2024-05-06 22:10:59.734428'),
+(4, 'auth', '0002_alter_permission_name_max_length', '2024-05-06 22:10:59.853409'),
+(5, 'auth', '0003_alter_user_email_max_length', '2024-05-06 22:10:59.869037'),
+(6, 'auth', '0004_alter_user_username_opts', '2024-05-06 22:10:59.891497'),
+(7, 'auth', '0005_alter_user_last_login_null', '2024-05-06 22:10:59.972402'),
+(8, 'auth', '0006_require_contenttypes_0002', '2024-05-06 22:11:00.006507'),
+(9, 'auth', '0007_alter_validators_add_error_messages', '2024-05-06 22:11:00.038911'),
+(10, 'auth', '0008_alter_user_username_max_length', '2024-05-06 22:11:00.129420'),
+(11, 'auth', '0009_alter_user_last_name_max_length', '2024-05-06 22:11:00.160263'),
+(12, 'auth', '0010_alter_group_name_max_length', '2024-05-06 22:11:00.224312'),
+(13, 'auth', '0011_update_proxy_permissions', '2024-05-06 22:11:00.295743'),
+(14, 'auth', '0012_alter_user_first_name_max_length', '2024-05-06 22:11:00.330003'),
+(15, 'users', '0001_initial', '2024-05-06 22:11:01.221971'),
+(16, 'admin', '0001_initial', '2024-05-06 22:11:01.445884'),
+(17, 'admin', '0002_logentry_remove_auto_add', '2024-05-06 22:11:01.477807'),
+(18, 'admin', '0003_logentry_add_action_flag_choices', '2024-05-06 22:11:01.524426'),
+(19, 'materiaprima', '0001_initial', '2024-05-06 22:11:01.668366'),
+(20, 'existencias', '0001_initial', '2024-05-06 22:11:01.699618'),
+(21, 'existencias', '0002_initial', '2024-05-06 22:11:01.836534'),
+(22, 'proveedores', '0001_initial', '2024-05-06 22:11:01.947603'),
+(23, 'insumos', '0001_initial', '2024-05-06 22:11:02.633498'),
+(24, 'pedidos', '0001_initial', '2024-05-06 22:11:03.213657'),
+(25, 'pedidos', '0002_initial', '2024-05-06 22:11:03.353040'),
+(26, 'facturas', '0001_initial', '2024-05-06 22:11:03.471285'),
+(27, 'facturas', '0002_initial', '2024-05-06 22:11:03.584566'),
+(28, 'facturas', '0003_initial', '2024-05-06 22:11:03.702083'),
+(29, 'facturas', '0004_initial', '2024-05-06 22:11:04.248979'),
+(30, 'materiaprima', '0002_initial', '2024-05-06 22:11:04.860507'),
+(31, 'pedidos', '0003_initial', '2024-05-06 22:11:05.268775'),
+(32, 'procesamiento', '0001_initial', '2024-05-06 22:11:05.910480'),
+(33, 'productoterminado', '0001_initial', '2024-05-06 22:11:07.008353'),
+(34, 'proveedores', '0002_initial', '2024-05-06 22:11:07.354119'),
+(35, 'sessions', '0001_initial', '2024-05-06 22:11:07.502179');
 
 -- --------------------------------------------------------
 
@@ -295,6 +323,13 @@ CREATE TABLE `django_session` (
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('xg45gyjulqjjwttjvor7voq56fpaiz6z', '.eJxVjMEOwiAQRP-FsyFbF2Hx6N1vICysUjU0Ke3J-O_SpAe9zCTzZuatQlyXEtYmcxizOiujDr8Zx_SUuoH8iPU-6TTVZR5ZbxW906avU5bXZe_-HZTYSl9HYsIMPACISZAw3ryw9WwNdIOTd2gECQawlLMTc0RnPDogcl3V5wvVBzaJ:1s46gq:bMPgi_Ft5GH0eDa2dhIHIvk5H0LXLTK_AfquhBV1qFk', '2024-05-20 22:20:08.035714');
 
 -- --------------------------------------------------------
 
@@ -322,9 +357,27 @@ CREATE TABLE `facturas_facturas` (
   `fac_subtotal` double NOT NULL,
   `fac_total` double NOT NULL,
   `img_factura` varchar(100) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL,
   `fac_numeroPedido_id` int(11) NOT NULL,
   `fac_proveedor_id` int(11) NOT NULL,
   `fac_iva_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `facturas_facturasaudit`
+--
+
+CREATE TABLE `facturas_facturasaudit` (
+  `id` bigint(20) NOT NULL,
+  `action` varchar(1) NOT NULL,
+  `details` longtext DEFAULT NULL,
+  `changed_at` datetime(6) NOT NULL,
+  `changed_by_id` bigint(20) DEFAULT NULL,
+  `factura_id` int(10) UNSIGNED NOT NULL,
+  `pedido_id` int(11) NOT NULL,
+  `proveedor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -337,6 +390,15 @@ CREATE TABLE `facturas_iva` (
   `id` bigint(20) NOT NULL,
   `valor` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `facturas_iva`
+--
+
+INSERT INTO `facturas_iva` (`id`, `valor`) VALUES
+(1, 0),
+(2, 5),
+(3, 19);
 
 -- --------------------------------------------------------
 
@@ -362,6 +424,17 @@ CREATE TABLE `insumos_insumosgenerico` (
   `id` bigint(20) NOT NULL,
   `it_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `insumos_insumosgenerico`
+--
+
+INSERT INTO `insumos_insumosgenerico` (`id`, `it_nombre`) VALUES
+(1, 'Guantes'),
+(2, 'Cofias'),
+(3, 'Guantes de goma'),
+(4, 'Delantal'),
+(5, 'Bolsas x600 G');
 
 -- --------------------------------------------------------
 
@@ -408,6 +481,15 @@ CREATE TABLE `materiaprima_desinfectantegenerico` (
   `des_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `materiaprima_desinfectantegenerico`
+--
+
+INSERT INTO `materiaprima_desinfectantegenerico` (`id`, `des_nombre`) VALUES
+(1, 'Cloro'),
+(2, 'Peróxido de Hidrógeno (Agua Oxigenada)'),
+(3, 'Vinagre');
+
 -- --------------------------------------------------------
 
 --
@@ -434,6 +516,34 @@ CREATE TABLE `materiaprima_materiaprimagenerica` (
   `mp_tipo` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `materiaprima_materiaprimagenerica`
+--
+
+INSERT INTO `materiaprima_materiaprimagenerica` (`id`, `mp_nombre`, `mp_tipo`) VALUES
+(1, 'Pechuga de Pollo', '0'),
+(2, 'Pimenton', '2'),
+(3, 'Sal', '4'),
+(4, 'Chorizo', '0'),
+(5, 'Polvo para mezcla', '4'),
+(6, 'Ajos', '2'),
+(7, 'BBQ', '4'),
+(8, 'Mayonesa', '4'),
+(9, 'Vinagre', '4'),
+(10, 'Zumo de Limón', '4'),
+(11, 'Azúcar', '4'),
+(12, 'Cilantro', '2'),
+(13, 'Ají', '2'),
+(14, 'Pimienta', '4'),
+(15, 'Tomate', '3'),
+(16, 'Cebolla', '2'),
+(17, 'Limón', '3'),
+(18, 'Pulpa de aguacate', '3'),
+(19, 'Mazorca', '2'),
+(20, 'Panela', '4'),
+(21, 'Carne', '0'),
+(22, 'Aguacate', '3');
+
 -- --------------------------------------------------------
 
 --
@@ -446,8 +556,24 @@ CREATE TABLE `pedidos_pedidos` (
   `pedi_fecha` date NOT NULL,
   `pedi_estado` varchar(1) NOT NULL,
   `pedi_comprobatePago` varchar(45) NOT NULL,
+  `deleted` tinyint(1) NOT NULL,
   `pedi_proveedor_id` int(11) NOT NULL,
   `pedi_user_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos_pedidosaudit`
+--
+
+CREATE TABLE `pedidos_pedidosaudit` (
+  `id` bigint(20) NOT NULL,
+  `action` varchar(1) NOT NULL,
+  `details` longtext DEFAULT NULL,
+  `changed_at` datetime(6) NOT NULL,
+  `changed_by_id` bigint(20) DEFAULT NULL,
+  `pedido_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -481,11 +607,14 @@ CREATE TABLE `pedidos_pedidos_pedi_materiaprima` (
 --
 
 CREATE TABLE `procesamiento_coccion` (
-  `id` bigint(20) NOT NULL,
-  `cocc_tiempoCoccion` int(11) NOT NULL,
+  `id_coccion` int(11) NOT NULL,
+  `cocc_nombre` varchar(50) NOT NULL,
+  `cocc_cantidad` int(11) NOT NULL,
+  `cocc_pesoMPposproceso` double NOT NULL,
+  `cocc_merma` double NOT NULL,
+  `cocc_tiempoCoccion` time(6) NOT NULL,
   `cocc_temperaturafinal` double NOT NULL,
-  `cocc_check` varchar(1) NOT NULL,
-  `cod_procesamiento_id` int(11) NOT NULL
+  `cocc_check` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -495,13 +624,12 @@ CREATE TABLE `procesamiento_coccion` (
 --
 
 CREATE TABLE `procesamiento_equipos` (
-  `id` bigint(20) NOT NULL,
+  `id_equipo` int(11) NOT NULL,
   `equi_encargadoCocina` varchar(50) NOT NULL,
   `equi_encargadoEntrega` varchar(50) NOT NULL,
   `equi_calidad` varchar(1) NOT NULL,
   `equi_nombre` varchar(50) NOT NULL,
-  `equi_check` varchar(1) NOT NULL,
-  `cod_procesamiento_id` int(11) NOT NULL
+  `equi_check` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -511,11 +639,20 @@ CREATE TABLE `procesamiento_equipos` (
 --
 
 CREATE TABLE `procesamiento_picado` (
-  `id` bigint(20) NOT NULL,
+  `cod_procesamiento` int(11) NOT NULL,
+  `pica_nombre` varchar(50) NOT NULL,
   `pica_cantidad` int(11) NOT NULL,
-  `pica_check` varchar(1) NOT NULL,
-  `cod_procesamiento_id` int(11) NOT NULL
+  `pica_pesoMPposproceso` double NOT NULL,
+  `pica_merma` double NOT NULL,
+  `pica_check` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `procesamiento_picado`
+--
+
+INSERT INTO `procesamiento_picado` (`cod_procesamiento`, `pica_nombre`, `pica_cantidad`, `pica_pesoMPposproceso`, `pica_merma`, `pica_check`) VALUES
+(1, 'algo aqui', 239, 38, 200, '0');
 
 -- --------------------------------------------------------
 
@@ -525,10 +662,10 @@ CREATE TABLE `procesamiento_picado` (
 
 CREATE TABLE `procesamiento_procesamiento` (
   `cod_procesamiento` int(11) NOT NULL,
-  `proces_pesoMpCruda` double NOT NULL,
+  `proces_pesoMP` double NOT NULL,
   `proces_pesoPostProceso` double NOT NULL,
   `proces_merma` double NOT NULL,
-  `proces_check` varchar(1) NOT NULL
+  `proces_estado` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -597,8 +734,8 @@ CREATE TABLE `productoterminado_productoterminado` (
   `pt_cantidad` int(11) NOT NULL,
   `pt_fechapreparacion` date NOT NULL,
   `pt_fechavencimiento` date NOT NULL,
-  `idCoccion_id` bigint(20) DEFAULT NULL,
-  `idPicado_id` bigint(20) DEFAULT NULL,
+  `idCoccion_id` int(11) DEFAULT NULL,
+  `idPicado_id` int(11) DEFAULT NULL,
   `pt_nombre_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -613,6 +750,21 @@ CREATE TABLE `productoterminado_productoterminadogenerico` (
   `pt_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `productoterminado_productoterminadogenerico`
+--
+
+INSERT INTO `productoterminado_productoterminadogenerico` (`id`, `pt_nombre`) VALUES
+(1, 'Pollo Desmechado'),
+(2, 'Chorizo Picado'),
+(3, 'Salsa de la Casa'),
+(4, 'Salsa de Cilantro'),
+(5, 'Pico de Gallo'),
+(6, 'Guacamole'),
+(7, 'Mazorca Desgranada'),
+(8, 'Carne Desmechada'),
+(9, 'Pulpa de aguacate');
+
 -- --------------------------------------------------------
 
 --
@@ -624,6 +776,47 @@ CREATE TABLE `productoterminado_productoterminadogenerico_materiaprimausada` (
   `productoterminadogenerico_id` bigint(20) NOT NULL,
   `materiaprimagenerica_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productoterminado_productoterminadogenerico_materiaprimausada`
+--
+
+INSERT INTO `productoterminado_productoterminadogenerico_materiaprimausada` (`id`, `productoterminadogenerico_id`, `materiaprimagenerica_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 3, 5),
+(6, 3, 6),
+(7, 3, 7),
+(8, 4, 3),
+(9, 4, 6),
+(10, 4, 8),
+(11, 4, 9),
+(12, 4, 10),
+(13, 4, 11),
+(14, 4, 12),
+(15, 4, 13),
+(16, 5, 3),
+(17, 5, 9),
+(18, 5, 12),
+(19, 5, 15),
+(20, 5, 16),
+(21, 5, 17),
+(22, 6, 3),
+(23, 6, 9),
+(24, 6, 12),
+(25, 6, 13),
+(26, 6, 15),
+(27, 6, 16),
+(28, 6, 17),
+(29, 6, 18),
+(30, 7, 19),
+(31, 7, 20),
+(32, 8, 2),
+(33, 8, 3),
+(34, 8, 21),
+(35, 9, 22);
 
 -- --------------------------------------------------------
 
@@ -648,7 +841,23 @@ CREATE TABLE `proveedores_proveedores` (
   `prov_id` int(11) NOT NULL,
   `nit` int(11) NOT NULL,
   `prov_nombre` varchar(40) NOT NULL,
-  `prov_telefono` varchar(10) NOT NULL
+  `prov_telefono` varchar(10) NOT NULL,
+  `deleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedores_proveedoresaudit`
+--
+
+CREATE TABLE `proveedores_proveedoresaudit` (
+  `id` bigint(20) NOT NULL,
+  `action` varchar(1) NOT NULL,
+  `details` longtext DEFAULT NULL,
+  `changed_at` datetime(6) NOT NULL,
+  `changed_by_id` bigint(20) DEFAULT NULL,
+  `proveedor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -663,7 +872,6 @@ CREATE TABLE `users_user` (
   `last_login` datetime(6) DEFAULT NULL,
   `first_name` varchar(150) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
   `username` varchar(10) NOT NULL,
   `name` varchar(30) NOT NULL,
@@ -671,15 +879,42 @@ CREATE TABLE `users_user` (
   `is_admin` tinyint(1) NOT NULL,
   `is_employee` tinyint(1) NOT NULL,
   `is_staff` tinyint(1) NOT NULL,
-  `is_superuser` tinyint(1) NOT NULL
+  `is_superuser` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users_user`
 --
 
-INSERT INTO `users_user` (`id`, `password`, `last_login`, `first_name`, `email`, `is_active`, `date_joined`, `username`, `name`, `last_name`, `is_admin`, `is_employee`, `is_staff`, `is_superuser`) VALUES
-(1, 'pbkdf2_sha256$720000$oNWAzajQ8EuBhudaBh8rkn$c2RqOIbYVsWoan4XL9IfIz31sfBxCEYKNGVtOVCstu4=', NULL, '', '', 1, '2024-04-24 20:50:49.538966', 'johan', 'johan', 'tovar', 0, 0, 1, 1);
+INSERT INTO `users_user` (`id`, `password`, `last_login`, `first_name`, `email`, `date_joined`, `username`, `name`, `last_name`, `is_admin`, `is_employee`, `is_staff`, `is_superuser`, `is_active`, `deleted`) VALUES
+(1, 'pbkdf2_sha256$720000$6roiVQl2QxBuki4zFtLDYe$4vflIwPDRbTK1/OgD5hoJjVmi2DFUaF6ftHHVIcJKVU=', '2024-05-06 17:21:09.230970', '', '', '2024-05-04 22:57:43.000000', 'vivian', 'vivian', 'hincapie', 1, 0, 1, 1, 1, 0),
+(2, 'pbkdf2_sha256$720000$HowSwCtLihx5hMEdXIBC5W$Xn0hAgKD+nR06p2/BazYYoTSDuz6Eitmpgb0eYDAbsc=', NULL, '', '', '2024-05-06 20:34:17.000000', 'johan', 'Johan', 'Tovar', 1, 0, 1, 1, 1, 0),
+(3, 'pbkdf2_sha256$720000$LRc3cfODr9aR3AozjMUjYI$0N+4j36IJYcnNksmZ10VxHZ/WP7SfpSfktcTMq3jFXs=', NULL, '', '', '2024-05-06 20:35:32.000000', 'kevin', 'Kevin', 'Albarracin', 1, 0, 1, 1, 1, 0),
+(4, 'pbkdf2_sha256$720000$mvBGT0fChzDlnAP6XcdRrh$N8Pi61BzW14jA/1Tg2sZ2c5L05VDabPL3/s+Cai+BnU=', '2024-05-06 22:20:08.020090', '', '', '2024-05-06 20:35:59.000000', 'daniel', 'Daniel', 'Castro', 1, 0, 1, 1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users_useraudit`
+--
+
+CREATE TABLE `users_useraudit` (
+  `id` bigint(20) NOT NULL,
+  `action` varchar(1) NOT NULL,
+  `details` longtext DEFAULT NULL,
+  `changed_at` datetime(6) NOT NULL,
+  `changed_by_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users_useraudit`
+--
+
+INSERT INTO `users_useraudit` (`id`, `action`, `details`, `changed_at`, `changed_by_id`, `user_id`) VALUES
+(1, 'U', 'La información de Daniel Castro ha sido actualizado.', '2024-05-06 22:20:08.035714', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -776,6 +1011,16 @@ ALTER TABLE `facturas_facturas`
   ADD KEY `facturas_facturas_fac_iva_id_bbfc3a11_fk_facturas_iva_id` (`fac_iva_id`);
 
 --
+-- Indices de la tabla `facturas_facturasaudit`
+--
+ALTER TABLE `facturas_facturasaudit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `facturas_facturasaudit_changed_by_id_cc12251a_fk_users_user_id` (`changed_by_id`),
+  ADD KEY `facturas_facturasaud_factura_id_96ecab91_fk_facturas_` (`factura_id`),
+  ADD KEY `facturas_facturasaudit_pedido_id_ea477019_fk_pedidos_pedidos_id` (`pedido_id`),
+  ADD KEY `facturas_facturasaud_proveedor_id_7028722d_fk_proveedor` (`proveedor_id`);
+
+--
 -- Indices de la tabla `facturas_iva`
 --
 ALTER TABLE `facturas_iva`
@@ -839,6 +1084,14 @@ ALTER TABLE `pedidos_pedidos`
   ADD KEY `pedidos_pedidos_pedi_user_id_e51c09ad_fk_users_user_id` (`pedi_user_id`);
 
 --
+-- Indices de la tabla `pedidos_pedidosaudit`
+--
+ALTER TABLE `pedidos_pedidosaudit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pedidos_pedidosaudit_changed_by_id_8fc62972_fk_users_user_id` (`changed_by_id`),
+  ADD KEY `pedidos_pedidosaudit_pedido_id_e6a0dffb_fk_pedidos_pedidos_id` (`pedido_id`);
+
+--
 -- Indices de la tabla `pedidos_pedidos_pedi_insumos`
 --
 ALTER TABLE `pedidos_pedidos_pedi_insumos`
@@ -858,22 +1111,19 @@ ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
 -- Indices de la tabla `procesamiento_coccion`
 --
 ALTER TABLE `procesamiento_coccion`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `procesamiento_coccio_cod_procesamiento_id_eff9cbb8_fk_procesami` (`cod_procesamiento_id`);
+  ADD PRIMARY KEY (`id_coccion`);
 
 --
 -- Indices de la tabla `procesamiento_equipos`
 --
 ALTER TABLE `procesamiento_equipos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `procesamiento_equipo_cod_procesamiento_id_ac3cf2f6_fk_procesami` (`cod_procesamiento_id`);
+  ADD PRIMARY KEY (`id_equipo`);
 
 --
 -- Indices de la tabla `procesamiento_picado`
 --
 ALTER TABLE `procesamiento_picado`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `procesamiento_picado_cod_procesamiento_id_179b7cfd_fk_procesami` (`cod_procesamiento_id`);
+  ADD PRIMARY KEY (`cod_procesamiento`);
 
 --
 -- Indices de la tabla `procesamiento_procesamiento`
@@ -948,11 +1198,27 @@ ALTER TABLE `proveedores_proveedores`
   ADD UNIQUE KEY `nit` (`nit`);
 
 --
+-- Indices de la tabla `proveedores_proveedoresaudit`
+--
+ALTER TABLE `proveedores_proveedoresaudit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `proveedores_proveedo_changed_by_id_76d2348e_fk_users_use` (`changed_by_id`),
+  ADD KEY `proveedores_proveedo_proveedor_id_df80d758_fk_proveedor` (`proveedor_id`);
+
+--
 -- Indices de la tabla `users_user`
 --
 ALTER TABLE `users_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indices de la tabla `users_useraudit`
+--
+ALTER TABLE `users_useraudit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_useraudit_changed_by_id_d12f96be_fk_users_user_id` (`changed_by_id`),
+  ADD KEY `users_useraudit_user_id_f6dddc0f_fk_users_user_id` (`user_id`);
 
 --
 -- Indices de la tabla `users_user_groups`
@@ -990,7 +1256,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT de la tabla `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT de la tabla `django_admin_log`
@@ -1002,19 +1268,25 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT de la tabla `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `facturas_facturasaudit`
+--
+ALTER TABLE `facturas_facturasaudit`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `facturas_iva`
 --
 ALTER TABLE `facturas_iva`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `insumos_implementostrabajo`
@@ -1026,7 +1298,7 @@ ALTER TABLE `insumos_implementostrabajo`
 -- AUTO_INCREMENT de la tabla `insumos_insumosgenerico`
 --
 ALTER TABLE `insumos_insumosgenerico`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `materiaprima_caracteristicasorganolepticas`
@@ -1044,19 +1316,25 @@ ALTER TABLE `materiaprima_desinfeccion`
 -- AUTO_INCREMENT de la tabla `materiaprima_desinfectantegenerico`
 --
 ALTER TABLE `materiaprima_desinfectantegenerico`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `materiaprima_materiaprimagenerica`
 --
 ALTER TABLE `materiaprima_materiaprimagenerica`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos_pedidos`
 --
 ALTER TABLE `pedidos_pedidos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pedidos_pedidosaudit`
+--
+ALTER TABLE `pedidos_pedidosaudit`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos_pedidos_pedi_insumos`
@@ -1074,19 +1352,19 @@ ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
 -- AUTO_INCREMENT de la tabla `procesamiento_coccion`
 --
 ALTER TABLE `procesamiento_coccion`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_coccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `procesamiento_equipos`
 --
 ALTER TABLE `procesamiento_equipos`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `procesamiento_picado`
 --
 ALTER TABLE `procesamiento_picado`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_procesamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `procesamiento_procesamiento`
@@ -1128,13 +1406,13 @@ ALTER TABLE `productoterminado_productoterminado`
 -- AUTO_INCREMENT de la tabla `productoterminado_productoterminadogenerico`
 --
 ALTER TABLE `productoterminado_productoterminadogenerico`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `productoterminado_productoterminadogenerico_materiaprimausada`
 --
 ALTER TABLE `productoterminado_productoterminadogenerico_materiaprimausada`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `productoterminado_vacio`
@@ -1149,9 +1427,21 @@ ALTER TABLE `proveedores_proveedores`
   MODIFY `prov_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `proveedores_proveedoresaudit`
+--
+ALTER TABLE `proveedores_proveedoresaudit`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users_user`
 --
 ALTER TABLE `users_user`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `users_useraudit`
+--
+ALTER TABLE `users_useraudit`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -1205,6 +1495,15 @@ ALTER TABLE `facturas_facturas`
   ADD CONSTRAINT `facturas_facturas_fac_proveedor_id_88c2f86a_fk_proveedor` FOREIGN KEY (`fac_proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`);
 
 --
+-- Filtros para la tabla `facturas_facturasaudit`
+--
+ALTER TABLE `facturas_facturasaudit`
+  ADD CONSTRAINT `facturas_facturasaud_factura_id_96ecab91_fk_facturas_` FOREIGN KEY (`factura_id`) REFERENCES `facturas_facturas` (`num_factura`),
+  ADD CONSTRAINT `facturas_facturasaud_proveedor_id_7028722d_fk_proveedor` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`),
+  ADD CONSTRAINT `facturas_facturasaudit_changed_by_id_cc12251a_fk_users_user_id` FOREIGN KEY (`changed_by_id`) REFERENCES `users_user` (`id`),
+  ADD CONSTRAINT `facturas_facturasaudit_pedido_id_ea477019_fk_pedidos_pedidos_id` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos_pedidos` (`id`);
+
+--
 -- Filtros para la tabla `insumos_implementostrabajo`
 --
 ALTER TABLE `insumos_implementostrabajo`
@@ -1238,6 +1537,13 @@ ALTER TABLE `pedidos_pedidos`
   ADD CONSTRAINT `pedidos_pedidos_pedi_user_id_e51c09ad_fk_users_user_id` FOREIGN KEY (`pedi_user_id`) REFERENCES `users_user` (`id`);
 
 --
+-- Filtros para la tabla `pedidos_pedidosaudit`
+--
+ALTER TABLE `pedidos_pedidosaudit`
+  ADD CONSTRAINT `pedidos_pedidosaudit_changed_by_id_8fc62972_fk_users_user_id` FOREIGN KEY (`changed_by_id`) REFERENCES `users_user` (`id`),
+  ADD CONSTRAINT `pedidos_pedidosaudit_pedido_id_e6a0dffb_fk_pedidos_pedidos_id` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos_pedidos` (`id`);
+
+--
 -- Filtros para la tabla `pedidos_pedidos_pedi_insumos`
 --
 ALTER TABLE `pedidos_pedidos_pedi_insumos`
@@ -1250,24 +1556,6 @@ ALTER TABLE `pedidos_pedidos_pedi_insumos`
 ALTER TABLE `pedidos_pedidos_pedi_materiaprima`
   ADD CONSTRAINT `pedidos_pedidos_pedi_materiaprima_id_68484054_fk_materiapr` FOREIGN KEY (`materiaprima_id`) REFERENCES `materiaprima_materiaprima` (`mp_lote`),
   ADD CONSTRAINT `pedidos_pedidos_pedi_pedidos_id_d50eb29d_fk_pedidos_p` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos_pedidos` (`id`);
-
---
--- Filtros para la tabla `procesamiento_coccion`
---
-ALTER TABLE `procesamiento_coccion`
-  ADD CONSTRAINT `procesamiento_coccio_cod_procesamiento_id_eff9cbb8_fk_procesami` FOREIGN KEY (`cod_procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
-
---
--- Filtros para la tabla `procesamiento_equipos`
---
-ALTER TABLE `procesamiento_equipos`
-  ADD CONSTRAINT `procesamiento_equipo_cod_procesamiento_id_ac3cf2f6_fk_procesami` FOREIGN KEY (`cod_procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
-
---
--- Filtros para la tabla `procesamiento_picado`
---
-ALTER TABLE `procesamiento_picado`
-  ADD CONSTRAINT `procesamiento_picado_cod_procesamiento_id_179b7cfd_fk_procesami` FOREIGN KEY (`cod_procesamiento_id`) REFERENCES `procesamiento_procesamiento` (`cod_procesamiento`);
 
 --
 -- Filtros para la tabla `procesamiento_procesamiento_proces_materiaprima`
@@ -1298,8 +1586,8 @@ ALTER TABLE `productoterminado_existenciapt`
 -- Filtros para la tabla `productoterminado_productoterminado`
 --
 ALTER TABLE `productoterminado_productoterminado`
-  ADD CONSTRAINT `productoterminado_pr_idCoccion_id_695be24c_fk_procesami` FOREIGN KEY (`idCoccion_id`) REFERENCES `procesamiento_coccion` (`id`),
-  ADD CONSTRAINT `productoterminado_pr_idPicado_id_64723a97_fk_procesami` FOREIGN KEY (`idPicado_id`) REFERENCES `procesamiento_picado` (`id`),
+  ADD CONSTRAINT `productoterminado_pr_idCoccion_id_695be24c_fk_procesami` FOREIGN KEY (`idCoccion_id`) REFERENCES `procesamiento_coccion` (`id_coccion`),
+  ADD CONSTRAINT `productoterminado_pr_idPicado_id_64723a97_fk_procesami` FOREIGN KEY (`idPicado_id`) REFERENCES `procesamiento_picado` (`cod_procesamiento`),
   ADD CONSTRAINT `productoterminado_pr_pt_nombre_id_ff84b486_fk_productot` FOREIGN KEY (`pt_nombre_id`) REFERENCES `productoterminado_productoterminadogenerico` (`id`);
 
 --
@@ -1314,6 +1602,20 @@ ALTER TABLE `productoterminado_productoterminadogenerico_materiaprimausada`
 --
 ALTER TABLE `productoterminado_vacio`
   ADD CONSTRAINT `productoterminado_va_pt_lote_id_2bc8447f_fk_productot` FOREIGN KEY (`pt_lote_id`) REFERENCES `productoterminado_productoterminado` (`pt_lote`);
+
+--
+-- Filtros para la tabla `proveedores_proveedoresaudit`
+--
+ALTER TABLE `proveedores_proveedoresaudit`
+  ADD CONSTRAINT `proveedores_proveedo_changed_by_id_76d2348e_fk_users_use` FOREIGN KEY (`changed_by_id`) REFERENCES `users_user` (`id`),
+  ADD CONSTRAINT `proveedores_proveedo_proveedor_id_df80d758_fk_proveedor` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores_proveedores` (`prov_id`);
+
+--
+-- Filtros para la tabla `users_useraudit`
+--
+ALTER TABLE `users_useraudit`
+  ADD CONSTRAINT `users_useraudit_changed_by_id_d12f96be_fk_users_user_id` FOREIGN KEY (`changed_by_id`) REFERENCES `users_user` (`id`),
+  ADD CONSTRAINT `users_useraudit_user_id_f6dddc0f_fk_users_user_id` FOREIGN KEY (`user_id`) REFERENCES `users_user` (`id`);
 
 --
 -- Filtros para la tabla `users_user_groups`

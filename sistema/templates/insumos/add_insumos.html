@@ -1,3 +1,24 @@
+<style>
+    .cont-fecha{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cont-fecha select{
+        padding: 8px 10px;
+        min-width: 30%;
+    }
+    .cont-fecha select:nth-child(1){
+        border-radius: 6px 0 0 6px;
+    }
+
+    .cont-fecha select:nth-child(3){
+        border-radius: 0 6px 6px 0;
+    }
+
+</style>
+
 <div class="modal-dialog modal-md" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
@@ -30,8 +51,7 @@
 
                 <div class="mb-3 col-12">
                     <label for="id_mp_fechavencimiento" class="form-label">Fecha de Entrega:</label>
-                    <br>
-                    {{form.it_fechaEntrega}}  
+                    <div class="cont-fecha">{{form.it_fechaEntrega}}</div>                 
                 </div>
 
                 <div class="mb-3 col-12">
