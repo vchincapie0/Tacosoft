@@ -3,10 +3,11 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from datetime import timedelta
 from django import forms
-from .models import Pedidos
+from .models import Pedidos, PedidosAudit
 from applications.materiaprima.models import MateriaPrima
 from applications.insumos.models import ImplementosTrabajo
 from applications.proveedores.models import Proveedores
+from applications.users.models import User
 
 class PedidosCreateForm(forms.ModelForm):
 
@@ -267,3 +268,24 @@ class  PedidosAddProveedorCreateFrom(forms.ModelForm):
         if not re.match("^[a-zA-Z ]+$", nombre):
             raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
         return nombre
+    
+class PedidosAuditFilterForm(forms.Form):
+    '''Formulario para filtar en PedidosAuditView'''
+    pedido = forms.ModelChoiceField(queryset=Pedidos.objects.all(), 
+                                  required=False, 
+                                  label='Proveedor',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=PedidosAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
