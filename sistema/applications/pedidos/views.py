@@ -115,7 +115,7 @@ class PedidosDeleteView(LoginRequiredMixin, DeleteView):
 class PedidosAuditListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de la Auditoria de Pedidos'''
     model = PedidosAudit
-    template_name = "pedidos/pedidosaudit.html"
+    template_name = "administrador/auditorias/pedidosaudit.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'pedidos'
