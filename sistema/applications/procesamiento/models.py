@@ -78,7 +78,6 @@ class Picado(models.Model):
     pica_pesoMPposproceso=models.FloatField('Peso',default=0)
     pica_merma=models.FloatField('Peso Merma',default=0)
     pica_check=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
-
     
     def __str__(self):
         return f"{self.pica_nombre}-{self.pica_cantidad}{self.pica_pesoMPposproceso}-{self.pica_merma}-{self.pica_check}"

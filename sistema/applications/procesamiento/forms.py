@@ -132,6 +132,31 @@ class addCoccion(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
+    
+class CoccionUpdateForm(forms.ModelForm):
+    """Form Update Picado."""
+    class Meta:
+
+        model =Coccion
+        fields = [
+            'cocc_nombre',
+            'cocc_cantidad',
+            'cocc_pesoMPposproceso',
+            'cocc_merma',
+            'cocc_tiempoCoccion',
+            'cocc_temperaturafinal',
+            'cocc_check',
+            ]
+
+        widgets={
+            'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
+            'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
+            'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
+            'cocc_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'cocc_tiempoCoccion':forms.TimeInput(attrs={'placeholder':'tiempo de coccion'}),
+            'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final'}),
+            'cocc_check':forms.Select(attrs={'class': 'form-select'}),
+        }
 
 class addEquipos(forms.ModelForm):
 
