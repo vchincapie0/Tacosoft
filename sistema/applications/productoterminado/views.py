@@ -11,6 +11,7 @@ from .models import (
     Vacio,
     ProductoTerminadoGenerico,
     ProductoTerminadoGenerico,
+    ProductoTerminadoAudit
 )
 from .forms import (
     ProductoTerminadoForm,
@@ -227,3 +228,10 @@ class ProductoTerminadoGenericoDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "productoterminado/delete_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('produ_app:list_pt_generico')
+class ProductoTerminadoAuditListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de logs de producto terminado'''
+    model = ProductoTerminadoAudit
+    template_name = "productoterminado/productoaudit.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'productoterminado'
