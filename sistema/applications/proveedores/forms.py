@@ -70,7 +70,7 @@ class ProveedoresUpdateForm(forms.ModelForm):
         return nombre
 
 class ProveedorAuditFilterForm(forms.Form):
-    '''Formulario para filtar en userauditview'''
+    '''Formulario para filtar en proveedoresauditview'''
     proveedor = forms.ModelChoiceField(queryset=Proveedores.objects.all(), 
                                   required=False, 
                                   label='Proveedor',
