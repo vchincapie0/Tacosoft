@@ -52,13 +52,13 @@
                         </a>
                         <ul id="compras" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="{% url 'pedidos_app:list_pedidos' %}" class="sidebar-link">Pedidos</a>
+                                <a href="{% url 'pedidos_app:list_pedidos' %}" class="sidebar-link"><i class="fa-solid fa-clipboard-list"></i> Pedidos</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="{% url 'proveedores_app:list_proveedores' %}" class="sidebar-link">Proveedores</a>
+                                <a href="{% url 'proveedores_app:list_proveedores' %}" class="sidebar-link"><i class="fa-solid fa-clipboard-user"></i> Proveedores</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="{% url 'facturas_app:list_factura' %}" class="sidebar-link">Facturas</a>
+                                <a href="{% url 'facturas_app:list_factura' %}" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Facturas</a>
                             </li>
                         </ul>
                     </li>
@@ -97,19 +97,10 @@
                         </a>
                         <ul id="modulos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="{% url 'mp_app:listaGenerica_mp' %}" class="sidebar-link">Materia Prima</a>
+                                <a href="{% url 'home_app:genericas_index' %}" class="sidebar-link">Tablas Genéricas</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="{% url 'insumos_app:list_insumos_generico' %}" class="sidebar-link">Implementos de Trabajo</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{% url 'produ_app:list_pt_generico' %}" class="sidebar-link">Producto Terminado</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{% url 'mp_app:desinfeccion_generico' %}" class="sidebar-link">Desinfectante</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{% url 'facturas_app:list_IVA' %}" class="sidebar-link">IVA</a>
+                                <a href="{% url 'home_app:auditorias_index' %}" class="sidebar-link">Tablas de Auditoria</a>
                             </li>
                         </ul>
                     </li>
