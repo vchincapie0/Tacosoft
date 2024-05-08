@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     TemplateView, 
@@ -20,7 +21,8 @@ from .forms import (
     PedidosAddMpCreateFrom, 
     PedidosAddInsumosCreateFrom,
     PedidosAddProveedorCreateFrom,
-    PedidosUpdateMpUpdateFrom,
+    PedidosAuditFilterForm
+
 )
 
 # Create your views here.
@@ -119,3 +121,38 @@ class PedidosAuditListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'pedidos'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = PedidosAuditFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            pedido = form.cleaned_data.get('pedido')
+            action = form.cleaned_data.get('action')
+            changed_by = form.cleaned_data.get('changed_by')
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
+            if pedido:
+                queryset = queryset.filter(proveedor=pedido)
+            if action:
+                queryset = queryset.filter(action=action)
+            if changed_by:
+                queryset = queryset.filter(changed_by=changed_by)
+            if start_date:
+                queryset = queryset.filter(changed_at__gte=start_date)
+            if end_date:
+                # Agregar 1 día a la fecha final para incluir todos los registros de ese día
+                end_date += timezone.timedelta(days=1)
+                queryset = queryset.filter(changed_at__lt=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = PedidosAuditFilterForm(self.request.GET)
+        return context

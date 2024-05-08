@@ -175,35 +175,6 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
-    
-class PedidosUpdateMpUpdateFrom(forms.ModelForm):
-    """Form definition para crear materia prima en el formulario de pedidos."""
-
-    class Meta:
-        """Meta definition for MateriaPrimaform."""
-
-        model = MateriaPrima
-        fields = (
-            'mp_lote',
-            'mp_nombre',
-            'mp_cantidad',
-            'mp_fechallegada',
-            'mp_fechavencimiento',
-            )
-        
-        widgets={
-            'mp_lote':forms.NumberInput(attrs={'class':'form-control'}),
-            'mp_nombre':forms.Select(attrs={'class':'form-select'}),
-            'mp_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
-            'mp_fechallegada':forms.SelectDateWidget(),
-            'mp_fechavencimiento':forms.SelectDateWidget(),
-        }
-    
-    def clean_it_cantidad(self):
-        cantidad = self.cleaned_data['it_cantidad']
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-        return cantidad
 
 class PedidosAddInsumosCreateFrom(forms.ModelForm):
     """Form definition Implementos de Trabajo en pedidos."""
