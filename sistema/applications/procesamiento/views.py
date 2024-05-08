@@ -38,6 +38,14 @@ class PicadoDeleteView(LoginRequiredMixin,DeleteView):
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('procesamientos_app:picado')
 
+class PicadoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de Picado'''
+    model = Picado
+    template_name = "procesamientos/edit_picado.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=PicadoUpdateForm
+    success_url= reverse_lazy('procesamientos_app:picado')
+
 class CoccionListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de picado'''
     model = Coccion
@@ -61,6 +69,14 @@ class CoccionDeleteView(LoginRequiredMixin,DeleteView):
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('procesamientos_app:coccion')
 
+class CoccionUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos de Coccion'''
+    model = Coccion
+    template_name = "procesamientos/edit_coccion.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=PicadoUpdateForm
+    success_url= reverse_lazy('procesamientos_app:coccion')
+
 class EquiposListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de equipos'''
     model = Equipos
@@ -69,13 +85,6 @@ class EquiposListView(LoginRequiredMixin, ListView):
     paginate_by=10
     context_object_name = 'procesamientos'
 
-class PicadoUpdateView(LoginRequiredMixin, UpdateView):
-    '''Vista para actualizar los datos de Picado'''
-    model = Picado
-    template_name = "procesamientos/edit_picado.html"
-    login_url=reverse_lazy('users_app:login')
-    form_class=PicadoUpdateForm
-    success_url= reverse_lazy('procesamientos_app:picado')
 
 class EquiposcreateView(LoginRequiredMixin,CreateView):
     '''Vista para crear  de equipos'''
