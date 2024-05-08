@@ -1,6 +1,32 @@
 from django import forms
 from django.utils import timezone
-from .models import ProductoTerminado, ExistenciaPT, CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
+from .models import (
+    ProductoTerminado, 
+    ExistenciaPT, 
+    CaracteristicasOrganolepticasPT,
+    EmpaqueProductoTerminado,
+    Vacio,
+    ProductoTerminadoGenerico,
+)
+
+class ProductoTerminadoGenericoForm(forms.ModelForm):
+    """Form definition for Producto Terminado."""
+
+    class Meta:
+        """Meta definition for ProductoTerminadoform."""
+
+        model = ProductoTerminadoGenerico
+        fields = (
+            'pt_nombre',
+            'materiaPrimaUsada',
+            )
+        
+        widgets={
+            'pt_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'materiaPrimaUsada':forms.SelectMultiple(attrs={'class':'form-select'}),
+        }
+    
+
 
 class ProductoTerminadoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""

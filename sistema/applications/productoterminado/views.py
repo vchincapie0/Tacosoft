@@ -3,8 +3,25 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ProductoTerminado,ExistenciaPT,CaracteristicasOrganolepticasPT,EmpaqueProductoTerminado,Vacio
-from .forms import ProductoTerminadoForm,CaracteristicasOrganolepticasPTForm,EmpaqueProductoTerminadoForm,VacioForm,CaracteristicasPTUpdateForm,EmpaqueUpdateForm,VacioUpdateForm
+from .models import (
+    ProductoTerminado,
+    ExistenciaPT,
+    CaracteristicasOrganolepticasPT,
+    EmpaqueProductoTerminado,
+    Vacio,
+    ProductoTerminadoGenerico,
+    ProductoTerminadoGenerico,
+)
+from .forms import (
+    ProductoTerminadoForm,
+    CaracteristicasOrganolepticasPTForm,
+    EmpaqueProductoTerminadoForm,
+    VacioForm,
+    CaracteristicasPTUpdateForm,
+    EmpaqueUpdateForm,
+    VacioUpdateForm,
+    ProductoTerminadoGenericoForm,
+)
 
 # Create your views here.
 
@@ -166,4 +183,47 @@ class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
         Vacio.responsable = user
              # Ahora sí, guarda el pedido en la base de datos
         Vacio.save()
-        return super().form_valid(form)      
+        return super().form_valid(form)   
+
+class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
+    '''Clase para mostrar los datos de las materias primas'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/list_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    paginate_by=10
+    context_object_name = 'producto'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        
+        # Filtrar por nombre específico de la materia prima
+        queryset = ProductoTerminadoGenerico.objects.filter(
+            pt_nombre__icontains=palabra_clave
+        )
+        
+        return queryset   
+    
+class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
+    '''Clase donde se crea un nuevo Producto terminado'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/add_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = ProductoTerminadoGenericoForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('produ_app:list_pt_generico')
+
+class ProductoTerminadoGenericoUpdateView(LoginRequiredMixin, UpdateView):
+    '''Vista para actualizar los datos  Producto terminado'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/update_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    form_class=ProductoTerminadoGenericoForm
+    success_url= reverse_lazy('produ_app:list_pt_generico')
+
+class ProductoTerminadoGenericoDeleteView(LoginRequiredMixin, DeleteView):
+    '''Vista para borrar Producto terminado'''
+    model = ProductoTerminadoGenerico
+    template_name = "productoterminado/delete_pt_generico.html"
+    login_url=reverse_lazy('users_app:login')
+    success_url= reverse_lazy('produ_app:list_pt_generico')
