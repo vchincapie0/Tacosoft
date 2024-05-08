@@ -131,7 +131,7 @@ class LogOut(View):
     
 class UserAuditListView(LoginRequiredMixin, ListView):
     model= UserAudit
-    template_name='usuarios/useraudit.html'
+    template_name='administrador/auditorias/useraudit.html'
     paginate_by=10
     context_object_name='auditoria'
 
