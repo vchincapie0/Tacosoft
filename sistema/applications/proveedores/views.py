@@ -51,7 +51,7 @@ class ProveedoresDeleteView(LoginRequiredMixin, DeleteView):
 class ProveedoresAuditListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de logs de proveedores'''
     model = ProveedoresAudit
-    template_name = "proveedores/proveedoraudit.html"
+    template_name = "administrador/auditorias/proveedoraudit.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'proveedor'
