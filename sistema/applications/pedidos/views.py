@@ -138,7 +138,7 @@ class PedidosAuditListView(LoginRequiredMixin, ListView):
 
             # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
             if pedido:
-                queryset = queryset.filter(proveedor=pedido)
+                queryset = queryset.filter(pedido=pedido)
             if action:
                 queryset = queryset.filter(action=action)
             if changed_by:
