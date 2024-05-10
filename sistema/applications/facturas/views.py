@@ -21,7 +21,7 @@ from .forms import (
 class IVAListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
     model = IVA
-    template_name = "facturas/list_IVA.html"
+    template_name = "administrador/genericas/list_IVA.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'facturas'
@@ -29,7 +29,7 @@ class IVAListView(LoginRequiredMixin, ListView):
 class IVACreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva factura'''
     model = IVA
-    template_name = "facturas/add_IVA.html"
+    template_name = "administrador/genericas/add_IVA.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = IVACreateForm
@@ -39,7 +39,7 @@ class IVACreateView(LoginRequiredMixin, CreateView):
 class IVAUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de Facturas'''
     model =IVA 
-    template_name = "facturas/update_IVA.html"
+    template_name = "administrador/genericas/update_IVA.html"
     login_url=reverse_lazy('users_app:login')
     form_class=IVAUpdateForm
     success_url= reverse_lazy('facturas_app:list_IVA')
@@ -47,7 +47,7 @@ class IVAUpdateView(LoginRequiredMixin, UpdateView):
 class IVADeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Implenentos de Trabajo'''
     model = IVA
-    template_name = "facturas/delete_IVA.html"
+    template_name = "administrador/genericas/delete_IVA.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('facturas_app:list_IVA') 
 

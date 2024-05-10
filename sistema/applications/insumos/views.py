@@ -11,7 +11,7 @@ from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenerico
 class InsumosGenericoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Insumos Genericos'''
     model = InsumosGenerico
-    template_name = "insumos/list_insumos_generico.html"
+    template_name = "administrador/genericas/list_insumos_generico.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'insumos'
@@ -26,7 +26,7 @@ class InsumosGenericoListView(LoginRequiredMixin, ListView):
 class InsumosGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = InsumosGenerico
-    template_name = "insumos/add_insumos_generico.html"
+    template_name = "administrador/genericas/add_insumos_generico.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class=InsumosGenericoForm
@@ -36,7 +36,7 @@ class InsumosGenericoCreateView(LoginRequiredMixin, CreateView):
 class InsumosGenericoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de user'''
     model = InsumosGenerico
-    template_name = "insumos/update_insumos_generico.html"
+    template_name = "administrador/genericas/update_insumos_generico.html"
     login_url=reverse_lazy('users_app:login')
     form_class=InsumosGenericoUpdateForm
     success_url= reverse_lazy('insumos_app:list_insumos')
@@ -44,7 +44,7 @@ class InsumosGenericoUpdateView(LoginRequiredMixin, UpdateView):
 class InsumosGenericoDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Implenentos de Trabajo'''
     model = InsumosGenerico
-    template_name = "insumos/delete_insumos_generico.html"
+    template_name = "administrador/genericas/delete_insumos_generico.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('insumos_app:list_insumos_generico')
 
