@@ -7,8 +7,10 @@ from .models import (
     EmpaqueProductoTerminado,
     Vacio,
     ProductoTerminadoGenerico,
-    ProductoTerminadoAudit
+    ProductoTerminadoAudit,
+    
 )
+from applications.users.models import User
 
 class ProductoTerminadoGenericoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
@@ -275,7 +277,7 @@ class ProductoAuditFilterForm(forms.Form):
                                required=False, 
                                label='Acción',
                                widget=forms.Select(attrs={'class': 'form-select'}))
-    changed_by = forms.ModelChoiceField(queryset=ProductoTerminado.objects.all(), 
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
                                         required=False, 
                                         label='Cambios realizados por',
                                         widget=forms.Select(attrs={'class': 'form-select'}))
