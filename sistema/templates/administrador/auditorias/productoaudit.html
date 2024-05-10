@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
- Auditorias de Usuarios 
+ Auditorias de producto terminado 
 {% endblock title %}
 
 
@@ -23,7 +23,7 @@
                     <form method="get" class="form-inline mb-4">
                         {% csrf_token %}
                         <div class="row">
-                            <div class="col-4"><label for="">Usuario Afectado: </label> {{filter_form.user}}</div>
+                            <div class="col-4"><label for="">Producto Terminado: </label> {{filter_form.user}}</div>
                             <div class="col-4"><label for="">Cambios Realizados por: </label> {{filter_form.changed_by}}</div>
                             <div class="col-4"><label for="">Acción: </label> {{filter_form.action}}</div>
                         </div>
@@ -37,7 +37,7 @@
                             <div class="col-1">
                                 <button type="submit" class="btn btn-success">Filtrar</button>
                             </div>
-                            <div class="col-2"><a href="{% url 'users_app:user_audit' %}" type="button" class="btn btn-outline-primary">Limpiar Filtro</a></div>
+                            <div class="col-2"><a href="{% url 'produ_app:producto_audit' %}" type="button" class="btn btn-outline-primary">Limpiar Filtro</a></div>
                             
                         </div>
                       </form>
@@ -57,7 +57,7 @@
                             <th scope="col">Hora</th>
                             <th scope="col">Acción</th>
                             <th scope="col">Detalles</th>
-                            <th scope="col">Usuario Afectado</th>
+                            <th scope="col">Producto Afectado</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -13,8 +13,8 @@ def actualizar_estado(sender, instance, **kwargs):
     else:
         instance.estado = '1'
 
-# Obtener el modelo de usuario personalizado
-user = get_user_model()
+# Obtener el modelo de producto personalizado
+User = get_user_model()
 
 @receiver(post_save, sender=ProductoTerminadoAudit)
 def log_user_change(sender, instance, created, **kwargs):
