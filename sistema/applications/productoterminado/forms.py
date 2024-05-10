@@ -269,7 +269,7 @@ class ProductoAuditFilterForm(forms.Form):
     '''Formulario para filtar en productoauditview'''
     user = forms.ModelChoiceField(queryset=ProductoTerminado.objects.all(), 
                                   required=False, 
-                                  label='Usuario Afectado',
+                                  label='Producto Afectado',
                                   widget=forms.Select(attrs={'class': 'form-select'}))
     action = forms.ChoiceField(choices=ProductoTerminadoAudit.ACTION_CHOICES, 
                                required=False, 
