@@ -1,5 +1,9 @@
 from django import forms
-from .models import Facturas, IVA
+from .models import Facturas, IVA, FacturasAudit
+from applications.users.models import User
+from applications.proveedores.models import Proveedores
+from applications.pedidos.models import Pedidos
+
 
 
 class IVACreateForm(forms.ModelForm):
@@ -76,4 +80,49 @@ class FacturaUpdateForm(forms.ModelForm):
             'fac_subtotal':forms.NumberInput(attrs={'class':'form-control','placeholder':'Subtotal'}),
             'fac_iva':forms.Select(attrs={'class':'form-select'}),
         }
-        
+
+class FacturasAuditFilterForm(forms.Form):
+    '''Formulario para filtar en PedidosAuditView'''
+    facturas = forms.ModelChoiceField(
+        queryset=Facturas.objects.all(), 
+        required=False, 
+        label='Factura',
+        widget=forms.Select(
+            attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(
+        choices=FacturasAudit.ACTION_CHOICES, 
+        required=False, 
+        label='Acción',
+        widget=forms.Select(
+            attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(
+        queryset=User.objects.all(), 
+        required=False, 
+        label='Cambios realizados por',
+        widget=forms.Select(
+            attrs={'class': 'form-select'}))
+    start_date = forms.DateField(
+        label='Fecha inicial', 
+        required=False, 
+        widget=forms.DateInput(
+            attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(
+        label='Fecha final', 
+        required=False, 
+        widget=forms.DateInput(
+            attrs={'type': 'date', 'class':'form-control'}))
+    # Agregar campos de filtro para Pedido y Proveedor
+    pedido = forms.ModelChoiceField(
+        queryset=Pedidos.objects.all(),
+        required=False,
+        label='Pedido',
+        widget=forms.Select(
+            attrs={'class': 'form-select'})
+    )
+    proveedor = forms.ModelChoiceField(
+        queryset=Proveedores.objects.all(),
+        required=False,
+        label='Proveedor',
+        widget=forms.Select(
+            attrs={'class': 'form-select'})
+    )     
