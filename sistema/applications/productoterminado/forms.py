@@ -7,6 +7,7 @@ from .models import (
     EmpaqueProductoTerminado,
     Vacio,
     ProductoTerminadoGenerico,
+    ProductoTerminadoAudit
 )
 
 class ProductoTerminadoGenericoForm(forms.ModelForm):
@@ -262,6 +263,28 @@ class VacioUpdateForm(forms.ModelForm):
             cantidadlib  = self.cleaned_data['Cantidad_bolsas_liberadas']
             if cantidadlib <= 0:
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-            return cantidadlib        
+            return cantidadlib    
+
+class ProductoAuditFilterForm(forms.Form):
+    '''Formulario para filtar en productoauditview'''
+    user = forms.ModelChoiceField(queryset=ProductoTerminado.objects.all(), 
+                                  required=False, 
+                                  label='Usuario Afectado',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=ProductoTerminadoAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=ProductoTerminado.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+        
 
         

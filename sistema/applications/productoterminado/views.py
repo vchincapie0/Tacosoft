@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
@@ -23,6 +24,7 @@ from .forms import (
     EmpaqueUpdateForm,
     VacioUpdateForm,
     ProductoTerminadoGenericoForm,
+    ProductoAuditFilterForm
 )
 
 # Create your views here.
@@ -229,13 +231,7 @@ class ProductoTerminadoGenericoDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "productoterminado/delete_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('produ_app:list_pt_generico')
-class ProductoTerminadoAuditListView(LoginRequiredMixin, ListView):
-    '''Clase para mostrar los datos de logs de producto terminado'''
-    model = ProductoTerminadoAudit
-    template_name = "productoterminado/productoaudit.html"
-    login_url=reverse_lazy('users_app:login')
-    paginate_by=10
-    context_object_name = 'productoterminado'
+
 class ProductoAuditListView(LoginRequiredMixin, ListView):
     model= ProductoTerminadoAudit
     template_name='administrador/auditorias/productoaudit.html'
@@ -250,15 +246,15 @@ class ProductoAuditListView(LoginRequiredMixin, ListView):
 
         # Aplicar filtros si el formulario es válido
         if form.is_valid():
-            user = form.cleaned_data.get('user')
+            productoterminado = form.cleaned_data.get('productoterminado')
             action = form.cleaned_data.get('action')
             changed_by = form.cleaned_data.get('changed_by')
             start_date = form.cleaned_data.get('start_date')
             end_date = form.cleaned_data.get('end_date')
 
             # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
-            if user:
-                queryset = queryset.filter(user=user)
+            if productoterminado:
+                queryset = queryset.filter(productoterminado=productoterminado)
             if action:
                 queryset = queryset.filter(action=action)
             if changed_by:
