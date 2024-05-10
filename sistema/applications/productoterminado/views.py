@@ -12,6 +12,7 @@ from .models import (
     ProductoTerminadoGenerico,
     ProductoTerminadoGenerico,
     ProductoTerminadoAudit
+    
 )
 from .forms import (
     ProductoTerminadoForm,
@@ -235,3 +236,43 @@ class ProductoTerminadoAuditListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'productoterminado'
+class ProductoAuditListView(LoginRequiredMixin, ListView):
+    model= ProductoTerminadoAudit
+    template_name='administrador/auditorias/productoaudit.html'
+    paginate_by=10
+    context_object_name='auditoria'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = ProductoAuditFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            user = form.cleaned_data.get('user')
+            action = form.cleaned_data.get('action')
+            changed_by = form.cleaned_data.get('changed_by')
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
+            if user:
+                queryset = queryset.filter(user=user)
+            if action:
+                queryset = queryset.filter(action=action)
+            if changed_by:
+                queryset = queryset.filter(changed_by=changed_by)
+            if start_date:
+                queryset = queryset.filter(changed_at__gte=start_date)
+            if end_date:
+                # Agregar 1 día a la fecha final para incluir todos los registros de ese día
+                end_date += timezone.timedelta(days=1)
+                queryset = queryset.filter(changed_at__lt=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = ProductoAuditFilterForm(self.request.GET)
+        return context
