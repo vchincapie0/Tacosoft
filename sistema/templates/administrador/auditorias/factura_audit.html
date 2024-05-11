@@ -23,11 +23,13 @@
                     <form method="get" class="form-inline mb-4">
                         {% csrf_token %}
                         <div class="row">
-                            <div class="col-4"><label for="">Pedido Afectado: </label> {{filter_form.pedido}}</div>
+                            <div class="col-2"><label for="">Factura Afectada: </label> {{filter_form.factura}}</div>
+                            <div class="col-2"><label for="">Pedido: </label> {{filter_form.pedido}}</div>
+                            <div class="col-2"><label for="">Proveedor: </label> {{filter_form.proveedor}}</div>
                             <div class="col-4"><label for="">Cambios Realizados por: </label> {{filter_form.changed_by}}</div>
-                            <div class="col-4"><label for="">Acción: </label> {{filter_form.action}}</div>
+                            <div class="col-2"><label for="">Acción: </label> {{filter_form.action}}</div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-6"><label for="">Fecha Inicial: </label> {{filter_form.start_date}}</div>
                             <div class="col-6"><label for="">Fecha Final: </label> {{filter_form.end_date}}</div>
@@ -135,7 +137,21 @@
 
 
 {% block extrajs %}
+        <!-- Script para manejar la funcionalidad de mostrar/ocultar el formulario de filtro -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleFilterBtn = document.getElementById('toggleFilterBtn');
+        const filterFormContainer = document.getElementById('filterFormContainer');
     
+        toggleFilterBtn.addEventListener('click', function() {
+            if (filterFormContainer.style.display === 'none') {
+                filterFormContainer.style.display = 'block';
+            } else {
+                filterFormContainer.style.display = 'none';
+            }
+        });
+    });
+</script>
 {% endblock extrajs %}
     
     

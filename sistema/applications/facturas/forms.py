@@ -83,7 +83,7 @@ class FacturaUpdateForm(forms.ModelForm):
 
 class FacturasAuditFilterForm(forms.Form):
     '''Formulario para filtar en PedidosAuditView'''
-    facturas = forms.ModelChoiceField(
+    factura = forms.ModelChoiceField(
         queryset=Facturas.objects.all(), 
         required=False, 
         label='Factura',
