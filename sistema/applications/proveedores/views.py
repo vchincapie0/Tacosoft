@@ -92,3 +92,28 @@ class ProveedoresAuditListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = ProveedorAuditFilterForm(self.request.GET)
         return context
+    
+def export_proveedores_to_excel(request):
+    # Obtener los datos de proveedores que quieres exportar
+    proveedores = Proveedores.objects.filter(deleted=False)  # Filtrar proveedores activos
+
+    # Crear un nuevo libro de Excel y una hoja de trabajo
+    workbook = Workbook()
+    worksheet = workbook.active
+    worksheet.title = 'Proveedores'
+
+    # Agregar encabezados a la primera fila
+    worksheet.append(['NIT', 'Razón Social', 'Teléfono'])
+
+    # Agregar datos de proveedores a las siguientes filas
+    for proveedor in proveedores:
+        worksheet.append([proveedor.nit, proveedor.prov_nombre, proveedor.prov_telefono])
+
+    # Crear una respuesta HTTP con el archivo Excel como contenido
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=proveedores.xlsx'
+
+    # Guardar el libro de Excel en la respuesta HTTP
+    workbook.save(response)
+
+    return response
