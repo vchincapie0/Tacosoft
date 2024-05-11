@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
 import csv
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 # Importacion de modelos y formularios
 from .models import Proveedores, ProveedoresAudit
@@ -95,6 +96,9 @@ class ProveedoresAuditListView(LoginRequiredMixin, ListView):
         return context
     
 def export_proveedores_to_excel(request):
+    # Obtener la fecha y hora actual
+    fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+
     # Obtener los datos de proveedores que quieres exportar
     proveedores = Proveedores.objects.filter(deleted=False)  # Filtrar proveedores activos
 
@@ -103,12 +107,45 @@ def export_proveedores_to_excel(request):
     worksheet = workbook.active
     worksheet.title = 'Proveedores'
 
-    # Agregar encabezados a la primera fila
-    worksheet.append(['NIT', 'Razón Social', 'Teléfono'])
+    # Establecer estilos para la primera línea (encabezado personalizado)
+    title_font = Font(bold=True)
+    title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
+    title_alignment = Alignment(horizontal='left')
+    
+    # Agregar fila de título personalizado
+    worksheet.append(['TACO MAS'])  # Agregar texto del título
+    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    title_cell = worksheet['A1']
+    title_cell.font = title_font
+    title_cell.fill = title_fill
+    title_cell.alignment = title_alignment
+
+    # Agregar información adicional (fecha y nombre del software) en una nueva fila
+    worksheet.append(['Fecha de descarga:', fecha_descarga])
+    worksheet.append(['Software:', 'Tacosoft'])
+
+    # Agregar espacio en blanco entre la información adicional y los encabezados
+    worksheet.append([])  # Agregar una fila vacía
+
+    # Agregar encabezados a la siguiente fila
+    headers = ['NIT', 'Razón Social', 'Teléfono']
+    worksheet.append(headers)
+
+    # Aplicar estilos a la fila de encabezados (fila actual + 2)
+    header_font = Font(bold=True)
+    header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")  # Gris claro
+    header_alignment = Alignment(horizontal='center')
+
+    for col in range(1, len(headers) + 1):
+        header_cell = worksheet.cell(row=worksheet.max_row, column=col)
+        header_cell.font = header_font
+        header_cell.fill = header_fill
+        header_cell.alignment = header_alignment
 
     # Agregar datos de proveedores a las siguientes filas
     for proveedor in proveedores:
-        worksheet.append([proveedor.nit, proveedor.prov_nombre, proveedor.prov_telefono])
+        data_row = [proveedor.nit, proveedor.prov_nombre, proveedor.prov_telefono]
+        worksheet.append(data_row)
 
     # Crear una respuesta HTTP con el archivo Excel como contenido
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
