@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from openpyxl import Workbook
+import csv
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
@@ -115,5 +116,18 @@ def export_proveedores_to_excel(request):
 
     # Guardar el libro de Excel en la respuesta HTTP
     workbook.save(response)
+
+    return response
+
+def export_proveedores_to_csv(request):
+    proveedores = Proveedores.objects.filter(deleted=False)  # Obtener datos de proveedores
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=proveedores.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['NIT', 'Razón Social', 'Teléfono'])  # Encabezados de columnas
+
+    for proveedor in proveedores:
+        writer.writerow([proveedor.nit, proveedor.prov_nombre, proveedor.prov_telefono])
 
     return response
