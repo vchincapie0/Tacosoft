@@ -24,7 +24,7 @@ class ProveedoresListView(LoginRequiredMixin, ListView):
         lista = Proveedores.objects.filter(
             prov_nombre__icontains = palabra_clave,
             deleted=False  # Solo proveedores activos
-        )
+        ).order_by('prov_nombre')  # Ordenar por 'prov_nombre'
         return lista
     
 class ProveedoresCreateView(LoginRequiredMixin,CreateView):
