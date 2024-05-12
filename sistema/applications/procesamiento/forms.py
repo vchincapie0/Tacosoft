@@ -66,6 +66,7 @@ class PicadoUpdateForm(forms.ModelForm):
             'pica_cantidad',
             'pica_pesoMPposproceso',
             'pica_merma'
+            
             ]
 
         widgets={
