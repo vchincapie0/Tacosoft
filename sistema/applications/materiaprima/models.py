@@ -85,7 +85,7 @@ class MateriaPrimaAudit(models.Model):
     changed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.get_action_display()} - {self.materiaprima.mp_lote} ({self.changed_at})'
+        return f'{self.get_action_display()} - {self.materiaprima.mp_nombre} ({self.changed_at})'
 
     
 
