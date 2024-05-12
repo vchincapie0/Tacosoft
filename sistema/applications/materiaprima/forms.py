@@ -1,6 +1,7 @@
 from django import forms
 from django.utils import timezone
-from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica, DesinfectanteGenerico
+from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica, DesinfectanteGenerico,MateriaPrimaAudit
+from applications.users.models import User
 
 class MateriaPrimaGenericaUpdateForm(forms.ModelForm):
     """Form definition for Materia Prima."""
@@ -33,7 +34,6 @@ class MateriaPrimaGenericaForm(forms.ModelForm):
             'mp_nombre':forms.TextInput(attrs={'class':'form-control'}),
             'mp_tipo':forms.Select(attrs={'class':'form-select'}),
         }
-
 
 class MateriaPrimaForm(forms.ModelForm):
     """Form definition for Materia Prima."""
@@ -206,8 +206,6 @@ class DesinfeccionMPForm(forms.ModelForm):
             'tiempo_fin':forms.TimeInput(attrs={'type':'time'}),
             'obsevacion':forms.Textarea(attrs={'placeholder': 'Escriba su observacion','class':'form-control'})    
             } 
-
-
         
 class DesinfeccionMPUpdateForm(forms.ModelForm):
 
@@ -245,3 +243,25 @@ class DesinfectanteGenericoForm(forms.ModelForm):
         widgets={
             'des_nombre':forms.TextInput(attrs={'class':'form-control'}),
             } 
+
+class MateriaAuditFilterForm(forms.Form):
+    '''Formulario para filtar en MateriaAuditListView'''
+    user = forms.ModelChoiceField(queryset=MateriaPrima.objects.all(), 
+                                  required=False, 
+                                  label='Materia Prima Afectada',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=MateriaPrimaAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+        
