@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView,CreateView,DeleteView,Up
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Procesamiento,Picado,Coccion,Equipos
-from .forms import  addPicado,addCoccion,addEquipos,PicadoUpdateForm
+from .forms import  addPicado,addCoccion,addEquipos,PicadoUpdateForm,CoccionUpdateForm
 
 # Create your views here.
 
@@ -74,7 +74,7 @@ class CoccionUpdateView(LoginRequiredMixin, UpdateView):
     model = Coccion
     template_name = "procesamientos/edit_coccion.html"
     login_url=reverse_lazy('users_app:login')
-    form_class=PicadoUpdateForm
+    form_class=CoccionUpdateForm
     success_url= reverse_lazy('procesamientos_app:coccion')
 
 class EquiposListView(LoginRequiredMixin, ListView):

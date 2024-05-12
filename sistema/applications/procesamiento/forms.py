@@ -135,7 +135,7 @@ class addCoccion(forms.ModelForm):
         return cantidad
     
 class CoccionUpdateForm(forms.ModelForm):
-    """Form Update Picado."""
+    """Form Update Coccion."""
     class Meta:
 
         model =Coccion
