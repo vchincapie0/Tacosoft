@@ -14,6 +14,7 @@ class InsumosGenericoForm(forms.ModelForm):
             
             'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
         }
+
 class InsumosGenericoUpdateForm(forms.ModelForm):
 
     class Meta:
@@ -25,7 +26,6 @@ class InsumosGenericoUpdateForm(forms.ModelForm):
             'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
             }
         
-
 class ImplementosTrabajoForm(forms.ModelForm):
 
     """Form definition Implementos de Trabajo."""

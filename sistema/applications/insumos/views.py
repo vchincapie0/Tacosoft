@@ -23,6 +23,7 @@ class InsumosGenericoListView(LoginRequiredMixin, ListView):
            it_nombre__icontains = palabra_clave
         )
         return lista
+    
 class InsumosGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = InsumosGenerico
