@@ -2,7 +2,8 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import ImplementosTrabajo,InsumosGenerico
+from .models import ImplementosTrabajo,InsumosGenerico,ImplementosAudit
+from applications.users.models import User
 
 class InsumosGenericoForm(forms.ModelForm):
     class Meta:
@@ -75,3 +76,25 @@ class ImplementosUpdateForm(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
+
+class ImplementosAuditFilterForm(forms.Form):
+    '''Formulario para filtar en implementosauditview'''
+    user = forms.ModelChoiceField(queryset=ImplementosTrabajo.objects.all(), 
+                                  required=False, 
+                                  label='Implemento Afectado',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=ImplementosAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    
