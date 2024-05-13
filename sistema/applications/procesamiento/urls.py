@@ -16,4 +16,5 @@ urlpatterns = [
     path('equipos/',views.EquiposListView.as_view(),name='equipos'),
     path('add_equipos/',views.EquiposcreateView.as_view(),name='add_equipos'),
     path('delete_equipo/<pk>',views.EquiposDeleteView.as_view(),name='delete_equipo'),
+    path('edit_equipo/<pk>',views.EquiposUpdateView.as_view(),name='edit_equipo'),
 ]
