@@ -161,7 +161,7 @@ class CoccionUpdateForm(forms.ModelForm):
 
 class addEquipos(forms.ModelForm):
 
-    """Form definition Equipos."""
+    """Form Update Equipos."""
 
     class Meta:
         """Meta definition Equiposform."""
@@ -184,3 +184,26 @@ class addEquipos(forms.ModelForm):
             
         }
         
+class EquiposUpdateForm(forms.ModelForm):
+
+    """Form definition Equipos."""
+
+    class Meta:
+
+        model = Equipos
+        fields = (
+            'equi_encargadoCocina',
+            'equi_encargadoEntrega',
+            'equi_calidad',
+            'equi_nombre',
+            'equi_check',
+            )
+        
+        widgets={
+            'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario'}),
+            'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega '}),
+            'equi_calidad':forms.Select(attrs={'class': 'form-select'}),
+            'equi_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Equipo'}),
+            'equi_check':forms.Select(attrs={'class': 'form-select'}),
+            
+        }
