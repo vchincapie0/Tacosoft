@@ -232,3 +232,31 @@ def export_facturas_to_excel(request):
     workbook.save(response)
 
     return response
+
+def export_facturas_to_csv(request):
+    facturas = Facturas.objects.filter(deleted=False)  # Obtener datos de proveedores
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=proveedores.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['Número Factura', 'Proveedor', 'Pedido', 'Fecha de Llegada','Unidades', 'Subtotal','IVA','Total'])  # Encabezados de columnas
+
+    for factura in facturas:
+        # Obtener los valores necesarios de los modelos relacionados
+        proveedor_nombre = factura.fac_proveedor.prov_nombre if factura.fac_proveedor else ''
+        numero_pedido = factura.fac_numeroPedido.ref_pedido if factura.fac_numeroPedido else ''
+        iva_valor = factura.fac_iva.valor if factura.fac_iva else 0  # Obtener el valor del IVA
+
+        # Construir la fila de datos para la factura
+        writer.writerow([
+            factura.num_factura,
+            proveedor_nombre,
+            numero_pedido,
+            factura.fac_fechaLlegada,
+            factura.fac_numeroUnidades,
+            factura.fac_subtotal,
+            iva_valor,
+            factura.fac_total,
+        ]) 
+
+    return response
