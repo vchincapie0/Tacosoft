@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+import csv
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
@@ -150,3 +153,72 @@ class FacturasAuditListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = FacturasAuditFilterForm(self.request.GET)
         return context
+    
+def export_facturas_to_excel(request):
+    # Obtener la fecha y hora actual
+    fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Obtener los datos de proveedores que quieres exportar
+    proveedores = Facturas.objects.filter(deleted=False)  # Filtrar proveedores activos
+
+    # Crear un nuevo libro de Excel y una hoja de trabajo
+    workbook = Workbook()
+    worksheet = workbook.active
+    worksheet.title = 'Facturas'
+
+    # Establecer estilos para la primera línea (encabezado personalizado)
+    title_font = Font(bold=True)
+    title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
+    title_alignment = Alignment(horizontal='left')
+    
+    # Agregar fila de título personalizado
+    worksheet.append(['TACO MAS'])  # Agregar texto del título
+    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    title_cell = worksheet['A1']
+    title_cell.font = title_font
+    title_cell.fill = title_fill
+    title_cell.alignment = title_alignment
+
+    # Agregar información adicional (fecha y nombre del software) en una nueva fila
+    worksheet.append(['Fecha de descarga:', fecha_descarga])
+    worksheet.append(['Software:', 'Tacosoft'])
+
+    # Agregar espacio en blanco entre la información adicional y los encabezados
+    worksheet.append([])  # Agregar una fila vacía
+
+    # Agregar encabezados a la siguiente fila
+    headers = ['Número Factura', 'Proveedor', 'Pedido', 'Fecha de Llegada','Unidades', 'Subtotal','IVA','Total']
+    worksheet.append(headers)
+
+    # Aplicar estilos a la fila de encabezados (fila actual + 2)
+    header_font = Font(bold=True)
+    header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")  # Gris claro
+    header_alignment = Alignment(horizontal='center')
+
+    for col in range(1, len(headers) + 1):
+        header_cell = worksheet.cell(row=worksheet.max_row, column=col)
+        header_cell.font = header_font
+        header_cell.fill = header_fill
+        header_cell.alignment = header_alignment
+
+    # Agregar datos de proveedores a las siguientes filas
+    for facturas in facturas:
+        data_row = [
+            facturas.num_factura, 
+            facturas.fac_proveedor.prov_nombre, 
+            facturas.fac_numeroPedido.ref_pedido,
+            facturas.fac_fechaLlegada,
+            facturas.fac_numeroUnidades, 
+            facturas.fac_subtotal, 
+            facturas.fac_iva, 
+            facturas.fac_total, ]
+        worksheet.append(data_row)
+
+    # Crear una respuesta HTTP con el archivo Excel como contenido
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=facturas.xlsx'
+
+    # Guardar el libro de Excel en la respuesta HTTP
+    workbook.save(response)
+
+    return response
