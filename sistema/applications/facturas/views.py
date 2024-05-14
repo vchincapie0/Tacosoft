@@ -159,7 +159,7 @@ def export_facturas_to_excel(request):
     fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Obtener los datos de proveedores que quieres exportar
-    proveedores = Facturas.objects.filter(deleted=False)  # Filtrar proveedores activos
+    facturas = Facturas.objects.filter(deleted=False)  # Filtrar proveedores activos
 
     # Crear un nuevo libro de Excel y una hoja de trabajo
     workbook = Workbook()
@@ -173,7 +173,7 @@ def export_facturas_to_excel(request):
     
     # Agregar fila de título personalizado
     worksheet.append(['TACO MAS'])  # Agregar texto del título
-    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    worksheet.merge_cells('A1:H1')  # Combinar celdas para el título
     title_cell = worksheet['A1']
     title_cell.font = title_font
     title_cell.fill = title_fill
@@ -202,16 +202,26 @@ def export_facturas_to_excel(request):
         header_cell.alignment = header_alignment
 
     # Agregar datos de proveedores a las siguientes filas
-    for facturas in facturas:
+    # Iterar sobre cada factura y agregar sus datos a la hoja de trabajo
+    for factura in facturas:
+        # Obtener los valores necesarios de los modelos relacionados
+        proveedor_nombre = factura.fac_proveedor.prov_nombre if factura.fac_proveedor else ''
+        numero_pedido = factura.fac_numeroPedido.ref_pedido if factura.fac_numeroPedido else ''
+        iva_valor = factura.fac_iva.valor if factura.fac_iva else 0  # Obtener el valor del IVA
+
+        # Construir la fila de datos para la factura
         data_row = [
-            facturas.num_factura, 
-            facturas.fac_proveedor.prov_nombre, 
-            facturas.fac_numeroPedido.ref_pedido,
-            facturas.fac_fechaLlegada,
-            facturas.fac_numeroUnidades, 
-            facturas.fac_subtotal, 
-            facturas.fac_iva, 
-            facturas.fac_total, ]
+            factura.num_factura,
+            proveedor_nombre,
+            numero_pedido,
+            factura.fac_fechaLlegada,
+            factura.fac_numeroUnidades,
+            factura.fac_subtotal,
+            iva_valor,
+            factura.fac_total,
+        ]
+
+        # Agregar la fila de datos a la hoja de trabajo
         worksheet.append(data_row)
 
     # Crear una respuesta HTTP con el archivo Excel como contenido
