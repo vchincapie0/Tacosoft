@@ -23,10 +23,10 @@ class addPicado(forms.ModelForm):
         
         widgets={
             
-            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
-            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
-            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto','class': 'form-select'}),
+            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso ','class': 'form-control'}),
+            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso','class': 'form-control'}),
+            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma', 'class': 'form-control'}),
             'pica_check':forms.Select(attrs={'class': 'form-select'}),
             
         }
@@ -70,10 +70,10 @@ class PicadoUpdateForm(forms.ModelForm):
             ]
 
         widgets={
-            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
-            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
-            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
+            'pica_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto','class': 'form-select'}),
+            'pica_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso ','class': 'form-control'}),
+            'pica_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso','class': 'form-control'}),
+            'pica_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma','class': 'form-control'}),
             'pica_check':forms.Select(attrs={'class': 'form-select'}),
         }
 
@@ -100,12 +100,12 @@ class addCoccion(forms.ModelForm):
         widgets={
             
             
-            'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
-            'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
-            'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'cocc_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
-            'cocc_tiempoCoccion':forms.TimeInput(attrs={'placeholder':'tiempo de coccion'}),
-            'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final'}),
+            'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto','class': 'form-select'}),
+            'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso ','class': 'form-select'}),
+            'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso','class': 'form-select'}),
+            'cocc_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma','class': 'form-select'}),
+            'cocc_tiempoCoccion':forms.TimeInput(attrs={'placeholder':'tiempo de coccion','class': 'form-select'}),
+            'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final','class': 'form-select'}),
             'cocc_check':forms.Select(attrs={'class': 'form-select'}),
         }
 
@@ -150,12 +150,12 @@ class CoccionUpdateForm(forms.ModelForm):
             ]
 
         widgets={
-            'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto'}),
-            'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso '}),
-            'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso'}),
-            'cocc_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma'}),
-            'cocc_tiempoCoccion':forms.TimeInput(attrs={'placeholder':'tiempo de coccion'}),
-            'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final'}),
+            'cocc_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Producto','class': 'form-select'}),
+            'cocc_cantidad':forms.NumberInput(attrs={'placeholder': 'Peso ','class': 'form-control'}),
+            'cocc_pesoMPposproceso':forms.NumberInput(attrs={'placeholder': 'Peso Post Proceso','class': 'form-control'}),
+            'cocc_merma':forms.NumberInput(attrs={'placeholder': 'Peso Merma','class': 'form-control'}),
+            'cocc_tiempoCoccion':forms.TimeInput(attrs={'placeholder':'tiempo de coccion','class': 'form-select'}),
+            'cocc_temperaturafinal':forms.NumberInput(attrs={'placeholder':'Temperatura Final','class': 'form-select'}),
             'cocc_check':forms.Select(attrs={'class': 'form-select'}),
         }
 
@@ -176,10 +176,10 @@ class addEquipos(forms.ModelForm):
             )
         
         widgets={
-            'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario'}),
-            'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega '}),
+            'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario','class': 'form-select'}),
+            'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega ','class': 'form-select'}),
             'equi_calidad':forms.Select(attrs={'class': 'form-select'}),
-            'equi_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Equipo'}),
+            'equi_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Equipo','class': 'form-control'}),
             'equi_check':forms.Select(attrs={'class': 'form-select'}),
             
         }
@@ -200,10 +200,10 @@ class EquiposUpdateForm(forms.ModelForm):
             )
         
         widgets={
-            'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario'}),
-            'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega '}),
+            'equi_encargadoCocina':forms.TextInput(attrs={'placeholder': 'Nombre del operario','class': 'form-select'}),
+            'equi_encargadoEntrega':forms.TextInput(attrs={'placeholder': 'a quien entrega ','class': 'form-select'}),
             'equi_calidad':forms.Select(attrs={'class': 'form-select'}),
-            'equi_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Equipo'}),
+            'equi_nombre':forms.TextInput(attrs={'placeholder': 'Nombre del Equipo','class': 'form-control'}),
             'equi_check':forms.Select(attrs={'class': 'form-select'}),
             
         }

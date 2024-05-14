@@ -1,27 +1,24 @@
 from django.db import models
 from applications.materiaprima.models import MateriaPrima
 
-
 # Create your models here.
+class Picado(models.Model):
 
-class Procesamiento(models.Model):
-    CHECK_CHOICES=(
+    ESTADO_CHOICES=(
         ('0','Aprobado'),
         ('1','No Aprobado'),
 
     )
 
-
-    cod_procesamiento=models.AutoField('id',primary_key=True)
-    proces_pesoMP=models.FloatField('Peso ', default=0.0)
-    proces_pesoPostProceso=models.FloatField('Peso Post Proceso')
-    proces_merma=models.FloatField('Peso Merma')
-    proces_estado=models.CharField('estado',max_length=1, choices=CHECK_CHOICES,default="0")
-    proces_materiaprima=models.ManyToManyField(MateriaPrima)
+    cod_procesamiento=models.AutoField(primary_key=True)
+    pica_nombre=models.ManyToManyField(MateriaPrima, blank=True)
+    pica_cantidad = models.IntegerField('Cantidad',default=0)
+    pica_pesoMPposproceso=models.FloatField('Peso',default=0)
+    pica_merma=models.FloatField('Peso Merma',default=0)
+    pica_check=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
     
-
     def __str__(self):
-        return f"{self.cod_procesamiento}-{self.proces_materiaprima}--{self.proces_pesoPostProceso}"
+        return f"{self.pica_nombre}-{self.pica_cantidad}{self.pica_pesoMPposproceso}-{self.pica_merma}-{self.pica_check}"
 
 
 class Equipos(models.Model):
@@ -64,20 +61,3 @@ class Coccion(models.Model):
     def __str__(self):
         return f"{self.id_coccion}-{self.cocc_cantidad}-{self.cocc_pesoMPposproceso}-{self.cocc_merma}-{self.cocc_tiempoCoccion}-{self.cocc_temperaturafinal}-{self.cocc_check}"
 
-class Picado(models.Model):
-
-    ESTADO_CHOICES=(
-        ('0','Aprobado'),
-        ('1','No Aprobado'),
-
-    )
-
-    cod_procesamiento=models.AutoField(primary_key=True)
-    pica_nombre=models.CharField('Nombre',max_length=50, default="NULL")
-    pica_cantidad = models.IntegerField('Cantidad',default=0)
-    pica_pesoMPposproceso=models.FloatField('Peso',default=0)
-    pica_merma=models.FloatField('Peso Merma',default=0)
-    pica_check=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
-    
-    def __str__(self):
-        return f"{self.pica_nombre}-{self.pica_cantidad}{self.pica_pesoMPposproceso}-{self.pica_merma}-{self.pica_check}"

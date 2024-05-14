@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView,CreateView,DeleteView,UpdateView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import Procesamiento,Picado,Coccion,Equipos
+from .models import Picado,Coccion,Equipos
 from .forms import  addPicado,addCoccion,addEquipos,PicadoUpdateForm,CoccionUpdateForm,EquiposUpdateForm
 
 # Create your views here.
@@ -12,7 +12,6 @@ class ProcesamientosView(LoginRequiredMixin, TemplateView):
     '''Clase para mostrar los datos de Procesamiento'''
     template_name = "Procesamientos/procesamiento_view.html"
     login_url=reverse_lazy('users_app:login')
-
 
 class PicadoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de picado'''
