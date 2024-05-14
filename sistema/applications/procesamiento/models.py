@@ -16,9 +16,15 @@ class Picado(models.Model):
     pica_pesoMPposproceso=models.FloatField('Peso',default=0)
     pica_merma=models.FloatField('Peso Merma',default=0)
     pica_check=models.CharField('estado',max_length=1, choices=ESTADO_CHOICES)
+    deleted = models.BooleanField(default=False) #Campo que corresponde al borrado logico
     
     def __str__(self):
         return f"{self.pica_nombre}-{self.pica_cantidad}{self.pica_pesoMPposproceso}-{self.pica_merma}-{self.pica_check}"
+
+    def delete(self, using=None, keep_parents=False):
+        '''Funcion para borrado lógico'''
+        self.deleted = True  # Marcar como inactivo en lugar de eliminar
+        self.save(using=using)
 
 
 class Equipos(models.Model):

@@ -21,6 +21,13 @@ class PicadoListView(LoginRequiredMixin, ListView):
     paginate_by=10
     context_object_name = 'procesamientos'
 # Create your views here.
+
+def get_queryset(self):
+        '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
+        lista = Picado.objects.filter(
+            deleted=False  # Solo usuarios activos
+        )
+        return lista
     
 class PicadocreateView(LoginRequiredMixin,CreateView):
     '''Vista para actualizar los datos de picado'''
