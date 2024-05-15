@@ -7,7 +7,10 @@ from .models import (
     EmpaqueProductoTerminado,
     Vacio,
     ProductoTerminadoGenerico,
+    ProductoTerminadoAudit,
+    
 )
+from applications.users.models import User
 
 class ProductoTerminadoGenericoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
@@ -80,9 +83,7 @@ class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
             'olor',
             'sabor',
             'textura',
-            'color',
-            'estado',
-             
+            'color',        
         )
 
         widgets={
@@ -91,8 +92,7 @@ class CaracteristicasOrganolepticasPTForm(forms.ModelForm):
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
-                'color':forms.CheckboxInput(),
-                'estado':forms.Select(),     
+                'color':forms.CheckboxInput(),   
             }
         
 class CaracteristicasPTUpdateForm(forms.ModelForm):
@@ -108,7 +108,6 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
             'sabor',
             'textura',
             'color',
-            'estado',
              
         )
 
@@ -119,8 +118,7 @@ class CaracteristicasPTUpdateForm(forms.ModelForm):
                 'olor':forms.CheckboxInput(),
                 'sabor':forms.CheckboxInput(),
                 'textura':forms.CheckboxInput(),
-                'color':forms.CheckboxInput(),
-                'estado':forms.Select(),     
+                'color':forms.CheckboxInput(),   
             }
             
 class ExistenciaPTForm(forms.ModelForm):
@@ -267,6 +265,28 @@ class VacioUpdateForm(forms.ModelForm):
             cantidadlib  = self.cleaned_data['Cantidad_bolsas_liberadas']
             if cantidadlib <= 0:
                 raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-            return cantidadlib        
+            return cantidadlib    
+
+class ProductoAuditFilterForm(forms.Form):
+    '''Formulario para filtar en productoauditview'''
+    user = forms.ModelChoiceField(queryset=ProductoTerminado.objects.all(), 
+                                  required=False, 
+                                  label='Producto Afectado',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=ProductoTerminadoAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+        
 
         
