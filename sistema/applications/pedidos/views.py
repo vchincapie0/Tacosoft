@@ -122,7 +122,7 @@ class PedidosUpdateView(LoginRequiredMixin, UpdateView):
          # Agregar un mensaje de éxito con el nombre de usuario
         messages.success(self.request, f'¡El pedido {referencia} se ha actualizado correctamente!')
 
-        return super(PedidosCreateView, self).form_valid(form)
+        return super(PedidosUpdateView, self).form_valid(form)
 
 
 class PedidosDeleteView(LoginRequiredMixin, DeleteView):
