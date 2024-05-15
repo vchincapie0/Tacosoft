@@ -176,7 +176,7 @@ def export_pedidos_to_excel(request):
     # Establecer estilos para la primera línea (encabezado personalizado)
     title_font = Font(bold=True)
     title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
-    title_alignment = Alignment(horizontal='left')
+    title_alignment = Alignment(horizontal='center')
     
     # Agregar fila de título personalizado
     worksheet.append(['TACO MAS'])  # Agregar texto del título
@@ -189,6 +189,7 @@ def export_pedidos_to_excel(request):
     # Agregar información adicional (fecha y nombre del software) en una nueva fila
     worksheet.append(['Fecha de descarga:', fecha_descarga])
     worksheet.append(['Software:', 'Tacosoft'])
+    worksheet.append(['Registros','Pedidos Registrados'])
 
     # Agregar espacio en blanco entre la información adicional y los encabezados
     worksheet.append([])  # Agregar una fila vacía
