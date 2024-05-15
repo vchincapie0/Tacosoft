@@ -70,7 +70,7 @@ class PedidosCreateView(LoginRequiredMixin, CreateView):
             # Ahora sí, guarda el pedido en la base de datos
         pedido.save()
 
-        # Agregar un mensaje de éxito con el nombre de usuario
+        # Agregar un mensaje de éxito con el numero de referencia
         messages.success(self.request, f'¡El pedido {referencia} se ha agregado correctamente!')
 
         return super(PedidosCreateView, self).form_valid(form)

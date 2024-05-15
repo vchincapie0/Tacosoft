@@ -1,9 +1,10 @@
 from django.http import HttpResponse
+from django.contrib import messages
+from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 import csv
-from django.utils import timezone
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, 
     CreateView, 
@@ -89,6 +90,14 @@ class FacturasCreateView(LoginRequiredMixin, CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('facturas_app:list_factura')  
 
+    def form_valid(self, form):
+        numeroFactura = form.cleaned_data['num_factura']
+
+        # Agregar un mensaje de éxito con el numero de factura
+        messages.success(self.request, f'¡La factura {numeroFactura} se ha agregado correctamente!')
+
+        return super(FacturasCreateView, self).form_valid(form)
+
 class FacturasUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de Facturas'''
     model =Facturas 
@@ -96,6 +105,14 @@ class FacturasUpdateView(LoginRequiredMixin, UpdateView):
     login_url=reverse_lazy('users_app:login')
     form_class=FacturaUpdateForm
     success_url= reverse_lazy('facturas_app:list_factura')
+
+    def form_valid(self, form):
+        numeroFactura = form.cleaned_data['num_factura']
+
+        # Agregar un mensaje de éxito con el numero de factura
+        messages.success(self.request, f'¡La factura {numeroFactura} se ha agregado correctamente!')
+
+        return super(FacturasUpdateView, self).form_valid(form)
 
 class FacturasDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar facturas'''
