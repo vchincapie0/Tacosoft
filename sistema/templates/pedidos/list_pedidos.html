@@ -36,7 +36,7 @@
                             <a href="#" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Descargar</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'pedidos_app:export_pedidos_excel' %}">Excel</a></li>
-                                <li><a class="dropdown-item" href="#">CSV</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pedidos_app:export_pedidos_csv' %}">CSV</a></li>
                               </ul>
                         </div>
                         <a href="#" class="btn btn-outline-secondary"><i class="fa-solid fa-arrow-down-a-z"></i></a>
