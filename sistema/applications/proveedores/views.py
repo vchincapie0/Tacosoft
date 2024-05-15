@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 import csv
+from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -36,6 +37,15 @@ class ProveedoresCreateView(LoginRequiredMixin,CreateView):
     form_class = ProveedorCreateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('proveedores_app:list_proveedores') 
+
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        nombre = form.clean['prov_nombre']
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El proveedor {nombre} se ha agregado correctamente!')
+
+        return super(ProveedoresCreateView, self).form_valid(form)
 
 class ProveedorUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de proveedores'''
