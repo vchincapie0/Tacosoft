@@ -96,6 +96,7 @@ class ProveedoresAuditListView(LoginRequiredMixin, ListView):
         return context
     
 def export_proveedores_to_excel(request):
+    '''Vista para exportar datos de tabla proveedores en formato excel'''
     # Obtener la fecha y hora actual
     fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -157,6 +158,7 @@ def export_proveedores_to_excel(request):
     return response
 
 def export_proveedores_to_csv(request):
+    '''Vista para exportar datos de tabla proveedores en formato CSV'''
     proveedores = Proveedores.objects.filter(deleted=False)  # Obtener datos de proveedores
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=proveedores.csv'

@@ -1,4 +1,8 @@
 #Importación de Librerias
+from django.http import HttpResponse
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+import csv
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -169,3 +173,93 @@ class UserAuditListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = UserAuditFilterForm(self.request.GET)
         return context
+    
+def export_users_to_excel(request):
+    '''Vista para exportar datos de tabla Usuarios en formato excel'''
+    # Obtener la fecha y hora actual
+    fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Obtener los datos de proveedores que quieres exportar
+    usuarios =User.objects.filter(deleted=False)  # Filtrar proveedores activos
+
+    # Crear un nuevo libro de Excel y una hoja de trabajo
+    workbook = Workbook()
+    worksheet = workbook.active
+    worksheet.title = 'Usuarios'
+
+    # Establecer estilos para la primera línea (encabezado personalizado)
+    title_font = Font(bold=True)
+    title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
+    title_alignment = Alignment(horizontal='center')
+    
+    # Agregar fila de título personalizado
+    worksheet.append(['TACO MAS'])  # Agregar texto del título
+    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    title_cell = worksheet['A1']
+    title_cell.font = title_font
+    title_cell.fill = title_fill
+    title_cell.alignment = title_alignment
+
+    # Agregar información adicional (fecha y nombre del software) en una nueva fila
+    worksheet.append(['Fecha de descarga:', fecha_descarga])
+    worksheet.append(['Software:', 'Tacosoft'])
+    worksheet.append(['Tabla de Registro:', 'Usuarios Registrados'])
+
+
+    # Agregar espacio en blanco entre la información adicional y los encabezados
+    worksheet.append([])  # Agregar una fila vacía
+
+    # Agregar encabezados a la siguiente fila
+    headers = ['Usuario', 'Nombre', 'Apellido', 'Rol']
+    worksheet.append(headers)
+
+    # Aplicar estilos a la fila de encabezados (fila actual + 2)
+    header_font = Font(bold=True)
+    header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")  # Gris claro
+    header_alignment = Alignment(horizontal='center')
+
+    for col in range(1, len(headers) + 1):
+        header_cell = worksheet.cell(row=worksheet.max_row, column=col)
+        header_cell.font = header_font
+        header_cell.fill = header_fill
+        header_cell.alignment = header_alignment
+
+    # Agregar datos de usuarios a las siguientes filas
+    for usuario in usuarios:
+        # Determinar el rol del usuario
+        if usuario.is_admin:
+            rol = 'Administrador'
+        else:
+            rol = 'Operario'
+
+        data_row = [usuario.username, usuario.name, usuario.last_name,rol]
+        worksheet.append(data_row)
+
+    # Crear una respuesta HTTP con el archivo Excel como contenido
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=usuarios.xlsx'
+
+    # Guardar el libro de Excel en la respuesta HTTP
+    workbook.save(response)
+
+    return response
+
+def export_proveedores_to_csv(request):
+    '''Vista para exportar datos de tabla usuarios en formato CSV'''
+    usuarios = User.objects.filter(deleted=False)  # Obtener datos de usuarios
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=usuarios.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['Usuario', 'Nombre', 'Apellido', 'Rol'])  # Encabezados de columnas
+
+    for usuario in usuarios:
+        # Determinar el rol del usuario
+        if usuario.is_admin:
+            rol = 'Administrador'
+        else:
+            rol = 'Operario'
+
+        writer.writerow([usuario.username, usuario.username, usuario.name, usuario.last_name, rol])
+
+    return response
