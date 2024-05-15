@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 import csv
+from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
@@ -59,7 +60,8 @@ class PedidosCreateView(LoginRequiredMixin, CreateView):
     success_url= reverse_lazy('pedidos_app:list_pedidos')
 
     def form_valid(self, form):
-        '''funcion para automatizar el campo pedi_user'''
+        '''funcion para validar el formulario de crear pedido'''
+        referencia = form.cleaned_data['ref_pedido']
         user = self.request.user
             # Guarda el formulario sin commit para asignar manualmente el usuario
         pedido = form.save(commit=False)
@@ -67,7 +69,11 @@ class PedidosCreateView(LoginRequiredMixin, CreateView):
         pedido.pedi_user = user
             # Ahora sí, guarda el pedido en la base de datos
         pedido.save()
-        return super().form_valid(form)
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El pedido {referencia} se ha agregado correctamente!')
+
+        return super(PedidosCreateView, self).form_valid(form)
 
 class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
     '''Clase para crear una materia prima nueva dentro del formulario de agregar pedidos'''
@@ -78,7 +84,6 @@ class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
     form_class = PedidosAddMpCreateFrom
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('pedidos_app:add_pedidos') 
-
 
 class PedidosAddInsumosCreateView(LoginRequiredMixin,CreateView):
     '''Clase para crear un implemento de trabajo nuevo dentro del formulario de agregar pedidos'''
@@ -109,6 +114,16 @@ class PedidosUpdateView(LoginRequiredMixin, UpdateView):
     login_url=reverse_lazy('users_app:login')
     form_class=PedidosUpdateForm
     success_url= reverse_lazy('pedidos_app:list_pedidos')
+
+    def form_valid(self, form):
+        '''función para validar formulario de update pedido y mandar mensaje de confirmación'''
+        referencia = form.cleaned_data['ref_pedido']
+
+         # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El pedido {referencia} se ha actualizado correctamente!')
+
+        return super(PedidosCreateView, self).form_valid(form)
+
 
 class PedidosDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Pedidos'''
