@@ -194,7 +194,7 @@ def export_users_to_excel(request):
     
     # Agregar fila de título personalizado
     worksheet.append(['TACO MAS'])  # Agregar texto del título
-    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    worksheet.merge_cells('A1:D1')  # Combinar celdas para el título
     title_cell = worksheet['A1']
     title_cell.font = title_font
     title_cell.fill = title_fill
