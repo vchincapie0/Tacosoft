@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+import csv
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
@@ -156,3 +159,83 @@ class PedidosAuditListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = PedidosAuditFilterForm(self.request.GET)
         return context
+    
+def export_pedidos_to_excel(request):
+    # Obtener la fecha y hora actual
+    fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Obtener los datos de pedidos que quieres exportar
+    pedidos = Pedidos.objects.filter(deleted=False)  # Filtrar pedidos activos
+
+    # Crear un nuevo libro de Excel y una hoja de trabajo
+    workbook = Workbook()
+    worksheet = workbook.active
+    worksheet.title = 'Pedidos'
+
+    # Establecer estilos para la primera línea (encabezado personalizado)
+    title_font = Font(bold=True)
+    title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
+    title_alignment = Alignment(horizontal='left')
+    
+    # Agregar fila de título personalizado
+    worksheet.append(['TACO MAS'])  # Agregar texto del título
+    worksheet.merge_cells('A1:H1')  # Combinar celdas para el título
+    title_cell = worksheet['A1']
+    title_cell.font = title_font
+    title_cell.fill = title_fill
+    title_cell.alignment = title_alignment
+
+    # Agregar información adicional (fecha y nombre del software) en una nueva fila
+    worksheet.append(['Fecha de descarga:', fecha_descarga])
+    worksheet.append(['Software:', 'Tacosoft'])
+
+    # Agregar espacio en blanco entre la información adicional y los encabezados
+    worksheet.append([])  # Agregar una fila vacía
+
+    # Agregar encabezados a la siguiente fila
+    headers = ['Referencia', 'Responsable', 'Fecha de Recibido', 'Estado', 'Comprobante de Pago', 'Proveedor', 'Materia Prima', 'Implementos de Trabajo']
+    worksheet.append(headers)
+
+    # Aplicar estilos a la fila de encabezados (fila actual + 2)
+    header_font = Font(bold=True)
+    header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")  # Gris claro
+    header_alignment = Alignment(horizontal='center')
+
+    for col in range(1, len(headers) + 1):
+        header_cell = worksheet.cell(row=worksheet.max_row, column=col)
+        header_cell.font = header_font
+        header_cell.fill = header_fill
+        header_cell.alignment = header_alignment
+
+    # Agregar datos de pedidos a las siguientes filas
+    for pedido in pedidos:
+        # Obtener los valores necesarios de los modelos relacionados
+        proveedor_nombre = pedido.pedi_proveedor.prov_nombre if pedido.pedi_proveedor else ''
+        user_nombre = pedido.pedi_user.name if pedido.pedi_user else ''
+        materia_prima_list = ', '.join([materia.mp_nombre for materia in pedido.pedi_materiaprima.all()]) if pedido.pedi_materiaprima.exists() else ''
+        implementos_trabajo_list = ', '.join([implemento.nombre for implemento in pedido.pedi_insumos.all()]) if pedido.pedi_insumos.exists() else ''
+
+        # Construir la fila de datos para el pedido
+        data_row = [
+            pedido.ref_pedido,
+            user_nombre,
+            pedido.pedi_fecha,
+            pedido.get_pedi_estado_display(),  # Mostrar el nombre del estado en lugar del código
+            pedido.pedi_comprobatePago,
+            proveedor_nombre,
+            materia_prima_list,
+            implementos_trabajo_list,
+        ]
+
+        # Agregar la fila de datos a la hoja de trabajo
+        worksheet.append(data_row)
+
+    # Crear una respuesta HTTP con el archivo Excel como contenido
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=pedidos.xlsx'
+
+    # Guardar el libro de Excel en la respuesta HTTP
+    workbook.save(response)
+
+    return response
+
