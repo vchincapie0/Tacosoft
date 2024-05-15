@@ -30,7 +30,7 @@ from .forms import (
 class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''
     model = MateriaPrimaGenerica
-    template_name = "materiaprima/lista_mp_generica.html"
+    template_name = "administrador/genericas/lista_mp_generica.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'materiaprima'
@@ -48,7 +48,7 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
 class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = MateriaPrimaGenerica
-    template_name = "materiaprima/add_mp_generica.html"
+    template_name = "administrador/genericas/add_mp_generica.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = MateriaPrimaGenericaForm
@@ -58,7 +58,7 @@ class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
 class MateriaPrimaGenericaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de materia prima generica'''
     model = MateriaPrimaGenerica
-    template_name = "materiaprima/update_mp_generica.html"
+    template_name = "administrador/genericas/update_mp_generica.html"
     login_url=reverse_lazy('users_app:login')
     form_class=MateriaPrimaGenericaUpdateForm
     success_url= reverse_lazy('mp_app:listaGenerica_mp')
@@ -66,7 +66,7 @@ class MateriaPrimaGenericaUpdateView(LoginRequiredMixin, UpdateView):
 class MateriaPrimaGenericaDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Implenentos de Trabajo'''
     model = MateriaPrimaGenerica
-    template_name = "materiaprima/delete_mp_generica.html"
+    template_name = "administrador/genericas/delete_mp_generica.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('mp_app:listaGenerica_mp')
 
@@ -139,7 +139,7 @@ class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
 class DesinfectanteGenericoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
     model = DesinfectanteGenerico
-    template_name = "materiaprima/list_desinfectante_generico.html"
+    template_name = "administrador/genericas/list_desinfectante_generico.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'desinfectante'
@@ -155,7 +155,7 @@ class DesinfectanteGenericoListView(LoginRequiredMixin, ListView):
 class DesinfectanteGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = DesinfectanteGenerico
-    template_name = "materiaprima/add_desinfectante_generico.html"
+    template_name = "administrador/genericas/add_desinfectante_generico.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = DesinfectanteGenericoForm
@@ -165,7 +165,7 @@ class DesinfectanteGenericoCreateView(LoginRequiredMixin, CreateView):
 class DesinfectanteGenericoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de materia prima generica'''
     model = DesinfectanteGenerico
-    template_name = "materiaprima/update_desinfectante_generico.html"
+    template_name = "administrador/genericas/update_desinfectante_generico.html"
     login_url=reverse_lazy('users_app:login')
     form_class=DesinfectanteGenericoForm
     success_url= reverse_lazy('mp_app:desinfeccion_generico')
@@ -173,7 +173,7 @@ class DesinfectanteGenericoUpdateView(LoginRequiredMixin, UpdateView):
 class DesinfectanteGenericoDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Implenentos de Trabajo'''
     model = DesinfectanteGenerico
-    template_name = "materiaprima/delete_desinfectante_generico.html"
+    template_name = "administrador/genericas/delete_desinfectante_generico.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('mp_app:desinfeccion_generico')
 
