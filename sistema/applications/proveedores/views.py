@@ -62,7 +62,7 @@ class ProveedorUpdateView(LoginRequiredMixin, UpdateView):
         # Agregar un mensaje de éxito con el nombre de usuario
         messages.success(self.request, f'¡El proveedor {nombre} se ha actualizado correctamente!')
 
-        return super(ProveedoresCreateView, self).form_valid(form)
+        return super(ProveedorUpdateView, self).form_valid(form)
 
 class ProveedoresDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Proveedores'''
