@@ -134,6 +134,7 @@ class LogOut(View):
         )
     
 class UserAuditListView(LoginRequiredMixin, ListView):
+    '''Vista para la lista de auditorias de usuarios'''
     model= UserAudit
     template_name='administrador/auditorias/useraudit.html'
     paginate_by=10
