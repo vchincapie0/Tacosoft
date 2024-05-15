@@ -55,6 +55,15 @@ class ProveedorUpdateView(LoginRequiredMixin, UpdateView):
     form_class=ProveedoresUpdateForm
     success_url= reverse_lazy('proveedores_app:list_proveedores')
 
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        nombre = form.cleaned_data['prov_nombre']
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El proveedor {nombre} se ha actualizado correctamente!')
+
+        return super(ProveedoresCreateView, self).form_valid(form)
+
 class ProveedoresDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Proveedores'''
     model = Proveedores
