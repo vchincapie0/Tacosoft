@@ -110,7 +110,7 @@ class FacturasUpdateView(LoginRequiredMixin, UpdateView):
         numeroFactura = form.cleaned_data['num_factura']
 
         # Agregar un mensaje de éxito con el numero de factura
-        messages.success(self.request, f'¡La factura {numeroFactura} se ha agregado correctamente!')
+        messages.success(self.request, f'¡La factura {numeroFactura} se ha actualizado correctamente!')
 
         return super(FacturasUpdateView, self).form_valid(form)
 
