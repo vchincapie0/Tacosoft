@@ -52,7 +52,6 @@ class UserRegisterView(LoginRequiredMixin,FormView):
         last_name = form.cleaned_data['last_name']
         password = form.cleaned_data['password']
         is_admin = form.cleaned_data['is_admin']
-        is_employee = form.cleaned_data['is_employee']
 
         # Crear el usuario en la base de datos
         User.objects.create_user(
@@ -61,7 +60,6 @@ class UserRegisterView(LoginRequiredMixin,FormView):
             last_name=last_name,
             password=password,
             is_admin=is_admin,
-            is_employee=is_employee,
         )
 
         # Agregar un mensaje de éxito con el nombre de usuario

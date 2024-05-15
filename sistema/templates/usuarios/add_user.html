@@ -32,18 +32,6 @@
                     {{form.last_name}}   
                 </div>
 
-                <div class="row">
-                    <div class="col">
-                        <label for="id_is_admin" class="form-label">Administrador:</label>
-                        {{form.is_admin}}  
-                    </div>
-
-                    <div class="col">
-                        <label for="id_is_employee" class="form-label">Operario:</label>
-                        {{form.is_employee}}  
-                    </div>
-                </div>
-
                 <div class="mb-3 col-12">
                     <label for="id_username" class="form-label">Username: </label>
                     {{form.username}}
@@ -57,6 +45,13 @@
                 <div class="mb-3 col-12">
                     <label for="id_password2" class="form-label">Repetir Contraseña: </label>
                     {{form.password2}}
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="id_is_admin" class="form-label">Administrador:</label>
+                        {{form.is_admin}}  
+                    </div>
                 </div>
 
                 
@@ -97,22 +92,5 @@
             });
         });
 
-    $(document).ready(function () {
-    // Captura el evento de cambio en el checkbox de Administrador
-    $('#id_is_admin').change(function () {
-        if ($(this).is(':checked')) {
-            // Si se marca el checkbox de Administrador, desmarca el checkbox de Operario
-            $('#id_is_employee').prop('checked', false);
-        }
-    });
-
-    // Captura el evento de cambio en el checkbox de Operario
-    $('#id_is_employee').change(function () {
-        if ($(this).is(':checked')) {
-            // Si se marca el checkbox de Operario, desmarca el checkbox de Administrador
-            $('#id_is_admin').prop('checked', false);
-        }
-    });
-    });
 </script>
     
