@@ -92,43 +92,46 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <!--Si existe paginacion entonces mostrará el menu-->
-            {% if is_paginated %}  
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                    <!--Si existe una pagina anterior mostrará la opcion de atras-->
-                    {% if page_obj.has_previous %}   
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-
-                    <!--Itera dentro del objeto paginator para mostrar cuantas paginas existen-->
-                    {% for pagina in paginator.page_range %}
-                        <!--Si la pagina es el mismo numero del objeto, entonces pinte la casilla en azul-->
-                        {% if pagina == page_obj.number %} 
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li> 
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
-                        {% endif %}    
-                    {% endfor %}
-                     
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    </ul>
-                </nav>
-            {% endif %}
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col">
+                <!--Si existe paginacion entonces mostrará el menu-->
+                {% if is_paginated %}  
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                        <!--Si existe una pagina anterior mostrará la opcion de atras-->
+                        {% if page_obj.has_previous %}   
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+    
+                        <!--Itera dentro del objeto paginator para mostrar cuantas paginas existen-->
+                        {% for pagina in paginator.page_range %}
+                            <!--Si la pagina es el mismo numero del objeto, entonces pinte la casilla en azul-->
+                            {% if pagina == page_obj.number %} 
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li> 
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
+                            {% endif %}    
+                        {% endfor %}
+                         
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
         </div>
     </div>
+    
 </div>  
 
 <div class="modal fade" id="delete_usuarios" role="dialog"></div>
