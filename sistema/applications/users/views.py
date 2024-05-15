@@ -244,7 +244,7 @@ def export_users_to_excel(request):
 
     return response
 
-def export_proveedores_to_csv(request):
+def export_users_to_csv(request):
     '''Vista para exportar datos de tabla usuarios en formato CSV'''
     usuarios = User.objects.filter(deleted=False)  # Obtener datos de usuarios
     response = HttpResponse(content_type='text/csv')
