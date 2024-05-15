@@ -193,7 +193,7 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
         
         widgets={
             'it_codigo':forms.NumberInput(attrs={'placeholder': 'Código de Implemento de Trabajo','class':'form-control'}),
-            'it_nombre':forms.TextInput(attrs={'placeholder': 'Ejemplo: Guantes de Latex','class':'form-control'}),
+            'it_nombre':forms.Select(attrs={'class':'form-select'}),
             'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
             'it_fechaEntrega':forms.SelectDateWidget(),
             'it_estado':forms.Select(attrs={'class':'form-select'})
@@ -205,11 +205,6 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
     
-    def clean_it_nombre(self):
-        nombre = self.cleaned_data['it_nombre']
-        if not re.match("^[a-zA-Z ]+$", nombre):
-            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
-        return nombre
 
 class  PedidosAddProveedorCreateFrom(forms.ModelForm):
     """Form definition Proveedores."""

@@ -212,9 +212,15 @@ def export_pedidos_to_excel(request):
         # Obtener los valores necesarios de los modelos relacionados
         proveedor_nombre = pedido.pedi_proveedor.prov_nombre if pedido.pedi_proveedor else ''
         user_nombre = pedido.pedi_user.name if pedido.pedi_user else ''
-        materia_prima_list = ', '.join([materia.mp_nombre for materia in pedido.pedi_materiaprima.all()]) if pedido.pedi_materiaprima.exists() else ''
-        implementos_trabajo_list = ', '.join([implemento.nombre for implemento in pedido.pedi_insumos.all()]) if pedido.pedi_insumos.exists() else ''
+            
+        # Obtener nombres de materias primas como una lista de cadenas
+        materia_prima_list = [str(materia.mp_nombre) for materia in pedido.pedi_materiaprima.all()] if pedido.pedi_materiaprima.exists() else []
+        materia_prima_str = ', '.join(materia_prima_list)  # Convertir lista a una cadena separada por comas
 
+            
+        # Obtener nombres de implementos de trabajo como una lista de cadenas
+        implementos_trabajo_list = [implemento.it_nombre.it_nombre for implemento in pedido.pedi_insumos.all()] if pedido.pedi_insumos.exists() else []
+        implementos_trabajo_str = ', '.join(implementos_trabajo_list)  # Convertir lista a una cadena separada por comas 
         # Construir la fila de datos para el pedido
         data_row = [
             pedido.ref_pedido,
@@ -223,12 +229,13 @@ def export_pedidos_to_excel(request):
             pedido.get_pedi_estado_display(),  # Mostrar el nombre del estado en lugar del código
             pedido.pedi_comprobatePago,
             proveedor_nombre,
-            materia_prima_list,
-            implementos_trabajo_list,
+            materia_prima_str,
+            implementos_trabajo_str,
         ]
 
         # Agregar la fila de datos a la hoja de trabajo
         worksheet.append(data_row)
+
 
     # Crear una respuesta HTTP con el archivo Excel como contenido
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -238,4 +245,3 @@ def export_pedidos_to_excel(request):
     workbook.save(response)
 
     return response
-
