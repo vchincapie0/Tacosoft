@@ -20,14 +20,13 @@ class PicadoListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'procesamientos'
-# Create your views here.
 
-def get_queryset(self):
-        '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
-        lista = Picado.objects.filter(
-            deleted=False  # Solo usuarios activos
-        )
-        return lista
+    def get_queryset(self):
+            '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
+            lista = Picado.objects.filter(
+                deleted=False  # Solo picados activos
+            )
+            return lista
     
 class PicadocreateView(LoginRequiredMixin,CreateView):
     '''Vista para actualizar los datos de picado'''
@@ -60,6 +59,13 @@ class CoccionListView(LoginRequiredMixin, ListView):
     paginate_by=10
     context_object_name = 'procesamientos'
 
+    def get_queryset(self):
+            '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
+            lista = Coccion.objects.filter(
+                deleted=False  # Solo picados activos
+            )
+            return lista
+
 class CoccioncreateView(LoginRequiredMixin,CreateView):
     '''Vista para crear procesos de coccion'''
     model = Coccion
@@ -90,6 +96,13 @@ class EquiposListView(LoginRequiredMixin, ListView):
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'procesamientos'
+
+    def get_queryset(self):
+            '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
+            lista = Equipos.objects.filter(
+                deleted=False  # Solo picados activos
+            )
+            return lista
 
 
 class EquiposcreateView(LoginRequiredMixin,CreateView):
