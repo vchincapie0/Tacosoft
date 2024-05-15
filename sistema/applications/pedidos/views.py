@@ -161,6 +161,7 @@ class PedidosAuditListView(LoginRequiredMixin, ListView):
         return context
     
 def export_pedidos_to_excel(request):
+    '''Vista que se encarga de la descarga de datos de la tabla pedidos en formato excel'''
     # Obtener la fecha y hora actual
     fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -243,5 +244,42 @@ def export_pedidos_to_excel(request):
 
     # Guardar el libro de Excel en la respuesta HTTP
     workbook.save(response)
+
+    return response
+
+def export_pedidos_to_csv(request):
+    '''Vista que se encarga de la descarga de datos de la tabla pedidos en formato csv'''
+    pedidos = Pedidos.objects.filter(deleted=False)  # Obtener datos de pedidos
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=pedidos.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['Referencia', 'Responsable', 'Fecha de Recibido', 'Estado', 'Comprobante de Pago', 'Proveedor', 'Materia Prima', 'Implementos de Trabajo'])  # Encabezados de columnas
+
+    # Agregar datos de pedidos a las siguientes filas
+    for pedido in pedidos:
+        # Obtener los valores necesarios de los modelos relacionados
+        proveedor_nombre = pedido.pedi_proveedor.prov_nombre if pedido.pedi_proveedor else ''
+        user_nombre = pedido.pedi_user.name if pedido.pedi_user else ''
+            
+        # Obtener nombres de materias primas como una lista de cadenas
+        materia_prima_list = [str(materia.mp_nombre) for materia in pedido.pedi_materiaprima.all()] if pedido.pedi_materiaprima.exists() else []
+        materia_prima_str = ', '.join(materia_prima_list)  # Convertir lista a una cadena separada por comas
+
+            
+        # Obtener nombres de implementos de trabajo como una lista de cadenas
+        implementos_trabajo_list = [implemento.it_nombre.it_nombre for implemento in pedido.pedi_insumos.all()] if pedido.pedi_insumos.exists() else []
+        implementos_trabajo_str = ', '.join(implementos_trabajo_list)  # Convertir lista a una cadena separada por comas 
+        # Construir la fila de datos para el pedido
+        writer.writerow ([
+            pedido.ref_pedido,
+            user_nombre,
+            pedido.pedi_fecha,
+            pedido.get_pedi_estado_display(),  # Mostrar el nombre del estado en lugar del código
+            pedido.pedi_comprobatePago,
+            proveedor_nombre,
+            materia_prima_str,
+            implementos_trabajo_str,
+        ])
 
     return response

@@ -201,7 +201,7 @@ def export_facturas_to_excel(request):
         header_cell.fill = header_fill
         header_cell.alignment = header_alignment
 
-    # Agregar datos de proveedores a las siguientes filas
+    # Agregar datos de factura a las siguientes filas
     # Iterar sobre cada factura y agregar sus datos a la hoja de trabajo
     for factura in facturas:
         # Obtener los valores necesarios de los modelos relacionados
@@ -234,9 +234,9 @@ def export_facturas_to_excel(request):
     return response
 
 def export_facturas_to_csv(request):
-    facturas = Facturas.objects.filter(deleted=False)  # Obtener datos de proveedores
+    facturas = Facturas.objects.filter(deleted=False)  # Obtener datos de facturas
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=proveedores.csv'
+    response['Content-Disposition'] = 'attachment; filename=facturas.csv'
 
     writer = csv.writer(response)
     writer.writerow(['Número Factura', 'Proveedor', 'Pedido', 'Fecha de Llegada','Unidades', 'Subtotal','IVA','Total'])  # Encabezados de columnas
