@@ -40,7 +40,7 @@ class ProveedoresCreateView(LoginRequiredMixin,CreateView):
 
     def form_valid(self, form):
         #Obtener los datos del fomulario
-        nombre = form.clean['prov_nombre']
+        nombre = form.cleaned_data['prov_nombre']
 
         # Agregar un mensaje de éxito con el nombre de usuario
         messages.success(self.request, f'¡El proveedor {nombre} se ha agregado correctamente!')
