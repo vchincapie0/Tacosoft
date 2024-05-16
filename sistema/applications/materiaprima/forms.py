@@ -243,7 +243,7 @@ class DesinfectanteGenericoForm(forms.ModelForm):
         widgets={
             'des_nombre':forms.TextInput(attrs={'class':'form-control'}),
             } 
-<<<<<<< HEAD
+
     
 class MateriaPrimaGenericaFilterForm(forms.ModelForm):
     '''Filtro Tipo - Materia Prima Generica'''
@@ -259,7 +259,7 @@ class MateriaPrimaGenericaFilterForm(forms.ModelForm):
             'mp_nombre':forms.TextInput(attrs={'class':'form-control'}),
             'mp_tipo':forms.Select(attrs={'class':'form-select'}),
         }
-=======
+
 
 class MateriaAuditFilterForm(forms.Form):
     '''Formulario para filtar en MateriaAuditListView'''
@@ -282,4 +282,4 @@ class MateriaAuditFilterForm(forms.Form):
                                required=False, 
                                widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
         
->>>>>>> 59809119eb8462bd50b3f45ca634e70f54899d53
+
