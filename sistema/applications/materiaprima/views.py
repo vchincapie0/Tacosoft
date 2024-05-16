@@ -57,15 +57,14 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
             
         return queryset
 
-<<<<<<< HEAD
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = MateriaPrimaGenericaFilterForm(self.request.GET)
         return context
 
 
-=======
->>>>>>> 59809119eb8462bd50b3f45ca634e70f54899d53
+
 class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = MateriaPrimaGenerica
