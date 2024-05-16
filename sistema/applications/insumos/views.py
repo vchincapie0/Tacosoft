@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ImplementosTrabajo,InsumosGenerico
-from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm
+from .models import ImplementosTrabajo,InsumosGenerico,ImplementosAudit
+from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm,ImplementosAuditFilterForm
 
 # Create your views here.
 
@@ -23,6 +24,7 @@ class InsumosGenericoListView(LoginRequiredMixin, ListView):
            it_nombre__icontains = palabra_clave
         )
         return lista
+    
 class InsumosGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = InsumosGenerico
@@ -89,3 +91,43 @@ class ImplementosDeleteView(LoginRequiredMixin, DeleteView):
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('insumos_app:list_insumos')
 
+class ImplementosAuditListView(LoginRequiredMixin, ListView):
+    model= ImplementosAudit
+    template_name='administrador/auditorias/implementosaudit.html'
+    paginate_by=10
+    context_object_name='auditoria'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = ImplementosAuditFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            implementos = form.cleaned_data.get('implementos')
+            action = form.cleaned_data.get('action')
+            changed_by = form.cleaned_data.get('changed_by')
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
+            if implementos:
+                queryset = queryset.filter(implementos=implementos)
+            if action:
+                queryset = queryset.filter(action=action)
+            if changed_by:
+                queryset = queryset.filter(changed_by=changed_by)
+            if start_date:
+                queryset = queryset.filter(changed_at__gte=start_date)
+            if end_date:
+                # Agregar 1 día a la fecha final para incluir todos los registros de ese día
+                end_date += timezone.timedelta(days=1)
+                queryset = queryset.filter(changed_at__lt=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = ImplementosAuditFilterForm(self.request.GET)
+        return context

@@ -32,3 +32,19 @@ class ImplementosTrabajo(models.Model):
             self.it_estado = self.Estado.DISPONIBLE
 
         super().save(*args, **kwargs)
+
+class ImplementosAudit(models.Model):
+    ACTION_CHOICES = [
+        ('C', 'Creado'),
+        ('U', 'Actualizado'),
+        ('D', 'Borrado')
+    ]
+
+    implementos = models.ForeignKey(ImplementosTrabajo, on_delete=models.CASCADE, related_name='audit_logs')
+    action = models.CharField(max_length=1, choices=ACTION_CHOICES)
+    details = models.TextField(blank=True, null=True)
+    changed_by = models.ForeignKey(ImplementosTrabajo, on_delete=models.SET_NULL, null=True, blank=True)
+    changed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.get_action_display()} - {self.implementos.it_nombre} ({self.changed_at})'

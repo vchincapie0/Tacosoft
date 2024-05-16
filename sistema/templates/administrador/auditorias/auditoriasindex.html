@@ -69,7 +69,7 @@
          <div class="card text-center bg-dark border-dark" style="width: 15rem;">
            <img src="{% static 'img/materiap.png' %}" class="card-img-top" alt="...">
            <div class="card-body">
-               <a href="#" class="btn btn-warning">Materia Prima</a>
+               <a href="{% url 'mp_app:mp_audit' %}" class="btn btn-warning">Materia Prima</a>
            </div>    
          </div>
        </div>
@@ -79,7 +79,7 @@
            <div class="card text-center bg-dark border-dark" style="width: 15rem;">
                <img src="{% static 'img/productoterminado.png' %}" class="card-img-top" alt="...">
                <div class="card-body">
-                   <a href="#" class="btn btn-warning">Producto Terminado</a>
+                   <a href="{% url 'produ_app:producto_audit' %}" class="btn btn-warning">Producto Terminado</a>
                </div> 
          </div>
        </div>
@@ -89,7 +89,7 @@
          <div class="card text-center bg-dark border-dark" style="width: 15rem;">
            <img src="{% static 'img/implementos.png' %}" class="card-img-top" alt="...">
            <div class="card-body">
-               <a href="#" class="btn btn-warning">Implementos de Trabajo</a>
+               <a href="{% url 'insumos_app:implementos_audit' %}" class="btn btn-warning">Implementos de Trabajo</a>
            </div>    
          </div>
        </div>

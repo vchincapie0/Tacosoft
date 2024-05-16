@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView,CreateView,DetailView, UpdateView, TemplateView, DeleteView
+from django.utils import timezone
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
@@ -9,7 +10,9 @@ from .models import (
     MateriaPrima,Desinfeccion,
     CaracteristicasOrganolepticas,
     MateriaPrimaGenerica,
-    DesinfectanteGenerico)
+    DesinfectanteGenerico,
+    MateriaPrimaAudit
+    )
 from .forms import (
     MateriaPrimaForm,
     CaracteristicasMPForm,
@@ -20,6 +23,7 @@ from .forms import (
     MateriaPrimaGenericaUpdateForm,
     MateriaPrimaGenericaFilterForm,
     DesinfectanteGenericoForm,
+    MateriaAuditFilterForm
 )
 
 
@@ -53,12 +57,15 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
             
         return queryset
 
+<<<<<<< HEAD
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = MateriaPrimaGenericaFilterForm(self.request.GET)
         return context
 
 
+=======
+>>>>>>> 59809119eb8462bd50b3f45ca634e70f54899d53
 class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
     model = MateriaPrimaGenerica
@@ -83,7 +90,6 @@ class MateriaPrimaGenericaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "administrador/genericas/delete_mp_generica.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('mp_app:listaGenerica_mp')
-
 
 class MateriaPrimaListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''
@@ -121,6 +127,16 @@ class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp') 
 
+class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
+    '''Clase donde se modifica la materia prima registrada'''
+    model = MateriaPrima
+    template_name = "materiaprima/mp_update.html"
+    login_url=reverse_lazy('users_app:login')
+    #Campos que se van a mostrar en el formulario
+    form_class = MateriaPrimaForm
+    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
+    success_url= reverse_lazy('mp_app:lista_mp') 
+
 class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
     model = CaracteristicasOrganolepticas
@@ -130,8 +146,6 @@ class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     form_class = CaracteristicasMPForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
-
-
     
 class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edicion de las caracteristicas organolepticas de la materia prima'''
@@ -222,5 +236,45 @@ class MateriaPrimaDetailView(LoginRequiredMixin, DetailView):
     login_url=reverse_lazy('users_app:login')
     context_object_name = 'materiaprima'
 
-    
+class MateriaAuditListView(LoginRequiredMixin, ListView):
+    model= MateriaPrimaAudit
+    template_name='administrador/auditorias/materiaaudit.html'
+    paginate_by=10
+    context_object_name='auditoria'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = MateriaAuditFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            materiaprima = form.cleaned_data.get('materiaprima')
+            action = form.cleaned_data.get('action')
+            changed_by = form.cleaned_data.get('changed_by')
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
+            if materiaprima:
+                queryset = queryset.filter(materiaprima=materiaprima)
+            if action:
+                queryset = queryset.filter(action=action)
+            if changed_by:
+                queryset = queryset.filter(changed_by=changed_by)
+            if start_date:
+                queryset = queryset.filter(changed_at__gte=start_date)
+            if end_date:
+                # Agregar 1 día a la fecha final para incluir todos los registros de ese día
+                end_date += timezone.timedelta(days=1)
+                queryset = queryset.filter(changed_at__lt=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = MateriaAuditFilterForm(self.request.GET)
+        return context
+
 
