@@ -7,7 +7,6 @@ class ExistenciaMp(models.Model):
     mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
     cantidadIngresada=models.PositiveIntegerField('Cantidad Ingresada')
     cantidadEgresada=models.PositiveIntegerField('Cantidad Egresada')
-
     def __str__(self):
         return f"{self.mp_lote} - {self.cantidadIngresada} - {self.cantidadEgresada}"
 

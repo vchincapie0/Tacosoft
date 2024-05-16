@@ -54,3 +54,4 @@ class ExistenciasListView(LoginRequiredMixin, ListView):
         context['stock_materias'] = stock_materias
         context['tipo_materia_prima'] = tipo_materia_prima  # Pasar el tipo para mostrar en la plantilla
         return context
+    
