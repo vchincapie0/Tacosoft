@@ -195,3 +195,18 @@ class DesinfectanteGenericoForm(forms.ModelForm):
         widgets={
             'des_nombre':forms.TextInput(attrs={'class':'form-control'}),
             } 
+    
+class MateriaPrimaGenericaFilterForm(forms.ModelForm):
+    '''Filtro Tipo - Materia Prima Generica'''
+    class Meta:
+        """Meta definition for MateriaPrimaform."""
+
+        model = MateriaPrimaGenerica
+        fields = (
+            'mp_nombre',
+            'mp_tipo',
+            )
+        widgets={
+            'mp_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'mp_tipo':forms.Select(attrs={'class':'form-select'}),
+        }

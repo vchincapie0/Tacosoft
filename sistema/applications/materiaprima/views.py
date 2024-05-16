@@ -18,6 +18,7 @@ from .forms import (
     DesinfeccionMPUpdateForm,
     MateriaPrimaGenericaForm,
     MateriaPrimaGenericaUpdateForm,
+    MateriaPrimaGenericaFilterForm,
     DesinfectanteGenericoForm,
 )
 
@@ -32,14 +33,30 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
     context_object_name = 'materiaprima'
 
     def get_queryset(self):
-        palabra_clave = self.request.GET.get("kword", '')
         
-        # Filtrar por nombre específico de la materia prima
-        queryset = MateriaPrimaGenerica.objects.filter(
-            mp_nombre__icontains=palabra_clave
-        )
-        
+        ''''Filtro de la vista'''
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = MateriaPrimaGenericaFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            mp_nombre = form.cleaned_data.get('mp_nombre')
+            tipo = form.cleaned_data.get('tipo')
+
+            # Filtrar por nombre de materia prima y tipo
+            if mp_nombre:
+                queryset = queryset.filter(mp_nombre=mp_nombre)
+            if tipo:
+                queryset = queryset.filter(tipo=tipo)
+            
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = MateriaPrimaGenericaFilterForm(self.request.GET)
+        return context
 
 
 class MateriaPrimaGenericaCreateView(LoginRequiredMixin, CreateView):
