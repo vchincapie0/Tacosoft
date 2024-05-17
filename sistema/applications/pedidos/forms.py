@@ -3,10 +3,11 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from datetime import timedelta
 from django import forms
-from .models import Pedidos
+from .models import Pedidos, PedidosAudit
 from applications.materiaprima.models import MateriaPrima
 from applications.insumos.models import ImplementosTrabajo
 from applications.proveedores.models import Proveedores
+from applications.users.models import User
 
 class PedidosCreateForm(forms.ModelForm):
 
@@ -174,35 +175,6 @@ class PedidosAddMpCreateFrom(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
-    
-class PedidosUpdateMpUpdateFrom(forms.ModelForm):
-    """Form definition para crear materia prima en el formulario de pedidos."""
-
-    class Meta:
-        """Meta definition for MateriaPrimaform."""
-
-        model = MateriaPrima
-        fields = (
-            'mp_lote',
-            'mp_nombre',
-            'mp_cantidad',
-            'mp_fechallegada',
-            'mp_fechavencimiento',
-            )
-        
-        widgets={
-            'mp_lote':forms.NumberInput(attrs={'class':'form-control'}),
-            'mp_nombre':forms.Select(attrs={'class':'form-select'}),
-            'mp_cantidad':forms.NumberInput(attrs={'class':'form-control'}),
-            'mp_fechallegada':forms.SelectDateWidget(),
-            'mp_fechavencimiento':forms.SelectDateWidget(),
-        }
-    
-    def clean_it_cantidad(self):
-        cantidad = self.cleaned_data['it_cantidad']
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
-        return cantidad
 
 class PedidosAddInsumosCreateFrom(forms.ModelForm):
     """Form definition Implementos de Trabajo en pedidos."""
@@ -221,7 +193,7 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
         
         widgets={
             'it_codigo':forms.NumberInput(attrs={'placeholder': 'Código de Implemento de Trabajo','class':'form-control'}),
-            'it_nombre':forms.TextInput(attrs={'placeholder': 'Ejemplo: Guantes de Latex','class':'form-control'}),
+            'it_nombre':forms.Select(attrs={'class':'form-select'}),
             'it_cantidad':forms.NumberInput(attrs={'placeholder': 'Cantidad Entregada','class':'form-control'}),
             'it_fechaEntrega':forms.SelectDateWidget(),
             'it_estado':forms.Select(attrs={'class':'form-select'})
@@ -233,11 +205,6 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
     
-    def clean_it_nombre(self):
-        nombre = self.cleaned_data['it_nombre']
-        if not re.match("^[a-zA-Z ]+$", nombre):
-            raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
-        return nombre
 
 class  PedidosAddProveedorCreateFrom(forms.ModelForm):
     """Form definition Proveedores."""
@@ -267,3 +234,24 @@ class  PedidosAddProveedorCreateFrom(forms.ModelForm):
         if not re.match("^[a-zA-Z ]+$", nombre):
             raise forms.ValidationError("El nombre no debe contener números o caracteres especiales.")
         return nombre
+    
+class PedidosAuditFilterForm(forms.Form):
+    '''Formulario para filtar en PedidosAuditView'''
+    pedido = forms.ModelChoiceField(queryset=Pedidos.objects.all(), 
+                                  required=False, 
+                                  label='Proveedor',
+                                  widget=forms.Select(attrs={'class': 'form-select'}))
+    action = forms.ChoiceField(choices=PedidosAudit.ACTION_CHOICES, 
+                               required=False, 
+                               label='Acción',
+                               widget=forms.Select(attrs={'class': 'form-select'}))
+    changed_by = forms.ModelChoiceField(queryset=User.objects.all(), 
+                                        required=False, 
+                                        label='Cambios realizados por',
+                                        widget=forms.Select(attrs={'class': 'form-select'}))
+    start_date = forms.DateField(label='Fecha inicial', 
+                                 required=False, 
+                                 widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
+    end_date = forms.DateField(label='Fecha final', 
+                               required=False, 
+                               widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
