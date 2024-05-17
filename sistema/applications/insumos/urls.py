@@ -12,4 +12,6 @@ urlpatterns = [
     path('add_insumos/',views.ImplementosCreateView.as_view(),name='add_insumos'),
     path('update_insumos/<pk>',views.ImplementosUpdateView.as_view(),name='update_insumos'),
     path('delete_insumos/<pk>',views.ImplementosDeleteView.as_view(),name='delete_insumos'),
+    path('implementos_audit/',views.ImplementosAuditListView.as_view(),name='implementos_audit'),
+
 ]

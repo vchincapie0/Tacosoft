@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
@@ -11,6 +12,8 @@ from .models import (
     Vacio,
     ProductoTerminadoGenerico,
     ProductoTerminadoGenerico,
+    ProductoTerminadoAudit
+    
 )
 from .forms import (
     ProductoTerminadoForm,
@@ -21,6 +24,7 @@ from .forms import (
     EmpaqueUpdateForm,
     VacioUpdateForm,
     ProductoTerminadoGenericoForm,
+    ProductoAuditFilterForm
 )
 
 # Create your views here.
@@ -188,7 +192,7 @@ class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
 class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''
     model = ProductoTerminadoGenerico
-    template_name = "productoterminado/list_pt_generico.html"
+    template_name = "administrador/genericas/list_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     paginate_by=10
     context_object_name = 'producto'
@@ -206,7 +210,7 @@ class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
 class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea un nuevo Producto terminado'''
     model = ProductoTerminadoGenerico
-    template_name = "productoterminado/add_pt_generico.html"
+    template_name = "administrador/genericas/add_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
     form_class = ProductoTerminadoGenericoForm
@@ -216,7 +220,7 @@ class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
 class ProductoTerminadoGenericoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos  Producto terminado'''
     model = ProductoTerminadoGenerico
-    template_name = "productoterminado/update_pt_generico.html"
+    template_name = "administrador/genericas/update_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     form_class=ProductoTerminadoGenericoForm
     success_url= reverse_lazy('produ_app:list_pt_generico')
@@ -224,6 +228,47 @@ class ProductoTerminadoGenericoUpdateView(LoginRequiredMixin, UpdateView):
 class ProductoTerminadoGenericoDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Producto terminado'''
     model = ProductoTerminadoGenerico
-    template_name = "productoterminado/delete_pt_generico.html"
+    template_name = "administrador/genericas/delete_pt_generico.html"
     login_url=reverse_lazy('users_app:login')
     success_url= reverse_lazy('produ_app:list_pt_generico')
+
+class ProductoAuditListView(LoginRequiredMixin, ListView):
+    model= ProductoTerminadoAudit
+    template_name='administrador/auditorias/productoaudit.html'
+    paginate_by=10
+    context_object_name='auditoria'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener los parámetros de filtrado del formulario
+        form = ProductoAuditFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            productoterminado = form.cleaned_data.get('productoterminado')
+            action = form.cleaned_data.get('action')
+            changed_by = form.cleaned_data.get('changed_by')
+            start_date = form.cleaned_data.get('start_date')
+            end_date = form.cleaned_data.get('end_date')
+
+            # Filtrar por usuario, acción, usuario que realizó el cambio y rango de fechas
+            if productoterminado:
+                queryset = queryset.filter(productoterminado=productoterminado)
+            if action:
+                queryset = queryset.filter(action=action)
+            if changed_by:
+                queryset = queryset.filter(changed_by=changed_by)
+            if start_date:
+                queryset = queryset.filter(changed_at__gte=start_date)
+            if end_date:
+                # Agregar 1 día a la fecha final para incluir todos los registros de ese día
+                end_date += timezone.timedelta(days=1)
+                queryset = queryset.filter(changed_at__lt=end_date)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = ProductoAuditFilterForm(self.request.GET)
+        return context
