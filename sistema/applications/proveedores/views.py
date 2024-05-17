@@ -130,7 +130,7 @@ def export_proveedores_to_excel(request):
     # Establecer estilos para la primera línea (encabezado personalizado)
     title_font = Font(bold=True)
     title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
-    title_alignment = Alignment(horizontal='left')
+    title_alignment = Alignment(horizontal='center')
     
     # Agregar fila de título personalizado
     worksheet.append(['TACO MAS'])  # Agregar texto del título
