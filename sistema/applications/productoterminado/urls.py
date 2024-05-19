@@ -1,4 +1,5 @@
 from django.urls import path
+from applications.users.decorators import admin_required
 from . import views
 
 app_name='produ_app'
@@ -21,6 +22,8 @@ urlpatterns = [
     path('update_pt_generico/<pk>',views.ProductoTerminadoGenericoUpdateView.as_view(),name='update_pt_generico'),
     path('delete_pt_generico/<pk>',views.ProductoTerminadoGenericoDeleteView.as_view(),name='delete_pt_generico'),
     path('producto_audit/',views.ProductoAuditListView.as_view(),name='producto_audit'),
+    path('productoterminado/export/xls',admin_required(views.export_productoterminado_to_excel), name='export_productoterminado_excel'),
+    path('productoterminado/export/cvs',admin_required(views.export_productoterminado_to_csv), name='export_productoterminado_cvs'),
 
 
 
