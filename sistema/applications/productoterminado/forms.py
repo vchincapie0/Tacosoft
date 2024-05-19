@@ -28,8 +28,6 @@ class ProductoTerminadoGenericoForm(forms.ModelForm):
             'pt_nombre':forms.TextInput(attrs={'class':'form-control'}),
             'materiaPrimaUsada':forms.SelectMultiple(attrs={'class':'form-select'}),
         }
-    
-
 
 class ProductoTerminadoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
