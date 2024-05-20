@@ -284,7 +284,7 @@ def export_productoterminado_to_excel(request):
     fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Obtener los datos de producto terminado que quieres exportar
-    productoterminado = ProductoTerminado.objects.filter(deleted=False)  # Filtrar productos terminados activos
+    productoterminado = ProductoTerminado.objects.all()
 
     # Crear un nuevo libro de Excel y una hoja de trabajo
     workbook = Workbook()
@@ -293,12 +293,12 @@ def export_productoterminado_to_excel(request):
 
     # Establecer estilos para la primera línea (encabezado personalizado)
     title_font = Font(bold=True)
-    title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")  # Transparente
+    title_fill = PatternFill(start_color="FFFFFF00", end_color="FFFFFF00", fill_type="solid")
     title_alignment = Alignment(horizontal='center')
-    
+
     # Agregar fila de título personalizado
-    worksheet.append(['TACO MAS'])  # Agregar texto del título
-    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    worksheet.append(['TACO MAS'])
+    worksheet.merge_cells('A1:O1')
     title_cell = worksheet['A1']
     title_cell.font = title_font
     title_cell.fill = title_fill
@@ -308,16 +308,37 @@ def export_productoterminado_to_excel(request):
     worksheet.append(['Fecha de descarga:', fecha_descarga])
     worksheet.append(['Software:', 'Tacosoft'])
 
-    # Agregar espacio en blanco entre la información adicional y los encabezados
-    worksheet.append([])  # Agregar una fila vacía
+    #blanco entre la información adicional y los encabezados
+    worksheet.append([])
+
+    # Agregar fila de título de características organolépticas
+    worksheet.merge_cells('G5:K5')  # Fusionar celdas para el título
+    worksheet['G5'] = 'CARACTERISTICAS ORGANOLEPTICAS'  # Escribir el título en la celda fusionada
+
+    # Establecer estilos para el título de características organolépticas
+    title_font = Font(bold=True, color="000000")  # Letra negra
+    title_fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type="solid")  # Gris claro
+    title_alignment = Alignment(horizontal='center')
+
+    # Aplicar estilos al título
+    title_cell = worksheet['G5']
+    title_cell.font = title_font
+    title_cell.fill = title_fill
+    title_cell.alignment = title_alignment
+    
 
     # Agregar encabezados a la siguiente fila
-    headers = ['Lote', 'Producto', 'Cantidad','Fecha de preparación','Fecha de vencimiento']
+    headers = [
+        'Lote', 'Producto', 'Cantidad', 'Fecha de preparación', 'Fecha de vencimiento',
+        'Observaciones', 'Olor', 'Sabor', 'Textura', 'Color', 'Estado',
+        'Peso Empaque (Kg)', 'Cantidad Bolsas', 
+        'Bolsas Rechazadas', 'Bolsas Liberadas'
+    ]
     worksheet.append(headers)
 
     # Aplicar estilos a la fila de encabezados (fila actual + 2)
     header_font = Font(bold=True)
-    header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")  # Gris claro
+    header_fill = PatternFill(start_color="CCCCCC", end_color="CCCCCC", fill_type="solid")
     header_alignment = Alignment(horizontal='center')
 
     for col in range(1, len(headers) + 1):
@@ -326,9 +347,43 @@ def export_productoterminado_to_excel(request):
         header_cell.fill = header_fill
         header_cell.alignment = header_alignment
 
-    # Agregar datos de proveedores a las siguientes filas
-    for productoterminado in ProductoTerminado:
-        data_row = [productoterminado.pt_lote, productoterminado.pt_nombre, productoterminado.pt_fechapreparacion,productoterminado.pt_fechavencimiento]
+    # Agregar datos de productos terminados a las siguientes filas
+    for producto in productoterminado:
+        # Obtener las características organolépticas
+        try:
+            caracteristicas = CaracteristicasOrganolepticasPT.objects.get(pt_lote=producto)
+        except CaracteristicasOrganolepticasPT.DoesNotExist:
+            caracteristicas = None
+
+        # Obtener los datos de empaque
+        try:
+            empaque = EmpaqueProductoTerminado.objects.get(pt_lote=producto)
+        except EmpaqueProductoTerminado.DoesNotExist:
+            empaque = None
+
+        # Obtener los datos de vacío
+        try:
+            vacio = Vacio.objects.get(pt_lote=producto)
+        except Vacio.DoesNotExist:
+            vacio = None
+
+        data_row = [
+            producto.pt_lote,
+            producto.pt_nombre.pt_nombre,
+            producto.pt_cantidad,
+            producto.pt_fechapreparacion.strftime("%Y-%m-%d"),
+            producto.pt_fechavencimiento.strftime("%Y-%m-%d"),
+            caracteristicas.observaciones if caracteristicas else '',
+            'Sí' if caracteristicas and caracteristicas.olor else 'No',
+            'Sí' if caracteristicas and caracteristicas.sabor else 'No',
+            'Sí' if caracteristicas and caracteristicas.textura else 'No',
+            'Sí' if caracteristicas and caracteristicas.color else 'No',
+            dict(CaracteristicasOrganolepticasPT.ESTADO_CHOICES).get(caracteristicas.estado, '') if caracteristicas else '',
+            empaque.emp_pesoKg if empaque else '',
+            empaque.emp_cantidadBolsas if empaque else '',
+            vacio.cantidad_bolsas_rechazadas if vacio else '',
+            vacio.cantidad_bolsas_liberadas if vacio else ''
+        ]
         worksheet.append(data_row)
 
     # Crear una respuesta HTTP con el archivo Excel como contenido
@@ -342,14 +397,51 @@ def export_productoterminado_to_excel(request):
 
 def export_productoterminado_to_csv(request):
     '''Vista para exportar datos de tabla producto terminado en formato CSV'''
-    productoterminado = ProductoTerminado.objects.filter(deleted=False)  # Obtener datos de proveedores
+    productoterminado = ProductoTerminado.objects.all()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=productoterminado.csv'
 
     writer = csv.writer(response)
-    writer.writerow(['Lote', 'Producto', 'Cantidad','Fecha de preparación','Fecha de vencimiento'])  # Encabezados de columnas
+    headers = [
+        'Lote', 'Producto', 'Cantidad', 'Fecha de preparación', 'Fecha de vencimiento',
+        'Observaciones', 'Olor', 'Sabor', 'Textura', 'Color', 'Estado',
+        'Peso Empaque (Kg)', 'Cantidad Bolsas', 
+        'Bolsas Rechazadas', 'Bolsas Liberadas'
+    ]
+    writer.writerow(headers)
 
-    for productoterminado in ProductoTerminado:
-        writer.writerow([productoterminado.pt_lote, productoterminado.pt_nombre, productoterminado.pt_fechapreparacion,productoterminado.pt_fechavencimiento])
+    for producto in productoterminado:
+        # Obtener las características organolépticas
+        try:
+            caracteristicas = CaracteristicasOrganolepticasPT.objects.get(pt_lote=producto)
+        except CaracteristicasOrganolepticasPT.DoesNotExist:
+            caracteristicas = None
 
-    return response
+        # Obtener los datos de empaque
+        try:
+            empaque = EmpaqueProductoTerminado.objects.get(pt_lote=producto)
+        except EmpaqueProductoTerminado.DoesNotExist:
+            empaque = None
+
+        # Obtener los datos de vacío
+        try:
+            vacio = Vacio.objects.get(pt_lote=producto)
+        except Vacio.DoesNotExist:
+            vacio = None
+
+        data_row = [
+            producto.pt_lote,
+            producto.pt_nombre.pt_nombre,
+            producto.pt_cantidad,
+            producto.pt_fechapreparacion.strftime("%Y-%m-%d"),
+            producto.pt_fechavencimiento.strftime("%Y-%m-%d"),
+            caracteristicas.observaciones if caracteristicas else '',
+            'Sí' if caracteristicas and caracteristicas.olor else 'No',
+            'Sí' if caracteristicas and caracteristicas.sabor else 'No',
+            'Sí' if caracteristicas and caracteristicas.textura else 'No',
+            'Sí' if caracteristicas and caracteristicas.color else 'No',
+            dict(CaracteristicasOrganolepticasPT.ESTADO_CHOICES).get(caracteristicas.estado, '') if caracteristicas else '',
+            empaque.emp_pesoKg if empaque else '',
+            empaque.emp_cantidadBolsas if empaque else '',
+            vacio.cantidad_bolsas_rechazadas if vacio else '',
+            vacio.cantidad_bolsas_liberadas]
