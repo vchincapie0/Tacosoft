@@ -1,4 +1,5 @@
 from django.urls import path
+from applications.users.decorators import admin_required
 from . import views
 
 app_name='mp_app'
@@ -21,7 +22,8 @@ urlpatterns = [
     path('mp_detail/<pk>',views.MateriaPrimaDetailView.as_view(),name='detail_mp'),
     path('mp_update/<pk>',views.MateriaPrimaUpdateView.as_view(),name='mp_update'),
     path('mp_audit/',views.MateriaAuditListView.as_view(),name='mp_audit'),
-
+    path('materiaprima/export/xls',admin_required(views.export_materiaprima_to_excel), name='export_materiaprima_excel'),
+    path('materiaprima/export/cvs',admin_required(views.export_materiaprima_to_csv), name='export_materiaprima_cvs'),
 
   
 
