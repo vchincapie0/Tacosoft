@@ -429,7 +429,7 @@ def export_productoterminado_to_csv(request):
         except Vacio.DoesNotExist:
             vacio = None
 
-        data_row = [
+        writer.writerow([
             producto.pt_lote,
             producto.pt_nombre.pt_nombre,
             producto.pt_cantidad,
@@ -444,4 +444,4 @@ def export_productoterminado_to_csv(request):
             empaque.emp_pesoKg if empaque else '',
             empaque.emp_cantidadBolsas if empaque else '',
             vacio.cantidad_bolsas_rechazadas if vacio else '',
-            vacio.cantidad_bolsas_liberadas]
+            vacio.cantidad_bolsas_liberadas])

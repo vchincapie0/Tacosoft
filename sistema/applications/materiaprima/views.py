@@ -419,7 +419,7 @@ def export_materiaprima_to_csv(request):
         except Desinfeccion.DoesNotExist:
             desinfeccion = None
 
-        data_row = [
+        writer.writerow([
             materia.mp_lote,
             materia.mp_nombre.mp_nombre,
             materia.mp_nombre.get_mp_tipo_display(),
@@ -439,5 +439,5 @@ def export_materiaprima_to_csv(request):
             desinfeccion.tiempo_fin.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.obsevacion,
 
-        ]
+        ])
 
