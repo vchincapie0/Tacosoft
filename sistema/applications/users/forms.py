@@ -29,15 +29,12 @@ class UserRegisterForm(forms.ModelForm):
         fields = ('username',
                   'name',
                   'last_name',
-                  'is_admin',
-                  'is_employee',)
+                  'is_admin',)
         widgets={
             'username':forms.TextInput(attrs={'class':'form-control','placeholder':'Ejemplo: mperez22'}),
             'name':forms.TextInput(attrs={'placeholder': 'Ejemplo: María','class':'form-control'}),
             'last_name':forms.TextInput(attrs={'placeholder': 'Ejemplo: Perez','class':'form-control'}),
             'is_admin':forms.CheckboxInput(attrs={'class':'form-check-input'}),
-            'is_employee':forms.CheckboxInput(attrs={'class':'form-check-input'})
-
         }
                   
         
@@ -104,15 +101,13 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'name', 'last_name', 'is_admin','is_employee',]
+        fields = ['username', 'name', 'last_name', 'is_admin',]
     
         widgets={
             'username':forms.TextInput(attrs={'class':'form-control-plaintext text-light','readonly':'True'}),
             'name':forms.TextInput(attrs={'placeholder': 'Ejemplo: María','class':'form-control'}),
             'last_name':forms.TextInput(attrs={'placeholder': 'Ejemplo: Perez','class':'form-control'}),
             'is_admin':forms.CheckboxInput(attrs={'class':'form-check-input'}),
-            'is_employee':forms.CheckboxInput(attrs={'class':'form-check-input'})
-
         }
 
 

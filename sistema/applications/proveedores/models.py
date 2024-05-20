@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from applications.users.models import User
 
 # Create your models here.
@@ -10,6 +11,7 @@ class Proveedores(models.Model):
     prov_nombre=models.CharField('Nombre',max_length=40)
     prov_telefono=models.CharField('Telefono',max_length=10)
     deleted = models.BooleanField(default=False)  # Campo para el borrado lógico
+    created=models.DateTimeField(default= timezone.now)
 
     def __str__(self):
         return f"{self.prov_nombre}"
