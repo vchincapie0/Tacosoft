@@ -1,6 +1,13 @@
 from django import forms
 from django.utils import timezone
-from .models import MateriaPrima, Desinfeccion, CaracteristicasOrganolepticas,MateriaPrimaGenerica, DesinfectanteGenerico,MateriaPrimaAudit
+from .models import (
+    MateriaPrima, 
+    Desinfeccion, 
+    CaracteristicasOrganolepticas,
+    MateriaPrimaGenerica, 
+    DesinfectanteGenerico,
+    MateriaPrimaAudit,
+)
 from applications.users.models import User
 
 class MateriaPrimaGenericaUpdateForm(forms.ModelForm):

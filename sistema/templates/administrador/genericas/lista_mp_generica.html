@@ -14,15 +14,33 @@
                     <a name="" id="" class="btn btn-success" onclick="add_mp('{% url 'mp_app:add_mp_generica' %}')" role="button">Agregar Materia Prima</a>
                 </div>
                 
-                <div class="col-6">
-                    <form class="d-flex" role="search">
-                        {% csrf_token %}
-                        <input class="form-control me-2" type="search" placeholder="Buscar Materia Prima" aria-label="Search" name="kword" id="kword">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
+                <!-- Botón con icono para mostrar/ocultar el formulario de filtro -->
+                <div class="col d-flex justify-content-end">
+                    <button id="toggleFilterBtn" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-filter"></i> Filtrar
+                    </button>
                 </div>
             </div>
-            
+            <!--Contenedor para formulario filtro, inicialmente oculto-->
+            <div id="filterFormContainer" style="display: none;">
+                <form method="get" class="">
+                    <div class="row align-items-end">
+                        {% csrf_token %}
+                        <div class="col-4">
+                            <label for="">Materia Prima: </label> {{filter_form.mp_nombre}}
+                        </div>
+                        <div class="col-4">
+                            <label for="">Tipo: </label> {{filter_form.mp_tipo}}
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-success">Filtrar</button>
+                        </div>
+                        <div class="col-2">
+                            <a href="{% url 'mp_app:listaGenerica_mp' %}" type="button" class="btn btn-outline-primary">Limpiar Filtro</a>
+                        </div>
+                    </div>
+                </form>
+            </div>  
         </div>
         <div class="card-body">
             <h4 class="card-title">Materia Prima</h4>
@@ -126,6 +144,21 @@
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
+
+<!-- Script para manejar la funcionalidad de mostrar/ocultar el formulario de filtro -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleFilterBtn = document.getElementById('toggleFilterBtn');
+        const filterFormContainer = document.getElementById('filterFormContainer');
     
+        toggleFilterBtn.addEventListener('click', function() {
+            if (filterFormContainer.style.display === 'none') {
+                filterFormContainer.style.display = 'block';
+            } else {
+                filterFormContainer.style.display = 'none';
+            }
+        });
+    });
+</script>
 {% endblock %}
     
