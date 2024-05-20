@@ -262,11 +262,11 @@ class MateriaAuditListView(LoginRequiredMixin, ListView):
         return context
 
 def export_materiaprima_to_excel(request):
-    '''Vista para exportar datos de tabla producto terminado en formato excel'''
+    '''Vista para exportar datos de tabla materia prima en formato excel'''
     # Obtener la fecha y hora actual
     fecha_descarga = timezone.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # Obtener los datos de producto terminado que quieres exportar
+    # Obtener los datos de Materia prima que quieres exportar
     materiaprima = MateriaPrima.objects.all()
 
     # Crear un nuevo libro de Excel y una hoja de trabajo
@@ -309,12 +309,27 @@ def export_materiaprima_to_excel(request):
     title_cell.fill = title_fill
     title_cell.alignment = title_alignment
     
+    # Agregar fila de título de características organolépticas
+    worksheet.merge_cells('l5:R5')  # Fusionar celdas para el título
+    worksheet['L5'] = 'DESINFECCIÓN'  # Escribir el título en la celda fusionada
+
+    # Establecer estilos para el título de características organolépticas
+    title_font = Font(bold=True, color="000000")  # Letra negra
+    title_fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type="solid")  # Gris claro
+    title_alignment = Alignment(horizontal='center')
+
+    # Aplicar estilos al título
+    title_cell = worksheet['L5']
+    title_cell.font = title_font
+    title_cell.fill = title_fill
+    title_cell.alignment = title_alignment
+    
 
     # Agregar encabezados a la siguiente fila
     headers = [
         'Lote', 'Materia prima', 'Tipo','Cantidad', 'Fecha de llegada', 'Fecha de vencimiento',
          'Olor', 'Textura','Limpieza','Empaque','Color', 'Estado',
-        'Agente desinfectante', 'Concentración', 
+        'Agente desinfectante', 'Concentración','Responsable', 
         'Tiempo de inicio', 'Tiempo de final','Observaciones'
     ]
     worksheet.append(headers)
@@ -338,7 +353,7 @@ def export_materiaprima_to_excel(request):
         except CaracteristicasOrganolepticas.DoesNotExist:
             caracteristicas = None
 
-        # Obtener los datos de empaque
+        # Obtener los datos de desinfeccion
         try:
             desinfeccion = Desinfeccion.objects.get(mp_lote=materia)
         except Desinfeccion.DoesNotExist:
@@ -347,20 +362,19 @@ def export_materiaprima_to_excel(request):
         data_row = [
             materia.mp_lote,
             materia.mp_nombre.mp_nombre,
-            materia.mp_tipo,
+            materia.mp_nombre.get_mp_tipo_display(),
             materia.mp_cantidad,
             materia.mp_fechallegada.strftime("%Y-%m-%d"),
             materia.mp_fechavencimiento.strftime("%Y-%m-%d"),
-            caracteristicas.observaciones if caracteristicas else '',
             'Sí' if caracteristicas and caracteristicas.olor else 'No',
             'Sí' if caracteristicas and caracteristicas.textura else 'No',
             'Sí' if caracteristicas and caracteristicas.limpieza else 'No',
             'Sí' if caracteristicas and caracteristicas.empaque else 'No',
             'Sí' if caracteristicas and caracteristicas.color else 'No',
             dict(CaracteristicasOrganolepticas.ESTADO_CHOICES).get(caracteristicas.estado, '') if caracteristicas else '',
-            desinfeccion.des_nombre,
+            desinfeccion.des_nombre.des_nombre,
             desinfeccion.concentracion,
-            desinfeccion.responsable,
+            desinfeccion.responsable.name,
             desinfeccion.tiempo_inicio.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.tiempo_fin.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.obsevacion,
@@ -370,7 +384,7 @@ def export_materiaprima_to_excel(request):
 
     # Crear una respuesta HTTP con el archivo Excel como contenido
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=productoterminado.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=materiaprima.xlsx'
 
     # Guardar el libro de Excel en la respuesta HTTP
     workbook.save(response)
@@ -381,13 +395,13 @@ def export_materiaprima_to_csv(request):
     '''Vista para exportar datos de tabla producto terminado en formato CSV'''
     materiaprima = MateriaPrima.objects.all()
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=productoterminado.csv'
+    response['Content-Disposition'] = 'attachment; filename=materiaprima.csv'
 
     writer = csv.writer(response)
     headers = [
         'Lote', 'Materia prima', 'Tipo','Cantidad', 'Fecha de llegada', 'Fecha de vencimiento',
          'Olor', 'Textura','Limpieza','Empaque','Color', 'Estado',
-        'Agente desinfectante', 'Concentración', 
+        'Agente desinfectante', 'Concentración', 'Responsable'
         'Tiempo de inicio', 'Tiempo de final','Observaciones'
     ]
     writer.writerow(headers)
@@ -399,7 +413,7 @@ def export_materiaprima_to_csv(request):
         except CaracteristicasOrganolepticas.DoesNotExist:
             caracteristicas = None
 
-        # Obtener los datos de empaque
+        # Obtener los datos de desinfeccion
         try:
             desinfeccion = Desinfeccion.objects.get(mp_lote=materia)
         except Desinfeccion.DoesNotExist:
@@ -408,24 +422,22 @@ def export_materiaprima_to_csv(request):
         data_row = [
             materia.mp_lote,
             materia.mp_nombre.mp_nombre,
-            materia.mp_tipo,
+            materia.mp_nombre.get_mp_tipo_display(),
             materia.mp_cantidad,
             materia.mp_fechallegada.strftime("%Y-%m-%d"),
             materia.mp_fechavencimiento.strftime("%Y-%m-%d"),
-            caracteristicas.observaciones if caracteristicas else '',
             'Sí' if caracteristicas and caracteristicas.olor else 'No',
             'Sí' if caracteristicas and caracteristicas.textura else 'No',
             'Sí' if caracteristicas and caracteristicas.limpieza else 'No',
             'Sí' if caracteristicas and caracteristicas.empaque else 'No',
             'Sí' if caracteristicas and caracteristicas.color else 'No',
             dict(CaracteristicasOrganolepticas.ESTADO_CHOICES).get(caracteristicas.estado, '') if caracteristicas else '',
-            desinfeccion.des_nombre,
+            desinfeccion.des_nombre.des_nombre,
             desinfeccion.concentracion,
-            desinfeccion.responsable,
+            desinfeccion.responsable.name,
             desinfeccion.tiempo_inicio.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.tiempo_fin.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.obsevacion,
 
         ]
-
 
