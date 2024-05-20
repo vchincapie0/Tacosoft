@@ -5,7 +5,7 @@ class ExistenciaMp(models.Model):
     '''Tabla de existencias de materia prima'''
     codigo=models.PositiveIntegerField('Código', primary_key=True)
     mp_lote=models.ForeignKey(MateriaPrima,on_delete=models.CASCADE)
-    cantidadIngresada=models.PositiveIntegerField('Cantidad Ingresada')
+    cantidadDisponible=models.PositiveIntegerField('Cantidad Ingresada')
     cantidadEgresada=models.PositiveIntegerField('Cantidad Egresada')
 
     def __str__(self):
