@@ -281,7 +281,7 @@ def export_materiaprima_to_excel(request):
 
     # Agregar fila de título personalizado
     worksheet.append(['TACO MAS'])
-    worksheet.merge_cells('A1:O1')
+    worksheet.merge_cells('A1:R1')
     title_cell = worksheet['A1']
     title_cell.font = title_font
     title_cell.fill = title_fill
