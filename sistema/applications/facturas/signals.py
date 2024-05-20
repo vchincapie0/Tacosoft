@@ -35,5 +35,17 @@ def log_facturas_change(sender, instance, created, **kwargs):
         action = 'U'  # Actualización de Pedidos
         details = f"La información de {instance.num_factura} ha sido actualizado."
 
+    # Obtener el pedido asociado a la factura
+    pedido_instance = instance.fac_numeroPedido
+
+    # Obtener el proveedor asociado a la factura
+    proveedor_instance=instance.fac_proveedor
+
     # Crear el registro de auditoría con el usuario que realizó la acción
-    FacturasAudit.objects.create( changed_by=changed_by, pedido=instance.fac_numeroPedido, proveedor=instance.fac_proveedor, action=action, details=details)
+    FacturasAudit.objects.create( 
+        changed_by=changed_by,
+        factura=instance, 
+        pedido=pedido_instance, 
+        proveedor=proveedor_instance, 
+        action=action, 
+        details=details)

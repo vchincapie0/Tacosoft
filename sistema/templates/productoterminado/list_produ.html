@@ -49,7 +49,7 @@
                             <td>{{p.pt_lote}}</td>
                             <td>{{p.pt_nombre}}</td>
                             <td>{{p.pt_cantidad}} g</td>
-                            <td>{{p.pt_fechapreparacion}}</td>
+                            <td>{{p.pt_fechapreparacion|date:"d/m/y"}}</td>
                             <td>{{p.pt_fechavencimiento}}</td>
                             <td>
                                 {% if p.caracteristicasorganolepticaspt_set.all %}

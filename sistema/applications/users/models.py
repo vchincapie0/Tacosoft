@@ -10,8 +10,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     is_admin=models.BooleanField('Administrador',default=False)
-    is_employee=models.BooleanField('Operario',default=False)
-    is_staff=models.BooleanField(default=False)
+    is_staff=models.BooleanField(default=True)
     is_superuser=models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)  # Mantenemos is_active para funcionalidad estándar de Django
     deleted = models.BooleanField(default=False)  # Nuevo campo para el borrado lógico

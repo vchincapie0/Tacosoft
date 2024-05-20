@@ -19,6 +19,10 @@ urlpatterns = [
     path('mp_desinfeccion/',views.DesinfeccionMateriaPrimaCreateView.as_view(),name='desinfeccion_mp'),
     path('mp_update_desinfeccion/<pk>',views.DesinfeccionMateriaPrimaUpdateView.as_view(),name='updateDesinfeccion_mp'),
     path('mp_detail/<pk>',views.MateriaPrimaDetailView.as_view(),name='detail_mp'),
+    path('mp_update/<pk>',views.MateriaPrimaUpdateView.as_view(),name='mp_update'),
+    path('mp_audit/',views.MateriaAuditListView.as_view(),name='mp_audit'),
+
+
   
 
 ]

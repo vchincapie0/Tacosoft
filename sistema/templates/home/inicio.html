@@ -15,7 +15,18 @@
         }
     }
 </style>
-
+<div class="container">
+    <div class="row">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message|safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>                      
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
 <div class="container d-flex align-items-center justify-content-center vh-100 bg-dark" style="--bs-bg-opacity: .5; border-radius: 15%;">
     <div class="row">
         
