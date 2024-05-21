@@ -438,6 +438,6 @@ def export_materiaprima_to_csv(request):
             desinfeccion.tiempo_inicio.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.tiempo_fin.strftime("%Y-%m-%d %H:%M:%S"),
             desinfeccion.obsevacion,
-
-        ])
+            ])
+        return response
 

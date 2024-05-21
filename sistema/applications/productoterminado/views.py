@@ -445,3 +445,4 @@ def export_productoterminado_to_csv(request):
             empaque.emp_cantidadBolsas if empaque else '',
             vacio.cantidad_bolsas_rechazadas if vacio else '',
             vacio.cantidad_bolsas_liberadas])
+        return response
