@@ -1,4 +1,5 @@
 from django.urls import path
+from applications.users.decorators import admin_required
 from . import views
 
 app_name='insumos_app'
@@ -13,5 +14,6 @@ urlpatterns = [
     path('update_insumos/<pk>',views.ImplementosUpdateView.as_view(),name='update_insumos'),
     path('delete_insumos/<pk>',views.ImplementosDeleteView.as_view(),name='delete_insumos'),
     path('implementos_audit/',views.ImplementosAuditListView.as_view(),name='implementos_audit'),
-
+    path('implementos/export/xls',admin_required(views.export_implementos_to_excel), name='export_implementos_excel'),
+    path('implementos/export/cvs',admin_required(views.export_implementos_to_csv), name='export_implementos_cvs'),
 ]
