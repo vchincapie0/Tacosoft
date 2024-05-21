@@ -157,7 +157,7 @@ def export_implementos_to_excel(request):
     
     # Agregar fila de título personalizado
     worksheet.append(['TACO MAS'])  # Agregar texto del título
-    worksheet.merge_cells('A1:C1')  # Combinar celdas para el título
+    worksheet.merge_cells('A1:D1')  # Combinar celdas para el título
     title_cell = worksheet['A1']
     title_cell.font = title_font
     title_cell.fill = title_fill
@@ -188,10 +188,10 @@ def export_implementos_to_excel(request):
     # Agregar datos de implementos a las siguientes filas
     for implemento in implementos:
         data_row = [
-        implemento.it_nombre, 
-        implemento.it_cantidad, 
-        implemento.it_fechaEntrega, 
-        implemento.it_estado
+            implemento.it_nombre.it_nombre,  # Access related field's name
+            implemento.it_cantidad,
+            implemento.it_fechaEntrega.strftime("%Y-%m-%d"),  # Format date
+            implemento.get_it_estado_display()  # Get display value of choice field
         ]
         worksheet.append(data_row)
 
@@ -215,9 +215,11 @@ def export_implementos_to_csv(request):
 
     for implemento in implementos:
         writer.writerow([
-        implemento.it_nombre, 
-        implemento.it_cantidad, 
-        implemento.it_fechaEntrega, 
-        implemento.it_estado])
+            implemento.it_nombre.it_nombre,  # Access related field's name
+            implemento.it_cantidad,
+            implemento.it_fechaEntrega.strftime("%Y-%m-%d"),  # Format date
+            implemento.get_it_estado_display()  # Get display value of choice field
+        ])
+
 
     return response
