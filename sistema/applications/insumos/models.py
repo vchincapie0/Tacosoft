@@ -20,6 +20,7 @@ class ImplementosTrabajo(models.Model):
     it_cantidad = models.IntegerField('Cantidad')
     it_fechaEntrega = models.DateField('Fecha Entrega')
     it_estado = models.CharField('Estado', max_length=1, choices=Estado.choices)
+    deleted = models.BooleanField(default=False)  
 
     def __str__(self):
         return f"{self.it_codigo}-{self.it_nombre}-{self.it_fechaEntrega}"
