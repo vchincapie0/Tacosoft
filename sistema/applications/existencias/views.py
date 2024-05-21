@@ -4,12 +4,13 @@ from django.views.generic import TemplateView, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse_lazy
 from applications.materiaprima.models import MateriaPrimaGenerica
-from .models import ExistenciaMp
+from .models import ExistenciaMateriaPrima
+from applications.insumos.models import InsumosGenerico
 
 # Create your views here.
 
-class ExistenciasListView(LoginRequiredMixin, ListView):
-    model=ExistenciaMp
+class ExistenciasMateriaPrimaListView(LoginRequiredMixin, ListView):
+    model=ExistenciaMateriaPrima
     template_name = "existencias/stock_mp.html"
     login_url = reverse_lazy('users_app:login')
     paginate_by= 5
@@ -17,7 +18,7 @@ class ExistenciasListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
         palabra_clave= self.request.GET.get("kword",'')
-        lista = ExistenciaMp.objects.filter(
+        lista = ExistenciaMateriaPrima.objects.filter(
             mp_lote__mp_nombre__mp_nombre__icontains = palabra_clave
         )
         return lista
@@ -40,7 +41,7 @@ class ExistenciasListView(LoginRequiredMixin, ListView):
         # Calcular el stock disponible para cada materia prima genérica filtrada
         stock_materias = []
         for materia in materias_genericas:
-            existencias = ExistenciaMp.objects.filter(mp_lote__mp_nombre=materia)
+            existencias = ExistenciaMateriaPrima.objects.filter(mp_lote__mp_nombre=materia)
             cantidad_total_ingresada = sum(existencia.cantidad_ingresada for existencia in existencias)
             cantidad_total_egresada = sum(existencia.cantidad_egresada for existencia in existencias)
             stock_disponible = cantidad_total_ingresada - cantidad_total_egresada
@@ -54,3 +55,10 @@ class ExistenciasListView(LoginRequiredMixin, ListView):
         context['stock_materias'] = stock_materias
         context['tipo_materia_prima'] = tipo_materia_prima  # Pasar el tipo para mostrar en la plantilla
         return context
+    
+class ExistenciasImplementosTrabajoListView(LoginRequiredMixin, ListView):
+    model=InsumosGenerico
+    template_name = "existencias/stock_it.html"
+    login_url = reverse_lazy('users_app:login')
+    paginate_by= 10
+    context_object_name = "stock_it"
