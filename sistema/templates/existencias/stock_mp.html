@@ -4,7 +4,6 @@
     Recepción de Pedidos
 {% endblock title %}
 
-
 {% block content %}
 <div class="mt-3">
     <div class="card text-bg-dark mb-3">
@@ -22,14 +21,12 @@
                                     <option value="2">Verduras</option>
                                     <option value="3">Frutas</option>
                                     <option value="4">Otros</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="col-2">
                                 <button type="submit" class="btn btn-outline-success">Buscar</button>
                             </div>
                         </div>
-                        
-                          
                     </form>
                 </div>
                 
@@ -41,85 +38,68 @@
                     </form>
                 </div>
             </div>
-            
         </div>
         <div class="card-body">
             <h4 class="card-title">Stock de Materias Primas</h4>
-            
             <div class="table-responsive">
                 <table class="table table-secondary text-center">
                     <thead>
                         <tr>
                           <th scope="col">Producto</th>
                           <th scope="col">Cantidad</th>
-                          <th scope="col">Último Ingreso</th>
+                          <th scope="col">Fecha de Llegada</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         {% for stock in stock_materias %}
-                      <tr>
-                        <td>{{ stock.materia_prima.mp_nombre }}</td>
-                        <td>{{ stock.stock_disponible }}</td>
-                        <td>materia_prima.fecha_llegada</td>
-                      </tr>
-                      <tr>
+                            <tr>
+                                <td>{{ stock.materia_prima }}</td>
+                                <td>{{ stock.stock_disponible }}</td>
+                                <td>{{ stock.mp_fechallegada }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
-
                 </table>
             </div>
-            
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <!--Si existe paginacion entonces mostrará el menu-->
-            {% if is_paginated %}  
+            <!-- Si existe paginacion entonces mostrará el menu -->
+            {% if is_paginated %}
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                    <!--Si existe una pagina anterior mostrará la opcion de atras-->
-                    {% if page_obj.has_previous %}   
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
+                        <!-- Si existe una pagina anterior mostrará la opcion de atras -->
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
 
-                    <!--Itera dentro del objeto paginator para mostrar cuantas paginas existen-->
-                    {% for pagina in paginator.page_range %}
-                        <!--Si la pagina es el mismo numero del objeto, entonces pinte la casilla en azul-->
-                        {% if pagina == page_obj.number %} 
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li> 
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
-                        {% endif %}    
-                    {% endfor %}
-                     
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
+                        <!-- Itera dentro del objeto paginator para mostrar cuantas paginas existen -->
+                        {% for pagina in paginator.page_range %}
+                            <!-- Si la pagina es el mismo numero del objeto, entonces pinte la casilla en azul -->
+                            {% if pagina == page_obj.number %}
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                         
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </nav>
             {% endif %}
         </div>
     </div>
-</div>  
-
-
-
-
+</div>
 {% endblock content %}
-
-
-{% block extrajs %}
-
-{% endblock  %}
-    
-    
