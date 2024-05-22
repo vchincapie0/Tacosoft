@@ -232,7 +232,16 @@ class DesinfeccionMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
              # Ahora sí, guarda el pedido en la base de datos
         desinfeccion.save()
         return super().form_valid(form)
+    
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        mp_lote = form.cleaned_data['mp_lote']
 
+        # Agregar un mensaje de éxito con el nombre de la materia prima
+        messages.success(self.request, f'¡La desinfección de {mp_lote} se ha guardado correctamente!')
+
+        return super(DesinfeccionMateriaPrimaCreateView, self).form_valid(form)
+    
 class DesinfeccionMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edición de la desinfeccion de la materia prima'''
     model = Desinfeccion
@@ -242,7 +251,16 @@ class DesinfeccionMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     form_class = DesinfeccionMPUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
-    
+
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        mp_lote = form.cleaned_data['mp_lote']
+
+        # Agregar un mensaje de éxito con el nombre de la materia prima
+        messages.success(self.request, f'¡La desinfección de {mp_lote} se ha actualizado correctamente!')
+
+        return super(DesinfeccionMateriaPrimaUpdateView, self).form_valid(form)
+        
 class MateriaPrimaDetailView(LoginRequiredMixin, DetailView):
     '''Vista donde se muestran los detalles de la materia prima'''
     model = MateriaPrima
