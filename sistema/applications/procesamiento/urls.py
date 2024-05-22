@@ -17,5 +17,6 @@ urlpatterns = [
     path('add_equipos/',views.EquiposcreateView.as_view(),name='add_equipos'),
     path('delete_equipo/<pk>',views.EquiposDeleteView.as_view(),name='delete_equipo'),
     path('edit_equipo/<pk>',views.EquiposUpdateView.as_view(),name='edit_equipo'),
-    path('selec_coccion/<pk>',views.CoccionListView.as_view(),name='selec_coccion'),
+    path('selec_coccion/',views.CoccionSelectView.as_view(),name='selec_coccion'),
+    path('selec_picado/',views.CoccionSelectView.as_view(),name='selec_picado'),
 ]

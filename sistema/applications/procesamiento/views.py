@@ -128,10 +128,14 @@ class EquiposUpdateView(LoginRequiredMixin, UpdateView):
     form_class=EquiposUpdateForm
     success_url= reverse_lazy('procesamientos_app:equipos')
 
-class CoccionListView(LoginRequiredMixin,ListView):
+class CoccionSelectView(LoginRequiredMixin,TemplateView):
     '''Vista para seleccionar procesos de coccion'''
-    model = Coccion
     template_name = "procesamientos/selec_coccion.html"
     login_url=reverse_lazy('home_app:home')
-    form_class=addCoccion
+    success_url= reverse_lazy('procesamientos_app:procesamientos')
+
+class PicadoSelectView(LoginRequiredMixin,TemplateView):
+    '''Vista para seleccionar procesos de picado'''
+    template_name = "procesamientos/selec_picado.html"
+    login_url=reverse_lazy('home_app:home')
     success_url= reverse_lazy('procesamientos_app:procesamientos')
