@@ -110,7 +110,8 @@ class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     form_class = MateriaPrimaForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp') 
-
+    
+   
 class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Clase donde se modifica la materia prima registrada'''
     model = MateriaPrima
@@ -120,6 +121,16 @@ class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     form_class = MateriaPrimaForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp') 
+
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        mp_nombre = form.cleaned_data['mp_nombre']
+
+        # Agregar un mensaje de éxito con el nombre de la materia prima
+        messages.success(self.request, f'¡La materia prima {mp_nombre} se ha actualizado correctamente!')
+
+        return super(MateriaPrimaUpdateView, self).form_valid(form)
+
 
 class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     '''Vista para la creacion de las caracteristicas organolepticas de la materia prima'''
