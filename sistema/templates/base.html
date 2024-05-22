@@ -71,13 +71,13 @@
                         </a>
                         <ul id="existencias" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="{% url 'existencias_app:stock' %}" class="sidebar-link">Stock Materia Prima</a>
+                                <a href="{% url 'existencias_app:stock_mp' %}" class="sidebar-link">Stock Materia Prima</a>
                             </li>
                             <li class="sidebar-item">
                                 <a href="#" class="sidebar-link">Stock Producto Terminado</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Stock Implementos de Trabajo</a>
+                                <a href="{% url 'existencias_app:stock_it' %}" class="sidebar-link">Stock Implementos de Trabajo</a>
                             </li>
                         </ul>
                     </li>

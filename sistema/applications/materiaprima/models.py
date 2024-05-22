@@ -16,9 +16,16 @@ class MateriaPrimaGenerica(models.Model):
 
     mp_nombre=models.CharField('Nombre',max_length=50)
     mp_tipo=models.CharField('Tipo',max_length=1,choices=TIPO_CHOICES,default=0)
+    cantidad_total = models.IntegerField('Cantidad Total', default=0)  # Nuevo campo para almacenar la cantidad total
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.mp_nombre}"
+    
+    def actualizar_cantidad_total(self):
+        total = sum([materia.mp_cantidad for materia in self.materiaprima_set.all()])
+        self.cantidad_total = total
+        self.save()
   
 class MateriaPrima(models.Model):
     ''''Tabla de materia prima con caracteristicas'''
