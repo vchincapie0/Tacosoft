@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import F
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from django.urls import reverse_lazy
@@ -24,6 +25,8 @@ class ExistenciasMateriaPrimaListView(LoginRequiredMixin, ListView):
         
         if tipo_materia_prima and tipo_materia_prima != 'Todos':
             queryset = queryset.filter(mp_tipo=tipo_materia_prima)
+
+        queryset = queryset.order_by(F('cantidad_total').desc())
 
         return queryset
 
