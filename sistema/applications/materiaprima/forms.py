@@ -263,10 +263,16 @@ class MateriaPrimaGenericaFilterForm(forms.ModelForm):
             'mp_tipo',
             )
         widgets={
-            'mp_nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'mp_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Buscar por nombre'}),
             'mp_tipo':forms.Select(attrs={'class':'form-select'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super(MateriaPrimaGenericaFilterForm, self).__init__(*args, **kwargs)
+        # Agregar opción de valor vacío para el tipo de materia prima
+        self.fields['mp_nombre'].required = False
+        self.fields['mp_tipo'].required = False
+        self.fields['mp_tipo'].choices = [('', '---------')] + list(self.fields['mp_tipo'].choices)
 
 class MateriaAuditFilterForm(forms.Form):
     '''Formulario para filtar en MateriaAuditListView'''

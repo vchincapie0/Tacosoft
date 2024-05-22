@@ -32,13 +32,11 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''
     model = MateriaPrimaGenerica
     template_name = "administrador/genericas/lista_mp_generica.html"
-    login_url=reverse_lazy('users_app:login')
-    paginate_by=10
+    login_url = reverse_lazy('users_app:login')
+    paginate_by = 10
     context_object_name = 'materiaprima'
 
     def get_queryset(self):
-        
-        ''''Filtro de la vista'''
         queryset = super().get_queryset()
 
         # Obtener los parámetros de filtrado del formulario
@@ -47,16 +45,16 @@ class MateriaPrimaGenericaListView(LoginRequiredMixin, ListView):
         # Aplicar filtros si el formulario es válido
         if form.is_valid():
             mp_nombre = form.cleaned_data.get('mp_nombre')
-            tipo = form.cleaned_data.get('tipo')
+            mp_tipo = form.cleaned_data.get('mp_tipo')
 
-            # Filtrar por nombre de materia prima y tipo
+            # Filtrar por nombre de materia prima
             if mp_nombre:
-                queryset = queryset.filter(mp_nombre=mp_nombre)
-            if tipo:
-                queryset = queryset.filter(tipo=tipo)
+                queryset = queryset.filter(mp_nombre__icontains=mp_nombre)
+            # Filtrar por tipo solo si se seleccionó uno
+            if mp_tipo:
+                queryset = queryset.filter(mp_tipo=mp_tipo)
             
         return queryset
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
