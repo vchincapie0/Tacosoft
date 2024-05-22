@@ -1,3 +1,4 @@
+from django.contrib.auth.signals import user_logged_in, user_logged_out
 import threading
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -6,6 +7,18 @@ from .models import User, UserAudit
 
 # Obtener el modelo de usuario personalizado
 User = get_user_model()
+
+@receiver(user_logged_in)
+def log_user_login(sender, request, user, **kwargs):
+    current_user = user  # El usuario que se ha autenticado
+    details = f"{current_user.name} {current_user.last_name} ha iniciado sesión."
+    UserAudit.objects.create(user=current_user, action='L', details=details, changed_by=current_user)
+
+@receiver(user_logged_out)
+def log_user_logout(sender, request, user, **kwargs):
+    current_user = user  # El usuario que se ha desconectado
+    details = f"{current_user.name} {current_user.last_name} ha cerrado sesión."
+    UserAudit.objects.create(user=current_user, action='O', details=details, changed_by=current_user)
 
 @receiver(post_save, sender=User)
 def log_user_change(sender, instance, created, **kwargs):
