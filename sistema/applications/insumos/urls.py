@@ -12,8 +12,8 @@ urlpatterns = [
     path('list_insumos/',views.InsumosListView.as_view(),name='list_insumos'),
     path('add_insumos/',views.ImplementosCreateView.as_view(),name='add_insumos'),
     path('update_insumos/<pk>',views.ImplementosUpdateView.as_view(),name='update_insumos'),
-    path('delete_insumos/<pk>',views.ImplementosDeleteView.as_view(),name='delete_insumos'),
-    path('implementos_audit/',views.ImplementosAuditListView.as_view(),name='implementos_audit'),
+    path('delete_insumos/<pk>',admin_required(views.ImplementosDeleteView.as_view()),name='delete_insumos'),
+    path('implementos_audit/',admin_required(views.ImplementosAuditListView.as_view()),name='implementos_audit'),
     path('implementos/export/xls',admin_required(views.export_implementos_to_excel), name='export_implementos_excel'),
     path('implementos/export/cvs',admin_required(views.export_implementos_to_csv), name='export_implementos_cvs'),
 ]
