@@ -80,9 +80,11 @@ class ProduUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         #Obtener los datos del fomulario
         pt_nombre = form.cleaned_data['pt_nombre']
+        pt_fecha = form.cleaned_data['pt_fechapreparacion']
+
 
         # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡El producto {pt_nombre} se ha actualizado correctamente!')
+        messages.success(self.request, f'¡El producto {pt_nombre} de la fecha de preparación {pt_fecha} se ha actualizado correctamente!')
 
         return super(ProduUpdateView, self).form_valid(form)
 
@@ -114,9 +116,10 @@ class CaracteristicasProductoTerminadoCreateView(LoginRequiredMixin, CreateView)
         #Obtener los datos del fomulario
         pt_lote = form.cleaned_data['pt_lote']
         producto_nombre = pt_lote.pt_nombre.pt_nombre
-
+        pt_fecha = form.cleaned_data['pt_fechapreparacion']
+        
         # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡Las características de {producto_nombre} se ha guardado correctamente!')
+        messages.success(self.request, f'¡Las características de {producto_nombre} de la fecha de preparación {pt_fecha} se ha guardado correctamente!')
 
         return super(CaracteristicasProductoTerminadoCreateView, self).form_valid(form)
 
@@ -134,11 +137,12 @@ class CaracteristicasProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView)
         #Obtener los datos del fomulario
         pt_lote = form.cleaned_data['pt_lote']
         producto_nombre = pt_lote.pt_nombre.pt_nombre
-
+        pt_fecha = form.cleaned_data['pt_fechapreparacion']
+        
         # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡Las características de {producto_nombre} se ha guardado correctamente!')
+        messages.success(self.request, f'¡Las características de {producto_nombre} de la fecha de preparación {pt_fecha} se ha actualizado correctamente!')
 
-        return super(CaracteristicasProductoTerminadoUpdateView, self).form_valid(form)
+        return super(CaracteristicasProductoTerminadoCreateView, self).form_valid(form)
 
 class ProductoTerminadoDetailView(LoginRequiredMixin, DetailView):
     
@@ -168,6 +172,18 @@ class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
              # Ahora sí, guarda el pedido en la base de datos
         empaque.save()
         return super().form_valid(form)
+    
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        pt_lote = form.cleaned_data['pt_lote']
+        producto_nombre = pt_lote.pt_nombre.pt_nombre
+        pt_fecha = form.cleaned_data['pt_fechapreparacion']
+        
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡Las características de {producto_nombre} de la fecha de preparación {pt_fecha} se ha guardado correctamente!')
+
+        return super(CaracteristicasProductoTerminadoCreateView, self).form_valid(form)
+
 
 class EmpaqueProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vists para la edición del empaque producto terminado'''

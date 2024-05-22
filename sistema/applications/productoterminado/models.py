@@ -24,7 +24,7 @@ class ProductoTerminado(models.Model):
     pt_fechavencimiento=models.DateField('Fecha Vencimiento')
 
     def __str__(self):
-        return f"{self.pt_lote}-{self.pt_nombre}-{self.pt_fechapreparacion}-{self.pt_fechavencimiento}"
+        return f"{self.pt_lote}-{self.pt_nombre}"
 
 
 # Creación model ExistenciaPT.
