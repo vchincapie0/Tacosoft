@@ -176,14 +176,11 @@ class EmpaqueProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         #Obtener los datos del fomulario
         pt_lote = form.cleaned_data['pt_lote']
-        producto_nombre = pt_lote.pt_nombre.pt_nombre
-        pt_fecha = form.cleaned_data['pt_fechapreparacion']
         
         # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡Las características de {producto_nombre} de la fecha de preparación {pt_fecha} se ha guardado correctamente!')
+        messages.success(self.request, f'¡El empacado de {pt_lote} se ha guardado correctamente!')
 
-        return super(CaracteristicasProductoTerminadoCreateView, self).form_valid(form)
-
+        return super(EmpaqueProductoTerminadoCreateView, self).form_valid(form)
 
 class EmpaqueProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vists para la edición del empaque producto terminado'''
@@ -205,6 +202,15 @@ class EmpaqueProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
              # Ahora sí, guarda el pedido en la base de datos
         empaque.save()
         return super().form_valid(form)    
+
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        pt_lote = form.cleaned_data['pt_lote']
+        
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El empacado de {pt_lote} se ha actualizado correctamente!')
+
+        return super(EmpaqueProductoTerminadoUpdateView, self).form_valid(form)
     
 class VacioProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
     '''Vists para la creacion del vacio producto terminado'''
@@ -226,6 +232,16 @@ class VacioProductoTerminadoCreateView(LoginRequiredMixin, CreateView):
              # Ahora sí, guarda el pedido en la base de datos
         Vacio.save()
         return super().form_valid(form)
+    
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        pt_lote = form.cleaned_data['pt_lote']
+        
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El empacado al vacio de {pt_lote} se ha guardado correctamente!')
+
+        return super(VacioProductoTerminadoCreateView, self).form_valid(form)
+
 
 class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
     '''Vists para la edición del vacio producto terminado'''
@@ -247,6 +263,14 @@ class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
              # Ahora sí, guarda el pedido en la base de datos
         Vacio.save()
         return super().form_valid(form)   
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        pt_lote = form.cleaned_data['pt_lote']
+        
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El empacado al vacio de {pt_lote} se ha actualizado correctamente!')
+
+        return super(VacioProductoTerminadoUpdateView, self).form_valid(form)
 
 class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''

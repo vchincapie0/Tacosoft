@@ -81,6 +81,15 @@ class ImplementosCreateView(LoginRequiredMixin, CreateView):
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('insumos_app:list_insumos')  
 
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        nombre = form.cleaned_data['it_nombre']
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El implemento de trabajo {nombre} se ha guardado correctamente!')
+
+        return super(ImplementosCreateView, self).form_valid(form)
+
 class ImplementosUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de user'''
     model = ImplementosTrabajo
@@ -88,6 +97,15 @@ class ImplementosUpdateView(LoginRequiredMixin, UpdateView):
     login_url=reverse_lazy('users_app:login')
     form_class=ImplementosUpdateForm
     success_url= reverse_lazy('insumos_app:list_insumos')
+
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        nombre = form.cleaned_data['it_nombre']
+
+        # Agregar un mensaje de éxito con el nombre de usuario
+        messages.success(self.request, f'¡El implemento de trabajo {nombre} se ha actualizado correctamente!')
+
+        return super(ImplementosUpdateView, self).form_valid(form)
     
 class ImplementosDeleteView(LoginRequiredMixin, DeleteView):
     '''Vista para borrar Implenentos de Trabajo'''
