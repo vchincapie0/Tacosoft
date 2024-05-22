@@ -141,6 +141,15 @@ class CaracteristicasMateriaPrimaCreateView(LoginRequiredMixin, CreateView):
     form_class = CaracteristicasMPForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
+
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        mp_lote = form.cleaned_data['mp_lote']
+
+        # Agregar un mensaje de éxito con el nombre de la materia prima
+        messages.success(self.request, f'¡Las características {mp_lote} se han guardado correctamente!')
+
+        return super(CaracteristicasMateriaPrimaCreateView, self).form_valid(form)
     
 class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para la edicion de las caracteristicas organolepticas de la materia prima'''
@@ -151,6 +160,16 @@ class CaracteristicasMateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     form_class = CaracteristicasMPUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp')
+   
+    def form_valid(self, form):
+        #Obtener los datos del fomulario
+        mp_lote = form.cleaned_data['mp_lote']
+
+        # Agregar un mensaje de éxito con el nombre de la materia prima
+        messages.success(self.request, f'¡Las características {mp_lote} se han actulizado correctamente!')
+
+        return super(CaracteristicasMateriaPrimaUpdateView, self).form_valid(form)
+    
     
 class DesinfectanteGenericoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de los Implementos de trabajo'''
