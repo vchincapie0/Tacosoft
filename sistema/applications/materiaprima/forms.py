@@ -251,7 +251,19 @@ class DesinfectanteGenericoForm(forms.ModelForm):
             'des_nombre':forms.TextInput(attrs={'class':'form-control'}),
             } 
 
-    
+class DesinfectanteGenericoFilterForm(forms.ModelForm):
+    '''Filtro Tipo - Materia Prima Generica'''
+    class Meta:
+
+        model = DesinfectanteGenerico
+        fields=(
+            'des_nombre',
+        )
+
+        widgets={
+            'des_nombre':forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Buscar por nombre'}),
+            }
+
 class MateriaPrimaGenericaFilterForm(forms.ModelForm):
     '''Filtro Tipo - Materia Prima Generica'''
     class Meta:

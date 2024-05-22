@@ -19,6 +19,7 @@ from .forms import (
     CaracteristicasMPUpdateForm,
     DesinfeccionMPForm,
     DesinfeccionMPUpdateForm,
+    DesinfectanteGenericoFilterForm,
     MateriaPrimaGenericaForm,
     MateriaPrimaGenericaUpdateForm,
     MateriaPrimaGenericaFilterForm,
@@ -163,12 +164,21 @@ class DesinfectanteGenericoListView(LoginRequiredMixin, ListView):
     context_object_name = 'desinfectante'
 
     def get_queryset(self):
-        '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
-        palabra_clave= self.request.GET.get("kword",'')
-        lista = DesinfectanteGenerico.objects.filter(
-           des_nombre__icontains = palabra_clave
-        )
-        return lista
+        '''Funcion que toma de la barra de busqueda la palabra clave para filtrar'''
+        queryset = super().get_queryset()
+        form = DesinfectanteGenericoFilterForm(self.request.GET)
+        
+        if form.is_valid():
+            des_nombre = form.cleaned_data.get('des_nombre')
+            if des_nombre:
+                queryset = queryset.filter(des_nombre__icontains=des_nombre)
+        
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = DesinfectanteGenericoFilterForm(self.request.GET or None)
+        return context
     
 class DesinfectanteGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
