@@ -38,24 +38,16 @@
                     <tbody>
                         {% for stock in stock_it %}
 
-                        
-                        {% if stock.cantidad_total > 0  %}
                         <tr>
                             <td>{{ stock.it_nombre }}</td>
+                            {% if stock.cantidad_total > 0  %}
                             <td>{{ stock.cantidad_total }}</td>
+                            {% else %}
+                            <td class="text-danger">Sin Existencias</td>
+                            {%endif%}
                             <td>{{ stock.updated_at|date:"d/m/y"}}</td>
                             <td>{{ stock.updated_at|time:"H:i"}}</td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td>{{ stock.it_nombre }}</td>
-                            <td class="text-danger">Sin Existencias</td>
-                            <td>{{ stock.updated_at|date:"d/m/y" }}</td>
-                            <td>{{ stock.updated_at|time:"H:i"}}</td>
-
-                        </tr>
-                        {% endif %}
-                            
+                        </tr> 
                       
                         {% endfor %}
                     </tbody>

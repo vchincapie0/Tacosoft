@@ -50,7 +50,8 @@
                         <tr>
                           <th scope="col">Producto</th>
                           <th scope="col">Cantidad Disponible</th>
-                          <th scope="col">Último Ingreso</th>
+                          <th scope="col">Fecha Último Ingreso</th>
+                          <th scope="col">Hora Último Ingreso</th>
                         </tr>
                     </thead>
 
@@ -58,8 +59,15 @@
                         {% for stock in stock_mp %}
                       <tr>
                         <td>{{ stock.mp_nombre }}</td>
-                        <td>{{ stock.cantidad_total }}</td>
-                        <td>{{ stock.updated_at}}</td>
+                        
+                        {% if stock.cantidad_total > 0 %}
+                            <td>{{ stock.cantidad_total }}</td>
+                        {% else %}
+                            <td class="text-danger">Sin existencias</td>
+                        {% endif %}
+                            
+                        <td>{{ stock.updated_at|date:"d/m/y"}}</td>
+                        <td>{{ stock.updated_at|time:"H:i"}}</td>
                       </tr>
                         {% endfor %}
                     </tbody>
