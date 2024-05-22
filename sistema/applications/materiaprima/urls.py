@@ -10,7 +10,7 @@ urlpatterns = [
     path('update_mp_generica/<pk>',views.MateriaPrimaGenericaUpdateView.as_view(),name='update_mp_generica'),
     path('delete_mp_generica/<pk>',views.MateriaPrimaGenericaDeleteView.as_view(),name='delete_mp_generica'),
     path('mp_list/',views.MateriaPrimaListView.as_view(),name='lista_mp'),
-    path('mp_add/',views.MateriaPrimaCreateView.as_view(),name='add_mp'),
+    path('mp_add/',admin_required(views.MateriaPrimaCreateView.as_view()),name='add_mp'),
     path('mp_caracteristicas/',views.CaracteristicasMateriaPrimaCreateView.as_view(),name='caracteristicas_mp'),
     path('mp_update_caracteristicas/<pk>',views.CaracteristicasMateriaPrimaUpdateView.as_view(),name='updateCaracteristicas_mp'),
     path('desinfeccion_generico/',views.DesinfectanteGenericoListView.as_view(),name='desinfeccion_generico'),
@@ -21,7 +21,7 @@ urlpatterns = [
     path('mp_update_desinfeccion/<pk>',views.DesinfeccionMateriaPrimaUpdateView.as_view(),name='updateDesinfeccion_mp'),
     path('mp_detail/<pk>',views.MateriaPrimaDetailView.as_view(),name='detail_mp'),
     path('mp_update/<pk>',views.MateriaPrimaUpdateView.as_view(),name='mp_update'),
-    path('mp_audit/',views.MateriaAuditListView.as_view(),name='mp_audit'),
+    path('mp_audit/',admin_required(views.MateriaAuditListView.as_view()),name='mp_audit'),
     path('materiaprima/export/xls',admin_required(views.export_materiaprima_to_excel), name='export_materiaprima_excel'),
     path('materiaprima/export/cvs',admin_required(views.export_materiaprima_to_csv), name='export_materiaprima_cvs'),
 
