@@ -1,5 +1,4 @@
 from django.db import models
-from applications.procesamiento.models import Coccion, Picado
 from applications.materiaprima.models import MateriaPrimaGenerica
 
 # Creacion model Producto terminado.

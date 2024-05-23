@@ -8,4 +8,4 @@ class ExistenciaMp(models.Model):
     cantidadIngresada=models.PositiveIntegerField('Cantidad Ingresada')
     cantidadEgresada=models.PositiveIntegerField('Cantidad Egresada')
     def __str__(self):
-        return f"{self.mp_lote} - {self.cantidadIngresada} - {self.cantidadEgresada}
+        return f"{self.mp_lote} - {self.cantidadIngresada} - {self.cantidadEgresada}"
