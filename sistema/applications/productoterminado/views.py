@@ -50,25 +50,6 @@ class ProduListView(LoginRequiredMixin, ListView):
         )
         return lista
     
-class ProduCreateView(LoginRequiredMixin, CreateView):
-    '''Clase donde se crea un producto terminado'''
-    model = ProductoTerminado
-    template_name = "productoterminado/add_produ.html"
-    login_url=reverse_lazy('users_app:login')
-    #Campos que se van a mostrar en el formulario
-    form_class = ProductoTerminadoForm
-    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-    success_url= reverse_lazy('produ_app:list_produ')  
-
-    def form_valid(self, form):
-        #Obtener los datos del fomulario
-        pt_nombre = form.cleaned_data['pt_nombre']
-
-        # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡El producto {pt_nombre} se ha guardado correctamente!')
-
-        return super(ProduCreateView, self).form_valid(form)
-
 class ProduUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de producto terminado'''
     model = ProductoTerminado
@@ -87,13 +68,6 @@ class ProduUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, f'¡El producto {pt_nombre} de la fecha de preparación {pt_fecha} se ha actualizado correctamente!')
 
         return super(ProduUpdateView, self).form_valid(form)
-
-class ProduDeleteView(LoginRequiredMixin, DeleteView):
-    '''Vista para borrar los producto terminado'''
-    model = ProductoTerminado
-    template_name = "productoterminado/delete_produ.html"
-    login_url=reverse_lazy('users_app:login')
-    success_url= reverse_lazy('produ_app:list_produ')
 
 class ExistenciaPTView(LoginRequiredMixin, ListView):
     '''Vists para la creacion de la existencias producto terminado'''
