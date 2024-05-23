@@ -26,7 +26,7 @@ class InsumosGenericoUpdateForm(forms.ModelForm):
         widgets={
             'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
             }
-<<<<<<< HEAD
+
         
 class InsumosGenericoFilterForm(forms.ModelForm):
     '''Filtro Tipo - Materia Prima Generica'''
@@ -70,8 +70,7 @@ class ImplementosTrabajoForm(forms.ModelForm):
         if cantidad <= 0:
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
-=======
->>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
+
     
 class ImplementosUpdateForm(forms.ModelForm):
     """Form Update Implementos de Trabajo."""

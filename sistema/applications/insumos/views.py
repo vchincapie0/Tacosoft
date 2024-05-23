@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-<<<<<<< HEAD
+
 from .models import (
     ImplementosTrabajo,
     InsumosGenerico,
@@ -23,10 +23,10 @@ from .forms import (
     ImplementosAuditFilterForm,
     InsumosGenericoFilterForm,
 )
-=======
+
 from .models import ImplementosTrabajo,InsumosGenerico,ImplementosAudit
 from .forms import  ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm,ImplementosAuditFilterForm
->>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
+
 
 # Create your views here.
 

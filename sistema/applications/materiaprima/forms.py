@@ -256,9 +256,5 @@ class MateriaAuditFilterForm(forms.Form):
     end_date = forms.DateField(label='Fecha final', 
                                required=False, 
                                widget=forms.DateInput(attrs={'type': 'date', 'class':'form-control'}))
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
 
