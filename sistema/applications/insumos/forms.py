@@ -27,6 +27,19 @@ class InsumosGenericoUpdateForm(forms.ModelForm):
             'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
             }
         
+class InsumosGenericoFilterForm(forms.ModelForm):
+    '''Filtro Tipo - Materia Prima Generica'''
+    class Meta:
+
+        model = InsumosGenerico
+        fields=(
+            'it_nombre',
+        )
+
+        widgets={
+            'it_nombre':forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Buscar por nombre'}),
+            }
+        
 class ImplementosTrabajoForm(forms.ModelForm):
 
     """Form definition Implementos de Trabajo."""

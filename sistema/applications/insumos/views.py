@@ -4,8 +4,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
-from .models import ImplementosTrabajo,InsumosGenerico,ImplementosAudit
-from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm,ImplementosAuditFilterForm
+from .models import (
+    ImplementosTrabajo,
+    InsumosGenerico,
+    ImplementosAudit,
+)
+from .forms import (
+    ImplementosTrabajoForm,
+    ImplementosUpdateForm,
+    InsumosGenericoForm,
+    InsumosGenericoUpdateForm,
+    ImplementosAuditFilterForm,
+    InsumosGenericoFilterForm,
+)
 
 # Create your views here.
 
@@ -18,12 +29,25 @@ class InsumosGenericoListView(LoginRequiredMixin, ListView):
     context_object_name = 'insumos'
 
     def get_queryset(self):
-        '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar'''
-        palabra_clave= self.request.GET.get("kword",'')
-        lista = InsumosGenerico.objects.filter(
-           it_nombre__icontains = palabra_clave
-        )
-        return lista
+        queryset = super().get_queryset()
+        
+        # Obtener los parámetros de filtrado del formulario
+        form = InsumosGenericoFilterForm(self.request.GET)
+
+        # Aplicar filtros si el formulario es válido
+        if form.is_valid():
+            it_nombre = form.cleaned_data.get('it_nombre')
+
+            # Filtrar por nombre de insumo genérico
+            if it_nombre:
+                queryset = queryset.filter(it_nombre__icontains=it_nombre)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = InsumosGenericoFilterForm(self.request.GET)
+        return context
     
 class InsumosGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea una nueva materia prima'''
