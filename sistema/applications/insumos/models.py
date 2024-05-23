@@ -16,7 +16,7 @@ class InsumosGenerico(models.Model):
         self.cantidad_total = total
         self.save()
     
-class ImplementosTrabajo(models.Model):
+class Insumos(models.Model):
     
     class Estado(models.TextChoices):
         DISPONIBLE = '0', 'Disponible'
