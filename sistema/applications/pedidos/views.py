@@ -16,7 +16,7 @@ from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Pedidos, PedidosAudit
 from applications.materiaprima.models import MateriaPrima
-from applications.insumos.models import ImplementosTrabajo
+from applications.insumos.models import Insumos
 from applications.proveedores.models import Proveedores
 
 from .forms import (
@@ -87,7 +87,7 @@ class PedidosAddMpCreateView(LoginRequiredMixin,CreateView):
 
 class PedidosAddInsumosCreateView(LoginRequiredMixin,CreateView):
     '''Clase para crear un implemento de trabajo nuevo dentro del formulario de agregar pedidos'''
-    model = ImplementosTrabajo
+    model = Insumos
     template_name = "pedidos/add_it_pedidos.html"
     login_url=reverse_lazy('home_app:home')
     #Campos que se van a mostrar en el formulario
