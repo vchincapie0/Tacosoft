@@ -71,25 +71,6 @@ class InsumosListView(LoginRequiredMixin, ListView):
         )
         return lista
     
-class ImplementosCreateView(LoginRequiredMixin, CreateView):
-    '''Clase donde se crea una nueva materia prima'''
-    model = ImplementosTrabajo
-    template_name = "insumos/add_insumos.html"
-    login_url=reverse_lazy('users_app:login')
-    #Campos que se van a mostrar en el formulario
-    form_class = ImplementosTrabajoForm
-    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-    success_url= reverse_lazy('insumos_app:list_insumos')  
-
-    def form_valid(self, form):
-        #Obtener los datos del fomulario
-        nombre = form.cleaned_data['it_nombre']
-
-        # Agregar un mensaje de éxito con el nombre de usuario
-        messages.success(self.request, f'¡El implemento de trabajo {nombre} se ha guardado correctamente!')
-
-        return super(ImplementosCreateView, self).form_valid(form)
-
 class ImplementosUpdateView(LoginRequiredMixin, UpdateView):
     '''Vista para actualizar los datos de user'''
     model = ImplementosTrabajo
