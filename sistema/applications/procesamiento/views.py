@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView,CreateView,DeleteView,Up
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import Picado,Coccion,Equipos
-from .forms import  addPicado,addCoccion,addEquipos,PicadoUpdateForm,CoccionUpdateForm,EquiposUpdateForm
+from .forms import addEquipos,EquiposUpdateForm
 
 # Create your views here.
 
@@ -28,28 +28,28 @@ class PicadoListView(LoginRequiredMixin, ListView):
             )
             return lista
     
-class PicadocreateView(LoginRequiredMixin,CreateView):
-    '''Vista para actualizar los datos de picado'''
-    model = Picado
-    template_name = "procesamientos/add_picado.html"
-    login_url=reverse_lazy('home_app:home')
-    form_class=addPicado
-    success_url= reverse_lazy('procesamientos_app:picado')
+# class PicadocreateView(LoginRequiredMixin,CreateView):
+#     '''Vista para actualizar los datos de picado'''
+#     model = Picado
+#     template_name = "procesamientos/add_picado.html"
+#     login_url=reverse_lazy('home_app:home')
+#     form_class=addPicado
+#     success_url= reverse_lazy('procesamientos_app:picado')
 
-class PicadoDeleteView(LoginRequiredMixin,DeleteView):
-    '''Vista para borrar picados'''
-    model = Picado
-    template_name = "procesamientos/delete_picado.html"
-    login_url=reverse_lazy('users_app:login')
-    success_url= reverse_lazy('procesamientos_app:picado')
+# class PicadoDeleteView(LoginRequiredMixin,DeleteView):
+#     '''Vista para borrar picados'''
+#     model = Picado
+#     template_name = "procesamientos/delete_picado.html"
+#     login_url=reverse_lazy('users_app:login')
+#     success_url= reverse_lazy('procesamientos_app:picado')
 
-class PicadoUpdateView(LoginRequiredMixin, UpdateView):
-    '''Vista para actualizar los datos de Picado'''
-    model = Picado
-    template_name = "procesamientos/edit_picado.html"
-    login_url=reverse_lazy('users_app:login')
-    form_class=PicadoUpdateForm
-    success_url= reverse_lazy('procesamientos_app:picado')
+# class PicadoUpdateView(LoginRequiredMixin, UpdateView):
+#     '''Vista para actualizar los datos de Picado'''
+#     model = Picado
+#     template_name = "procesamientos/edit_picado.html"
+#     login_url=reverse_lazy('users_app:login')
+#     form_class=PicadoUpdateForm
+#     success_url= reverse_lazy('procesamientos_app:picado')
 
 class CoccionListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de picado'''
@@ -66,28 +66,28 @@ class CoccionListView(LoginRequiredMixin, ListView):
             )
             return lista
 
-class CoccioncreateView(LoginRequiredMixin,CreateView):
-    '''Vista para crear procesos de coccion'''
-    model = Coccion
-    template_name = "procesamientos/add_coccion.html"
-    login_url=reverse_lazy('home_app:home')
-    form_class=addCoccion
-    success_url= reverse_lazy('procesamientos_app:coccion')
+# class CoccioncreateView(LoginRequiredMixin,CreateView):
+#     '''Vista para crear procesos de coccion'''
+#     model = Coccion
+#     template_name = "procesamientos/add_coccion.html"
+#     login_url=reverse_lazy('home_app:home')
+#     form_class=addCoccion
+#     success_url= reverse_lazy('procesamientos_app:coccion')
 
-class CoccionDeleteView(LoginRequiredMixin,DeleteView):
-    '''Vista para borrar coccion'''
-    model = Coccion
-    template_name = "procesamientos/delete_coccion.html"
-    login_url=reverse_lazy('users_app:login')
-    success_url= reverse_lazy('procesamientos_app:coccion')
+# class CoccionDeleteView(LoginRequiredMixin,DeleteView):
+#     '''Vista para borrar coccion'''
+#     model = Coccion
+#     template_name = "procesamientos/delete_coccion.html"
+#     login_url=reverse_lazy('users_app:login')
+#     success_url= reverse_lazy('procesamientos_app:coccion')
 
-class CoccionUpdateView(LoginRequiredMixin, UpdateView):
-    '''Vista para actualizar los datos de Coccion'''
-    model = Coccion
-    template_name = "procesamientos/edit_coccion.html"
-    login_url=reverse_lazy('users_app:login')
-    form_class=CoccionUpdateForm
-    success_url= reverse_lazy('procesamientos_app:coccion')
+# class CoccionUpdateView(LoginRequiredMixin, UpdateView):
+#     '''Vista para actualizar los datos de Coccion'''
+#     model = Coccion
+#     template_name = "procesamientos/edit_coccion.html"
+#     login_url=reverse_lazy('users_app:login')
+#     form_class=CoccionUpdateForm
+#     success_url= reverse_lazy('procesamientos_app:coccion')
 
 class EquiposListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de equipos'''
