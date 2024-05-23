@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Count
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -24,6 +25,7 @@ from .forms import (
     EmpaqueUpdateForm,
     VacioUpdateForm,
     ProductoTerminadoGenericoForm,
+    ProductoTerminadoGenericoFilterForm,
     ProductoAuditFilterForm
 )
 
@@ -189,23 +191,35 @@ class VacioProductoTerminadoUpdateView(LoginRequiredMixin, UpdateView):
         Vacio.save()
         return super().form_valid(form)   
 
+from django.db.models import Count
+
 class ProductoTerminadoGenericoListView(LoginRequiredMixin, ListView):
     '''Clase para mostrar los datos de las materias primas'''
     model = ProductoTerminadoGenerico
     template_name = "administrador/genericas/productoterminado/list_pt_generico.html"
-    login_url=reverse_lazy('users_app:login')
-    paginate_by=10
+    login_url = reverse_lazy('users_app:login')
+    paginate_by = 10
     context_object_name = 'producto'
 
     def get_queryset(self):
-        palabra_clave = self.request.GET.get("kword", '')
-        
-        # Filtrar por nombre específico de la materia prima
-        queryset = ProductoTerminadoGenerico.objects.filter(
-            pt_nombre__icontains=palabra_clave
-        )
-        
-        return queryset   
+        queryset = super().get_queryset()
+        pt_nombre = self.request.GET.get('pt_nombre', None)
+        materia_prima_ids = self.request.GET.getlist('materiaPrimaUsada')
+
+        if pt_nombre:
+            queryset = queryset.filter(pt_nombre__icontains=pt_nombre)
+
+        if materia_prima_ids:
+            # Filtra productos que contienen al menos una de las materias primas seleccionadas
+            queryset = queryset.filter(materiaPrimaUsada__id__in=materia_prima_ids)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = ProductoTerminadoGenericoFilterForm(self.request.GET or None)
+        return context
+
     
 class ProductoTerminadoGenericoCreateView(LoginRequiredMixin, CreateView):
     '''Clase donde se crea un nuevo Producto terminado'''

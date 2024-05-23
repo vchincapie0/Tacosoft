@@ -28,8 +28,27 @@ class ProductoTerminadoGenericoForm(forms.ModelForm):
             'pt_nombre':forms.TextInput(attrs={'class':'form-control'}),
             'materiaPrimaUsada':forms.SelectMultiple(attrs={'class':'form-select'}),
         }
-    
 
+class ProductoTerminadoGenericoFilterForm(forms.ModelForm):
+    '''Filtro para Producto Terminado Generico'''
+    class Meta:
+        """Meta definition for ProductoTerminadoGenericoForm."""
+        model = ProductoTerminadoGenerico
+        fields = (
+            'pt_nombre',
+            'materiaPrimaUsada',
+        )
+        widgets = {
+            'pt_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Buscar por nombre'}),
+            'materiaPrimaUsada': forms.SelectMultiple(attrs={'class': 'form-select'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ProductoTerminadoGenericoFilterForm, self).__init__(*args, **kwargs)
+        # Agregar opción de valor vacío para materia prima usada
+        self.fields['pt_nombre'].required = False
+        self.fields['materiaPrimaUsada'].required = False
+        self.fields['materiaPrimaUsada'].choices = [('', '---------')] + list(self.fields['materiaPrimaUsada'].choices)
 
 class ProductoTerminadoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
