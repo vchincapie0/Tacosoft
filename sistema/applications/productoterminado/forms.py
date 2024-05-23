@@ -38,8 +38,6 @@ class ProductoTerminadoForm(forms.ModelForm):
         model = ProductoTerminado
         fields = (
             'pt_lote',
-            'idCoccion',
-            'idPicado',
             'pt_cantidad',   
             'pt_nombre', 
             'pt_fechapreparacion',

@@ -16,8 +16,6 @@ class ProductoTerminadoGenerico(models.Model):
 class ProductoTerminado(models.Model):
     '''Clase para la creacion de tabla de producto terminado'''
     pt_lote=models.AutoField(primary_key=True)
-    idCoccion=models.ForeignKey(Coccion,on_delete=models.CASCADE, null= True, blank=True)
-    idPicado=models.ForeignKey(Picado,on_delete=models.CASCADE, null= True, blank=True) 
     pt_cantidad=models.IntegerField()
     pt_nombre=models.ForeignKey(ProductoTerminadoGenerico,on_delete=models.CASCADE)
     pt_fechapreparacion=models.DateField('Fecha Preparacion')
