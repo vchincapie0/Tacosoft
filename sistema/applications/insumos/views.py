@@ -196,7 +196,7 @@ def export_implementos_to_excel(request):
 
     # Crear una respuesta HTTP con el archivo Excel como contenido
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=implementos.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=insumos.xlsx'
 
     # Guardar el libro de Excel en la respuesta HTTP
     workbook.save(response)
@@ -207,7 +207,7 @@ def export_implementos_to_csv(request):
     '''Vista para exportar datos de tabla implementos en formato CSV'''
     implementos = ImplementosTrabajo.objects.filter(deleted=False)  # Obtener datos de proveedores
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=implementos.csv'
+    response['Content-Disposition'] = 'attachment; filename=insumos.csv'
 
     writer = csv.writer(response)
     writer.writerow(['Implemento', 'Cantidad', 'Fecha de Entrega','Estado'])  # Encabezados de columnas
