@@ -1,5 +1,9 @@
 # This file must be used with "source bin/activate" *from bash*
+<<<<<<< HEAD
+# you cannot run it directly
+=======
 # You cannot run it directly
+>>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
 
 deactivate () {
     # reset old environment variables
@@ -14,9 +18,18 @@ deactivate () {
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
 
+<<<<<<< HEAD
+    # This should detect bash and zsh, which have a hash command that must
+    # be called to get it to forget past commands.  Without forgetting
+    # past commands the $PATH changes we made may not be respected
+    if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
+        hash -r 2> /dev/null
+    fi
+=======
     # Call hash to forget past commands. Without forgetting
     # past commands the $PATH changes we made may not be respected
     hash -r 2> /dev/null
+>>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
 
     if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
         PS1="${_OLD_VIRTUAL_PS1:-}"
@@ -35,6 +48,10 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
+VIRTUAL_ENV="C:\Users\Asus\Documents\Tacosoft\entorno"
+export VIRTUAL_ENV
+=======
 # on Windows, a path can contain colons and backslashes and has to be converted:
 <<<<<<< HEAD
 if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
@@ -54,6 +71,7 @@ else
     export VIRTUAL_ENV="C:\Users\rockl\Documents\tacosoft\entorno"
 >>>>>>> 4db2bdc19b433108f1e5025a5a5cb156d66c22ec
 fi
+>>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/Scripts:$PATH"
@@ -75,6 +93,15 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     export VIRTUAL_ENV_PROMPT
 fi
 
+<<<<<<< HEAD
+# This should detect bash and zsh, which have a hash command that must
+# be called to get it to forget past commands.  Without forgetting
+# past commands the $PATH changes we made may not be respected
+if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
+    hash -r 2> /dev/null
+fi
+=======
 # Call hash to forget past commands. Without forgetting
 # past commands the $PATH changes we made may not be respected
 hash -r 2> /dev/null
+>>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
