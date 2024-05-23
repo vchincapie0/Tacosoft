@@ -19,10 +19,7 @@
     <div class="card text-bg-dark mb-3">
         <div class="card-header">
             <div class="row">
-                <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="add_insumos('{% url 'insumos_app:add_insumos' %}')" role="button">Agregar Implementos</a>
-                </div>
-                
+
                 <div class="col-6">
                     <form class="d-flex" role="search">
                         {% csrf_token %}
@@ -136,12 +133,6 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-    function add_insumos(url){
-        var $ = jQuery.noConflict();
-        $('#add_insumos').load(url,function(){
-            $(this).modal('show');
-        }); 
-    }
 
     function edit_insumos(url){
         var $ = jQuery.noConflict();
