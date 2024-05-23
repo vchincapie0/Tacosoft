@@ -12,7 +12,7 @@ class InsumosGenerico(models.Model):
         return f"{self.it_nombre}"
     
     def actualizar_cantidad_total(self):
-        total = sum([implemento.it_cantidad for implemento in self.implementostrabajo_set.all()])
+        total = sum([insumo.it_cantidad for insumo in self.insumos_set.all()])
         self.cantidad_total = total
         self.save()
     
@@ -48,11 +48,11 @@ class InsumosAudit(models.Model):
         ('D', 'Borrado')
     ]
 
-    implementos = models.ForeignKey(Insumos, on_delete=models.CASCADE, related_name='audit_logs')
+    insumos = models.ForeignKey(Insumos, on_delete=models.CASCADE, related_name='audit_logs')
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     details = models.TextField(blank=True, null=True)
     changed_by = models.ForeignKey(Insumos, on_delete=models.SET_NULL, null=True, blank=True)
     changed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.get_action_display()} - {self.implementos.it_nombre} ({self.changed_at})'
+        return f'{self.get_action_display()} - {self.insumos.it_nombre} ({self.changed_at})'
