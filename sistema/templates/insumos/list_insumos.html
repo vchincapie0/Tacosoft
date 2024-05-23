@@ -56,9 +56,7 @@
                             <th scope="col">Insumo</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Fecha de Entrega</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Detalles</th>
-                            
+                            <th scope="col">Estado</th>                           
 
                         </tr>
                     </thead>
@@ -69,9 +67,6 @@
                             <td>{{i.it_cantidad}}</td>
                             <td>{{i.it_fechaEntrega}}</td>
                             <td>{{i.get_it_estado_display}}</td>
-                            <td>
-                                <a class="btn btn-danger" onclick="delete_insumos('{% url 'insumos_app:delete_insumos' i.it_codigo %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
                             
                         </tr>
                         {%endfor%}
@@ -122,7 +117,6 @@
         </div>
     </div>
 </div>   
-<div class="modal fade" id="delete_insumos" role="dialog"></div>
 <div class="modal fade" id="edit_insumos" role="dialog"></div>
 
 
@@ -136,13 +130,6 @@
     function edit_insumos(url){
         var $ = jQuery.noConflict();
         $('#edit_insumos').load(url,function(){
-            $(this).modal('show');
-        }); 
-    }
-
-    function delete_insumos(url){
-        var $ = jQuery.noConflict();
-        $('#delete_insumos').load(url,function(){
             $(this).modal('show');
         }); 
     }
