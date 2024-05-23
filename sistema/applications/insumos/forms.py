@@ -27,7 +27,7 @@ class InsumosGenericoUpdateForm(forms.ModelForm):
             'it_nombre':forms.TextInput(attrs={'class':'form-control'}),
             }
     
-class ImplementosUpdateForm(forms.ModelForm):
+class InsumosUpdateForm(forms.ModelForm):
     """Form Update Insumos."""
     class Meta:
 
