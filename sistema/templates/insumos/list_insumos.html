@@ -7,13 +7,19 @@
 
 {% block content %}
 <div class="mt-3 container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message|safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>                      
+        {% endfor %}
+    {% endif %}
+
     <div class="card text-bg-dark mb-3">
         <div class="card-header">
             <div class="row">
-                <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="add_insumos('{% url 'insumos_app:add_insumos' %}')" role="button">Agregar Implementos</a>
-                </div>
-                
+
                 <div class="col-6">
                     <form class="d-flex" role="search">
                         {% csrf_token %}
@@ -25,8 +31,24 @@
             
         </div>
         <div class="card-body">
-            <h4 class="card-title">Implementos de Trabajo</h4>
-            
+            <div class="cart-title">
+                <div class="mb-2 row">
+                    <div class="col-4">
+                        <h4>Implementos de Trabajo</h4>
+                    </div>
+                    
+                    <div class="col-8 d-flex justify-content-end gap-2">
+                        <div class="dropdown">
+                            <a href="#" class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Descargar</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'insumos_app:export_implementos_excel' %}">Excel</a></li>
+                                <li><a class="dropdown-item" href="{% url 'insumos_app:export_implementos_cvs' %}">CVS</a></li>
+                              </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
             <div class="table-responsive">
                 <table class="table table-secondary">
                     <thead>
@@ -60,41 +82,43 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <!--Si existe paginacion entonces mostrará el menu-->
-            {% if is_paginated %}  
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                    <!--Si existe una pagina anterior mostrará la opcion de atras-->
-                    {% if page_obj.has_previous %}   
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-
-                    <!--Itera dentro del objeto paginator para mostrar cuantas paginas existen-->
-                    {% for pagina in paginator.page_range %}
-                        <!--Si la pagina es el mismo numero del objeto, entonces pinte la casilla en azul-->
-                        {% if pagina == page_obj.number %} 
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li> 
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
-                        {% endif %}    
-                    {% endfor %}
-                     
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    </ul>
-                </nav>
-            {% endif %}
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col">
+                <!--Si existe paginacion entonces mostrará el menu-->
+                {% if is_paginated %}  
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                        <!--Si existe una pagina anterior mostrará la opcion de atras-->
+                        {% if page_obj.has_previous %}   
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+    
+                        <!--Itera dentro del objeto paginator para mostrar cuantas paginas existen-->
+                        {% for pagina in paginator.page_range %}
+                            <!--Si la pagina es el mismo numero del objeto, entonces pinte la casilla en azul-->
+                            {% if pagina == page_obj.number %} 
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li> 
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
+                            {% endif %}    
+                        {% endfor %}
+                         
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>   
@@ -109,12 +133,6 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-    function add_insumos(url){
-        var $ = jQuery.noConflict();
-        $('#add_insumos').load(url,function(){
-            $(this).modal('show');
-        }); 
-    }
 
     function edit_insumos(url){
         var $ = jQuery.noConflict();

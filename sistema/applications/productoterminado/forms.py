@@ -28,6 +28,7 @@ class ProductoTerminadoGenericoForm(forms.ModelForm):
             'pt_nombre':forms.TextInput(attrs={'class':'form-control'}),
             'materiaPrimaUsada':forms.SelectMultiple(attrs={'class':'form-select'}),
         }
+<<<<<<< HEAD
 
 class ProductoTerminadoGenericoFilterForm(forms.ModelForm):
     '''Filtro para Producto Terminado Generico'''
@@ -49,6 +50,8 @@ class ProductoTerminadoGenericoFilterForm(forms.ModelForm):
         self.fields['pt_nombre'].required = False
         self.fields['materiaPrimaUsada'].required = False
         self.fields['materiaPrimaUsada'].choices = [('', '---------')] + list(self.fields['materiaPrimaUsada'].choices)
+=======
+>>>>>>> b62876f25ed0715b89caf7d186a6cac1c23ede68
 
 class ProductoTerminadoForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
@@ -59,8 +62,6 @@ class ProductoTerminadoForm(forms.ModelForm):
         model = ProductoTerminado
         fields = (
             'pt_lote',
-            'idCoccion',
-            'idPicado',
             'pt_cantidad',   
             'pt_nombre', 
             'pt_fechapreparacion',

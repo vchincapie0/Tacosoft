@@ -1,5 +1,4 @@
 from django.db import models
-from applications.procesamiento.models import Coccion, Picado
 from applications.materiaprima.models import MateriaPrimaGenerica
 
 # Creacion model Producto terminado.
@@ -16,15 +15,13 @@ class ProductoTerminadoGenerico(models.Model):
 class ProductoTerminado(models.Model):
     '''Clase para la creacion de tabla de producto terminado'''
     pt_lote=models.AutoField(primary_key=True)
-    idCoccion=models.ForeignKey(Coccion,on_delete=models.CASCADE, null= True, blank=True)
-    idPicado=models.ForeignKey(Picado,on_delete=models.CASCADE, null= True, blank=True) 
     pt_cantidad=models.IntegerField()
     pt_nombre=models.ForeignKey(ProductoTerminadoGenerico,on_delete=models.CASCADE)
     pt_fechapreparacion=models.DateField('Fecha Preparacion')
     pt_fechavencimiento=models.DateField('Fecha Vencimiento')
 
     def __str__(self):
-        return f"{self.pt_lote}-{self.pt_nombre}-{self.pt_fechapreparacion}-{self.pt_fechavencimiento}"
+        return f"{self.pt_lote}-{self.pt_nombre}"
 
 
 # Creación model ExistenciaPT.

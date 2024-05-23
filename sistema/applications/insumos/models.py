@@ -5,10 +5,17 @@ from django.db import models
 class InsumosGenerico(models.Model):
     '''Tabla generica para implementos de trabajo'''
     it_nombre=models.CharField('Nombre',max_length=50)
+    cantidad_total = models.IntegerField('Cantidad Total', default=0)  # Nuevo campo para almacenar la cantidad total
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return f"{self.it_nombre}"
-
+    
+    def actualizar_cantidad_total(self):
+        total = sum([implemento.it_cantidad for implemento in self.implementostrabajo_set.all()])
+        self.cantidad_total = total
+        self.save()
+    
 class ImplementosTrabajo(models.Model):
     
     class Estado(models.TextChoices):
@@ -20,6 +27,7 @@ class ImplementosTrabajo(models.Model):
     it_cantidad = models.IntegerField('Cantidad')
     it_fechaEntrega = models.DateField('Fecha Entrega')
     it_estado = models.CharField('Estado', max_length=1, choices=Estado.choices)
+    deleted = models.BooleanField(default=False)  
 
     def __str__(self):
         return f"{self.it_codigo}-{self.it_nombre}-{self.it_fechaEntrega}"
