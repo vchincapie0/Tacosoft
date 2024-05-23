@@ -1,7 +1,7 @@
 from django.db import models
 from applications.users.models import User
 from applications.materiaprima.models import MateriaPrima
-from applications.insumos.models import ImplementosTrabajo
+from applications.insumos.models import Insumos
 from applications.proveedores.models import Proveedores
 from django.utils import timezone
 
@@ -24,7 +24,7 @@ class Pedidos(models.Model):
     pedi_comprobatePago=models.CharField('Comprobante Pago',max_length=45)
     pedi_proveedor=models.ForeignKey(Proveedores, on_delete=models.CASCADE)
     pedi_materiaprima=models.ManyToManyField(MateriaPrima, blank=True)
-    pedi_insumos=models.ManyToManyField(ImplementosTrabajo, blank=True)
+    pedi_insumos=models.ManyToManyField(Insumos, blank=True)
     deleted = models.BooleanField(default=False)  # Campo para el borrado lógico
 
     def __str__(self):
