@@ -19,7 +19,8 @@ from .models import (
     MateriaPrimaAudit
     )
 from .forms import (
-    MateriaPrimaForm,
+    
+    MateriaPrimaUpdateForm,
     CaracteristicasMPForm,
     CaracteristicasMPUpdateForm,
     DesinfeccionMPForm,
@@ -100,6 +101,7 @@ class MateriaPrimaListView(LoginRequiredMixin, ListView):
             queryset = queryset.filter(mp_nombre__icontains=palabra_clave)
 
         return queryset
+
    
 class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Clase donde se modifica la materia prima registrada'''
@@ -107,7 +109,7 @@ class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "materiaprima/mp_update.html"
     login_url=reverse_lazy('users_app:login')
     #Campos que se van a mostrar en el formulario
-    form_class = MateriaPrimaForm
+    form_class = MateriaPrimaUpdateForm
     #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
     success_url= reverse_lazy('mp_app:lista_mp') 
 
