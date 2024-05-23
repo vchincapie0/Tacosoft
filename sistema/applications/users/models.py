@@ -33,10 +33,13 @@ class User(AbstractUser):
         self.save(using=using)
 
 class UserAudit(models.Model):
+
     ACTION_CHOICES = [
         ('C', 'Creado'),
         ('U', 'Actualizado'),
-        ('D', 'Borrado')
+        ('D', 'Borrado'),
+        ('L', 'Inicio de Sesión'),
+        ('O', 'Cerrado de Sesión')
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='audit_logs')

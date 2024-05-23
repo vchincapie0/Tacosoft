@@ -1,13 +1,14 @@
 from django.urls import path
+from applications.users.decorators import admin_required
 from . import views
 
 app_name='produ_app'
 
 urlpatterns = [
     path('list_produ/',views.ProduListView.as_view(),name='list_produ'),
-    path('add_produ/',views.ProduCreateView.as_view(),name='add_produ'),
+    path('add_produ/',admin_required(views.ProduCreateView.as_view()),name='add_produ'),
     path('update_produ/<pk>',views.ProduUpdateView.as_view(),name='update_produ'),
-    path('delete_produ/<pk>',views.ProduDeleteView.as_view(),name='delete_produ'),
+    path('delete_produ/<pk>',admin_required(views.ProduDeleteView.as_view()),name='delete_produ'),
     path('existenciaPT/<pk>' ,views.ExistenciaPTView.as_view(),name='exitenciaPT'),
     path('caracteristicas_PT/',views.CaracteristicasProductoTerminadoCreateView.as_view(),name='caracteristicas_PT'),
     path('updatecaracteristicas_pt/<pk>',views.CaracteristicasProductoTerminadoUpdateView.as_view(),name='updatecaracteristicas_pt'),
@@ -20,7 +21,9 @@ urlpatterns = [
     path('add_pt_generico/',views.ProductoTerminadoGenericoCreateView.as_view(),name='add_pt_generico'),
     path('update_pt_generico/<pk>',views.ProductoTerminadoGenericoUpdateView.as_view(),name='update_pt_generico'),
     path('delete_pt_generico/<pk>',views.ProductoTerminadoGenericoDeleteView.as_view(),name='delete_pt_generico'),
-    path('producto_audit/',views.ProductoAuditListView.as_view(),name='producto_audit'),
+    path('producto_audit/',admin_required(views.ProductoAuditListView.as_view()),name='producto_audit'),
+    path('productoterminado/export/xls',admin_required(views.export_productoterminado_to_excel), name='export_productoterminado_excel'),
+    path('productoterminado/export/cvs',admin_required(views.export_productoterminado_to_csv), name='export_productoterminado_cvs'),
 
 
 

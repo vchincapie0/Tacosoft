@@ -1,7 +1,7 @@
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
-from .models import ImplementosAudit
+from .models import ImplementosAudit, ImplementosTrabajo, InsumosGenerico
 import threading
 
 # Obtener el modelo de implementos personalizados
@@ -26,3 +26,12 @@ def log_user_change(sender, instance, created, **kwargs):
 
     # Crear el registro de auditoría con el usuario que realizó la acción
     ImplementosAudit.objects.create(implementostrabajo=instance, action=action, details=details, changed_by=changed_by)
+
+
+@receiver(post_save, sender=ImplementosTrabajo)
+@receiver(post_delete, sender=ImplementosTrabajo)
+def actualizar_cantidad_total_insumo(sender, instance, **kwargs):
+    print('Dentro de señal cantidad')
+    insumo = instance.it_nombre
+    insumo.actualizar_cantidad_total()
+    insumo.save()  # Guarda el insumo después de actualizar la cantidad total

@@ -36,6 +36,7 @@ deactivate () {
 deactivate nondestructive
 
 # on Windows, a path can contain colons and backslashes and has to be converted:
+<<<<<<< HEAD
 if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
     # transform D:\path\to\venv to /d/path/to/venv on MSYS
     # and to /cygdrive/d/path/to/venv on Cygwin
@@ -43,6 +44,15 @@ if [ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ] ; then
 else
     # use the path as-is
     export VIRTUAL_ENV="C:\Users\HP\OneDrive\Documentos\Tacosoft\entorno"
+=======
+if [ "${OSTYPE:-}" = "cygwin" ] || [ "${OSTYPE:-}" = "msys" ] ; then
+    # transform D:\path\to\venv to /d/path/to/venv on MSYS
+    # and to /cygdrive/d/path/to/venv on Cygwin
+    export VIRTUAL_ENV=$(cygpath "C:\Users\rockl\Documents\tacosoft\entorno")
+else
+    # use the path as-is
+    export VIRTUAL_ENV="C:\Users\rockl\Documents\tacosoft\entorno"
+>>>>>>> 4db2bdc19b433108f1e5025a5a5cb156d66c22ec
 fi
 
 _OLD_VIRTUAL_PATH="$PATH"
