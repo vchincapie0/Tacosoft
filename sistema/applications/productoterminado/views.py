@@ -21,7 +21,7 @@ from .models import (
     
 )
 from .forms import (
-    ProductoTerminadoForm,
+    ProductoTerminadoUpdateForm,
     CaracteristicasOrganolepticasPTForm,
     EmpaqueProductoTerminadoForm,
     VacioForm,
@@ -55,7 +55,7 @@ class ProduUpdateView(LoginRequiredMixin, UpdateView):
     model = ProductoTerminado
     template_name = "productoterminado/update_produ.html"
     login_url=reverse_lazy('users_app:login')
-    form_class=ProductoTerminadoForm
+    form_class=ProductoTerminadoUpdateForm
     success_url= reverse_lazy('produ_app:list_produ')
 
     def form_valid(self, form):

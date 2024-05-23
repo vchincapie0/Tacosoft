@@ -29,7 +29,7 @@ class ProductoTerminadoGenericoForm(forms.ModelForm):
             'materiaPrimaUsada':forms.SelectMultiple(attrs={'class':'form-select'}),
         }
 
-class ProductoTerminadoForm(forms.ModelForm):
+class ProductoTerminadoUpdateForm(forms.ModelForm):
     """Form definition for Producto Terminado."""
 
     class Meta:
