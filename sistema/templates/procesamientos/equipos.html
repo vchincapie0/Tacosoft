@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Picado
+    Equipos
 {% endblock title %}
 
 
@@ -37,7 +37,7 @@
                         <a onclick="add_equipos('{% url 'procesamientos_app:add_equipos'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
                         {%for p in procesamientos%}
                         <tr>
-                            <td>{{p.id_equipo}}</td>
+                            <td><a onclick="edit_equipo('{% url 'procesamientos_app:edit_equipo' p.id_equipo %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{p.id_equipo}} </a></td>
                             <td>{{p.equi_encargadoCocina}}</td>
                             <td>{{p.equi_encargadoEntrega}}</td>
                             <td>
@@ -112,7 +112,7 @@
 </div> 
 <div class="modal fade" id="add_equipos" role="dialog"></div>
 <div class="modal fade" id="delete_equipo" role="dialog"></div>
-
+<div class="modal fade" id="edit_equipo" role="dialog"></div>
 
 {% endblock content %}
 
@@ -130,6 +130,13 @@
         function delete_equipo(url){
             var $ = jQuery.noConflict();
             $('#delete_equipo').load(url,function(){
+                $(this).modal('show');
+            }); 
+        }
+
+        function edit_equipo(url){
+            var $ = jQuery.noConflict();
+            $('#edit_equipo').load(url,function(){
                 $(this).modal('show');
             }); 
         }

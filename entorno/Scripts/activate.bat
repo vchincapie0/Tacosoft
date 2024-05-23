@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
+set VIRTUAL_ENV=C:\Users\HP\OneDrive\Documentos\Tacosoft\entorno
+=======
 set VIRTUAL_ENV=C:\Users\rockl\Documents\tacosoft\entorno
+>>>>>>> 4db2bdc19b433108f1e5025a5a5cb156d66c22ec
 
 if not defined PROMPT set PROMPT=$P$G
 
