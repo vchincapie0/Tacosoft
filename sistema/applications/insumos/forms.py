@@ -2,7 +2,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
-from .models import ImplementosTrabajo,InsumosGenerico,ImplementosAudit
+from .models import Insumos,InsumosGenerico,InsumosAudit
 from applications.users.models import User
 
 class InsumosGenericoForm(forms.ModelForm):
@@ -28,10 +28,10 @@ class InsumosGenericoUpdateForm(forms.ModelForm):
             }
     
 class ImplementosUpdateForm(forms.ModelForm):
-    """Form Update Implementos de Trabajo."""
+    """Form Update Insumos."""
     class Meta:
 
-        model = ImplementosTrabajo
+        model = Insumos
         fields = ['it_nombre', 'it_cantidad', 'it_fechaEntrega', 'it_estado']
 
         widgets={
@@ -47,13 +47,14 @@ class ImplementosUpdateForm(forms.ModelForm):
             raise forms.ValidationError("La cantidad debe ser un número mayor que 0.")
         return cantidad
 
-class ImplementosAuditFilterForm(forms.Form):
-    '''Formulario para filtar en implementosauditview'''
-    user = forms.ModelChoiceField(queryset=ImplementosTrabajo.objects.all(), 
+class InsumosAuditFilterForm(forms.Form):
+    '''Formulario para filtar en insumosauditview'''
+
+    user = forms.ModelChoiceField(queryset=Insumos.objects.all(), 
                                   required=False, 
                                   label='Implemento Afectado',
                                   widget=forms.Select(attrs={'class': 'form-select'}))
-    action = forms.ChoiceField(choices=ImplementosAudit.ACTION_CHOICES, 
+    action = forms.ChoiceField(choices=InsumosAudit.ACTION_CHOICES, 
                                required=False, 
                                label='Acción',
                                widget=forms.Select(attrs={'class': 'form-select'}))

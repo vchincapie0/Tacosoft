@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class InsumosGenerico(models.Model):
-    '''Tabla generica para implementos de trabajo'''
+    '''Tabla generica para insumos'''
     it_nombre=models.CharField('Nombre',max_length=50)
     cantidad_total = models.IntegerField('Cantidad Total', default=0)  # Nuevo campo para almacenar la cantidad total
     updated_at = models.DateTimeField(auto_now=True)
@@ -41,17 +41,17 @@ class Insumos(models.Model):
 
         super().save(*args, **kwargs)
 
-class ImplementosAudit(models.Model):
+class InsumosAudit(models.Model):
     ACTION_CHOICES = [
         ('C', 'Creado'),
         ('U', 'Actualizado'),
         ('D', 'Borrado')
     ]
 
-    implementos = models.ForeignKey(ImplementosTrabajo, on_delete=models.CASCADE, related_name='audit_logs')
+    implementos = models.ForeignKey(Insumos, on_delete=models.CASCADE, related_name='audit_logs')
     action = models.CharField(max_length=1, choices=ACTION_CHOICES)
     details = models.TextField(blank=True, null=True)
-    changed_by = models.ForeignKey(ImplementosTrabajo, on_delete=models.SET_NULL, null=True, blank=True)
+    changed_by = models.ForeignKey(Insumos, on_delete=models.SET_NULL, null=True, blank=True)
     changed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
