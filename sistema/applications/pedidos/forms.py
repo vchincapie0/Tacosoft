@@ -5,7 +5,7 @@ from datetime import timedelta
 from django import forms
 from .models import Pedidos, PedidosAudit
 from applications.materiaprima.models import MateriaPrima
-from applications.insumos.models import ImplementosTrabajo
+from applications.insumos.models import Insumos
 from applications.proveedores.models import Proveedores
 from applications.users.models import User
 
@@ -182,7 +182,7 @@ class PedidosAddInsumosCreateFrom(forms.ModelForm):
     class Meta:
         """Meta definition for implementosTrabajoform."""
 
-        model = ImplementosTrabajo
+        model = Insumos
         fields = (
             'it_codigo',
             'it_nombre',
