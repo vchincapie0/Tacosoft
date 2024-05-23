@@ -24,7 +24,6 @@ class PicadoListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
             '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
             lista = Picado.objects.filter(
-                deleted=False  # Solo picados activos
             )
             return lista
     
@@ -62,7 +61,6 @@ class CoccionListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
             '''Funcion que toma de la barra de busqueda la pablabra clave para filtrar datos borrados'''
             lista = Coccion.objects.filter(
-                deleted=False  # Solo picados activos
             )
             return lista
 

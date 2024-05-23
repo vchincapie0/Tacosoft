@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <a name="" id="" class="btn btn-success" onclick="add_picado('{% url 'procesamientos_app:add_picado' %}')" role="button">Agregar Picado</a>
+                    <a name="" id="" class="btn btn-success" onclick="add_picado('#')" role="button">Agregar Picado</a>
                 </div>
             </div>
             
@@ -34,10 +34,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <a onclick="add_picado('{% url 'procesamientos_app:add_picado'%}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
+                        <a onclick="add_picado('#')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" ></a>
                         {%for p in procesamientos%}
                         <tr>
-                            <td><a onclick="edit_picado('{% url 'procesamientos_app:edit_picado' p.cod_procesamiento %}')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{p.cod_procesamiento}} </a></td>
+                            <td><a onclick="edit_picado('#')" type="button" style="color: blue; text-decoration-line: underline;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Editar">{{p.cod_procesamiento}} </a></td>
                             <td>{{p.pica_nombre}}</td>
                             <td>{{p.pica_cantidad}}</td>
                             <td>{{p.pica_pesoMPposproceso}}</td>
@@ -52,7 +52,7 @@
                         </td>
                         <td>
         
-                            <a class="btn btn-danger" onclick="delete_picado('{% url 'procesamientos_app:delete_picado' p.cod_procesamiento %}')" type="button"><i class="fa-solid fa-trash-can"></i></a>
+                            <a class="btn btn-danger" onclick="delete_picado('#')" type="button"><i class="fa-solid fa-trash-can"></i></a>
 
                         </td>
                         </tr>
