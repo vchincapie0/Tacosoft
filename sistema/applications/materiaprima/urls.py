@@ -10,7 +10,6 @@ urlpatterns = [
     path('update_mp_generica/<pk>',views.MateriaPrimaGenericaUpdateView.as_view(),name='update_mp_generica'),
     path('delete_mp_generica/<pk>',views.MateriaPrimaGenericaDeleteView.as_view(),name='delete_mp_generica'),
     path('mp_list/',views.MateriaPrimaListView.as_view(),name='lista_mp'),
-    path('mp_add/',admin_required(views.MateriaPrimaCreateView.as_view()),name='add_mp'),
     path('mp_caracteristicas/',views.CaracteristicasMateriaPrimaCreateView.as_view(),name='caracteristicas_mp'),
     path('mp_update_caracteristicas/<pk>',views.CaracteristicasMateriaPrimaUpdateView.as_view(),name='updateCaracteristicas_mp'),
     path('desinfeccion_generico/',views.DesinfectanteGenericoListView.as_view(),name='desinfeccion_generico'),

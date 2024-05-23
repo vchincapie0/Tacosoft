@@ -100,17 +100,6 @@ class MateriaPrimaListView(LoginRequiredMixin, ListView):
             queryset = queryset.filter(mp_nombre__icontains=palabra_clave)
 
         return queryset
-
-class MateriaPrimaCreateView(LoginRequiredMixin, CreateView):
-    '''Clase donde se crea una nueva materia prima'''
-    model = MateriaPrima
-    template_name = "materiaprima/add_mp.html"
-    login_url=reverse_lazy('users_app:login')
-    #Campos que se van a mostrar en el formulario
-    form_class = MateriaPrimaForm
-    #url donde se redirecciona una vez acaba el proceso el "." es para redireccionar a la misma pagina
-    success_url= reverse_lazy('mp_app:lista_mp') 
-    
    
 class MateriaPrimaUpdateView(LoginRequiredMixin, UpdateView):
     '''Clase donde se modifica la materia prima registrada'''
