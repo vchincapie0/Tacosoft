@@ -88,13 +88,6 @@ class InsumosUpdateView(LoginRequiredMixin, UpdateView):
 
         return super(InsumosUpdateView, self).form_valid(form)
     
-class InsumosDeleteView(LoginRequiredMixin, DeleteView):
-    '''Vista para borrar Insumos'''
-    model = Insumos
-    template_name = "insumos/delete_insumos.html"
-    login_url=reverse_lazy('users_app:login')
-    success_url= reverse_lazy('insumos_app:list_insumos')
-
 class InsumosAuditListView(LoginRequiredMixin, ListView):
     model= InsumosAudit
     template_name='administrador/auditorias/insumosaudit.html'
