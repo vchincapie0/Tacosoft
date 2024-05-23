@@ -10,7 +10,7 @@ from django.views.generic import TemplateView, ListView, CreateView, UpdateView,
 from django.urls import reverse_lazy
 #Importacion de modelos y formularios
 from .models import ImplementosTrabajo,InsumosGenerico,ImplementosAudit
-from .forms import ImplementosTrabajoForm, ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm,ImplementosAuditFilterForm
+from .forms import  ImplementosUpdateForm,InsumosGenericoForm,InsumosGenericoUpdateForm,ImplementosAuditFilterForm
 
 # Create your views here.
 
