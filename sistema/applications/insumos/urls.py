@@ -10,7 +10,6 @@ urlpatterns = [
     path('update_insumos_generico/<pk>',views.InsumosGenericoUpdateView.as_view(),name='update_insumos_generico'),
     path('delete_insumos_generico/<pk>',views.InsumosGenericoDeleteView.as_view(),name='delete_insumos_generico'),
     path('list_insumos/',views.InsumosListView.as_view(),name='list_insumos'),
-    path('add_insumos/',views.ImplementosCreateView.as_view(),name='add_insumos'),
     path('update_insumos/<pk>',views.ImplementosUpdateView.as_view(),name='update_insumos'),
     path('delete_insumos/<pk>',admin_required(views.ImplementosDeleteView.as_view()),name='delete_insumos'),
     path('implementos_audit/',admin_required(views.ImplementosAuditListView.as_view()),name='implementos_audit'),
